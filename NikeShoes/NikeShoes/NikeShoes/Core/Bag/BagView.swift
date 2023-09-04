@@ -1,0 +1,20 @@
+//
+//  Bag View.swift
+//  NikeClone
+//
+//  Created by 이희찬 on 2023/09/04.
+//
+
+import SwiftUI
+
+struct BagView: View {
+    var body: some View {
+        Text("Bag View")
+    }
+}
+
+struct BagView_Previews: PreviewProvider {
+    static var previews: some View {
+        BagView()
+    }
+}

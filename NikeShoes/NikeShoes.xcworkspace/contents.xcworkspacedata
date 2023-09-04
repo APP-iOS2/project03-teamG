@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:NikeShoesCore">
+   </FileRef>
+   <FileRef
+      location = "group:NikeShoes/NikeShoes.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NikeShoesAdmin/NikeShoesAdmin.xcodeproj">
+   </FileRef>
+</Workspace>
