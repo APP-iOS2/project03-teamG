@@ -15,21 +15,23 @@ struct UserMapView: View {
     
     var body: some View {
         NavigationStack {
-            Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
-                .accentColor(.pink)
-                .onAppear {
-                    viewModel.checkLocationServicesIsEnabled()
-                }
-                .toolbar {
-                    ToolbarItem {
-                        Button {
-                            isShowingMapSheet = false
-                        } label: {
-                            Text("닫기")
-                        }
-
+            VStack {
+                Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+                    .accentColor(.pink)
+                    .onAppear {
+                        viewModel.checkLocationServicesIsEnabled()
                     }
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        isShowingMapSheet = false
+                    } label: {
+                        Text("닫기")
+                    }
+                    
                 }
+            }
         }
         
     }
@@ -74,10 +76,10 @@ class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAutorization()
     }
-    
-    struct UserMapView_Previews: PreviewProvider {
-        static var previews: some View {
-            UserMapView(isShowingMapSheet: .constant(false))
-        }
+}
+
+struct UserMapView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserMapView(isShowingMapSheet: .constant(false))
     }
 }

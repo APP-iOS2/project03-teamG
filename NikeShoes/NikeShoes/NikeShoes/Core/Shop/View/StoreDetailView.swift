@@ -14,63 +14,98 @@ struct StoreDetailView: View {
     var store: StoreData
     
     @State var isShowingMap = false
+    @State var callingStore = false
     
     var body: some View {
-            ScrollView {
-                AsyncImage(url: store.imageURL) { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
-                }
-                VStack(alignment: .leading) {
-                    Text(store.name)
-                        .font(.system(size: 20)) // 글씨체 좀 더 키워야하나?
-                        .bold()
-                    Divider()
-                    
-                    HStack {
-                        Text(store.address)
-                        Spacer()
-                        Button {
-                            isShowingMap = true
-                        } label: {
-                            Image(systemName: "arrow.right.circle")
-                                .font(.title2)
-                                .foregroundColor(.gray)
-                        }
+        ScrollView {
+            AsyncImage(url: store.imageURL) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ProgressView()
+            }
+            VStack(alignment: .leading) {
+                Text(store.name)
+                    .font(.system(size: 20)) // 글씨체 좀 더 키워야하나?
+                    .bold()
+                Divider()
+                
+                HStack {
+                    Text(store.address)
+                    Spacer()
+                    Button {
+                        isShowingMap = true
+                    } label: {
+                        Image(systemName: "arrow.right.circle")
+                            .font(.title2)
                     }
-                    
+                }
+                
+                Button {
+                    callingStore = true
+                } label: {
                     Text(store.storePhoneNumber) // 전화 연결
                         .padding(.top)
-                    
-                    Divider()
-                    Text("영업 시간 : \(store.openingTime) - \(store.terminatedTime)")
                 }
-                .padding()
+
                 
-                Image("storeImage")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
                 
+                Divider()
+                Text("영업 시간 : \(store.openingTime) - \(store.terminatedTime)")
             }
-            .navigationTitle("매장 상세 정보")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.backward")
-                    }
-                    
+            .padding()
+            
+            Image("storeImage")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            
+        }
+        .navigationTitle("매장 상세 정보")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.backward")
                 }
+                
             }
-            .sheet(isPresented: $isShowingMap) {
-                StoreMapView(store: store, isShowingMap: $isShowingMap)
+        }
+        .sheet(isPresented: $isShowingMap) {
+            StoreMapView(store: store, isShowingMap: $isShowingMap)
+        }
+        .confirmationDialog("매장 전화 걸기", isPresented: $callingStore) {
+            Button {
+                touchUpCalling(phoneNumber: store.storePhoneNumber)
+            } label: {
+                Label("통화 \(store.storePhoneNumber)", systemImage: "phone.circle")
             }
+            
+        }
     }
+    
+    func touchUpCalling(phoneNumber: String) {
+        let url = "tel://\(phoneNumber)"
+        
+        if let openApp = URL(string: url), UIApplication.shared.canOpenURL(openApp) {
+            // 버전별 처리
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+            }
+            else {
+                UIApplication.shared.openURL(openApp)
+            }
+        }
+        
+        //외부앱 실행이 불가능한 경우
+        else {
+            print("[외부 앱 열기 실패]")
+            print("주소 : \(url)")
+        }
+    }
+    
 }
 
 struct ShopDetailView_Previews: PreviewProvider {
