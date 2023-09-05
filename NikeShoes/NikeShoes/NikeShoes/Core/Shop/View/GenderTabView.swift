@@ -24,13 +24,18 @@ struct TabButton: View {
     }
 }
 
-// MARK: - GenderTabBarView
+// MARK: - 주 GenderTabBarView
 struct GenderTabBarView: View {
-    @State private var selectedTab: String = "남성"
+    @State private var selectedTab: String
     @State private var progressBarOffset: CGFloat = 0
     @State private var progressBarWidth: CGFloat = 0
-    var tabs: [String] = ["남성", "여성", "키즈"]
     
+    var tabs: [String]
+    
+    init(tabs: [String]) {
+        self.tabs = tabs
+        _selectedTab = State(initialValue: tabs.first ?? "")
+    }
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -131,6 +136,6 @@ struct SearchView: View {
 // MARK: - 미리보기
 struct GenderTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        GenderTabBarView()
+        GenderTabBarView(tabs: ["남성", "여성", "키즈"])
     }
 }
