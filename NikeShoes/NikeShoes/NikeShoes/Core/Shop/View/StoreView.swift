@@ -16,7 +16,6 @@ struct StoreView: View {
     var body: some View {
         NavigationStack {
             List {
-                
                 Text("추천 매장")
                     .font(.system(size: 20))
                     .listRowSeparator(.hidden)
@@ -34,15 +33,27 @@ struct StoreView: View {
             .listStyle(.plain)
             .navigationTitle("나이키 매장 찾기")
             .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem {
-//                    Button {
-//                        isShowingMapSheet = true
-//                    } label: {
-//                        Image(systemName: "mappin.circle")
-//                    }
-//                }
-//            }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        isShowingMapSheet = true
+                    } label: {
+                        Image(systemName: "map")
+                    }
+
+                }
+                ToolbarItem {
+                    Button {
+                        //
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+
+                }
+            }
+            .fullScreenCover(isPresented: $isShowingMapSheet) {
+                UserMapView(isShowingMapSheet: $isShowingMapSheet)
+            }
         }
     }
 }

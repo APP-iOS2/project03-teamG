@@ -17,7 +17,7 @@ struct StoreDetailView: View {
     
     var body: some View {
             ScrollView {
-                AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg")) { image in
+                AsyncImage(url: store.imageURL) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
                 } placeholder: {
@@ -37,7 +37,8 @@ struct StoreDetailView: View {
                         } label: {
                             Image(systemName: "arrow.right.circle")
                                 .font(.title2)
-                        } // 버튼 따로두는건 어떤지..?
+                                .foregroundColor(.gray)
+                        }
                     }
                     
                     Text(store.storePhoneNumber) // 전화 연결
@@ -67,7 +68,7 @@ struct StoreDetailView: View {
                 }
             }
             .sheet(isPresented: $isShowingMap) {
-                MapView(store: store, isShowingMap: $isShowingMap)
+                StoreMapView(store: store, isShowingMap: $isShowingMap)
             }
     }
 }
@@ -75,7 +76,7 @@ struct StoreDetailView: View {
 struct ShopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", address: "경기도 화성시 동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시", terminatedTime: "오후 8시"))
+            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", address: "경기도 화성시 동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg"))
         }
     }
 }
