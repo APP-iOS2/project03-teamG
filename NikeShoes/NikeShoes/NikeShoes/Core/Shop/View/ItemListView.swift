@@ -27,6 +27,7 @@ struct ItemListView: View {
                                         .frame(height: 180)
                                         .clipped()
                                 } placeholder: {
+                                    
                                     Image("progress")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
@@ -39,7 +40,7 @@ struct ItemListView: View {
                                     //                                    Text("\(data.modelName.rawValue)")
                                     Text("\(data.name)")
                                     Text("\(data.category.rawValue)")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(Color.textGray)
                                     Text("₩\(data.price)")
                                 }
                                 .padding(0.3)
@@ -54,7 +55,7 @@ struct ItemListView: View {
                                     .foregroundColor(.white)
                                     .overlay(
                                         Image(systemName: isLiked ? "heart.fill" : "heart")
-                                            .foregroundColor(isLiked ? .red : .red)
+                                            .foregroundColor(isLiked ? .nikeRed : .nikeRed)
                                     )
                             }
                             .offset(x: 65, y: -110)
