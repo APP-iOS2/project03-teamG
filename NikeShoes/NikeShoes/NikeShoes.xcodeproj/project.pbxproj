@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 
+		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
+		643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB8462AA6B020000233A5 /* ProfileViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
 		64CD997E2AA6D39E008D3094 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD997D2AA6D39E008D3094 /* EmailView.swift */; };
 		64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */; };
@@ -15,7 +17,6 @@
 		64CD99862AA70BD4008D3094 /* ManageAdress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99852AA70BD4008D3094 /* ManageAdress.swift */; };
 		64CD99882AA711C8008D3094 /* AdressEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99872AA711C8008D3094 /* AdressEditView.swift */; };
 		64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99892AA7183C008D3094 /* LocationView.swift */; };
-        
 		219D7D542AA6F85B0062A38F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D532AA6F85B0062A38F /* Color.swift */; };
 		219D7D562AA6F8630062A38F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D552AA6F8630062A38F /* Font.swift */; };
 		219D7D582AA6F86D0062A38F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D572AA6F86D0062A38F /* Model.swift */; };
@@ -156,6 +157,9 @@
 		64294BFA2AA6BEDE005CE57A /* View */ = {
 			isa = PBXGroup;
 			children = (
+
+				A074C45C2AA6EE610081DB7F /* SubView */,
+
 				643BB84A2AA6B054000233A5 /* SettingsView.swift */,
 				64CD997D2AA6D39E008D3094 /* EmailView.swift */,
 				64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */,
