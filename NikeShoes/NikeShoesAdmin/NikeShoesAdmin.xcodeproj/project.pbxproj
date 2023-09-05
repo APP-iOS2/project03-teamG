@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DDC33452AA6B75700FB4244 /* NikeShoesCore in Resources */ = {isa = PBXBuildFile; fileRef = 1DDC33442AA6B75600FB4244 /* NikeShoesCore */; };
 		9617AED12AA5AF10009FB78A /* NikeShoesAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AED02AA5AF10009FB78A /* NikeShoesAdminApp.swift */; };
 		9617AED32AA5AF10009FB78A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AED22AA5AF10009FB78A /* ContentView.swift */; };
 		9617AED52AA5AF16009FB78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AED42AA5AF16009FB78A /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DDC33442AA6B75600FB4244 /* NikeShoesCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NikeShoesCore; sourceTree = "<group>"; };
 		9617AECD2AA5AF10009FB78A /* NikeShoesAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeShoesAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617AED02AA5AF10009FB78A /* NikeShoesAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeShoesAdminApp.swift; sourceTree = "<group>"; };
 		9617AED22AA5AF10009FB78A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		9617AEDE2AA5AF8A009FB78A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DDC33442AA6B75600FB4244 /* NikeShoesCore */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				9617AED82AA5AF16009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AED52AA5AF16009FB78A /* Assets.xcassets in Resources */,
+				1DDC33452AA6B75700FB4244 /* NikeShoesCore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

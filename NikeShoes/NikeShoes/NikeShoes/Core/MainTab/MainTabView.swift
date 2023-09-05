@@ -20,7 +20,7 @@ struct MainTabView: View {
                     Image(systemName: "house")
                 }.tag(0)
             
-            GenderTabBarView()
+            GenderTabBarView(tabs: ["남성", "여성", "키즈"])
                 .onTapGesture {
                     self.selectedIndex = 1
                 }
