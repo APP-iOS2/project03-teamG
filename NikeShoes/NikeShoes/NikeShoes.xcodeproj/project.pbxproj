@@ -22,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D1CA3652AA6BBAF009BCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9617AEB32AA5AECC009FB78A /* NikeShoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeShoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeShoesApp.swift; sourceTree = "<group>"; };
 		9617AEB82AA5AECD009FB78A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
+				1D1CA3652AA6BBAF009BCCB5 /* Info.plist */,
 				9617AEE42AA5B7BC009FB78A /* Extensions */,
 				9617AEFE2AA5B896009FB78A /* Model */,
 				9617AEE62AA5B816009FB78A /* Core */,
@@ -415,6 +417,7 @@
 				DEVELOPMENT_TEAM = U432N7N8Z2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NikeShoes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -444,6 +447,7 @@
 				DEVELOPMENT_TEAM = U432N7N8Z2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NikeShoes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
