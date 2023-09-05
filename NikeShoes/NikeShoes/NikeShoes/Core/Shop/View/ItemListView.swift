@@ -14,7 +14,7 @@ struct ItemListView: View {
     @State var isLiked: Bool = false
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ScrollView{
                 LazyVGrid(columns: columns) {
                     ForEach(ShoesSampleData) { data in

@@ -15,8 +15,7 @@ struct AppBestCollectionView: View {
         VStack(alignment: .leading) {
             
             Text("나이키 앱 베스트 컬렉션")
-                .font(.system(size: 20))
-                .fontWeight(.medium)
+                .font(Font.medium20)
                 .padding()
             
             //가로 카테고리
@@ -36,8 +35,7 @@ struct AppBestCollectionView: View {
                                 .cornerRadius(15)
                                 Text("\(collection)")
                                     .foregroundColor(.black)
-                                    .font(.system(size: 12))
-                                    .fontWeight(.semibold)
+                                    .font(Font.semiBold12)
                                     .padding([.top,.leading],10)
                             }
                         }
