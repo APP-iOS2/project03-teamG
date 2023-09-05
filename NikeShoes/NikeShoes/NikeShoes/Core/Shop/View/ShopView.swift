@@ -35,7 +35,7 @@ struct ShopView: View {
                     VStack{
                         ZStack{
                             Rectangle()
-                                .frame(width: .infinity, height: 120)
+                                .frame(width: 500, height: 120)
                             Text("카테고리")
                                 .foregroundColor(Color.white)
                         }

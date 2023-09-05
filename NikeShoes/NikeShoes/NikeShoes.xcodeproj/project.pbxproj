@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
 		643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB8462AA6B020000233A5 /* ProfileViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
 		9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		643BB8462AA6B020000233A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		643BB84A2AA6B054000233A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9617AEB32AA5AECC009FB78A /* NikeShoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeShoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64294BFA2AA6BEDE005CE57A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				643BB84A2AA6B054000233A5 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64294BFB2AA6BEE4005CE57A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		643BB8432AA6AFD2000233A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +98,8 @@
 		643BB8492AA6B042000233A5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				643BB84A2AA6B054000233A5 /* SettingsView.swift */,
+				64294BFB2AA6BEE4005CE57A /* ViewModel */,
+				64294BFA2AA6BEDE005CE57A /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -324,6 +343,7 @@
 				9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */,
 				9617AEFA2AA5B816009FB78A /* GenderTabView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
+				64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NikeShoes/Preview Content\"";
-				DEVELOPMENT_TEAM = U432N7N8Z2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -481,7 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NikeShoes/Preview Content\"";
-				DEVELOPMENT_TEAM = U432N7N8Z2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
