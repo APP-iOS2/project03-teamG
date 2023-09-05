@@ -36,13 +36,13 @@ struct MainTabView: View {
                     Image(systemName: "heart")
                 }.tag(2)
             
-            BagView()
-                .onTapGesture {
-                    self.selectedIndex = 3
-                }
-                .tabItem {
-                    Image(systemName: "bag")
-                }.tag(3)
+//            BagView()
+//                .onTapGesture {
+//                    self.selectedIndex = 3
+//                }
+//                .tabItem {
+//                    Image(systemName: "bag")
+//                }.tag(3)
             
             ProfileView()
                 .onTapGesture {
