@@ -18,9 +18,9 @@ struct InboxView: View {
                 MessageView(messageTitle: messageTitle, messageBody: messageBody)
             }
             .listStyle(PlainListStyle())
-            .navigationTitle("수신함")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationTitle("수신함")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
