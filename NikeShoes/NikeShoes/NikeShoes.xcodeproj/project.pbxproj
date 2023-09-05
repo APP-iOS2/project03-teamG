@@ -105,10 +105,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
-				9617AEE42AA5B7BC009FB78A /* Extensions */,
-				9617AEFE2AA5B896009FB78A /* Model */,
 				9617AEE62AA5B816009FB78A /* Core */,
-				9617AEE52AA5B7FA009FB78A /* Service */,
 				9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */,
 				9617AEB82AA5AECD009FB78A /* ContentView.swift */,
 				9617AEBA2AA5AED0009FB78A /* Assets.xcassets */,
@@ -132,24 +129,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9617AEE42AA5B7BC009FB78A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		9617AEE52AA5B7FA009FB78A /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		9617AEE62AA5B816009FB78A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				9617AEF02AA5B816009FB78A /* Components */,
 				9617AEF32AA5B816009FB78A /* MainTab */,
 				9617AEE72AA5B816009FB78A /* Home */,
 				9617AEEB2AA5B816009FB78A /* Shop */,
@@ -179,17 +161,9 @@
 		9617AEEB2AA5B816009FB78A /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				9617AEEC2AA5B816009FB78A /* ViewModel */,
 				9617AEED2AA5B816009FB78A /* View */,
 			);
 			path = Shop;
-			sourceTree = "<group>";
-		};
-		9617AEEC2AA5B816009FB78A /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9617AEED2AA5B816009FB78A /* View */ = {
@@ -199,13 +173,6 @@
 				9617AEEF2AA5B816009FB78A /* GenderTabView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9617AEF02AA5B816009FB78A /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		9617AEF12AA5B816009FB78A /* Profile */ = {
@@ -231,13 +198,6 @@
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
 			);
 			path = Bag;
-			sourceTree = "<group>";
-		};
-		9617AEFE2AA5B896009FB78A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
