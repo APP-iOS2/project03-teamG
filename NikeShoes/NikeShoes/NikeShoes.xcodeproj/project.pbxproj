@@ -305,8 +305,7 @@
 			path = Bag;
 			sourceTree = "<group>";
 		};
-<<<<<<< Updated upstream
-=======
+
 		B0A499622AA71CB200FE9235 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,7 +313,7 @@
 			);
 			name = "Recovered References";
         };
->>>>>>> Stashed changes
+
 		DC01B54D2AA6E9D2003B6E77 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
