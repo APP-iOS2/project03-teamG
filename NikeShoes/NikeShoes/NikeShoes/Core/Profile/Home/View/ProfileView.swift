@@ -14,7 +14,10 @@ struct ProfileView: View {
                 
                 actionButtonView
                 
-                Spacer()
+                List{
+                    profileContentView
+                }
+                .listStyle(.plain)
             }
         }
     }
@@ -89,12 +92,13 @@ extension ProfileView {
                     }
                     .padding()
                 }
-                
                 Divider()
                     .frame(height: 30)
             }
         }
     }
     
-    
+    var profileContentView: some View{
+            ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능")
+    }
 }
