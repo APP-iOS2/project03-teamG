@@ -130,7 +130,9 @@ struct SelectedContentView: View {
 // MARK: - SearchView
 struct SearchView: View {
     var body: some View {
-        NavigationLink(destination: /* 나중에 SearchItemView로 대체될 예정 */ Text("검색 뷰")) {
+        NavigationLink(destination: /* 나중에 SearchItemView로 대체될 예정 */
+                       
+                       SearchItemView()) {
             Image(systemName: "magnifyingglass").foregroundColor(.black)
         }
     }

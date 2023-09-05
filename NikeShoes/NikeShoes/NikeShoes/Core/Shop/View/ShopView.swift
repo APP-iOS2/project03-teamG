@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ShopView: View {
     var body: some View {
+
         ScrollView {
             AppBestCollectionView()
                 .frame(height: 250)
+
                 LazyVStack {
                     
                     LazyVStack {
