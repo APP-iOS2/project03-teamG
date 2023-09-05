@@ -11,14 +11,13 @@ import SwiftUI
 
 struct OBView: View {
     
-    @State var screen: [OnBoardingScreen] = OnBoardingScreen.allCases
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack{
             VStack{
-                OBContainerView(isButtonClicked: false, index: 0, questions: $screen)
+                OBContainerView(isButtonClicked: false, index: 0)
                     .navigationBarBackButtonHidden(true)
             }//VStack
         }
@@ -31,20 +30,14 @@ struct OBContainerView: View {
     @State var index: Int = 0
     
     let duration: Double = 0.5
-    @Binding var screens: [OnBoardingScreen]
     
     var colummID: [String]
     
-    init(isButtonClicked: Bool, index: Int, questions: Binding<[OnBoardingScreen]>) {
+    init(isButtonClicked: Bool, index: Int) {
         self.isButtonClicked = isButtonClicked
         self.index = index
-        self._screens = questions
         self.colummID = []
         
-        for value in questions.wrappedValue {
-            print(value.id)
-            colummID.append("\(value.id)")
-        }
     }
     
     var imageURL: String = "https://static.nike.com/a/images/f_auto/f9b5ee1b-ea2d-4389-b296-1303680aafdd/image.png"
