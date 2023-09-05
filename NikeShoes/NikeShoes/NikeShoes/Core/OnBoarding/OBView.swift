@@ -8,36 +8,8 @@
 import SwiftUI
 
 
-enum OnBoardingScreen: CaseIterable, Identifiable {
-    case start
-    case interest
-    case shoesSize
-    case alarm
-    case location
-    
-    
-    var string: String {
-        switch self {
-        case .start:
-            return "시작"
-        case .interest:
-            return "관심있는 항목"
-        case .shoesSize:
-            return "신발사이즈"
-        case .alarm:
-            return "알림"
-        case .location:
-            return "위치"
-        }
-    }
-    
-    var id: Self {
-        return self
-    }
-}
 
-
-struct OnBoardingView: View {
+struct OBView: View {
     
     @State var screen: [OnBoardingScreen] = OnBoardingScreen.allCases
     
@@ -153,8 +125,8 @@ struct OBContainerView: View {
     }
 }
 
-struct OnBoardingView_Previews: PreviewProvider {
+struct OBView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingView()
+        OBView()
     }
 }
