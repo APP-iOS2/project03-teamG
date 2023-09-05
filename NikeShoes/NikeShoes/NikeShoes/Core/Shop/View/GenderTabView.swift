@@ -37,7 +37,7 @@ struct GenderTabBarView: View {
         _selectedTab = State(initialValue: tabs.first ?? "")
     }
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
                 SelectedContentView(selectedTab: $selectedTab)
@@ -57,6 +57,7 @@ struct TabBarView: View {
     @Binding var progressBarWidth: CGFloat
     
     var body: some View {
+        
         VStack(spacing: 10) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
