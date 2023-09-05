@@ -75,7 +75,6 @@
 				9617AEE62AA5B816009FB78A /* Core */,
 				9617AEE52AA5B7FA009FB78A /* Service */,
 				9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */,
-				63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */,
 				9617AEB82AA5AECD009FB78A /* ContentView.swift */,
 				9617AEBA2AA5AED0009FB78A /* Assets.xcassets */,
 				9617AEBC2AA5AED0009FB78A /* Preview Content */,
@@ -161,6 +160,7 @@
 		9617AEED2AA5B816009FB78A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */,
 				9617AEEE2AA5B816009FB78A /* ShopView.swift */,
 				9617AEEF2AA5B816009FB78A /* GenderTabView.swift */,
 			);
