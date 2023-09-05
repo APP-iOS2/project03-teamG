@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
     var imageUrl: URL = URL(string: "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png")!
     
     var body: some View {
