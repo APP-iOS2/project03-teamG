@@ -45,7 +45,7 @@ extension SettingsViewModel {
     var destinationView: some View {
         switch self {
         case .email:
-            return AnyView(EmptyView())
+            return AnyView(EmailView(title: self.title))
         case .phoneNumber:
             return AnyView(EmptyView())
         case .birth:

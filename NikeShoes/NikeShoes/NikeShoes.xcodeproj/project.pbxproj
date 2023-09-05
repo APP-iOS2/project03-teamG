@@ -10,6 +10,9 @@
 		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
 		643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB8462AA6B020000233A5 /* ProfileViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
+		64CD997E2AA6D39E008D3094 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD997D2AA6D39E008D3094 /* EmailView.swift */; };
+		64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */; };
+		64CD99842AA6E85E008D3094 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99832AA6E85E008D3094 /* CustomButton.swift */; };
 		9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */; };
 		9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB82AA5AECD009FB78A /* ContentView.swift */; };
 		9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AEBA2AA5AED0009FB78A /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 		64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		643BB8462AA6B020000233A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		643BB84A2AA6B054000233A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		64CD997D2AA6D39E008D3094 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonNumberView.swift; sourceTree = "<group>"; };
+		64CD99832AA6E85E008D3094 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9617AEB32AA5AECC009FB78A /* NikeShoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeShoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeShoesApp.swift; sourceTree = "<group>"; };
 		9617AEB82AA5AECD009FB78A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				643BB84A2AA6B054000233A5 /* SettingsView.swift */,
+				64CD997D2AA6D39E008D3094 /* EmailView.swift */,
+				64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 		9617AEF02AA5B816009FB78A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				64CD99832AA6E85E008D3094 /* CustomButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -335,11 +344,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CD997E2AA6D39E008D3094 /* EmailView.swift in Sources */,
 				9617AEF82AA5B816009FB78A /* WishView.swift in Sources */,
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */,
 				643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */,
+				64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
 				9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */,
 				A074C44D2AA6E01F0081DB7F /* Font.swift in Sources */,
@@ -348,6 +359,7 @@
 				9617AEFA2AA5B816009FB78A /* GenderTabView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
 				64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */,
+				64CD99842AA6E85E008D3094 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
