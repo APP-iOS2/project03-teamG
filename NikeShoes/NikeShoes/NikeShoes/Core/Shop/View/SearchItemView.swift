@@ -28,8 +28,36 @@ struct SearchItemView: View {
                 //TextField
                 TextField("제품 검색", text: $searchText)
                     .focused($focused)
+                    .textInputAutocapitalization(.never)
+                    .disableAutocorrection(true)
                     //.keyboardType(.webSearch)
                     .tint(.black)
+                    .onSubmit {//키보드 엔터 버튼 감지 구역
+                        //예외 처리
+                        let trimmedSearchText = searchText.trimmingCharacters(in: .whitespaces) //텍스트 앞 뒤의 스페이스바를 모두 제거
+                        if !trimmedSearchText.isEmpty {//제대로된 내용으로 검색이 이루어진 경우
+                            //1. 검색 텍스트 순서를 최신 검색에 맞게 바꿔줘야 함 (함수로 만들면 편할 듯)
+                            let search = trimmedSearchText //으 변수명 너무 길다...
+                            if searchHistory.isEmpty {
+                                searchHistory.append(search)
+                            } else {
+                                for index in 0..<searchHistory.count {
+                                    if searchHistory[index] == search {//기존에 존재한 검색인 경우
+                                        searchHistory.remove(at: index)
+                                    }
+                                }
+                                searchHistory.insert(search, at: 0)//맨 앞에 넣어주면 됨
+                            }
+                            //2. NavigationLink로 넘어가면 이전 화면이 검색화면 이므로 문제가 될 수 있다.
+                            //2.1 아니면 아예 못돌아오게 Back 버튼을 순기던지
+                            
+                        } else {//빈 텍스트 or 스페이스바 밖에 없어서 빈 텍스트로 변한 것
+                            //그냥 아무 동작도 안하는게 좋을듯
+                            self.focused = true //키보드가 계속 올라와 있게 유지
+                            
+                        }
+                        
+                    }
                 //Button(delete text)
                 if searchText.isEmpty {
                     
