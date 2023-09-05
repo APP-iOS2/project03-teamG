@@ -28,7 +28,7 @@ struct OrderListView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(orderState)
                         .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.darkgreen)
+                        .foregroundColor(.nikeGreen)
                     
                     Text(productName)
                         .font(.system(size: 16, weight: .bold))
