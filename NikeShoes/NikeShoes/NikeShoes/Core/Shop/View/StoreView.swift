@@ -11,6 +11,8 @@ struct StoreView: View {
     
     @ObservedObject var storeModel = StoreModel()
     
+    @State var isShowingMapSheet: Bool = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -32,6 +34,15 @@ struct StoreView: View {
             .listStyle(.plain)
             .navigationTitle("나이키 매장 찾기")
             .navigationBarTitleDisplayMode(.inline)
+//            .toolbar {
+//                ToolbarItem {
+//                    Button {
+//                        isShowingMapSheet = true
+//                    } label: {
+//                        Image(systemName: "mappin.circle")
+//                    }
+//                }
+//            }
         }
     }
 }

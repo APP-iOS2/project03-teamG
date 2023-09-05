@@ -29,14 +29,16 @@ struct StoreDetailView: View {
                         .bold()
                     Divider()
                     
-                    Text(store.address)
-                    
-                    Button {
-                        isShowingMap = true
-                    } label: {
-                        Text("지도로 위치확인")
-                    } // 버튼 따로두는건 어떤지..?
-                    .buttonStyle(.bordered)
+                    HStack {
+                        Text(store.address)
+                        Spacer()
+                        Button {
+                            isShowingMap = true
+                        } label: {
+                            Image(systemName: "arrow.right.circle")
+                                .font(.title2)
+                        } // 버튼 따로두는건 어떤지..?
+                    }
                     
                     Text(store.storePhoneNumber) // 전화 연결
                         .padding(.top)
