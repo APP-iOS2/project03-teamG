@@ -35,4 +35,3 @@ extension Font {
     /// 작은 글씨에 사용됩니다(11, regular)
     static let regular11 = Self.system(size: 11, weight: .regular)
 }
-
