@@ -99,11 +99,7 @@ extension ProfileView {
             }
         }
     }
-<<<<<<< Updated upstream
     var profileContentView: some View{
-            ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능")
+        ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .inBoxView)
     }
-=======
-
->>>>>>> Stashed changes
 }
