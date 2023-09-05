@@ -47,13 +47,13 @@ extension SettingsViewModel {
         case .email:
             return AnyView(EmailView(title: self.title))
         case .phoneNumber:
-            return AnyView(EmptyView())
+            return AnyView(PhonNumberView(title: self.title))
         case .birth:
             return AnyView(EmptyView())
         case .manageAddress:
-            return AnyView(EmptyView())
+            return AnyView(ManageAdress(title: self.title))
         case .location:
-            return AnyView(EmptyView())
+            return AnyView(LocationView(title: self.title))
         case .language:
             return AnyView(EmptyView())
         case .settingLocation:
