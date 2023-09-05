@@ -26,7 +26,7 @@ struct SettingsView: View {
                 .foregroundColor(.black)
             }
         }
-        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarTitle("설정", displayMode: .inline)
         .navigationBarBackButtonHidden()
     }
 }
