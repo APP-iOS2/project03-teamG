@@ -36,6 +36,12 @@
 		9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF22AA5B816009FB78A /* ProfileView.swift */; };
 		9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF42AA5B816009FB78A /* MainTabView.swift */; };
 		9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF62AA5B816009FB78A /* BagView.swift */; };
+		DC01B54F2AA6E9EB003B6E77 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B54E2AA6E9EB003B6E77 /* ButtonView.swift */; };
+		DC01B5512AA6F1C3003B6E77 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */; };
+		DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */; };
+		DC01B5562AA704F1003B6E77 /* SignUpTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */; };
+		DCBB8B852AA6CAAE00F17A82 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */; };
+		DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +75,12 @@
 		9617AEF22AA5B816009FB78A /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9617AEF42AA5B816009FB78A /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9617AEF62AA5B816009FB78A /* BagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagView.swift; sourceTree = "<group>"; };
+		DC01B54E2AA6E9EB003B6E77 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
+		DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoView.swift; sourceTree = "<group>"; };
+		DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldStyle.swift; sourceTree = "<group>"; };
+		DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +191,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
+				9617AEE62AA5B816009FB78A /* Core */,
 				1D1CA3652AA6BBAF009BCCB5 /* Info.plist */,
 				219D7D502AA6F7EC0062A38F /* Extensions */,
 				219D7D512AA6F7F80062A38F /* Model */,
@@ -217,6 +230,7 @@
 				9617AEE92AA5B816009FB78A /* Wish */,
 				9617AEF52AA5B816009FB78A /* Bag */,
 				9617AEF12AA5B816009FB78A /* Profile */,
+				DCC8D16B2AA6BA8200215E65 /* OnBoarding */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -277,6 +291,35 @@
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
 			);
 			path = Bag;
+			sourceTree = "<group>";
+		};
+		DC01B54D2AA6E9D2003B6E77 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				DC01B54E2AA6E9EB003B6E77 /* ButtonView.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		DC01B5542AA704D4003B6E77 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		DCC8D16B2AA6BA8200215E65 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */,
+				DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */,
+				DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */,
+				DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */,
+				DC01B5542AA704D4003B6E77 /* Modifier */,
+				DC01B54D2AA6E9D2003B6E77 /* SubView */,
+			);
+			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,14 +404,20 @@
 				219D7D542AA6F85B0062A38F /* Color.swift in Sources */,
 				9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */,
 				643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */,
+				DC01B5512AA6F1C3003B6E77 /* TermsOfServiceView.swift in Sources */,
 				961799032AA6FCEE009FC991 /* OBLocationView.swift in Sources */,
 				961798F52AA6C573009FC991 /* OBStartView.swift in Sources */,
 				961798F92AA6C77C009FC991 /* TempButton.swift in Sources */,
 				961799092AA70B2B009FC991 /* OBLanguageSelectionView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
+				DC01B54F2AA6E9EB003B6E77 /* ButtonView.swift in Sources */,
+				DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */,
 				9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */,
 				961798FD2AA6F0C0009FC991 /* OBWelcomeView.swift in Sources */,
 				9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */,
+				DCBB8B852AA6CAAE00F17A82 /* SignUpView.swift in Sources */,
+				9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */,
+				DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */,
 				961798FB2AA6CCDB009FC991 /* Blur.swift in Sources */,
 				961799072AA70A72009FC991 /* OBLocationDescriptionView.swift in Sources */,
 				9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */,
@@ -377,6 +426,7 @@
 				961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */,
 				961798F32AA6BA9C009FC991 /* OBView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
+				DC01B5562AA704F1003B6E77 /* SignUpTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
