@@ -24,6 +24,7 @@
 		9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF22AA5B816009FB78A /* ProfileView.swift */; };
 		9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF42AA5B816009FB78A /* MainTabView.swift */; };
 		9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF62AA5B816009FB78A /* BagView.swift */; };
+		9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */; };
 		A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		9617AEF22AA5B816009FB78A /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9617AEF42AA5B816009FB78A /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9617AEF62AA5B816009FB78A /* BagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagView.swift; sourceTree = "<group>"; };
+		9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBestCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 				9617AEEE2AA5B816009FB78A /* ShopView.swift */,
 				9617AEEF2AA5B816009FB78A /* GenderTabView.swift */,
 				A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */,
+				9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				21D83E542AA6ADD2006C5021 /* ShoesSampleData.swift in Sources */,
+				9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */,
 				219D7D542AA6F85B0062A38F /* Color.swift in Sources */,
 				9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
