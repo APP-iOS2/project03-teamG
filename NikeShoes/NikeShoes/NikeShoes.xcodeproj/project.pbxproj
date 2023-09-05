@@ -11,6 +11,7 @@
 		219D7D562AA6F8630062A38F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D552AA6F8630062A38F /* Font.swift */; };
 		219D7D582AA6F86D0062A38F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D572AA6F86D0062A38F /* Model.swift */; };
 		219D7D5A2AA6F8760062A38F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D592AA6F8760062A38F /* Service.swift */; };
+		21D83E542AA6ADD2006C5021 /* ShoesSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D83E532AA6ADD2006C5021 /* ShoesSampleData.swift */; };
 		9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */; };
 		9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB82AA5AECD009FB78A /* ContentView.swift */; };
 		9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AEBA2AA5AED0009FB78A /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21D83E532AA6ADD2006C5021 /* ShoesSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoesSampleData.swift; sourceTree = "<group>"; };
 		1D1CA3652AA6BBAF009BCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		219D7D532AA6F85B0062A38F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		219D7D552AA6F8630062A38F /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		9617AEEC2AA5B816009FB78A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				21D83E532AA6ADD2006C5021 /* ShoesSampleData.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */,
 				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
+				21D83E542AA6ADD2006C5021 /* ShoesSampleData.swift in Sources */,
 				219D7D542AA6F85B0062A38F /* Color.swift in Sources */,
 				9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
