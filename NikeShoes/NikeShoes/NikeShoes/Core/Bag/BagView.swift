@@ -11,14 +11,16 @@ struct BagView: View {
     
     @State var selectedQty: Int = 1
     @State var buttonText: String = "주문하기"
-    
+    @State private var isFolded = true
+
+    var animation: Animation = .spring()
     var quantities = [1, 2, 3]
     var productCount: Int = 1
     var defaultText: String = """
          장바구니가 비어있습니다.
 제품을 추가하면 여기에 표시됩니다.
 """
-    var productInfo: ProductInfo
+    var productInfo: ProductInfo = ProductInfo(name: "", category: "", option: "", size: "", price: 0)
     
     
     var body: some View {
@@ -41,8 +43,6 @@ struct BagView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 200, height: 200)
                         }
-
-                        
                         
                         // MARK: 아래는 임시 내용입니다.
                         VStack(alignment: .leading) {
@@ -85,20 +85,52 @@ struct BagView: View {
                 
                 Divider()
                 
-                HStack {
-                    Text("프로모션 코드가 있으신가요?")
-                    
-                    Spacer()
-                    
+               
                     // MARK: 버튼 누를경우 아래로 프로모션코드 입력 창 나타남
-                    Button {
+                    VStack {
+                        if isFolded {
+                            Button {
+                                withAnimation {
+                                    isFolded.toggle()
+                                }
+                            } label: {
+                                VStack {
+                                    HStack {
+                                        Text("프로모션 코드가 있으신가요?")
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "plus")
+                                            .frame(height: 10)
+                                    }
+                                    .foregroundColor(.black)
+                                }
+                            }
+                            
+                        } else {
+                            Button {
+                                withAnimation {
+                                    isFolded.toggle()
+                                }
+                            } label: {
+                                VStack {
+                                    HStack {
+                                        Text("프로모션 코드가 있으신가요?")
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "minus")
+                                            .frame(height: 300)
+                                    }
+                                    .foregroundColor(.black)
+                                    
+                                    
+                                }
+                            }
+                        }
                         
-                    } label: {
-                        Image(systemName: "plus")
                     }
-
-                }
-                .padding()
+                    .padding()
                 
                 Divider()
                 
