@@ -38,46 +38,29 @@ enum OnBoardingScreen: CaseIterable, Identifiable {
 
 
 struct OnBoardingView: View {
-  
+    
     @State var screen: [OnBoardingScreen] = OnBoardingScreen.allCases
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ZStack{
-            Color
-                .black
-                .edgesIgnoringSafeArea(.all)
-                .opacity(0.7)
-            
+        NavigationStack{
             VStack{
-                MainView(isButtonClicked: false, index: 0, questions: $screen)
+                OBContainerView(isButtonClicked: false, index: 0, questions: $screen)
                     .navigationBarBackButtonHidden(true)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                // 2
-                                dismiss()
-                            } label: {
-                                HStack {
-                                    Image(systemName: "chevron.backward")
-                                        .foregroundColor(Color(red:255/255, green: 177/255, blue: 58/255))
-                                }
-                            }
-                            Spacer()
-                        }
-                    }
             }//VStack
         }
-        
     }
 }
 
-struct MainView: View {
+struct OBContainerView: View {
     
     @State var isButtonClicked: Bool = false
     @State var index: Int = 0
+    
+    let duration: Double = 0.5
     @Binding var screens: [OnBoardingScreen]
+    
     var colummID: [String]
     
     init(isButtonClicked: Bool, index: Int, questions: Binding<[OnBoardingScreen]>) {
@@ -92,94 +75,79 @@ struct MainView: View {
         }
     }
     
-    let imageURL = "https://image"
+    var imageURL: String = "https://static.nike.com/a/images/f_auto/f9b5ee1b-ea2d-4389-b296-1303680aafdd/image.png"
     
     enum ScrollPosition: Hashable {
         case screen(id: String)
     }
-   
+    
     var body: some View {
-        GeometryReader{ proxy in
-            
-            VStack{
-                Spacer()
-                VStack{
-                    HStack{
-                        Spacer(minLength: 40)
-                        
-                        ProgressView(value: Double(index + 1),
-                                     total: Double(screens.count))
-                        .background(.white)
-                        .tint(.white)
-                        
-                        Spacer(minLength: 40)
-                    }
-
+        
+        VStack {
+            ZStack {
+                
+                if index != 1 && index != 0 {
+                    AsyncImage(url: URL(string: imageURL)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }.ignoresSafeArea()
+                    
+                    Blur(style: .systemUltraThinMaterialDark)
+                        .ignoresSafeArea()
+                }else{
+                    Color.black
+                        .ignoresSafeArea()
                 }
-
-                ScrollView(.horizontal,showsIndicators: false){
-                    ScrollViewReader{ proxy2 in
-                        HStack{
-                            ForEach(screens) { screen in
-                                VStack {
-                                    Spacer()
-                                    
-                                    Text("\(screen.string)")
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .foregroundColor(.white)
-                                        .font(.title)
-                                        .bold()
-                                    
-                                    Spacer()
-                              
-                                        AsyncImage(url: URL(string: imageURL)) { image in
-                                            image.resizable()
-                                                .cornerRadius(12)
-                                            
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                        .frame(width: 300, height: 200)
-                                        Spacer()
-                                        
-                                        Text("\(screen.string)")
-                                            .foregroundColor(.white)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .font(.body)
-                                            .padding()
-                                        
-                                    HStack {
-                                        Button(action: {
-                                            withAnimation{
-                                                self.isButtonClicked.toggle()
-                                                index += 1
-                                                proxy2.scrollTo(
-                                                    ScrollPosition.screen(id: colummID[index]),
-                                                    anchor: .leading
-                                                )
-                                            }
-                                        }, label: {
-                                            Text("Next")
-                                        })
-                                        .padding(.horizontal,30)
-                                        .padding(.vertical,10)
-                                        .background(.pink)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(20)
-                                    }
-                                    Spacer()
-                                    
-                                }
-                                .frame(width: proxy.size.width, height: proxy.size.height - 44, alignment: .center)
-                                .id(ScrollPosition.screen(id: "\(screen.id)"))
-                                
-                                Spacer()
-                            }
+                
+                VStack {
+                    HStack {
+                        if index != 1 && index != 0 {
+                            ProgressView(value: Double(index),
+                                         total: Double(7))
+                            .background(.gray)
+                            .tint(.white)
+                            .cornerRadius(12)
+                            .padding(.top,10)
+                            .padding(.horizontal,80)
                         }
                     }
-                }.frame(width: proxy.size.width, height: proxy.size.height - 44, alignment: .center)
-                    .edgesIgnoringSafeArea(.leading)
-                    .scrollDisabled(true)
+                    
+                    switch index {
+                    case 0:
+                        OBLocationDescriptionView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 1:
+                        OBLanguageSelectionView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 2:
+                        OBStartView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 3:
+                        OBInterestSelectView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 4:
+                        OBShoesSizeSelectView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 5:
+                        OBAlarmView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    case 6:
+                        OBLocationView()
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                    default:
+                        EmptyView()
+                    }
+                    
+                    TempButton {
+                       
+                        if index == 6 {
+                            index = 0
+                        }else {
+                            index += 1
+                        }
+                    }.padding(.bottom, 20)
+                }
             }
         }
     }
@@ -190,18 +158,3 @@ struct OnBoardingView_Previews: PreviewProvider {
         OnBoardingView()
     }
 }
-
-
-extension View {
-    func barTitle(_ title: String,
-             size: NavigationBarItem.TitleDisplayMode = .large) -> some View {
-        self.navigationBarTitle(title, displayMode: size)
-    }
-}
-
-struct Benchmark: Identifiable, Hashable {
-    let id = UUID()
-    var name: String
-}
-
-
