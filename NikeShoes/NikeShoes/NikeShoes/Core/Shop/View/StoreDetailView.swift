@@ -76,13 +76,14 @@ struct StoreDetailView: View {
         .sheet(isPresented: $isShowingMap) {
             StoreMapView(store: store, isShowingMap: $isShowingMap)
         }
-        .confirmationDialog("매장 전화 걸기", isPresented: $callingStore) {
+        .confirmationDialog("매장 전화 연결", isPresented: $callingStore) {
             Button {
                 touchUpCalling(phoneNumber: store.storePhoneNumber)
             } label: {
                 Label("통화 \(store.storePhoneNumber)", systemImage: "phone.circle")
             }
-            
+        } message: {
+            Text("매장 전화 연결")
         }
     }
     
