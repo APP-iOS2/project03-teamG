@@ -1,21 +1,22 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
+
     var imageUrl: URL = URL(string: "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png")!
     
     var body: some View {
         NavigationStack{
-            // header
+            // MARK: HEADER
             VStack {
-                // User Info
                 headerView
                     .padding()
-                
                 actionButtonView
-                
+            }
+            // MARK: CONTENT
+            VStack{
                 List{
-                    profileContentView
+                    ProfileContentLabel(title: "수신함", subTitle: "메세지 보기", profileContentViewType: .inBoxView)
+                    ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .memberReward)
                 }
                 .listStyle(.plain)
                 Spacer()
@@ -98,7 +99,11 @@ extension ProfileView {
             }
         }
     }
+<<<<<<< Updated upstream
     var profileContentView: some View{
             ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능")
     }
+=======
+
+>>>>>>> Stashed changes
 }
