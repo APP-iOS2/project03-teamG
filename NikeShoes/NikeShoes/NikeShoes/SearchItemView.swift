@@ -14,6 +14,7 @@ struct SearchItemView: View {
     //검색 기록
     @State var searchHistory: [String] = ["조던","흰색", "덩크"]
     @State var searchText: String = ""
+    @FocusState var focused: Bool
     
     var body: some View {
         VStack{
@@ -26,6 +27,8 @@ struct SearchItemView: View {
                     .padding()
                 //TextField
                 TextField("제품 검색", text: $searchText)
+                    .focused($focused)
+                    //.keyboardType(.webSearch)
                     .tint(.black)
                 //Button(delete text)
                 if searchText.isEmpty {
@@ -63,7 +66,7 @@ struct SearchItemView: View {
                 }
                 ForEach(top10, id: \.self){ item in
                     HStack {
-                        Button {
+                        Button {//인기 검색어 버튼에 맞게 이동
                             
                         } label: {
                             Text(item)
@@ -107,9 +110,15 @@ struct SearchItemView: View {
                     }
                 }
             }
+            
             Spacer()
             
             //
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.focused = true
+            }
         }
     }
 }
