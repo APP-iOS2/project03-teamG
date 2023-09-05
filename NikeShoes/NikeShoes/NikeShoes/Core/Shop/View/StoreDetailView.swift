@@ -11,6 +11,8 @@ struct StoreDetailView: View {
     
     var store: StoreData
     
+    @State var isShowingMap = false
+    
     var body: some View {
         ScrollView {
             AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg")) { image in
@@ -19,6 +21,30 @@ struct StoreDetailView: View {
             } placeholder: {
                 ProgressView()
             }
+            VStack(alignment: .leading) {
+                Text(store.name)
+                Divider()
+                
+                Text(store.address)
+                Button {
+                    isShowingMap = true
+                } label: {
+                    Text("지도로 위치확인")
+                }
+                Text(store.storePhoneNumber) // 전화 연결
+                
+                Divider()
+                Text("\(store.openingTime) - \(store.terminatedTime)")
+            }
+            .padding()
+            
+            Image("storeImage")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+
+            
+            
+
 
         }
         .navigationTitle("매장 상세 정보")
