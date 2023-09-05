@@ -10,10 +10,14 @@ import SwiftUI
 struct EmailView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    var title: String
+    let title: String
     
     @State private var newEmail: String = ""
     @State private var confirmEmail: String = ""
+    
+    @State private var canEditEmail: Bool = false
+    
+//    @State private var isConfirm: Bool = false
     
     var body: some View {
         VStack{
@@ -41,15 +45,19 @@ struct EmailView: View {
                     .padding(.top, 7)
             }
             .padding()
+            .onChange(of: [newEmail, confirmEmail]) { _ in
+                isConfirm(new: newEmail, confirm: confirmEmail)
+            }
             
             CustomButton(
-                background: Color.gray,
-                foregroundColor: Color.black.opacity(0.5),
+                background: canEditEmail ? Color.black : Color.gray.opacity(0.3),
+                foregroundColor: canEditEmail ? Color.white : Color.black.opacity(0.5),
                 title: "Done"
             ) {
                 // mark: email update logic ----------------
                 self.presentationMode.wrappedValue.dismiss()
             }
+            .disabled(!canEditEmail)
             
             Spacer()
             
@@ -66,6 +74,15 @@ struct EmailView: View {
         }
         .navigationBarTitle(title, displayMode: .inline)
         .navigationBarBackButtonHidden()
+    }
+    
+    func isConfirm(new: String, confirm: String) {
+        if !new.isEmpty && !confirm.isEmpty {
+            canEditEmail = (new == confirm)
+            return
+        }
+        canEditEmail = false
+        return
     }
 }
 
