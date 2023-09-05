@@ -30,7 +30,7 @@ extension ProfileViewModel {
     var destinationView: some View {
         switch self {
         case .orders:
-            return AnyView(SettingsView())
+            return AnyView(OrdersView())
         case .pass:
             return AnyView(SettingsView())
         case .events:

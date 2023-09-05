@@ -19,8 +19,9 @@ struct ProfileContentLabel: View {
                         .bold()
                         .font(.system(size: 16))
                         .foregroundColor(.black)
-                    Text("1개 사용 가능")
+                    Text("메시지 보기")
                         .font(.system(size: 12))
+                        .foregroundColor(.gray)
                 }
             }
             .padding(.vertical, 20)

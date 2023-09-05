@@ -8,12 +8,31 @@
 import SwiftUI
 
 struct OrdersView: View {
+    
+    @State private var tag:Int? = nil
+    
     var body: some View {
         NavigationStack {
-                OrdersEmptyView()
-            .navigationTitle("Orders")
-            .navigationBarTitleDisplayMode(.inline)
+            List {
+                OrderListView()
+            }
+            .listStyle(.plain)
+            .frame(height: 170)
+            
+//            ZStack {
+                NavigationLink(destination: OrderDetailsView(), tag: 1, selection: self.$tag) {
+                    ButtonStyle()
+                }
+                Button(action: {
+                    self.tag = 1
+                }) {
+                    EmptyView()
+                }
+//            }
+            
         }
+        .navigationTitle("Orders")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
