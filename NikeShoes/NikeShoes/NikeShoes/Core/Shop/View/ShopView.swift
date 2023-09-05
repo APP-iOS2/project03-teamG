@@ -9,11 +9,14 @@ import SwiftUI
 
 struct ShopView: View {
     var body: some View {
+
         NavigationStack{
+
             ScrollView {
                 
                 AppBestCollectionView()
                     .frame(height: 250)
+
                 
                 LazyVStack {
                     ForEach(0 ... 10, id: \.self) { _ in
