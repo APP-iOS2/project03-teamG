@@ -20,7 +20,8 @@ struct StoreData: Identifiable {
 
 class StoreModel: ObservableObject {
     @Published var stores: [StoreData] = [
-        StoreData(name: "나이키 롯데 동탄", address: "경기도 화성시 동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시", terminatedTime: "오후 8시")
+        StoreData(name: "나이키 롯데 동탄", address: "경기도 화성시 동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시"),
+            StoreData(name: "나이키 유나이트 용인", address: "경기도 용인시 기흥구 신고매로124 롯데프리미엄아울렛", locationCoordinates: [37.22518, 127.12067], storePhoneNumber: "+82 31 8036 3029", openingTime: "오전 10시 30분", terminatedTime: "오후 9시"),
     
     ]
 }
