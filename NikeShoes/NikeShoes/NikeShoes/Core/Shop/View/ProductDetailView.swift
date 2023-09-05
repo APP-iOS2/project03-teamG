@@ -10,47 +10,57 @@ import SwiftUI
 struct ProductDetailView: View {
     var body: some View {
         NavigationStack {
-            VStack {
-                ScrollView {
-                    AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } placeholder: {
-                        ProgressView()
+            ScrollView {
+                AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200, height: 200)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .padding(.horizontal, -20)
+                        AsyncImage(url: URL(string: ShoesSampleData[2].imageURLString)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200, height: 200)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .padding(.horizontal, -20)
                     }
                     
+                    .padding(.bottom)
+                    
                     VStack(alignment: .leading) {
-                        HStack {
-                            AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 200, height: 200)
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .padding(-40)
-                            AsyncImage(url: URL(string: ShoesSampleData[2].imageURLString)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 200, height: 200)
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        }
+                        Text("\(ShoesSampleData[1].category.rawValue) 신발")
+                            .padding(.bottom, 5)
                         
-                        Text("\(ShoesSampleData[1].category.rawValue)")
                         Text(ShoesSampleData[1].name)
-                            .fontWeight(.medium)
-                            .font(.system(size: 24))
+                            .font(.mediumBold24)
+                            .padding(.bottom, 20)
                         
+                        Text("₩\(ShoesSampleData[1].price)")
+                            .padding(.bottom, 20)
+                        
+                        Text(ShoesSampleData[1].description)
+                            .font(.system(size: 16))
                     }
                     .padding()
-                    .navigationTitle(ShoesSampleData[1].name)
-                    .navigationBarTitleDisplayMode(.inline)
                 }
+                .navigationTitle(ShoesSampleData[1].name)
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
