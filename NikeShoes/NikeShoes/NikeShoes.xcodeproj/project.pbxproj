@@ -26,6 +26,9 @@
 		B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077032AA6BF8A00DD014C /* InboxView.swift */; };
 		B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077062AA6C96A00DD014C /* OrdersView.swift */; };
 		B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077082AA6C99F00DD014C /* OrderListView.swift */; };
+		B0343BA02AA6D62E00F5AB86 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0343B9F2AA6D62E00F5AB86 /* ColorExtension.swift */; };
+		B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0343BA92AA6F7BD00F5AB86 /* ButtonStyle.swift */; };
+		B0343BAE2AA6FAD200F5AB86 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0343BAD2AA6FAD200F5AB86 /* OrderDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		B02077032AA6BF8A00DD014C /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B02077062AA6C96A00DD014C /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		B02077082AA6C99F00DD014C /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		B0343B9F2AA6D62E00F5AB86 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		B0343BA92AA6F7BD00F5AB86 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		B0343BAD2AA6FAD200F5AB86 /* OrderDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,10 @@
 			isa = PBXGroup;
 			children = (
 				3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */,
+				B02077012AA6BF3800DD014C /* MessageView.swift */,
+				B02077082AA6C99F00DD014C /* OrderListView.swift */,
+				B0343BAD2AA6FAD200F5AB86 /* OrderDetailsView.swift */,
+				B0343BA92AA6F7BD00F5AB86 /* ButtonStyle.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -156,6 +166,7 @@
 		9617AEE42AA5B7BC009FB78A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B0343B9F2AA6D62E00F5AB86 /* ColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,7 +243,6 @@
 		9617AEF12AA5B816009FB78A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				B02077002AA6BED400DD014C /* SubView */,
 				643BB8492AA6B042000233A5 /* Settings */,
 				643BB8482AA6B03A000233A5 /* Home */,
 			);
@@ -260,15 +270,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B02077002AA6BED400DD014C /* SubView */ = {
-			isa = PBXGroup;
-			children = (
-				B02077012AA6BF3800DD014C /* MessageView.swift */,
-				B02077082AA6C99F00DD014C /* OrderListView.swift */,
-			);
-			path = SubView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,14 +351,17 @@
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */,
+				B0343BA02AA6D62E00F5AB86 /* ColorExtension.swift in Sources */,
 				9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */,
 				643BB8472AA6B020000233A5 /* ProfileViewModel.swift in Sources */,
 				B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */,
+				B0343BAE2AA6FAD200F5AB86 /* OrderDetailsView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
 				9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */,
 				9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */,
 				3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */,
 				9617AEFB2AA5B816009FB78A /* ProfileView.swift in Sources */,
+				B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */,
 				9617AEFA2AA5B816009FB78A /* GenderTabView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
 			);
