@@ -36,17 +36,19 @@ struct GenderTabBarView: View {
         self.tabs = tabs
         _selectedTab = State(initialValue: tabs.first ?? "")
     }
+    
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 0) {
                 TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
                 SelectedContentView(selectedTab: $selectedTab)
                 Spacer()
             }
-            .navigationBarTitle("구매하기", displayMode: .automatic)
             .toolbar { SearchView() }
+            .navigationBarTitle("구매하기", displayMode: .automatic)
         }
     }
+    
 }
 
 // MARK: - TabBarView
