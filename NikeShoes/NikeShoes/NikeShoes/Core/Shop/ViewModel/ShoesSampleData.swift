@@ -22,7 +22,7 @@ protocol ImageURL {
     var imageURL: URL { get }
 }
 
-struct Shoes: Identifiable, ImageURL {
+struct Shoes: Identifiable, ImageURL ,Hashable{
     let id: UUID = UUID()
     var name: String
     var category: Category
