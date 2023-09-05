@@ -32,7 +32,7 @@ struct ButtonStyle: View {
 }
 
 
-struct TempButton_Previews: PreviewProvider {
+struct ButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
         ButtonStyle()
     }
