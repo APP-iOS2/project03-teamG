@@ -9,41 +9,28 @@ import SwiftUI
 
 struct ShopView: View {
     var body: some View {
-        ScrollView {
-            Text("나이키 앱 베스트 컬렉션")
-                .font(.headline)
-                .padding()
-            
-            //가로 카테고리
-            ScrollView(.horizontal) {
-                LazyHStack {
+        VStack{
+            ScrollView {
+                
+                AppBestCollectionView()
+                    .frame(height: 250)
+                    .padding(.bottom,20)
+                
+                LazyVStack {
                     ForEach(0 ... 10, id: \.self) { _ in
                         VStack{
-                            Rectangle()
-                                .frame(width: 130, height: 130)
-                                .cornerRadius(15)
-                            Text("Category")
+                            ZStack{
+                                Rectangle()
+                                    .frame(width: .infinity, height: 120)
+                                Text("카테고리")
+                                    .foregroundColor(Color.white)
+                            }
                         }
                         
                     }
                 }
-                .padding()
+                
             }
-            
-            LazyVStack {
-                ForEach(0 ... 10, id: \.self) { _ in
-                    VStack{
-                        ZStack{
-                            Rectangle()
-                                .frame(width: .infinity, height: 120)
-                            Text("카테고리")
-                                .foregroundColor(Color.white)
-                        }
-                    }
-                    
-                }
-            }
-            
         }
     }
 }
