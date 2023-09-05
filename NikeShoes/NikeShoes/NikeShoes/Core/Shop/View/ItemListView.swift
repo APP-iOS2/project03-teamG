@@ -11,6 +11,7 @@ import Foundation
 struct ItemListView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @State var isLiked: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -22,29 +23,46 @@ struct ItemListView: View {
                                 AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width:180, height: 180)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(height: 180)
+                                        .clipped()
                                 } placeholder: {
                                     Image("progress")
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width:180, height: 180)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(height: 180)
+                                        .clipped()
+                                    
+                                    
                                 }
                                 Group{
-                                    Text("\(data.modelName.rawValue)")
+                                    //                                    Text("\(data.modelName.rawValue)")
                                     Text("\(data.name)")
                                     Text("\(data.category.rawValue)")
                                         .foregroundColor(.gray)
-                                    Text("\(data.price)")
+                                    Text("₩\(data.price)")
                                 }
-                                .padding(0.2)
+                                .padding(0.3)
                             }
-                            Image(systemName: "heart")
-                                .offset(x: 60, y: -130)
+                            
+                            
+                            Button(action: {
+                                isLiked.toggle()
+                            }) {
+                                Circle()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.white)
+                                    .overlay(
+                                        Image(systemName: isLiked ? "heart.fill" : "heart")
+                                            .foregroundColor(isLiked ? .red : .red)
+                                    )
+                            }
+                            .offset(x: 65, y: -110)
                             
                         }
                     }
                 }
+                .padding()
                 
             }
         }
