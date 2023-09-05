@@ -56,18 +56,19 @@ extension SettingsViewModel {
             return AnyView(EmptyView())
         case .language:
             return AnyView(EmptyView())
+            // 여기부터 하자
         case .settingLocation:
-            return AnyView(EmptyView())
+            return AnyView(SettingLocationView(title: self.title))
         case .notification:
-            return AnyView(EmptyView())
+            return AnyView(NotificationView(title: self.title))
         case .manageInfo:
-            return AnyView(EmptyView())
+            return AnyView(ManageInfoView(title: self.title))
         case .profilePublish:
-            return AnyView(EmptyView())
+            return AnyView(ProfilePublishView(title: self.title))
         case .findShop:
-            return AnyView(EmptyView())
+            return AnyView(FindShopView(title: self.title))
         case .customerㄴervice:
-            return AnyView(EmptyView())
+            return AnyView(CustomerServiceView(title: self.title))
         }
     }
 }
