@@ -11,7 +11,7 @@ import SwiftUI
 struct NikeShoesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchItemView()
         }
     }
 }
