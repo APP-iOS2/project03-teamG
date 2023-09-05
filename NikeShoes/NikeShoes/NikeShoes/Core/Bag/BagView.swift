@@ -18,7 +18,7 @@ struct BagView: View {
          장바구니가 비어있습니다.
 제품을 추가하면 여기에 표시됩니다.
 """
-    var productInfo: ProductInfo
+    var productInfo: ProductInfo = ProductInfo(name: "", category: "", option: "", size: "", price: 0)
     
     
     var body: some View {
