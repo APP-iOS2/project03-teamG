@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */; };
 		9617AEB92AA5AECD009FB78A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB82AA5AECD009FB78A /* ContentView.swift */; };
 		9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AEBA2AA5AED0009FB78A /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		9617AEB32AA5AECC009FB78A /* NikeShoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeShoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeShoesApp.swift; sourceTree = "<group>"; };
 		9617AEB82AA5AECD009FB78A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		9617AEF52AA5B816009FB78A /* Bag */ = {
 			isa = PBXGroup;
 			children = (
+				21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */,
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
 			);
 			path = Bag;
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */,
 				9617AEF82AA5B816009FB78A /* WishView.swift in Sources */,
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
