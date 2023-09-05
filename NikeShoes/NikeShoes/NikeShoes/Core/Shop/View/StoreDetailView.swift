@@ -9,46 +9,64 @@ import SwiftUI
 
 struct StoreDetailView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     var store: StoreData
     
     @State var isShowingMap = false
     
     var body: some View {
-        ScrollView {
-            AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg")) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
-            }
-            VStack(alignment: .leading) {
-                Text(store.name)
-                Divider()
-                
-                Text(store.address)
-                Button {
-                    isShowingMap = true
-                } label: {
-                    Text("지도로 위치확인")
+            ScrollView {
+                AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg")) { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
                 }
-                Text(store.storePhoneNumber) // 전화 연결
+                VStack(alignment: .leading) {
+                    Text(store.name)
+                        .font(.system(size: 20)) // 글씨체 좀 더 키워야하나?
+                        .bold()
+                    Divider()
+                    
+                    Text(store.address)
+                    
+                    Button {
+                        isShowingMap = true
+                    } label: {
+                        Text("지도로 위치확인")
+                    } // 버튼 따로두는건 어떤지..?
+                    .buttonStyle(.bordered)
+                    
+                    Text(store.storePhoneNumber) // 전화 연결
+                        .padding(.top)
+                    
+                    Divider()
+                    Text("영업 시간 : \(store.openingTime) - \(store.terminatedTime)")
+                }
+                .padding()
                 
-                Divider()
-                Text("\(store.openingTime) - \(store.terminatedTime)")
+                Image("storeImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
             }
-            .padding()
-            
-            Image("storeImage")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-
-            
-            
-
-
-        }
-        .navigationTitle("매장 상세 정보")
-        .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("매장 상세 정보")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                    }
+                    
+                }
+            }
+            .sheet(isPresented: $isShowingMap) {
+                MapView(store: store, isShowingMap: $isShowingMap)
+            }
     }
 }
 

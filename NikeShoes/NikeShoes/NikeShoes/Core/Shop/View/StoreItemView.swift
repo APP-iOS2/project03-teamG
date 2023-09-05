@@ -24,6 +24,7 @@ struct StoreItemView: View {
         .padding()
         .border(.gray, width: 2)
         .cornerRadius(3)
+        
     }
 }
 
