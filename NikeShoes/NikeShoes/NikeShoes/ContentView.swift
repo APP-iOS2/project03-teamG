@@ -11,7 +11,7 @@ import NikeShoesCore
 struct ContentView: View {
     var body: some View {
         VStack {
-            ContentView()
+            MainTabView()
         }
     }
 }
