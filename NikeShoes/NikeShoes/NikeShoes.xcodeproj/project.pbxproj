@@ -180,6 +180,7 @@
 				64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
+        };
 		219D7D502AA6F7EC0062A38F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
