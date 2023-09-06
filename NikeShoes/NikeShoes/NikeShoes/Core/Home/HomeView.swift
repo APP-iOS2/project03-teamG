@@ -15,7 +15,6 @@ struct HomeView: View {
             }
             .toolbar { SearchView() }
         }
-        
     }
 }
 
