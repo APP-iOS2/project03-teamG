@@ -9,7 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Home View")
+        NavigationStack {
+            ScrollView {
+                Text("최소정님, 즐거운 저녁 보내고 계신가요? 뿌앵")
+            }
+            .toolbar { SearchView() }
+        }
+        
     }
 }
 
