@@ -215,6 +215,7 @@
 				2172CE162AA89B130048D75A /* MaleView.swift */,
 				2172CE182AA89B1B0048D75A /* FemaleView.swift */,
 				2172CE1A2AA89B250048D75A /* KidsView.swift */,
+				219D7D8D2AA83B2A0062A38F /* CategoryView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -484,7 +485,6 @@
 				219D7D872AA809160062A38F /* RecentItemView.swift */,
 				219D7D892AA8096F0062A38F /* InterestItemView.swift */,
 				219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */,
-				219D7D8D2AA83B2A0062A38F /* CategoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -11,7 +11,8 @@ import NikeShoesCore
 struct ContentView: View {
     var body: some View {
         VStack {
-            OnBoardingView()
+//            OnBoardingView()
+            MainTabView()
         }
     }
 }
