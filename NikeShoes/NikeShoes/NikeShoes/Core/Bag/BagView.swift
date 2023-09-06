@@ -22,6 +22,7 @@ struct BagView: View {
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
     var productCount: Int = 1
+
     
     var productInfo: ProductInfo
     var promotionCode: PromotionCode
