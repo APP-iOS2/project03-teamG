@@ -11,6 +11,7 @@ struct MainTabView: View {
     @State private var selectedIndex = 0
     
     var body: some View {
+
         NavigationStack {
             TabView(selection: $selectedIndex) {
                 HomeView()
@@ -53,6 +54,7 @@ struct MainTabView: View {
                         Image(systemName: "person")
                     }.tag(4)
             }
+
         }
     }
 }

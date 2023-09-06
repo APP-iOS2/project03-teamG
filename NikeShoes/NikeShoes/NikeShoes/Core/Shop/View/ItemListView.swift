@@ -8,17 +8,36 @@
 import SwiftUI
 import Foundation
 
+// 상품 목록을 표시하는 뷰
 struct ItemListView: View {
     
+    // 뒤로 가기 버튼의 작동을 관리하기 위한 변수
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    // 그리드 레이아웃을 위한 컬럼
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
     @State var isLiked: Bool = false
     
+    // 현재 선택된 탭을 저장하는 변수
+    @State private var selectedTab: String = "전체"
+    
+    // 프로그레스 바의 위치와 넓이를 저장하는 변수
+    @State private var progressBarOffset: CGFloat = 0
+    @State private var progressBarWidth: CGFloat = 0
+    
+    // 사용할 탭의 목록
+    var tabs: [String] = ["전체", "조던", "덩크"]
+    
+    // 뷰 본문
     var body: some View {
         NavigationStack {
+
             ScrollView{
                 LazyVGrid(columns: columns) {
                     ForEach(ShoesSampleData) { data in
                         NavigationLink(destination: ProductDetailView()) {
+
                             ZStack{
                                 VStack(alignment: .leading) {
                                     AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
@@ -28,12 +47,13 @@ struct ItemListView: View {
                                             .frame(height: 180)
                                             .clipped()
                                     } placeholder: {
-                                        
+
                                         Image("progress")
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(height: 180)
                                             .clipped()
+
                                         
                                         
                                     }
@@ -49,6 +69,7 @@ struct ItemListView: View {
                                 }
                                 
                                 
+
                                 Button(action: {
                                     isLiked.toggle()
                                 }) {
@@ -57,23 +78,39 @@ struct ItemListView: View {
                                         .foregroundColor(.white)
                                         .overlay(
                                             Image(systemName: isLiked ? "heart.fill" : "heart")
+
                                                 .foregroundColor(isLiked ? .nikeRed : .nikeRed)
                                         )
                                 }
                                 .offset(x: 65, y: -110)
                                 
+
                             }
                         }
                         
                     }
+                    .padding()
                 }
-                .padding()
-                
             }
+            .navigationTitle("신제품 어쩌고")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            // 네비게이션 바 아이템 설정
+            .navigationBarItems(
+                leading: Button(action: {
+                    // 뒤로 가기 버튼 동작
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                },
+                // 검색 아이콘을 네비게이션 바 오른쪽에 배치
+                trailing: NavigationLink(destination: Text("Search View")) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
+                }
+            )
         }
-        .navigationTitle("신제품 어쩌고")
-        .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 
@@ -81,7 +118,6 @@ struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
             ItemListView()
-            
         }
     }
 }
