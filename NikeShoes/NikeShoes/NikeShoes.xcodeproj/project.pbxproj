@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2172CE172AA89B130048D75A /* MaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE162AA89B130048D75A /* MaleView.swift */; };
+		2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE182AA89B1B0048D75A /* FemaleView.swift */; };
+		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
 		219D7D542AA6F85B0062A38F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D532AA6F85B0062A38F /* Color.swift */; };
 		219D7D562AA6F8630062A38F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D552AA6F8630062A38F /* Font.swift */; };
 		219D7D582AA6F86D0062A38F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D572AA6F86D0062A38F /* Model.swift */; };
@@ -100,6 +103,9 @@
 
 /* Begin PBXFileReference section */
 		1D1CA3652AA6BBAF009BCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2172CE162AA89B130048D75A /* MaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaleView.swift; sourceTree = "<group>"; };
+		2172CE182AA89B1B0048D75A /* FemaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemaleView.swift; sourceTree = "<group>"; };
+		2172CE1A2AA89B250048D75A /* KidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsView.swift; sourceTree = "<group>"; };
 		219D7D532AA6F85B0062A38F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		219D7D552AA6F8630062A38F /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		219D7D572AA6F86D0062A38F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -203,6 +209,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2172CE152AA89AF60048D75A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				2172CE162AA89B130048D75A /* MaleView.swift */,
+				2172CE182AA89B1B0048D75A /* FemaleView.swift */,
+				2172CE1A2AA89B250048D75A /* KidsView.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		219D7D502AA6F7EC0062A38F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +467,7 @@
 		9617AEED2AA5B816009FB78A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2172CE152AA89AF60048D75A /* Category */,
 				63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */,
 				9617AEEF2AA5B816009FB78A /* GenderTabView.swift */,
 				9617AEEE2AA5B816009FB78A /* ShopView.swift */,
@@ -634,6 +651,7 @@
 				64CD99882AA711C8008D3094 /* AdressEditView.swift in Sources */,
 				A074C4512AA6EDD30081DB7F /* SettingLocationView.swift in Sources */,
 				64CD997E2AA6D39E008D3094 /* EmailView.swift in Sources */,
+				2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */,
 				A074C4592AA6EDFF0081DB7F /* FindShopView.swift in Sources */,
 				3B6503AB2AA819A700908390 /* FollowingEditCellView.swift in Sources */,
 				B02077022AA6BF3800DD014C /* MessageView.swift in Sources */,
@@ -689,6 +707,7 @@
 				961799072AA70A72009FC991 /* OBLocationDescriptionView.swift in Sources */,
 				64CD99902AA81234008D3094 /* LanguageView.swift in Sources */,
 				961799012AA6F507009FC991 /* OBAlarmView.swift in Sources */,
+				2172CE172AA89B130048D75A /* MaleView.swift in Sources */,
 				A074C4602AA70EEE0081DB7F /* SignOutView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
 				A074C45B2AA6EE190081DB7F /* CustomerServiceView.swift in Sources */,
@@ -708,6 +727,7 @@
 				DC01B5A82AA83D6D003B6E77 /* FindPasswordView.swift in Sources */,
 				DC01B5562AA704F1003B6E77 /* SignUpTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
+				2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
