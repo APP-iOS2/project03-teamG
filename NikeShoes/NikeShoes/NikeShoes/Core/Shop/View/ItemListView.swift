@@ -32,17 +32,12 @@ struct ItemListView: View {
     // 뷰 본문
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    
-                    // 탭바
-                    TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
-                        .padding(.bottom, 10)
-                    
-                    // 상품 목록 표시
-                    LazyVGrid(columns: columns) {
-                        ForEach(ShoesSampleData.filter { selectedTab == "전체" ? true : $0.modelName.rawValue == selectedTab }) { data in
-                            // 각 상품에 대한 뷰
+
+            ScrollView{
+                LazyVGrid(columns: columns) {
+                    ForEach(ShoesSampleData) { data in
+                        NavigationLink(destination: ProductDetailView()) {
+
                             ZStack{
                                 VStack(alignment: .leading) {
                                     AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
@@ -52,23 +47,29 @@ struct ItemListView: View {
                                             .frame(height: 180)
                                             .clipped()
                                     } placeholder: {
+
                                         Image("progress")
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(height: 180)
                                             .clipped()
+
+                                        
+                                        
                                     }
-                                    // 상품 정보 표시
                                     Group{
+                                        //                                    Text("\(data.modelName.rawValue)")
                                         Text("\(data.name)")
                                         Text("\(data.category.rawValue)")
-                                            .foregroundColor(Color.gray)
+                                            .foregroundColor(Color.textGray)
                                         Text("₩\(data.price)")
                                     }
+                                    .foregroundColor(.black)
                                     .padding(0.3)
                                 }
                                 
-                                // 좋아요 버튼
+                                
+
                                 Button(action: {
                                     isLiked.toggle()
                                 }) {
@@ -77,12 +78,16 @@ struct ItemListView: View {
                                         .foregroundColor(.white)
                                         .overlay(
                                             Image(systemName: isLiked ? "heart.fill" : "heart")
-                                                .foregroundColor(isLiked ? .red : .gray)
+
+                                                .foregroundColor(isLiked ? .nikeRed : .nikeRed)
                                         )
                                 }
                                 .offset(x: 65, y: -110)
+                                
+
                             }
                         }
+                        
                     }
                     .padding()
                 }
