@@ -47,7 +47,7 @@ struct GenderTabBarView: View {
                 }
             }
             .navigationBarTitle("구매하기", displayMode: .automatic)
-//            .toolbar { SearchView() }
+            .toolbar { SearchView() }
         }
     }
 }
