@@ -55,7 +55,28 @@ struct StoreDetailView: View {
                 
                 
                 Divider()
-                Text("영업 시간 : \(store.openingTime) - \(store.terminatedTime)")
+                    // 영업이 종료된 경우
+                if store.operationTime > store.terminatedTime {
+                    HStack {
+                        Text("영업 종료")
+                            .foregroundColor(.nikeRed)
+                        Text("\(store.openingTime) - \(store.terminatedTime)")
+                    }
+                    // 영업시간일 경우
+                } else if store.operationTime > store.openingTime {
+                    HStack {
+                        Text("영업 중")
+                            .foregroundColor(.nikeGreen)
+                        Text("\(store.openingTime) - \(store.terminatedTime)")
+                    }
+                    // 영업시작 전일 경우
+                } else if store.operationTime < store.openingTime {
+                    HStack {
+                        Text("영업 전")
+                            .foregroundColor(.nikeRed)
+                        Text("\(store.openingTime) - \(store.terminatedTime)")
+                    }
+                }
             }
             .padding()
             
@@ -67,6 +88,7 @@ struct StoreDetailView: View {
         .navigationTitle("매장 상세 정보")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        // back버튼
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -77,9 +99,11 @@ struct StoreDetailView: View {
                 
             }
         }
+        // 매장 위치 보여주는 맵뷰 띄우는 sheet
         .sheet(isPresented: $isShowingMap) {
             StoreMapView(store: store, isShowingMap: $isShowingMap)
         }
+        // 전화번호 누르면 나오는 dialog
         .confirmationDialog("매장 전화 연결", isPresented: $callingStore) {
             Button {
                 touchUpCalling(phoneNumber: store.storePhoneNumber)
@@ -91,6 +115,7 @@ struct StoreDetailView: View {
         }
     }
     
+    // 전화로 연결하는 함수
     func touchUpCalling(phoneNumber: String) {
         let url = "tel://\(phoneNumber)"
         
@@ -116,7 +141,7 @@ struct StoreDetailView: View {
 struct ShopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", district: "경기도", city: "화성시", detailAddress: "동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg"))
+            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", district: "경기도", city: "화성시", detailAddress: "동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()))
         }
     }
 }
