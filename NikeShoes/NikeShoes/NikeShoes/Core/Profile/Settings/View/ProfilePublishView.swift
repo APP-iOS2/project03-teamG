@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ProfilePublishView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var title: String
     
     var body: some View {
@@ -96,18 +94,7 @@ struct ProfilePublishView: View {
             Spacer()
         }
         .lineSpacing(4)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 

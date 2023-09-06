@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CustomerServiceView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var title: String
     
     var body: some View {
@@ -48,23 +46,12 @@ struct CustomerServiceView: View {
                     Spacer()
                 }
             }
+            .padding(.horizontal)
             .foregroundColor(.black)
             
             Spacer()
         }
-        .padding()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 

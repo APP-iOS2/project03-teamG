@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SignOutView: View {
+    
+    var title: String
+    
     var body: some View {
         List {
             VStack(alignment: .leading) {
@@ -38,7 +41,7 @@ struct SignOutView: View {
                     Text("나이키 제휴사 사이트, 장비, 미디어 및 컬래버레이션(예: Garmin, Apple Watch등) 연결이 끊기게 됩니다")
                 }
                 .padding(.vertical)
-                    
+                
                 Text("계정을 삭제하면 이 앱에서 로그아웃됩니다. 다른 나이키 앱에 로그인한 경우, 세션이 만료되기까지 최대 1시간이 소요될 수 있습니다.\n\n계정 삭제 후 주문정보에 액세스 하려면 나이키 고객 서비스팀에 문의해 주세요.\n\n마음이 바뀌면 언제든지 돌아오셔서 새로운 나이키 계정을 만들 수 있습니다.\n")
                 
                 Text("계정을 삭제하시겠습니까? (취소는 불가능 합니다)\n")
@@ -59,25 +62,29 @@ struct SignOutView: View {
                 .padding(.bottom)
                 
                 Text("요청을 제출하시면 계정을 비활성화해 드립니다. 데이터를 완전히 삭제 및 제거하기까지는 최대 10일이 소요될 수 있습니다.")
+                    .padding(.bottom)
                     .font(.medium12)
                 
-                CustomButton(background: .black, foregroundColor: .white, title: "계정 삭제") {
-                    //
+                VStack {
+                    CustomButton(background: .black, foregroundColor: .white, title: "계정 삭제") {
+                        //
+                    }
+                    
+                    CustomButton(background: .clear, foregroundColor: .black, title: "취소") {
+                        //
+                    }
+                    
                 }
                 
-//                CustomButton(background: .white, foregroundColor: .black, title: "취소") {
-//                    //
-//                }
-//                .border(.gray)
-            
             }
         }
         .listStyle(.plain)
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 
 struct SignoutView_Previews: PreviewProvider {
     static var previews: some View {
-        SignOutView()
+        SignOutView(title: "계정 삭제")
     }
 }
