@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NotificationView: View {
-    @Environment(\.presentationMode) var presentationMode
     
     var title: String
     var notiTitlesAndDescription: [(String, String)] = [
@@ -44,18 +43,7 @@ struct NotificationView: View {
             }
         }
         .listStyle(.plain)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 

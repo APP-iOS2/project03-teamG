@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ProfilePublishView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var title: String
+    
+    @State private var selectedIndex: Int = 0
     
     var body: some View {
         VStack {
             Rectangle()
-                .fill(Color.gray)
+                .fill(Color.defaultGray)
                 .frame(height: 130)
                 .overlay {
                     Text("개인 정보 보호 설정이 모든 Nike 앱에 적용됩니다. 하나의 앱에서 설정을 변경하면 모든 앱의 설정이 변경됩니다.")
@@ -29,6 +29,7 @@ struct ProfilePublishView: View {
                         .font(.bold16)
                         .padding(.vertical)
                 
+                    
                     Text("모든 나이키 멤버가 나를 검색하고, 나의 전체 프로필을 보고, 초대를 보내고, 나의 활동을 확인할 수 있습니다.")
                         .font(.medium16)
                 }
@@ -37,10 +38,15 @@ struct ProfilePublishView: View {
                 Spacer()
                 
                 Button {
-                    // TODO: 범위 설정 로직
+                    selectedIndex = 0
                 } label: {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.black)
+                    if selectedIndex == 0 {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.black)
+                    } else {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(.black)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -60,10 +66,15 @@ struct ProfilePublishView: View {
                 
                 Spacer()
                 Button {
-                    // TODO: 범위 설정 로직
+                    selectedIndex = 1
                 } label: {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.black)
+                    if selectedIndex == 1 {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.black)
+                    } else {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(.black)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -83,10 +94,15 @@ struct ProfilePublishView: View {
                 
                 Spacer()
                 Button {
-                    // TODO: 범위 설정 로직
+                    selectedIndex = 2
                 } label: {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.black)
+                    if selectedIndex == 2 {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.black)
+                    } else {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(.black)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -96,19 +112,9 @@ struct ProfilePublishView: View {
             Spacer()
         }
         .lineSpacing(4)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
+    
 }
 
 struct ProfilePublishView_Previews: PreviewProvider {
