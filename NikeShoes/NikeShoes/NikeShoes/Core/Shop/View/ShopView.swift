@@ -12,8 +12,8 @@ struct ShopView: View {
 
         ScrollView {
             AppBestCollectionView()
-                .frame(height: 250)
-
+            
+            //카테고리부분
                 LazyVStack {
                     
                     LazyVStack {
@@ -29,9 +29,12 @@ struct ShopView: View {
                         }
                     }
                 }
+            
             AppExclusiveView()
             
             BestItemView()
+            
+            RecentItemView()
             }
         }
     }
