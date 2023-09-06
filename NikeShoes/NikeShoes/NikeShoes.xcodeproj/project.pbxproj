@@ -54,9 +54,9 @@
 		A074C4572AA6EDF60081DB7F /* ProfilePublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4562AA6EDF60081DB7F /* ProfilePublishView.swift */; };
 		A074C4592AA6EDFF0081DB7F /* FindShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4582AA6EDFF0081DB7F /* FindShopView.swift */; };
 		A074C45B2AA6EE190081DB7F /* CustomerServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C45A2AA6EE190081DB7F /* CustomerServiceView.swift */; };
-		A074C45E2AA70DDD0081DB7F /* FAQListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C45D2AA70DDD0081DB7F /* FAQListView.swift */; };
 		A074C4602AA70EEE0081DB7F /* SignOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C45F2AA70EEE0081DB7F /* SignOutView.swift */; };
 		A074C4622AA813770081DB7F /* NavigationNikeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4612AA813770081DB7F /* NavigationNikeSetting.swift */; };
+		A074C4642AA834A20081DB7F /* CustomerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4632AA834A20081DB7F /* CustomerWebView.swift */; };
 		B02077022AA6BF3800DD014C /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077012AA6BF3800DD014C /* MessageView.swift */; };
 		B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077032AA6BF8A00DD014C /* InboxView.swift */; };
 		B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077062AA6C96A00DD014C /* OrdersView.swift */; };
@@ -120,9 +120,9 @@
 		A074C4562AA6EDF60081DB7F /* ProfilePublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePublishView.swift; sourceTree = "<group>"; };
 		A074C4582AA6EDFF0081DB7F /* FindShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindShopView.swift; sourceTree = "<group>"; };
 		A074C45A2AA6EE190081DB7F /* CustomerServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceView.swift; sourceTree = "<group>"; };
-		A074C45D2AA70DDD0081DB7F /* FAQListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQListView.swift; sourceTree = "<group>"; };
 		A074C45F2AA70EEE0081DB7F /* SignOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutView.swift; sourceTree = "<group>"; };
 		A074C4612AA813770081DB7F /* NavigationNikeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNikeSetting.swift; sourceTree = "<group>"; };
+		A074C4632AA834A20081DB7F /* CustomerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebView.swift; sourceTree = "<group>"; };
 		B02077012AA6BF3800DD014C /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B02077032AA6BF8A00DD014C /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B02077062AA6C96A00DD014C /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -212,8 +212,8 @@
 				A074C4562AA6EDF60081DB7F /* ProfilePublishView.swift */,
 				A074C4582AA6EDFF0081DB7F /* FindShopView.swift */,
 				A074C45A2AA6EE190081DB7F /* CustomerServiceView.swift */,
-				A074C45D2AA70DDD0081DB7F /* FAQListView.swift */,
 				A074C45F2AA70EEE0081DB7F /* SignOutView.swift */,
+				A074C4632AA834A20081DB7F /* CustomerWebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -526,7 +526,7 @@
 				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				3B44D3162AA6EB11007D8DA7 /* MemberRewardView.swift in Sources */,
-				A074C45E2AA70DDD0081DB7F /* FAQListView.swift in Sources */,
+				A074C4642AA834A20081DB7F /* CustomerWebView.swift in Sources */,
 				64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */,
 				B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */,
 				219D7D542AA6F85B0062A38F /* Color.swift in Sources */,

@@ -49,7 +49,7 @@ struct ManageInfoView: View {
             }
             .listStyle(.plain)
         }
-        .lineSpacing(4)
+        .lineSpacing(4)	
         .modifier(NavigationNikeSetting(title: title))
     }
 }
