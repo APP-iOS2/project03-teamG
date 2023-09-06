@@ -11,8 +11,9 @@ struct SignOutView: View {
     
     var title: String
     
+    @State private var isCheckedBox: Bool = false
     var body: some View {
-        List {
+        ScrollView {
             VStack(alignment: .leading) {
                 Text("계정을 삭제하시겠습니까?")
                     .font(.semiBold24)
@@ -48,16 +49,17 @@ struct SignOutView: View {
                     .bold()
                 
                 Button {
-                    
+                    isCheckedBox.toggle()
                 } label: {
                     HStack {
                         // TODO: 나중에 분기 처리 필요
-                        Image(systemName: "square")
+                        isCheckedBox ? Image(systemName: "checkmark.square.fill")
+                            .font(.medium20) : Image(systemName: "square")
                             .font(.medium20)
-                        Image(systemName: "checkmark.square.fill")
-                            .font(.medium20)
+
                         Text("예, 계정을 삭제하겠습니다.")
                     }
+                    .foregroundColor(.black)
                 }
                 .padding(.bottom)
                 
@@ -66,7 +68,7 @@ struct SignOutView: View {
                     .font(.medium12)
                 
                 VStack {
-                    CustomButton(background: .black, foregroundColor: .white, title: "계정 삭제") {
+                    CustomButton(background: isCheckedBox ? .black : .defaultGray, foregroundColor: .white, title: "계정 삭제") {
                         //
                     }
                     
@@ -77,6 +79,7 @@ struct SignOutView: View {
                 }
                 
             }
+            .padding(.horizontal)
         }
         .listStyle(.plain)
         .modifier(NavigationNikeSetting(title: title))
