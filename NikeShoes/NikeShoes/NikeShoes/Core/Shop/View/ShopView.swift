@@ -29,6 +29,7 @@ struct ShopView: View {
                         }
                     }
                 }
+            AppExclusiveView()
             }
         }
     }

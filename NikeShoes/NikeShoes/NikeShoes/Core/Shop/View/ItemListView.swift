@@ -18,49 +18,53 @@ struct ItemListView: View {
             ScrollView{
                 LazyVGrid(columns: columns) {
                     ForEach(ShoesSampleData) { data in
-                        ZStack{
-                            VStack(alignment: .leading) {
-                                AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
-                                        .clipped()
-                                } placeholder: {
-                                    
-                                    Image("progress")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
-                                        .clipped()
-                                    
-                                    
+                        NavigationLink(destination: ProductDetailView()) {
+                            ZStack{
+                                VStack(alignment: .leading) {
+                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(height: 180)
+                                            .clipped()
+                                    } placeholder: {
+                                        
+                                        Image("progress")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(height: 180)
+                                            .clipped()
+                                        
+                                        
+                                    }
+                                    Group{
+                                        //                                    Text("\(data.modelName.rawValue)")
+                                        Text("\(data.name)")
+                                        Text("\(data.category.rawValue)")
+                                            .foregroundColor(Color.textGray)
+                                        Text("₩\(data.price)")
+                                    }
+                                    .foregroundColor(.black)
+                                    .padding(0.3)
                                 }
-                                Group{
-                                    //                                    Text("\(data.modelName.rawValue)")
-                                    Text("\(data.name)")
-                                    Text("\(data.category.rawValue)")
-                                        .foregroundColor(Color.textGray)
-                                    Text("₩\(data.price)")
+                                
+                                
+                                Button(action: {
+                                    isLiked.toggle()
+                                }) {
+                                    Circle()
+                                        .frame(width: 30, height: 30)
+                                        .foregroundColor(.white)
+                                        .overlay(
+                                            Image(systemName: isLiked ? "heart.fill" : "heart")
+                                                .foregroundColor(isLiked ? .nikeRed : .nikeRed)
+                                        )
                                 }
-                                .padding(0.3)
+                                .offset(x: 65, y: -110)
+                                
                             }
-                            
-                            
-                            Button(action: {
-                                isLiked.toggle()
-                            }) {
-                                Circle()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.white)
-                                    .overlay(
-                                        Image(systemName: isLiked ? "heart.fill" : "heart")
-                                            .foregroundColor(isLiked ? .nikeRed : .nikeRed)
-                                    )
-                            }
-                            .offset(x: 65, y: -110)
-                            
                         }
+                        
                     }
                 }
                 .padding()
