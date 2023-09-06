@@ -28,6 +28,7 @@
 		64CD99862AA70BD4008D3094 /* ManageAdress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99852AA70BD4008D3094 /* ManageAdress.swift */; };
 		64CD99882AA711C8008D3094 /* AdressEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99872AA711C8008D3094 /* AdressEditView.swift */; };
 		64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99892AA7183C008D3094 /* LocationView.swift */; };
+		64CD99902AA81234008D3094 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD998F2AA81234008D3094 /* LanguageView.swift */; };
 		961798F32AA6BA9C009FC991 /* OBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961798F22AA6BA9B009FC991 /* OBView.swift */; };
 		961798F52AA6C573009FC991 /* OBStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961798F42AA6C573009FC991 /* OBStartView.swift */; };
 		961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961798F62AA6C59C009FC991 /* OBShoesSizeSelectView.swift */; };
@@ -89,6 +90,7 @@
 		64CD99852AA70BD4008D3094 /* ManageAdress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAdress.swift; sourceTree = "<group>"; };
 		64CD99872AA711C8008D3094 /* AdressEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressEditView.swift; sourceTree = "<group>"; };
 		64CD99892AA7183C008D3094 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		64CD998F2AA81234008D3094 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		961798F22AA6BA9B009FC991 /* OBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBView.swift; sourceTree = "<group>"; };
 		961798F42AA6C573009FC991 /* OBStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBStartView.swift; sourceTree = "<group>"; };
 		961798F62AA6C59C009FC991 /* OBShoesSizeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBShoesSizeSelectView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				64CD99852AA70BD4008D3094 /* ManageAdress.swift */,
 				64CD99872AA711C8008D3094 /* AdressEditView.swift */,
 				64CD99892AA7183C008D3094 /* LocationView.swift */,
+				64CD998F2AA81234008D3094 /* LanguageView.swift */,
 				A074C4502AA6EDD30081DB7F /* SettingLocationView.swift */,
 				A074C4522AA6EDE80081DB7F /* NotificationView.swift */,
 				A074C4542AA6EDEF0081DB7F /* ManageInfoView.swift */,
@@ -546,6 +549,7 @@
 				DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */,
 				961798FB2AA6CCDB009FC991 /* Blur.swift in Sources */,
 				961799072AA70A72009FC991 /* OBLocationDescriptionView.swift in Sources */,
+				64CD99902AA81234008D3094 /* LanguageView.swift in Sources */,
 				961799012AA6F507009FC991 /* OBAlarmView.swift in Sources */,
 				A074C4602AA70EEE0081DB7F /* SignOutView.swift in Sources */,
 				643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */,
