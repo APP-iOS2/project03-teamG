@@ -26,18 +26,22 @@ struct StoreDetailView: View {
             }
             VStack(alignment: .leading) {
                 Text(store.name)
-                    .font(.system(size: 20)) // 글씨체 좀 더 키워야하나?
+                    .font(Font.medium20) // 글씨체 좀 더 키워야하나?
                     .bold()
                 Divider()
                 
                 HStack {
-                    Text(store.address)
+                    VStack(alignment: .leading) {
+                        Text(store.district)
+                        Text(store.city)
+                        Text(store.detailAddress)
+                    }
                     Spacer()
                     Button {
                         isShowingMap = true
                     } label: {
                         Image(systemName: "arrow.right.circle")
-                            .font(.title2)
+                            .font(Font.medium20)
                     }
                 }
                 
@@ -112,7 +116,7 @@ struct StoreDetailView: View {
 struct ShopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", address: "경기도 화성시 동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg"))
+            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", district: "경기도", city: "화성시", detailAddress: "동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg"))
         }
     }
 }

@@ -17,7 +17,7 @@ struct StoreView: View {
         NavigationStack {
             List {
                 Text("추천 매장")
-                    .font(.system(size: 20))
+                    .font(Font.semiBold24)
                     .listRowSeparator(.hidden)
                 
                 ForEach(storeModel.stores) { store in
