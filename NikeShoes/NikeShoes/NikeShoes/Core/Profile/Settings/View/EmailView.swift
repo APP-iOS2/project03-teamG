@@ -17,8 +17,6 @@ struct EmailView: View {
     
     @State private var canEditEmail: Bool = false
     
-//    @State private var isConfirm: Bool = false
-    
     var body: some View {
         VStack{
             
@@ -62,18 +60,7 @@ struct EmailView: View {
             Spacer()
             
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
     
     func isConfirm(new: String, confirm: String) {

@@ -20,7 +20,9 @@ enum SettingsViewModel: Int, CaseIterable {
     case manageInfo
     case profilePublish
     case findShop
-    case customerㄴervice
+    case customerService
+    case signOut
+    case logOut
     
     var title: String {
         switch self {
@@ -35,7 +37,9 @@ enum SettingsViewModel: Int, CaseIterable {
         case .manageInfo : return "개인 정보 관리"
         case .profilePublish : return "프로필 공개 설정"
         case .findShop : return "매장 찾기"
-        case .customerㄴervice : return "고객센터"
+        case .customerService : return "고객센터"
+        case .signOut: return "계정 삭제"
+        case .logOut: return "로그아웃"
         }
     }
     
@@ -55,7 +59,7 @@ extension SettingsViewModel {
         case .location:
             return AnyView(LocationView(title: self.title))
         case .language:
-            return AnyView(EmptyView())
+            return AnyView(LanguageView(title: self.title))
             // 여기부터 하자
         case .settingLocation:
             return AnyView(SettingLocationView(title: self.title))
@@ -67,8 +71,12 @@ extension SettingsViewModel {
             return AnyView(ProfilePublishView(title: self.title))
         case .findShop:
             return AnyView(FindShopView(title: self.title))
-        case .customerㄴervice:
+        case .customerService:
             return AnyView(CustomerServiceView(title: self.title))
+        case .signOut:
+            return AnyView(SignOutView(title: self.title))
+        case .logOut:
+            return AnyView(EmptyView())
         }
     }
 }

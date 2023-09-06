@@ -8,26 +8,13 @@
 import SwiftUI
 
 struct FindShopView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var title: String
     
     var body: some View {
         VStack {
             
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: "나이키 매장 찾기"))
     }
 }
 

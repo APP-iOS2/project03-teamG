@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct CustomerServiceView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var title: String
+    @State private var isPresentFAQList: Bool = false
     
     var body: some View {
         VStack {
@@ -31,7 +30,9 @@ struct CustomerServiceView: View {
             
             VStack(alignment: .leading) {
                 HStack {
-                    NavigationLink(destination: Text("전화가 걸려야함 흠")) {
+                    Button {
+                        isPresentFAQList = true
+                    } label: {
                         Label("전화 문의", systemImage: "iphone")
                     }
                     .padding(.vertical)
@@ -41,30 +42,24 @@ struct CustomerServiceView: View {
                 Divider()
                 
                 HStack {
-                    NavigationLink(destination: Text("")) {
+                    Button {
+                        isPresentFAQList = true
+                    } label: {
                         Label("FAQ 살펴보기", systemImage: "questionmark.circle")
                     }
                     .padding(.vertical)
                     Spacer()
                 }
             }
+            .padding(.horizontal)
             .foregroundColor(.black)
             
             Spacer()
         }
-        .padding()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
+        .modifier(NavigationNikeSetting(title: title))
+        .sheet(isPresented: $isPresentFAQList) {
+            WebView(url: "https://www.nike.com/kr/help/#contact")
         }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
     }
 }
 
