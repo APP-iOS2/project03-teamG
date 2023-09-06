@@ -55,7 +55,7 @@ extension SettingsViewModel {
         case .location:
             return AnyView(LocationView(title: self.title))
         case .language:
-            return AnyView(EmptyView())
+            return AnyView(LanguageView(title: self.title))
             // 여기부터 하자
         case .settingLocation:
             return AnyView(SettingLocationView(title: self.title))
