@@ -18,10 +18,8 @@ struct AppBestCollectionView: View {
         VStack(alignment: .leading) {
             
             Text("나이키 앱 베스트 컬렉션")
-
                 .font(Font.medium20)
-
-                .padding()
+                .padding(.leading,20)
             
             //가로 카테고리
             ScrollView(.horizontal) {
