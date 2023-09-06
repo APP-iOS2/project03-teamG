@@ -14,7 +14,7 @@ struct FAQListView: View {
                 Text("질문 리스트 들...")
             }
         }
-        .listStyle(.plain)
+        .modifier(NavigationNikeSetting(title: "FAQ"))
     }
 }
 
