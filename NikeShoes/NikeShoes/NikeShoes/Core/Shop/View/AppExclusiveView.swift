@@ -81,6 +81,7 @@ struct AppExclusiveView: View {
                 .padding()
             }
         }
+        .padding([.top,.bottom],20)
     }
 }
 
