@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignUpView: View {
+struct LoginRegisterView: View {
     @State private var email: String = ""
     @State private var selectedCountry: String = "대한민국"
     
@@ -18,7 +18,7 @@ struct SignUpView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("가입 또는 로그인을 위해 이메일을 입력하세요.")
-                .font(.system(size: 24).weight(.medium))
+                .font(.mediumBold24)
                 .padding(.bottom, 12)
             
             HStack {
@@ -41,12 +41,6 @@ struct SignUpView: View {
             Text("계속 진행하면 나이키의 개인정보 처리 방침 및 이용약관에 동의하게 됩니다.")
                 .foregroundColor(.gray)
                 .padding(.vertical, 40)
-            
-            ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                // action
-            }
-            
-            Spacer()
         }
         .padding(.horizontal)
     }
@@ -54,6 +48,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        LoginRegisterView()
     }
 }

@@ -14,36 +14,27 @@ struct TermsOfServiceView: View {
     @State private var isAgreeThirdParties: Bool = false
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Text("계속 진행하시려면 아래 권한에 동의해 주세요.")
-                    .font(.system(size: 24).weight(.medium))
-                    .padding(.bottom, 12)
-                
-                Text("* 필수 항목")
-                    .font(.callout)
-                    .foregroundColor(.gray)
-                
-                Text("나이키에 오신 것을 환영합니다! 법률 약관이 업데이트되었습니다. 진행하시기 전에 내용을 검토하고 동의해 주세요.")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .padding(.vertical, 20)
-                
-                agreeGroup
-                
-                Text("이 약관에 동의하지 않을 수 있지만, 그럴 경우 나이키 계정에 로그인할 수 없으며 새로운 계정을 생성할 수도 없습니다.")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .padding(.top, 25)
-                    .padding(.bottom)
-                
-                ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                    // action
-                }
-                ButtonView(buttonText: "취소", foreground: .black, background: .white) {
-                    // action
-                }
-            }
+        VStack(alignment: .leading) {
+            Text("계속 진행하시려면 아래 권한에 동의해 주세요.")
+                .font(.mediumBold24)
+                .padding(.bottom, 12)
+            
+            Text("* 필수 항목")
+                .font(.callout)
+                .foregroundColor(.gray)
+            
+            Text("나이키에 오신 것을 환영합니다! 법률 약관이 업데이트되었습니다. 진행하시기 전에 내용을 검토하고 동의해 주세요.")
+                .font(.regular12)
+                .foregroundColor(.gray)
+                .padding(.vertical, 20)
+            
+            agreeGroup
+            
+            Text("이 약관에 동의하지 않을 수 있지만, 그럴 경우 나이키 계정에 로그인할 수 없으며 새로운 계정을 생성할 수도 없습니다.")
+                .font(.regular12)
+                .foregroundColor(.gray)
+                .padding(.top, 25)
+                .padding(.bottom)
         }
         .padding(.horizontal)
     }
