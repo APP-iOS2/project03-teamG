@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     @State private var selectedIndex = 0
     @State var userPromCode = ""
-    var shoes: Shoes = Shoes(name: "", category: .female, modelName: .airForce, price: 0, size: [250], description: "", imageURLString: "")
+    var shoes: Shoes = Shoes(name: "", category: .female, modelName: .airForce, price: 0, size: [250], description: "", imageURLString: "", like: false)
     
     var body: some View {
 
@@ -40,7 +40,7 @@ struct MainTabView: View {
                         Image(systemName: "heart")
                     }.tag(2)
                 
-                BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString))
+                BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
                     .onTapGesture {
                         self.selectedIndex = 3
                     }
@@ -63,6 +63,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(shoes: Shoes(name: "나이키 에어 포스 1 '07 이지온", category: .female, modelName: .airForce, price: 139000, size: ShoesSampleData[1].size, description: ShoesSampleData[1].description, imageURLString: ShoesSampleData[1].imageURLString))
+        MainTabView(shoes: Shoes(name: "나이키 에어 포스 1 '07 이지온", category: .female, modelName: .airForce, price: 139000, size: ShoesSampleData[1].size, description: ShoesSampleData[1].description, imageURLString: ShoesSampleData[1].imageURLString, like: false))
     }
 }
