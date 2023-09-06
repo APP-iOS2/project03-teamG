@@ -23,9 +23,7 @@ struct BagView: View {
     var quantities = [1, 2, 3]
     var productCount: Int = 1
 
-    
-    var productInfo: ProductInfo
-    var promotionCode: PromotionCode
+    var promotionCode: PromotionCode = PromotionCode(code: "", discountRate: 0.0)
     var shoes: Shoes
     
     var body: some View {
@@ -51,16 +49,19 @@ struct BagView: View {
                         
                         
                         
-                        // MARK: 아래는 임시 내용입니다.
                         VStack(alignment: .leading) {
                             Text("\(shoes.name)")
                                 .bold()
                                 .font(.caption)
-                            Text("\(productInfo.option)")
+                            
+                            // MARK: shoes 데이터로 변경하기
+                            Text("화이트/알루미늄/울프 그레이")
                                 .font(.caption)
                             Text("\(shoes.category.rawValue)")
                                 .font(.caption)
-                            Text("\(productInfo.size)")
+                            
+                            // MARK: ProductDetailView에서 사용자가 선택한 값으로 변경하기
+                            Text("250")
                                 .font(.caption)
                         }
                         
@@ -160,9 +161,7 @@ struct BagView: View {
                                 .alert(isPresented: $showAlert) {
                                     Alert(title: Text("알림"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
                                 }
-                                
                             }
-                            
                         }
                         
 //                        Button {
@@ -239,13 +238,13 @@ struct BagView: View {
         }
 
     func originalTotalPrice() -> Int {
-        let result = productInfo.price * selectedQty
+        let result = shoes.price * selectedQty
         return result
     }
     
     func finalTotalPrice() -> String {
         let promDiscount = promotionCode.discountRate
-        let result = Double(productInfo.price * selectedQty) * promDiscount
+        let result = Double(shoes.price * selectedQty) * promDiscount
         let formattedValue = String(format: "%.0f", result)
         
         return formattedValue
@@ -268,7 +267,7 @@ struct BagView: View {
 struct BagView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BagView(userPromCode: .constant("할인20"), productInfo: ProductInfo(name: "에어 조던 1 로우", category: "여성 신발", option: "화이트/알루미늄/울프 그레이", size: "250 사이즈", price: 139000), promotionCode: PromotionCode(code: "할인30", discountRate: 0.3), shoes: Shoes(name: "에어 조던 1 로우", category: .female, modelName: .airForce, price: 30000, size: [1], description: "", imageURLString: ""))
+            BagView(userPromCode: .constant(""), shoes: Shoes(name: "에어 조던 1 로우", category: .female, modelName: .airForce, price: 30000, size: [1], description: "", imageURLString: ""))
         }
     }
 }
