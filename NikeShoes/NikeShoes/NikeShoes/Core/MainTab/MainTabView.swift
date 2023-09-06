@@ -35,7 +35,7 @@ struct MainTabView: View {
                 .tabItem {
                     Image(systemName: "heart")
                 }.tag(2)
-            
+//            
 //            BagView()
 //                .onTapGesture {
 //                    self.selectedIndex = 3
