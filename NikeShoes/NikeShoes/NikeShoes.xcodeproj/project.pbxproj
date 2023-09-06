@@ -65,7 +65,11 @@
 		DC01B5512AA6F1C3003B6E77 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */; };
 		DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */; };
 		DC01B5562AA704F1003B6E77 /* SignUpTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */; };
-		DCBB8B852AA6CAAE00F17A82 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */; };
+		DC01B5A22AA83CE7003B6E77 /* LoginCompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A02AA83CE7003B6E77 /* LoginCompletedView.swift */; };
+		DC01B5A32AA83CE7003B6E77 /* CellPhoneCertificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A12AA83CE7003B6E77 /* CellPhoneCertificationView.swift */; };
+		DC01B5A72AA83D6D003B6E77 /* CheckPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */; };
+		DC01B5A82AA83D6D003B6E77 /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */; };
+		DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8B842AA6CAAE00F17A82 /* LoginRegisterView.swift */; };
 		DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -129,7 +133,11 @@
 		DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputUserInfoView.swift; sourceTree = "<group>"; };
 		DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldStyle.swift; sourceTree = "<group>"; };
-		DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		DC01B5A02AA83CE7003B6E77 /* LoginCompletedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCompletedView.swift; sourceTree = "<group>"; };
+		DC01B5A12AA83CE7003B6E77 /* CellPhoneCertificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPhoneCertificationView.swift; sourceTree = "<group>"; };
+		DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckPasswordView.swift; sourceTree = "<group>"; };
+		DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
+		DCBB8B842AA6CAAE00F17A82 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
 		DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,9 +289,11 @@
 			isa = PBXGroup;
 			children = (
 				DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */,
-				DCBB8B842AA6CAAE00F17A82 /* SignUpView.swift */,
+				DCBB8B842AA6CAAE00F17A82 /* LoginRegisterView.swift */,
 				DC01B5502AA6F1C3003B6E77 /* TermsOfServiceView.swift */,
 				DC01B5522AA6FF66003B6E77 /* InputUserInfoView.swift */,
+				DC01B5A12AA83CE7003B6E77 /* CellPhoneCertificationView.swift */,
+				DC01B5A02AA83CE7003B6E77 /* LoginCompletedView.swift */,
 				DC01B5542AA704D4003B6E77 /* Modifier */,
 				DC01B54D2AA6E9D2003B6E77 /* SubView */,
 			);
@@ -343,6 +353,7 @@
 			children = (
 				219D7D5B2AA717E90062A38F /* Components */,
 				9617990B2AA71E9F009FC991 /* Register */,
+				DC01B5A42AA83D6D003B6E77 /* Login */,
 				961798F12AA6BA82009FC991 /* OnBoarding */,
 				9617AEF32AA5B816009FB78A /* MainTab */,
 				9617AEE72AA5B816009FB78A /* Home */,
@@ -426,6 +437,15 @@
 				DC01B5552AA704F1003B6E77 /* SignUpTextFieldStyle.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		DC01B5A42AA83D6D003B6E77 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */,
+				DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,6 +539,7 @@
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
+				DC01B5A72AA83D6D003B6E77 /* CheckPasswordView.swift in Sources */,
 				3B44D3162AA6EB11007D8DA7 /* MemberRewardView.swift in Sources */,
 				A074C45E2AA70DDD0081DB7F /* FAQListView.swift in Sources */,
 				64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */,
@@ -533,13 +554,14 @@
 				961799092AA70B2B009FC991 /* OBLanguageSelectionView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
 				DC01B54F2AA6E9EB003B6E77 /* ButtonView.swift in Sources */,
+				DC01B5A22AA83CE7003B6E77 /* LoginCompletedView.swift in Sources */,
 				DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */,
 				9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */,
 				961798FD2AA6F0C0009FC991 /* OBWelcomeView.swift in Sources */,
 				9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */,
 				3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */,
 				B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */,
-				DCBB8B852AA6CAAE00F17A82 /* SignUpView.swift in Sources */,
+				DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */,
 				DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */,
 				961798FB2AA6CCDB009FC991 /* Blur.swift in Sources */,
 				961799072AA70A72009FC991 /* OBLocationDescriptionView.swift in Sources */,
@@ -553,9 +575,11 @@
 				64CD99862AA70BD4008D3094 /* ManageAdress.swift in Sources */,
 				A074C4552AA6EDEF0081DB7F /* ManageInfoView.swift in Sources */,
 				A074C4572AA6EDF60081DB7F /* ProfilePublishView.swift in Sources */,
+				DC01B5A32AA83CE7003B6E77 /* CellPhoneCertificationView.swift in Sources */,
 				A074C4532AA6EDE80081DB7F /* NotificationView.swift in Sources */,
 				961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */,
 				961798F32AA6BA9C009FC991 /* OBView.swift in Sources */,
+				DC01B5A82AA83D6D003B6E77 /* FindPasswordView.swift in Sources */,
 				DC01B5562AA704F1003B6E77 /* SignUpTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
 			);
