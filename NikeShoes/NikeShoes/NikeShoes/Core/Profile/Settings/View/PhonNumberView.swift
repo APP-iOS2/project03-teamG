@@ -123,6 +123,7 @@ struct PhonNumberView: View {
             .offset(y: showModal ? UIScreen.main.bounds.height / 5 : UIScreen.main.bounds.height)
             .animation(.easeInOut(duration: 1.0), value: showModal)
         }
+        .modifier(NavigationNikeSetting(title: title))
     }
 
     func validator(nationCode: String, phoneNumber: String) {
