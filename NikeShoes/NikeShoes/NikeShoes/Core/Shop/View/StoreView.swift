@@ -11,7 +11,7 @@ struct StoreView: View {
     
     @ObservedObject var storeModel = StoreModel()
     
-    @State var isShowingMapSheet: Bool = false
+    @State private var isShowingMapSheet: Bool = false
     
     var body: some View {
         NavigationStack {

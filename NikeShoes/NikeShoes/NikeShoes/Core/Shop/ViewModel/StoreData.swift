@@ -32,7 +32,7 @@ struct StoreData: Identifiable, ImageURL {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-        dateFormatter.dateFormat = "a HH시 mm분"
+        dateFormatter.dateFormat = "a hh시 mm분"
         dateFormatter.amSymbol = "오전"
         dateFormatter.pmSymbol = "오후"
         return dateFormatter.string(from: now)
