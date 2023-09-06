@@ -52,6 +52,7 @@ struct AppBestCollectionView: View {
                 .padding()
             }
         }
+        .padding([.top,.bottom],20)
     }
 }
 
