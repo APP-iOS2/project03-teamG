@@ -9,6 +9,8 @@ import SwiftUI
 
 
 
+
+
 struct OBView: View {
     
     
@@ -17,7 +19,7 @@ struct OBView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                OBContainerView(isButtonClicked: false, index: 0)
+                OBContainerView()
                     .navigationBarBackButtonHidden(true)
             }//VStack
         }
@@ -26,125 +28,147 @@ struct OBView: View {
 
 struct OBContainerView: View {
     
-    @State var isButtonClicked: Bool = false
-    @State var index: Int = 0
+    @State private var isButtonClicked: Bool = false
+    @State private var index: Int = 0
     
-    let duration: Double = 0.5
-    
-    var colummID: [String]
-    
-    init(isButtonClicked: Bool, index: Int) {
-        self.isButtonClicked = isButtonClicked
-        self.index = index
-        self.colummID = []
-        
-    }
-    
-    var imageURL: String = "https://static.nike.com/a/images/f_auto/f9b5ee1b-ea2d-4389-b296-1303680aafdd/image.png"
-    
-    enum ScrollPosition: Hashable {
-        case screen(id: String)
-    }
+    private let duration: Double = 0.5
     
     var body: some View {
-        
-        VStack {
-            ZStack {
-                
-                if index != 1 && index != 0 {
-                    AsyncImage(url: URL(string: imageURL)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }.ignoresSafeArea()
-                    
-                    Blur(style: .systemUltraThinMaterialDark)
-                        .ignoresSafeArea()
-                }else{
-                    Color.black
-                        .ignoresSafeArea()
+        ZStack {
+            if isImageAppearView {
+                imageBackground
+                blurView
+            } else {
+                background
+            }
+            VStack {
+                if isOnBoardingView,
+                   isImageAppearView{
+                    progressView
                 }
+                // index가 OnBoarding의 끝나는 지점에 transitionView -> MainTabView 로 변경
+                transitionView
+                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
                 
-                VStack {
-                    if index < 7 {
-                        HStack {
-                            if index != 1 && index != 0 {
-                                ProgressView(value: Double(index),
-                                             total: Double(7))
-                                .background(.gray)
-                                .tint(.white)
-                                .cornerRadius(12)
-                                .padding(.top,10)
-                                .padding(.horizontal,80)
-                            }
-                        }
-                    }
-                    
-                    switch index {
-                    case 0:
-                        OBLocationDescriptionView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 1:
-                        OBLanguageSelectionView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 2:
-                        OBStartView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 3:
-                        OBInterestSelectView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 4:
-                        OBShoesSizeSelectView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 5:
-                        OBAlarmView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 6:
-                        OBLocationView()
-                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                        TempButton {
-                            index += 1
-                        }.padding(.bottom, 20)
-                    case 7:
-                        MainTabView()
-                    default:
-                        EmptyView()
-                    }
-                    
-//                    TempButton {
-//
-//                        if index == 6 {
-//                            index = 7
-//                        }else {
-//                            index += 1
-//                        }
-//                    }.padding(.bottom, 20)
+                if isOnBoardingView {
+                    TempButton {
+                        index += 1
+                    }.padding(.bottom, 20)
                 }
             }
         }
     }
+    
+    private var imageURL: String = "https://static.nike.com/a/images/f_auto/f9b5ee1b-ea2d-4389-b296-1303680aafdd/image.png"
+    
+    private var isImageAppearView: Bool {
+        index != 1 && index != 0
+    }
+    
+    private var isOnBoardingView: Bool {
+        index < 7
+    }
+    
+    private var onBoardingCount: Int {
+        7
+    }
+    
+    @ViewBuilder
+    private var transitionView: some View {
+        switch index {
+        case 0:
+            OBLocationDescriptionView()
+        case 1:
+            OBLanguageSelectionView()
+        case 2:
+            OBStartView()
+        case 3:
+            OBInterestSelectView()
+        case 4:
+            OBShoesSizeSelectView()
+        case 5:
+            OBAlarmView()
+        case 6:
+            OBLocationView()
+        default:
+            MainTabView()
+        }
+    }
+    
+    private var background: some View {
+        Color.black.ignoresSafeArea()
+    }
+    
+    
+    private var imageBackground: some View {
+        AsyncImage(url: URL(string: imageURL)) { image in
+            image.resizable()
+        } placeholder: {
+            ProgressView()
+        }.ignoresSafeArea()
+    }
+    
+    private var progressView: some View {
+        HStack {
+            ProgressView(value: Double(index),
+                         total: Double(7))
+            .background(.gray)
+            .tint(.white)
+            .cornerRadius(12)
+            .padding(.top,10)
+            .padding(.horizontal,80)
+        }
+    }
+    
+    private var blurView: some View {
+        Blur(style: .systemUltraThinMaterialDark)
+            .ignoresSafeArea()
+    }
 }
+
+extension OBContainerView {
+    enum OnBoardingScreen: String, CaseIterable, Identifiable {
+        
+        case locationDescription
+        case languageSelection
+        case getStated
+        case interest
+        case sizeSelection
+        case alarmSelection
+        case location
+        case mainTab
+        
+        var button: String {
+            switch self {
+            case .locationDescription:
+                return ""
+            case .languageSelection:
+                return ""
+            case .getStated:
+                return ""
+            case .interest:
+                return ""
+            case .sizeSelection:
+                return ""
+            case .alarmSelection:
+                return ""
+            case .location:
+                return ""
+            case .mainTab:
+                return ""
+            }
+        }
+        
+        var id: Self {
+            self
+        }
+    }
+}
+
 
 struct OBView_Previews: PreviewProvider {
     static var previews: some View {
         OBView()
     }
 }
+
