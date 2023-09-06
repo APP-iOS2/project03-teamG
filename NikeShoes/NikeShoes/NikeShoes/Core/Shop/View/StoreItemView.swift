@@ -52,6 +52,7 @@ struct StoreItemView: View {
         }
         .padding()
         .frame(width: 350, alignment: .leading)
+        .background(.white)
         .border(Color.defaultGray, width: 3)
         .cornerRadius(4)
         
