@@ -8,26 +8,55 @@
 import SwiftUI
 
 struct MemberRewardDetailView: View {
-    let introTitle: String = "환영합니다!"
-    let introContent: String = "나이키 멤버로 함께 할 여정을 응원합니다! \n앱에서 첫 주문 시, 총 결제 금액에서 15% 할인이 적용됩니다."
-    let themeTitle1: String = "[혜택 내용]"
-    let theme1Content1: String = "- 웰컴 프로모션 혜택: 앱 첫 구매 15% 할인 적용"
-    let theme1Content2: String = "- 프로모션 코드 사용 가능 최대 금액: 300,000원 (최대 45,000할인)"
-    let themeTitle2: String = "[유의 사항]"
-    let theme2Content1: String = "- 계정 당 1회 사용 가능"
-    let theme2Content2: String = "- SNKRS, Apple Watch 관련 제품, 일부 앱 전용 제품 등을 제외한 전체 제품에 적용됩니다."
+    var imageUrl: URL = URL(string: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg") ?? URL(string: "")!
     
     var body: some View {
         VStack(alignment: .leading){
-            Text(introTitle)
-            Text(introContent)
-            Text(themeTitle1)
-            Text(theme1Content1)
-            Text(theme1Content2)
-            Text(themeTitle2)
-            Text(theme2Content1)
-            Text(theme2Content2)
+            ScrollView{
+                ProfileAsyncImageView(imageUrl: imageUrl)
+                    .edgesIgnoringSafeArea(.horizontal)
+                VStack(alignment: .leading){
+                    Group{
+                        Group{
+                            Text("환영합니다!")
+                                .font(.mediumBold24)
+                            Text("나이키 멤버로 함께 할 여정을 응원합니다! ")
+                                .font(.body)
+                            Text("앱에서 첫 주문 시, 총 결제 금액에서 15% 할인이 적용됩니다.")
+                        }
+                        Group{
+                            Text("[혜택 내용]")
+                                .font(.medium20)
+                                .bold()
+                            Text("- 웰컴 프로모션 혜택: 앱 첫 구매 15% 할인 적용")
+                                .font(.body)
+                            Text("- 프로모션 코드 사용 가능 최대 금액: 300,000원 (최대 45,000할인)")
+                                .font(.body)
+                        }
+                        Group{
+                            Text("[유의 사항]")
+                                .font(.medium20)
+                                .bold()
+                            Text("- 계정 당 1회 사용 가능")
+                                .font(.body)
+                            Text("- SNKRS, Apple Watch 관련 제품, 일부 앱 전용 제품 등을 제외한 전체 제품에 적용됩니다.")
+                                .font(.body)
+                        }
+                    }
+                    .padding(.vertical, 8)
+                }
+                .padding(.horizontal, 20)
+                
+                Group{
+                    CustomButton(background: .black, foregroundColor: .white, title: "신제품 바로가기") {
+                    }
+                    CustomButton(background: .black, foregroundColor: .white, title: "쿠폰 유의사항") {
+                    }
+                }
+                .padding(.top, 10)
+            }
         }
+        .preferredColorScheme(.light)
     }
 }
 
