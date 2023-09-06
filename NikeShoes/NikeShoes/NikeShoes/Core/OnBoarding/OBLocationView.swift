@@ -20,10 +20,7 @@ struct OBLocationView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal , 20)
                 .padding(.top, 30)
-            
             Spacer(minLength: 500)
-            
-            
         }
     }
 }
