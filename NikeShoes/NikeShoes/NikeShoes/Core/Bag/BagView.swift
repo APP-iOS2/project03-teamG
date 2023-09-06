@@ -267,7 +267,7 @@ struct BagView: View {
 struct BagView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BagView(userPromCode: .constant(""), shoes: Shoes(name: "에어 조던 1 로우", category: .female, modelName: .airForce, price: 30000, size: [1], description: "", imageURLString: ""))
+            BagView(userPromCode: .constant(""), shoes: Shoes(name: "에어 조던 1 로우", category: .female, modelName: .airForce, price: 30000, size: [1], description: "", imageURLString: "",like: false))
         }
     }
 }
