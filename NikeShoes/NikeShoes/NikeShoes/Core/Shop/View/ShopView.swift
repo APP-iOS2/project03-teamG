@@ -12,12 +12,12 @@ struct ShopView: View {
 
         ScrollView {
             AppBestCollectionView()
-                .frame(height: 250)
-
+            
+            //카테고리부분
                 LazyVStack {
                     
                     LazyVStack {
-                        ForEach(0 ... 10, id: \.self) { _ in
+                        ForEach(0 ... 3, id: \.self) { _ in
                             VStack{
                                 ZStack{
                                     Rectangle()
@@ -29,6 +29,16 @@ struct ShopView: View {
                         }
                     }
                 }
+            
+            AppExclusiveView()
+            
+            BestItemView()
+            
+            RecentItemView()
+            
+            InterestItemView()
+            
+            RecommendStoreView()
             }
         }
     }
