@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StoreView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     @ObservedObject var storeModel = StoreModel()
     
     @State private var isShowingMapSheet: Bool = false
@@ -21,26 +23,43 @@ struct StoreView: View {
                     .listRowSeparator(.hidden)
                 
                 ForEach(storeModel.stores) { store in
-                    NavigationLink {
-                        StoreDetailView(store: store)
-                    } label: {
+                    ZStack {
+                        NavigationLink {
+                            StoreDetailView(store: store)
+                        } label: {
+                            EmptyView()
+                        }
+                        .buttonStyle(.plain)
+                        
                         StoreItemView(store: store)
+                        
                     }
-
+                    
                 }
+                
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
             .navigationTitle("나이키 매장 찾기")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
+                // back버튼
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                    }
+                    
+                }
                 ToolbarItem {
                     Button {
                         isShowingMapSheet = true
                     } label: {
                         Image(systemName: "map")
                     }
-
+                    
                 }
                 ToolbarItem {
                     Button {
@@ -48,7 +67,7 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
-
+                    
                 }
             }
             .fullScreenCover(isPresented: $isShowingMapSheet) {
