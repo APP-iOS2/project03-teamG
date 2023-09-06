@@ -16,6 +16,8 @@ struct ProfileView: View {
                 List{
                     ProfileContentLabel(title: "수신함", subTitle: "메세지 보기", profileContentViewType: .inBoxView)
                     ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .memberReward)
+                        .transition(.opacity)
+                    FollowingView(followingCount: 1)
                 }
                 .listStyle(.plain)
                 Spacer()
@@ -65,13 +67,17 @@ extension ProfileView {
                 .padding(.bottom, 30)
             
             // Edit button
-            Button {
-                print("Edit Profile")
-            } label: {
-                Text("EDIT PROFILE")
-                    .foregroundColor(.black)
+            VStack{
+                Button {
+                    print("Edit Profile")
+                } label: {
+                    Text("프로필 수정")
+                        .foregroundColor(.primary)
+                }
+                .buttonStyle(.borderless)
             }
-            .buttonStyle(.bordered)
+            .frame(width: 200, height: 30)
+            .border(.gray)
             
         }
     }

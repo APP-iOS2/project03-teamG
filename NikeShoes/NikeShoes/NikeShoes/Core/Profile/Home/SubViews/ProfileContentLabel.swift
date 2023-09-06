@@ -18,7 +18,6 @@ struct ProfileContentLabel: View {
     var profileContentViewType: ProfileContentViewType
     
     var body: some View {
-        NavigationStack{
             NavigationLink {
                 switch profileContentViewType {
                 case .inBoxView:
@@ -29,15 +28,13 @@ struct ProfileContentLabel: View {
             } label: {
                 VStack(alignment: .leading){
                     Text(title)
-                        .bold()
-                        .font(.system(size: 16))
+                        .font(.bold16)
                         .foregroundColor(.primary)
                     Text(subTitle)
-                        .font(.system(size: 12))
+                        .font(.medium12)
                         .foregroundColor(.gray)
                 }
             }
-        }
         .padding(.vertical, 20)
     }
 }
