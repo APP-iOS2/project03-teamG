@@ -8,12 +8,24 @@
 import SwiftUI
 
 
+
+
+enum Language: String,CaseIterable, Identifiable {
+    case kr
+    case en
+    
+    var id: Self {
+        self
+    }
+}
+
+
 struct OBLanguageSelectionView: View {
     
     var description: String = "언어 선택"
     var description2: String = "Nike 앱에서 지원되는 언어로 업데이트하세요."
    
-    @State var myvar: String = ""
+    @State var myvar: String = "한국어"
     @State private var showingSheet = false
 
     var date: String = ""
@@ -29,7 +41,6 @@ struct OBLanguageSelectionView: View {
                     .bold()
                     .font(.title)
                     .foregroundColor(.white)
-                    
                     .padding(.horizontal, 12)
                 Spacer()
             }
@@ -44,20 +55,30 @@ struct OBLanguageSelectionView: View {
                 Spacer()
             }
             
-            LanguageSelectionButton(showingSheet: $showingSheet)
+            Text("\(myvar)") .bold()
+                .font(.body)
+                .foregroundColor(.gray)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+            
+            LanguageSelectionButton(showingSheet: $showingSheet, myvar: $myvar)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white, lineWidth: 2)
                 )
                 .padding(.top, 50)
             
-            ModalView(showingSheet: $showingSheet)
-                .background(.white)
-                .frame(height: 200)
-                .animation(.linear)
-                .offset(y: self.showingSheet ? 0 : UIScreen.main.bounds.height)
-               
             Spacer()
+            
+        }.sheet(isPresented: $showingSheet) {
+            Picker("Flavor", selection: $myvar) {
+                ForEach(Language.allCases) { Text($0.rawValue.capitalized).tag($0.rawValue) }
+            }
+            .pickerStyle(.wheel)
+                .presentationDetents([.fraction(0.3)])
+            
+            
+            
         }
     }
 }
@@ -65,6 +86,7 @@ struct OBLanguageSelectionView: View {
 struct LanguageSelectionButton: View {
     
     @Binding var showingSheet: Bool
+    @Binding var myvar: String
     let heights = stride(from: 0.5, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
     
     var body: some View {
@@ -74,7 +96,7 @@ struct LanguageSelectionButton: View {
                     showingSheet.toggle()
                     
                 }, label: {
-                    Text("한국어")
+                    Text("\(myvar)")
                         .font(.body)
                         .foregroundColor(.white)
                         .padding(20)
