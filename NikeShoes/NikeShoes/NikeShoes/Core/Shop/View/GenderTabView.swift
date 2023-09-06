@@ -36,6 +36,7 @@ struct GenderTabBarView: View {
         self.tabs = tabs
         _selectedTab = State(initialValue: tabs.first ?? "")
     }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -43,10 +44,11 @@ struct GenderTabBarView: View {
                 SelectedContentView(selectedTab: $selectedTab)
                 Spacer()
             }
-            .navigationBarTitle("구매하기", displayMode: .automatic)
             .toolbar { SearchView() }
+            .navigationBarTitle("구매하기", displayMode: .automatic)
         }
     }
+    
 }
 
 // MARK: - TabBarView
@@ -57,6 +59,7 @@ struct TabBarView: View {
     @Binding var progressBarWidth: CGFloat
     
     var body: some View {
+        
         VStack(spacing: 10) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
@@ -127,7 +130,9 @@ struct SelectedContentView: View {
 // MARK: - SearchView
 struct SearchView: View {
     var body: some View {
-        NavigationLink(destination: /* 나중에 SearchItemView로 대체될 예정 */ Text("검색 뷰")) {
+        NavigationLink(destination: /* 나중에 SearchItemView로 대체될 예정 */
+                       
+                       SearchItemView()) {
             Image(systemName: "magnifyingglass").foregroundColor(.black)
         }
     }
