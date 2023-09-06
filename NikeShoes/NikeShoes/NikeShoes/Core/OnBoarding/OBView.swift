@@ -66,15 +66,17 @@ struct OBContainerView: View {
                 }
                 
                 VStack {
-                    HStack {
-                        if index != 1 && index != 0 {
-                            ProgressView(value: Double(index),
-                                         total: Double(7))
-                            .background(.gray)
-                            .tint(.white)
-                            .cornerRadius(12)
-                            .padding(.top,10)
-                            .padding(.horizontal,80)
+                    if index < 7 {
+                        HStack {
+                            if index != 1 && index != 0 {
+                                ProgressView(value: Double(index),
+                                             total: Double(7))
+                                .background(.gray)
+                                .tint(.white)
+                                .cornerRadius(12)
+                                .padding(.top,10)
+                                .padding(.horizontal,80)
+                            }
                         }
                     }
                     
@@ -82,36 +84,59 @@ struct OBContainerView: View {
                     case 0:
                         OBLocationDescriptionView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 1:
                         OBLanguageSelectionView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 2:
                         OBStartView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 3:
                         OBInterestSelectView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 4:
                         OBShoesSizeSelectView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 5:
                         OBAlarmView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
                     case 6:
                         OBLocationView()
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+                        TempButton {
+                            index += 1
+                        }.padding(.bottom, 20)
+                    case 7:
+                        MainTabView()
                     default:
                         EmptyView()
                     }
                     
-                    TempButton {
-                       
-                        if index == 6 {
-                            index = 0
-                        }else {
-                            index += 1
-                        }
-                    }.padding(.bottom, 20)
+//                    TempButton {
+//
+//                        if index == 6 {
+//                            index = 7
+//                        }else {
+//                            index += 1
+//                        }
+//                    }.padding(.bottom, 20)
                 }
             }
         }
