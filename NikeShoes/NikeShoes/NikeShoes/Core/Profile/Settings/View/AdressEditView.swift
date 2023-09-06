@@ -34,18 +34,7 @@ struct AdressEditView: View {
                 title: "배송지 추가",
                 action: {})
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
     
 }

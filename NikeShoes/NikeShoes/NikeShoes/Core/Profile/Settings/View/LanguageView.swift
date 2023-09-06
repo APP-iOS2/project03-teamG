@@ -68,18 +68,7 @@ struct LanguageView: View {
         .sheet(isPresented: $showModal) {
             slecteLanguageSheetView(selectedLang: $selectedLang)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle(title, displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 
