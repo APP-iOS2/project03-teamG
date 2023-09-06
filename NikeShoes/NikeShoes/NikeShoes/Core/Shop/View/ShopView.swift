@@ -35,6 +35,10 @@ struct ShopView: View {
             BestItemView()
             
             RecentItemView()
+            
+            InterestItemView()
+            
+            RecommendStoreView()
             }
         }
     }
