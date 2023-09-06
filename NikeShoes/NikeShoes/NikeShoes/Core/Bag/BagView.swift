@@ -12,17 +12,18 @@ struct BagView: View {
     
     @State var selectedQty: Int = 1
     @State var buttonText: String = "주문하기"
+    
     @State private var isFolded = true
     @State private var showAlert = false
     @State private var isTapped = false
     @State private var alertMessage = ""
     @State var finalPrice: String = "0"
-
+    
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
     var productCount: Int = 1
     
-    var productInfo: ProductInfo 
+    var productInfo: ProductInfo
     var promotionCode: PromotionCode
     var shoes: Shoes
     
@@ -39,13 +40,15 @@ struct BagView: View {
                             AsyncImage(url: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST0yWep66t1F76Ud7TeOu_JkZZVRZ_9F3ntLEyvWlN7OMHg0T56IZMcJrW8nfQQiuiZyQ&usqp=CA")) { img in
                                 img
                                     .resizable()
-                                    
+                                
                             } placeholder: {
                                 ProgressView()
                             }
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 200, height: 200)
                         }
+                        
+                        
                         
                         // MARK: 아래는 임시 내용입니다.
                         VStack(alignment: .leading) {
@@ -59,7 +62,7 @@ struct BagView: View {
                             Text("\(productInfo.size)")
                                 .font(.caption)
                         }
-
+                        
                         Spacer()
                     }
                     
@@ -73,12 +76,12 @@ struct BagView: View {
                 
                 HStack {
                     Text("수량")
-                Picker("Quantity", selection: $selectedQty) {
+                    Picker("Quantity", selection: $selectedQty) {
                         ForEach(quantities, id: \.self) {
                             Text("\(String($0))")
                         }
-                }
-                .accentColor(.black)
+                    }
+                    .accentColor(.black)
                     
                     Spacer()
                     
@@ -89,7 +92,10 @@ struct BagView: View {
                 
                 Divider()
                 
-               
+                HStack {
+
+                    Spacer()
+                    
                     // MARK: 버튼 누를경우 아래로 프로모션코드 입력 창 나타남
                     VStack {
                         if isFolded {
@@ -113,24 +119,24 @@ struct BagView: View {
                             
                         } else {
                             ZStack(alignment: .leading) {
-                            Button {
-                                withAnimation {
-                                    isFolded.toggle()
-                                }
-                            } label: {
-                                VStack {
-                                    HStack {
-                                        Text("프로모션 코드가 있으신가요?")
+                                Button {
+                                    withAnimation {
+                                        isFolded.toggle()
+                                    }
+                                } label: {
+                                    VStack {
+                                        HStack {
+                                            Text("프로모션 코드가 있으신가요?")
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "minus")
+                                        }
+                                        .foregroundColor(.black)
                                         
                                         Spacer()
-                                        
-                                        Image(systemName: "minus")
                                     }
-                                    .foregroundColor(.black)
-                                    
-                                    Spacer()
                                 }
-                            }
                                 HStack {
                                     TextField("프로모션 코드", text: $userPromCode)
                                         .textFieldStyle(.roundedBorder)
@@ -140,7 +146,7 @@ struct BagView: View {
                                     
                                     Button {
                                         // prom code 데이터 만들어두고 확인하기
-                                       checkPromCode()
+                                        checkPromCode()
                                         
                                     } label: {
                                         Text("적용하기")
@@ -151,78 +157,86 @@ struct BagView: View {
                                     .cornerRadius(3)
                                 }
                                 .alert(isPresented: $showAlert) {
-                                            Alert(title: Text("알림"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
-                                        }
+                                    Alert(title: Text("알림"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
+                                }
                                 
                             }
-
+                            
                         }
+                        
+//                        Button {
+//
+//                        } label: {
+//                            Image(systemName: "plus")
+//                        }
+                    }
                     }
                     .padding()
-                
-                Divider()
-                
-                VStack {
-                    HStack {
-                        Text("상품 금액")
-                        
-                        Spacer()
-                        
-                        Text(String("₩\(originalTotalPrice())"))
-                    }
-                    .foregroundColor(.gray)
-                    //                .padding()
                     
-                    HStack {
-                        Text("배송 옵션")
-                        
-                        Spacer()
-                        
-                        Text("표준 - 무료")
-                        
-                    }
-                    .foregroundColor(.gray)
-                    //                .padding()
+                    Divider()
                     
-                    HStack {
-                        Text("총 결제 금액")
-                        
-                        Spacer()
-                        
-                        // finalTotalPrice()
-                        if showAlert == true {
-                            Text("₩\(originalTotalPrice())")
-                        } else {
-                            Text("₩\(finalTotalPrice())")
+                    VStack {
+                        HStack {
+                            Text("상품 금액")
+                            
+                            Spacer()
+                            
+                            Text(String("₩\(originalTotalPrice())"))
                         }
+                        .foregroundColor(.gray)
+                        //                .padding()
+                        
+                        HStack {
+                            Text("배송 옵션")
+                            
+                            Spacer()
+                            
+                            Text("표준 - 무료")
+                            
+                        }
+                        .foregroundColor(.gray)
+                        //                .padding()
+                        
+                        HStack {
+                            Text("총 결제 금액")
+                            
+                            Spacer()
+                            
+                            // finalTotalPrice()
+                            if showAlert == true {
+                                Text("₩\(originalTotalPrice())")
+                            } else {
+                                Text("₩\(finalTotalPrice())")
+                            }
+                        }
+                        //                .padding()
                     }
-                    //                .padding()
-                }
-                .padding()
+                    .padding()
                     
-                Spacer()
+                    Spacer()
                 
-                
-                Button {
-                    // 기능 1) faceID 활성화 (구현할지?)
                     
-                    // 기능 2) 결제 sheet 활성화
-                    
-                } label: {
-                    //                    Image()
-                    Text("구매하기")
-                        .font(.title3)
-                        .frame(width: 370, height: 70)
+                    Button {
+                        // 기능 1) faceID 활성화 (구현할지?)
+                        
+                        // 기능 2) 결제 sheet 활성화
+                        
+                    } label: {
+                        //                    Image()
+                        Text("구매하기")
+                            .font(.title3)
+                            .frame(width: 370, height: 70)
+                    }
+                    .foregroundColor(.white)
+                    .background(Color.black)
+                    .cornerRadius(40)
+                    .padding()
                 }
-                .foregroundColor(.white)
-                .background(Color.black)
-                .cornerRadius(40)
-                .padding()
+                .navigationTitle("장바구니")
+                
             }
-            .navigationTitle("장바구니")
         }
-    }
-    
+
     func originalTotalPrice() -> Int {
         let result = productInfo.price * selectedQty
         return result
