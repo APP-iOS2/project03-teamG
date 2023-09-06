@@ -30,6 +30,7 @@ struct ShopView: View {
                     }
                 }
             
+
             AppExclusiveView()
             
             BestItemView()
@@ -37,6 +38,7 @@ struct ShopView: View {
             RecentItemView()
             
             InterestItemView()
+
             
             RecommendStoreView()
             }
