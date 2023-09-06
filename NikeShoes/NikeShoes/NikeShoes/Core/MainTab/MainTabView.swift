@@ -45,9 +45,9 @@ struct MainTabView: View {
                 }.tag(3)
             
             ProfileView()
-                .onTapGesture {
-                    self.selectedIndex = 4
-                }
+//                .onTapGesture {
+//                    self.selectedIndex = 4
+//                }
                 .tabItem {
                     Image(systemName: "person")
                 }.tag(4)

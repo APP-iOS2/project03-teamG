@@ -31,13 +31,13 @@ extension ProfileViewModel {
         switch self {
         case .orders:
             return AnyView(OrdersView())
+        case .settings:
+            return AnyView(SettingsView())
         default:
             return AnyView(EmptyView())
 //        case .pass:
 //            return AnyView(SettingsView())
 //        case .events:
-//            return AnyView(SettingsView())
-//        case .settings:
 //            return AnyView(SettingsView())
         }
     }
