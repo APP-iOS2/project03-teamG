@@ -17,8 +17,6 @@ struct EmailView: View {
     
     @State private var canEditEmail: Bool = false
     
-//    @State private var isConfirm: Bool = false
-    
     var body: some View {
         VStack{
             
