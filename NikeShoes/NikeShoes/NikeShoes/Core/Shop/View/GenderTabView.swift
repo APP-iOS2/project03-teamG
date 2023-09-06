@@ -39,14 +39,18 @@ struct GenderTabBarView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
-                SelectedContentView(selectedTab: $selectedTab)
-                Spacer()
+            ScrollView{
+                VStack(spacing: 0) {
+                    TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
+                    SelectedContentView(selectedTab: $selectedTab)
+                    Spacer()
+                }
+                .toolbar { SearchView() }
+                .navigationBarTitle("구매하기", displayMode: .automatic)
             }
-            .toolbar { SearchView() }
-            .navigationBarTitle("구매하기", displayMode: .automatic)
+            
         }
+        
     }
     
 }
@@ -141,6 +145,6 @@ struct SearchView: View {
 // MARK: - 미리보기
 struct GenderTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        GenderTabBarView(tabs: ["남성", "여성", "키즈"])
+            GenderTabBarView(tabs: ["남성", "여성", "키즈"])
     }
 }

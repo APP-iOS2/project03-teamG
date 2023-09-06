@@ -17,48 +17,50 @@ struct MainTabView: View {
 
         NavigationStack {
             TabView(selection: $selectedIndex) {
-                HomeView()
-                    .onTapGesture {
-                        self.selectedIndex = 0
-                    }
-                    .tabItem {
-                        Image(systemName: "house")
-                    }.tag(0)
-                
-                GenderTabBarView(tabs: ["남성", "여성", "키즈"])
-                    .onTapGesture {
-                        self.selectedIndex = 1
-                    }
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                    }.tag(1)
-                
-                WishView()
-                    .onTapGesture {
-                        self.selectedIndex = 2
-                    }
-                    .tabItem {
-                        Image(systemName: "heart")
-                    }.tag(2)
-                
-                BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
-                    .onTapGesture {
-                        self.selectedIndex = 3
-                    }
-                    .tabItem {
-                        Image(systemName: "bag")
-                    }.tag(3)
-                
-                ProfileView()
-                    .onTapGesture {
-                        self.selectedIndex = 4
-                    }
-                    .tabItem {
-                        Image(systemName: "person")
-                    }.tag(4)
+                Group {
+                    HomeView()
+                        .onTapGesture {
+                            self.selectedIndex = 0
+                        }
+                        .tabItem {
+                            Image(systemName: "house")
+                        }.tag(0)
+                    
+                    GenderTabBarView(tabs: ["남성", "여성", "키즈"])
+                        .onTapGesture {
+                            self.selectedIndex = 1
+                        }
+                        .tabItem {
+                            Image(systemName: "magnifyingglass")
+                        }.tag(1)
+                    
+                    WishView()
+                        .onTapGesture {
+                            self.selectedIndex = 2
+                        }
+                        .tabItem {
+                            Image(systemName: "heart")
+                        }.tag(2)
+                    
+                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
+                        .onTapGesture {
+                            self.selectedIndex = 3
+                        }
+                        .tabItem {
+                            Image(systemName: "bag")
+                        }.tag(3)
+                    
+                    ProfileView()
+                        .onTapGesture {
+                            self.selectedIndex = 4
+                        }
+                        .tabItem {
+                            Image(systemName: "person")
+                        }.tag(4)
+                }
+                .toolbarBackground( .white, for: .tabBar)
             }
-
-
+            
         }
     }
 }
