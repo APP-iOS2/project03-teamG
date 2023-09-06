@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         List {
@@ -9,25 +8,28 @@ struct SettingsView: View {
                 NavigationLink(destination: item.destinationView) {
                     HStack {
                         Text(item.title)
+                            .font(.medium16)
+                            .padding(.vertical)
                     }
-                    .padding()
                 }
+                .padding(.horizontal, 20)
                 .listRowBackground(Color.clear)
+                
+                if item == .birth ||
+                    item == .location ||
+                    item == .settingLocation ||
+                    item == .signOut ||
+                    item == .findShop {
+                    Rectangle()
+                        .fill(Color.lightGray)
+                        .listRowSeparator(.hidden)
+                    
+                }
             }
+            .listRowInsets(EdgeInsets())
         }
         .listStyle(.plain)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }
-                .foregroundColor(.black)
-            }
-        }
-        .navigationBarTitle("설정", displayMode: .inline)
-        .navigationBarBackButtonHidden()
+        .modifier(NavigationNikeSetting(title: "설정"))
     }
 }
 
