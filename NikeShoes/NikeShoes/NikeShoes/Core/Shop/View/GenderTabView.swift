@@ -63,7 +63,6 @@ struct TabBarView: View {
     @Binding var progressBarWidth: CGFloat
     
     var body: some View {
-        
         VStack(spacing: 10) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
@@ -72,18 +71,28 @@ struct TabBarView: View {
                             TabButton(tab: tab, isSelected: selectedTab == tab) {
                                 self.selectedTab = tab
                                 withAnimation {
-                                    self.progressBarOffset = geometry.frame(in: .global).minX
-                                    self.progressBarWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
+                                    let newOffset = geometry.frame(in: .global).minX
+                                    let newWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
+                                    
+                                    if newOffset.isFinite && newWidth.isFinite {
+                                        self.progressBarOffset = newOffset
+                                        self.progressBarWidth = newWidth
+                                    }
                                 }
                             }
                             .onAppear {
                                 if self.selectedTab == tab {
-                                    self.progressBarOffset = geometry.frame(in: .global).minX
-                                    self.progressBarWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
+                                    let newOffset = geometry.frame(in: .global).minX
+                                    let newWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
+                                    
+                                    if newOffset.isFinite && newWidth.isFinite {
+                                        self.progressBarOffset = newOffset
+                                        self.progressBarWidth = newWidth
+                                    }
                                 }
                             }
                         }
-                        .frame(width: 50, height: 40)
+                        .frame(width: tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold)) + 20, height: 40)
                     }
                 }
                 .padding(.horizontal)
