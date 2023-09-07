@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ManageAdress: View {
+struct ManageAddress: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: AddressViewModel = AddressViewModel()
     
@@ -37,10 +37,10 @@ struct ManageAdress: View {
     }
 }
 
-struct ManageAdress_Previews: PreviewProvider {
+struct ManageAddress_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ManageAdress(title: "배송지 관리")
+            ManageAddress(title: "배송지 관리")
         }
     }
 }
