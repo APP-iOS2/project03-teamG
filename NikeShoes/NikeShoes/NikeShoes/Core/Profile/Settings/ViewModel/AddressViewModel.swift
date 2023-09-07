@@ -9,11 +9,6 @@ import Foundation
 
 class AddressViewModel: ObservableObject {
     @Published var addresses: [Address] = [sampleAddress]
-    @Published var isChecked: Bool = true
-
-    func toggleCheckmark() {
-        isChecked.toggle()
-    }
     
     func addAddress(address: Address) {
          addresses.append(address)
