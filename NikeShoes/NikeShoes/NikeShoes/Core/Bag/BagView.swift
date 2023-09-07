@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BagView: View {
     @Binding var userPromCode: String
+//    @Binding var isShowingSheet: Bool
     
     @State var selectedQty: Int = 1
     @State var buttonText: String = "주문하기"
@@ -18,6 +19,7 @@ struct BagView: View {
     @State private var isTapped = false
     @State private var alertMessage = ""
     @State var finalPrice: String = "0"
+    @State var isShowingSheet: Bool = false
     
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
@@ -34,7 +36,7 @@ struct BagView: View {
                     
                     HStack {
                         Button {
-                            
+//                            ProductDetailView()
                         } label: {
                             AsyncImage(url: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST0yWep66t1F76Ud7TeOu_JkZZVRZ_9F3ntLEyvWlN7OMHg0T56IZMcJrW8nfQQiuiZyQ&usqp=CA")) { img in
                                 img
@@ -220,7 +222,7 @@ struct BagView: View {
                         // 기능 1) faceID 활성화 (구현할지?)
                         
                         // 기능 2) 결제 sheet 활성화
-                        
+                        isShowingSheet.toggle()
                     } label: {
                         //                    Image()
                         Text("구매하기")
@@ -231,6 +233,12 @@ struct BagView: View {
                     .background(Color.black)
                     .cornerRadius(40)
                     .padding()
+                    .sheet(isPresented: $isShowingSheet) {
+                        PaymentView(selectedQty: selectedQty, finalPrice: finalPrice)
+                            .presentationDetents([.medium])
+                        
+                    }
+                    
                 }
                 .navigationTitle("장바구니")
                 
