@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B79B42AA9599B00C85EA9 /* PaymentView.swift */; };
 		2172CE172AA89B130048D75A /* MaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE162AA89B130048D75A /* MaleView.swift */; };
 		2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE182AA89B1B0048D75A /* FemaleView.swift */; };
 		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
@@ -103,6 +104,7 @@
 
 /* Begin PBXFileReference section */
 		1D1CA3652AA6BBAF009BCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		214B79B42AA9599B00C85EA9 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		2172CE162AA89B130048D75A /* MaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaleView.swift; sourceTree = "<group>"; };
 		2172CE182AA89B1B0048D75A /* FemaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemaleView.swift; sourceTree = "<group>"; };
 		2172CE1A2AA89B250048D75A /* KidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsView.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			children = (
 				21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */,
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
+				214B79B42AA9599B00C85EA9 /* PaymentView.swift */,
 			);
 			path = Bag;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */,
+				214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */,
 				84F690E92AA6E7760058DDEF /* StoreMapView.swift in Sources */,
 				219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */,
 				84F690E32AA6CC190058DDEF /* StoreItemView.swift in Sources */,
