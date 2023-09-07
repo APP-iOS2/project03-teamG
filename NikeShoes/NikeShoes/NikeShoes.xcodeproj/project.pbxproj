@@ -23,6 +23,12 @@
 		219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 219FDAD22AA97C6F0046986B /* .swiftlint.yml */; };
 		219FDAD42AA97E760046986B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D532AA6F85B0062A38F /* Color.swift */; };
 		219FDAD52AA97E7A0046986B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF42AA5B816009FB78A /* MainTabView.swift */; };
+		219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADA2AA9A7B50046986B /* FirebaseAuth */; };
+		219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */; };
+		219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADE2AA9A7B50046986B /* FirebaseFirestore */; };
+		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
+		219FDAE32AA9A7B50046986B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */; };
+		219FDAE52AA9A81A0046986B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 219FDAE42AA9A8190046986B /* GoogleService-Info.plist */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */; };
 		3B199AD12AA756E700C1E764 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF22AA5B816009FB78A /* ProfileView.swift */; };
@@ -124,6 +130,7 @@
 		219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendStoreView.swift; sourceTree = "<group>"; };
 		219D7D8D2AA83B2A0062A38F /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		219FDAE42AA9A8190046986B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
 		3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentLabel.swift; sourceTree = "<group>"; };
@@ -215,6 +222,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9617AEE32AA5AF97009FB78A /* NikeShoesCore in Frameworks */,
+				219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */,
+				219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */,
+				219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */,
+				219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */,
+				219FDAE32AA9A7B50046986B /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +421,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
+				219FDAE42AA9A8190046986B /* GoogleService-Info.plist */,
 				1D1CA3652AA6BBAF009BCCB5 /* Info.plist */,
 				219D7D502AA6F7EC0062A38F /* Extensions */,
 				219D7D512AA6F7F80062A38F /* Model */,
@@ -593,6 +606,11 @@
 			name = NikeShoes;
 			packageProductDependencies = (
 				9617AEE22AA5AF97009FB78A /* NikeShoesCore */,
+				219FDADA2AA9A7B50046986B /* FirebaseAuth */,
+				219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */,
+				219FDADE2AA9A7B50046986B /* FirebaseFirestore */,
+				219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */,
+				219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */,
 			);
 			productName = NikeShoes;
 			productReference = 9617AEB32AA5AECC009FB78A /* NikeShoes.app */;
@@ -622,6 +640,9 @@
 				Base,
 			);
 			mainGroup = 9617AEAA2AA5AECC009FB78A;
+			packageReferences = (
+				219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9617AEB42AA5AECC009FB78A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -637,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */,
+				219FDAE52AA9A81A0046986B /* GoogleService-Info.plist in Resources */,
 				9617AEBE2AA5AED0009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */,
 			);
@@ -972,7 +994,43 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		219FDADA2AA9A7B50046986B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		219FDADE2AA9A7B50046986B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		9617AEE22AA5AF97009FB78A /* NikeShoesCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NikeShoesCore;
