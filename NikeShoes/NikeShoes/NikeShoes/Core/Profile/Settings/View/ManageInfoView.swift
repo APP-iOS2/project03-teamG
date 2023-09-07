@@ -15,7 +15,8 @@ struct ManageInfoView: View {
         ("행동 데이터 기반 맞춤형 광고 허용하기", "광고 목적으로 쿠키, 클릭스트림 데이터 및 기타 기술을 사용합니다. 맞춤형 광고 제공을 위해 사용자 행동 데이터를 광고 네트워크와 공유합니다.")
     ]
     
-    @State var allowActive: Bool = false
+    @State var allowMatchingActive: Bool = false
+    @State var allowDataActive: Bool = false
     
     var body: some View {
         
@@ -34,13 +35,19 @@ struct ManageInfoView: View {
             .padding()
             
             List {
-                ForEach(titleAndDescription, id: \.0) { titleAndDescription in
+                ForEach(0...1, id: \.self) { index in
                     VStack(alignment: .leading) {
                         HStack {
-                            Toggle(titleAndDescription.0, isOn: $allowActive)
-                                .font(.medium20)
+                            if index == 0 {
+                                Toggle(titleAndDescription[index].0, isOn: $allowMatchingActive)
+                                    .font(.medium20)
+                            } else {
+                                Toggle(titleAndDescription[index].0, isOn: $allowDataActive)
+                                    .font(.medium20)
+                            }
+                            
                         }
-                        Text(titleAndDescription.1)
+                        Text(titleAndDescription[index].1)
                             .font(.medium16)
                             .padding(.trailing, 60)
                     }
