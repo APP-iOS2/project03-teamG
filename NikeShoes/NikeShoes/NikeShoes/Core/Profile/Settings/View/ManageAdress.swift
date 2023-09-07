@@ -11,21 +11,26 @@ struct ManageAdress: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: AddressViewModel = AddressViewModel()
     
+    @State private var navigateToEmptyView: Bool = false
+    
     let title: String
     
     var body: some View {
         VStack {
-            ForEach(viewModel.addresses, id: \.self) { address in
-                AddressRow(address: address, isChecked: $viewModel.isChecked)
+            ForEach(viewModel.addresses.indices, id: \.self) { index in
+                AddressRow(viewModel: viewModel, index: index)
             }
             
             Spacer()
             
-            CustomButton(
-                background: .black,
-                foregroundColor: .white,
-                title: "배송지 추가",
-                action: {})
+            NavigationLink(destination: AddAddressView(viewModel: viewModel)) {
+                Text("배송지 추가")
+                    .font(.system(size: 18))
+                    .frame(width: 351, height: 63)
+                    .background(.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(31.5)
+            }
             
         }
         .modifier(NavigationNikeSetting(title: title))
@@ -41,17 +46,17 @@ struct ManageAdress_Previews: PreviewProvider {
 }
 
 struct AddressRow: View {
-    var address: Address
-    @Binding var isChecked: Bool
+    @ObservedObject var viewModel: AddressViewModel
+    let index: Int
     
     var body: some View {
         HStack {
             // 기본 배송지 여부
             Button {
-                isChecked.toggle()
+                viewModel.addresses[index].isDefault.toggle()
             } label: {
                 HStack {
-                    Image(systemName: isChecked ? "checkmark.square" : "square")
+                    Image(systemName: viewModel.addresses[index].isDefault ? "checkmark.square" : "square")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .fontWeight(Font.Weight.thin)
@@ -59,12 +64,12 @@ struct AddressRow: View {
                     
                     // 배달 정보
                     VStack {
-                        AddressText(text: address.name)
-                        AddressText(text: address.city)
-                        AddressText(text: address.district)
-                        AddressText(text: address.postalCode)
-                        AddressText(text: address.phoneNumber)
-                        AddressText(text: address.country)
+                        AddressText(text: viewModel.addresses[index].name)
+                        AddressText(text: viewModel.addresses[index].city)
+                        AddressText(text: viewModel.addresses[index].district)
+                        AddressText(text: viewModel.addresses[index].postalCode)
+                        AddressText(text: viewModel.addresses[index].phoneNumber)
+                        AddressText(text: viewModel.addresses[index].country)
                     }
                     .padding(20)
                 }
@@ -73,7 +78,7 @@ struct AddressRow: View {
             Spacer()
             
             // edit button
-            NavigationLink(destination: AdressEditView(title: "배송지 관리")) {
+            NavigationLink(destination: AddressEditView(title: "배송지 관리", viewModel: viewModel, index: index)) {
                 Text("수정")
                     .foregroundColor(.gray)
                     .padding()
