@@ -68,15 +68,15 @@ struct ProductDetailView: View {
                                     .padding(.bottom, 28)
                                 
                                 Text("""
-                            • 현재 컬러: 화이트/화이트
-                            • 스타일: CW2288-111
-                            • 제조 국가/지역: 중국, 인도, 베트남
-                            """)
+                                • 현재 컬러: 화이트/화이트
+                                • 스타일: CW2288-111
+                                • 제조 국가/지역: 중국, 인도, 베트남
+                                """)
                                 .font(.system(size: 16))
                                 .lineSpacing(20)
                                 .padding(.bottom, 32)
                             }
-                            
+
                             NavigationLink {
                                 ProductDetailInfoView()
                             } label: {
@@ -85,84 +85,86 @@ struct ProductDetailView: View {
                             }
                             .padding(.bottom, 35)
                             
-                            Button {
-                                isShowingSizeSheet.toggle()
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 31.5)
-                                        .stroke(Color.defaultGray, lineWidth: 1)
-                                        .frame(width: 351, height: 63)
-                                        .background(.white)
-                                    
-                                    Text("사이즈 선택  \(Image(systemName: "chevron.down"))")
-                                        .foregroundColor(.black)
-                                        .font(.system(size: 18))
-                                        .fontWeight(.medium)
-                                }
-                            }
-                            .sheet(isPresented: $isShowingSizeSheet) {
-                                SizeView()
-                                    .presentationDetents([.medium, .medium])
-                            }
-                            
-                            .padding(.bottom, 7)
-                            
-                            Button {
-                                print("장바구니에 추가")
-                            } label: {
-                                ZStack {
-                                    Rectangle()
-                                        .stroke(Color.black, lineWidth: 1)
-                                        .frame(width: 351, height: 63)
-                                        .background(.black)
-                                        .cornerRadius(31.5)
-                                    
-                                    Text("장바구니")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 18))
-                                        .fontWeight(.medium)
-                                }
-                            }
-                            
-                            .padding(.bottom, 11)
-                            
-                            HStack {
+                            Group {
                                 Button {
-                                    print("구매하기")
+                                    isShowingSizeSheet.toggle()
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 31.5)
                                             .stroke(Color.defaultGray, lineWidth: 1)
-                                            .frame(width: 170, height: 63)
+                                            .frame(width: 351, height: 63)
                                             .background(.white)
                                         
-                                        Text("구매하기")
+                                        Text("사이즈 선택  \(Image(systemName: "chevron.down"))")
                                             .foregroundColor(.black)
                                             .font(.system(size: 18))
                                             .fontWeight(.medium)
                                     }
                                 }
+                                .sheet(isPresented: $isShowingSizeSheet) {
+                                    SizeView()
+                                        .presentationDetents([.medium, .medium])
+                                }
                                 
-                                .padding(.horizontal, 2)
+                                .padding(.bottom, 7)
                                 
                                 Button {
-                                    print("위시리스트")
+                                    print("장바구니에 추가")
                                 } label: {
                                     ZStack {
-                                        RoundedRectangle(cornerRadius: 31.5)
-                                            .stroke(Color.defaultGray, lineWidth: 1)
-                                            .frame(width: 170, height: 63)
-                                            .background(.white)
+                                        Rectangle()
+                                            .stroke(Color.black, lineWidth: 1)
+                                            .frame(width: 351, height: 63)
+                                            .background(.black)
+                                            .cornerRadius(31.5)
                                         
-                                        Text("\(Image(systemName: "heart"))")
-                                            .foregroundColor(.black)
+                                        Text("장바구니")
+                                            .foregroundColor(.white)
                                             .font(.system(size: 18))
                                             .fontWeight(.medium)
                                     }
                                 }
+                                
+                                .padding(.bottom, 11)
+                                
+                                HStack {
+                                    Button {
+                                        print("구매하기")
+                                    } label: {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 31.5)
+                                                .stroke(Color.defaultGray, lineWidth: 1)
+                                                .frame(width: 170, height: 63)
+                                                .background(.white)
+                                            
+                                            Text("구매하기")
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 18))
+                                                .fontWeight(.medium)
+                                        }
+                                    }
+                                    
+                                    .padding(.horizontal, 2)
+                                    
+                                    Button {
+                                        print("위시리스트")
+                                    } label: {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 31.5)
+                                                .stroke(Color.defaultGray, lineWidth: 1)
+                                                .frame(width: 170, height: 63)
+                                                .background(.white)
+                                            
+                                            Text("\(Image(systemName: "heart"))")
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 18))
+                                                .fontWeight(.medium)
+                                        }
+                                    }
+                                }
+                                
+                                .padding(.bottom, 35)
                             }
-                            
-                            .padding(.bottom, 35)
                             
                             Rectangle()
                                 .stroke(Color.lightGray, lineWidth: 1)
@@ -208,14 +210,58 @@ struct ProductDetailView: View {
                                 .font(.system(size: 18))
                             }
                             
+                            Divider()
+                            
+                            Button {
+                                reviewToggle.toggle()
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    if reviewToggle == false {
+                                        HStack {
+                                            Text("리뷰 (9359)")
+                                            Spacer()
+                                            ForEach(0..<5) { _ in
+                                                Image(systemName: "star.fill")
+                                            }
+                                            Image(systemName: "chevron.down")
+                                                .padding(.vertical, 28)
+                                        }
+                                    } else {
+                                        HStack {
+                                            Text("리뷰 (9359)")
+                                            Spacer()
+                                            ForEach(0..<5) { _ in
+                                                Image(systemName: "star.fill")
+                                            }
+                                            Image(systemName: "chevron.up")
+                                                .padding(.vertical, 28)
+                                        }
+                                        Button {
+                                            isShowingSizeGuideSheet.toggle()
+                                        } label: {
+                                            Text("사이즈 가이드")
+                                                .underline(true, color: .black)
+                                                .font(.system(size: 15))
+                                                .padding(.leading, 37)
+                                                .padding(.bottom, 23)
+                                        }
+                                        .sheet(isPresented: $isShowingSizeGuideSheet) {
+                                            SizeGuideView(urlString: "https://www.nike.com/kr/size-fit/mens-footwear")
+                                        }
+                                    }
+                                }
+                                .foregroundColor(.black)
+                                .font(.system(size: 18))
+                            }
+                            
+                            Divider()
+                            
                             Group {
-                                Divider()
-                                
                                 Button {
-                                    reviewToggle.toggle()
+                                    moreInfoToggle.toggle()
                                 } label: {
                                     VStack(alignment: .leading) {
-                                        if reviewToggle == false {
+                                        if moreInfoToggle == false {
                                             HStack {
                                                 Text("리뷰 (9359)")
                                                 Spacer()
@@ -303,7 +349,6 @@ struct ProductDetailView: View {
                                 
                                 Divider()
                             }
-                            
                         }
                         .padding()
                     }
