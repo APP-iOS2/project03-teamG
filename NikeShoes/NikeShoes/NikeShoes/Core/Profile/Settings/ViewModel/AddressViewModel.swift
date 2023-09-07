@@ -14,6 +14,10 @@ class AddressViewModel: ObservableObject {
     func toggleCheckmark() {
         isChecked.toggle()
     }
+    
+    func addAddress(address: Address) {
+         addresses.append(address)
+     }
 }
 
 let sampleAddress = Address(
