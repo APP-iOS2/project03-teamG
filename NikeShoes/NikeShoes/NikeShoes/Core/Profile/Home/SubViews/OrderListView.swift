@@ -24,7 +24,6 @@ struct OrderListView: View {
                     ProgressView()
                 }
                 
-                
                 VStack(alignment: .leading, spacing: 6) {
                     Text(orderState)
                         .font(.system(size: 16, weight: .bold))
@@ -46,8 +45,6 @@ struct OrderListView: View {
                     Text(productSerialNumber)
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.gray)
-                    
-                    
                 }
                 
             }
