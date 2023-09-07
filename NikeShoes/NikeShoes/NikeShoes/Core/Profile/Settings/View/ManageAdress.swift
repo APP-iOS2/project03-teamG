@@ -9,75 +9,18 @@ import SwiftUI
 
 struct ManageAdress: View {
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var viewModel: AddressViewModel = AddressViewModel()
     
     let title: String
     
-    @State private var isChecked: Bool = true
-    
     var body: some View {
         VStack{
-            
-            HStack{
-                //check button
-                Button {
-                    isChecked.toggle()
-                } label: {
-                    HStack {
-                        Image(systemName: isChecked ? "checkmark.square" : "square")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .fontWeight(Font.Weight.thin)
-                            .foregroundColor(.black)
-                        //info
-                        VStack{
-                            Text("이름")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            // adress
-                            Text("시")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("구")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("동")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("주소")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("우편번호")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("전화번호")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            Text("국가")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                            //기본 배송지 여부
-                            Text("기본")
-                                .font(Font.caption)
-                                .foregroundColor(.black)
-                        }
-                        
-                    }
-                    .padding(20)
-                }
-                
-                Spacer()
-                
-                //edit button
-                NavigationLink(destination: AdressEditView(title: "배송지 관리")) {
-                    Text("수정")
-                        .foregroundColor(.gray)
-                }
-                
+            ForEach(viewModel.addresses, id: \.self) { address in
+                AddressRow(address: address, isChecked: $viewModel.isChecked)
             }
             
             Spacer()
             
-            // add button
             CustomButton(
                 background: .black,
                 foregroundColor: .white,
@@ -96,3 +39,54 @@ struct ManageAdress_Previews: PreviewProvider {
         }
     }
 }
+
+struct AddressRow: View {
+    var address: Address
+    @Binding var isChecked: Bool
+    
+    var body: some View {
+        HStack{
+            // 기본 배송지 여부
+            Button(action: { isChecked.toggle() }) {
+                HStack {
+                    Image(systemName: isChecked ? "checkmark.square" : "square")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .fontWeight(Font.Weight.thin)
+                        .foregroundColor(.black)
+                    
+                    // 배달 정보
+                    VStack{
+                        AddressText(text: address.name)
+                        AddressText(text: address.city)
+                        AddressText(text: address.district)
+                        AddressText(text: address.postalCode)
+                        AddressText(text: address.phoneNumber)
+                        AddressText(text: address.country)
+                    }
+                    .padding(20)
+                }
+            }
+            
+            Spacer()
+            
+            // edit button
+            NavigationLink(destination: AdressEditView(title: "배송지 관리")) {
+                Text("수정")
+                    .foregroundColor(.gray)
+                    .padding()
+            }
+        }
+    }
+}
+
+struct AddressText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .font(Font.caption)
+            .foregroundColor(.black)
+    }
+}
+
