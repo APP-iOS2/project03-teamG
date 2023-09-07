@@ -39,20 +39,17 @@ struct GenderTabBarView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView{
+            ScrollView {
                 VStack(spacing: 0) {
                     TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
                     SelectedContentView(selectedTab: $selectedTab)
                     Spacer()
                 }
-                .toolbar { SearchView() }
-                .navigationBarTitle("구매하기", displayMode: .automatic)
             }
-            
+            .navigationBarTitle("구매하기", displayMode: .automatic)
+            .toolbar { SearchView() }
         }
-        
     }
-    
 }
 
 // MARK: - TabBarView
@@ -128,11 +125,11 @@ struct SelectedContentView: View {
     var body: some View {
         switch selectedTab {
         case "남성":
-            ShopView() // 남성 전용 뷰
+            ShopView(categoryView: MaleView())
         case "여성":
-            ShopView() // 여성 전용 뷰
+            ShopView(categoryView: FemaleView())
         case "키즈":
-            ShopView() // 키즈 전용 뷰
+            ShopView(categoryView: KidsView())
         default:
             Text("\(selectedTab) 탭 컨텐츠")
                 .padding()

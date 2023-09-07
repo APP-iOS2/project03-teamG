@@ -13,8 +13,6 @@ struct MainTabView: View {
     var shoes: Shoes = Shoes(name: "", category: .female, modelName: .airForce, price: 0, size: [250], description: "", imageURLString: "", like: false)
     
     var body: some View {
-
-
         NavigationStack {
             TabView(selection: $selectedIndex) {
                 Group {
@@ -23,7 +21,7 @@ struct MainTabView: View {
                             self.selectedIndex = 0
                         }
                         .tabItem {
-                            Image(systemName: "house")
+                            Label("홈", systemImage: "house")
                         }.tag(0)
                     
                     GenderTabBarView(tabs: ["남성", "여성", "키즈"])
@@ -31,7 +29,7 @@ struct MainTabView: View {
                             self.selectedIndex = 1
                         }
                         .tabItem {
-                            Image(systemName: "magnifyingglass")
+                            Label("구매하기", systemImage: "magnifyingglass")
                         }.tag(1)
                     
                     WishView()
@@ -39,7 +37,7 @@ struct MainTabView: View {
                             self.selectedIndex = 2
                         }
                         .tabItem {
-                            Image(systemName: "heart")
+                            Label("위시리스트", systemImage: "heart")
                         }.tag(2)
                     
                     BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
@@ -47,7 +45,7 @@ struct MainTabView: View {
                             self.selectedIndex = 3
                         }
                         .tabItem {
-                            Image(systemName: "bag")
+                            Label("장바구니", systemImage: "bag")
                         }.tag(3)
                     
                     ProfileView()
@@ -55,7 +53,7 @@ struct MainTabView: View {
                             self.selectedIndex = 4
                         }
                         .tabItem {
-                            Image(systemName: "person")
+                            Label("프로필", systemImage: "person")
                         }.tag(4)
                 }
                 .toolbarBackground( .white, for: .tabBar)

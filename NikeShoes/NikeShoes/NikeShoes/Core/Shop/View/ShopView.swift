@@ -7,47 +7,27 @@
 
 import SwiftUI
 
-struct ShopView: View {
+struct ShopView<Content: View>: View {
+    var categoryView: Content
+    
     var body: some View {
-
         ScrollView {
             AppBestCollectionView()
             
-            //카테고리부분
-                LazyVStack {
-                    
-                    LazyVStack {
-                        ForEach(0 ... 3, id: \.self) { _ in
-                            VStack{
-                                ZStack{
-                                    Rectangle()
-                                        .frame(width: .infinity, height: 120)
-                                    Text("카테고리")
-                                        .foregroundColor(Color.white)
-                                }
-                            }
-                        }
-                    }
-                }
-            
+            // 카테고리 부분
+            categoryView
 
             AppExclusiveView()
-            
             BestItemView()
-            
             RecentItemView()
-            
             InterestItemView()
-
-            
             RecommendStoreView()
-            }
         }
     }
-
+}
 
 struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopView()
+        ShopView(categoryView: MaleView())
     }
 }
