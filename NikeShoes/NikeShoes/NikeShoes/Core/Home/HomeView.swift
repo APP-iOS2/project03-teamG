@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    var userName: String = "최소정"
+    
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text("최소정님, 즐거운 저녁 보내고 계신가요? 뿌앵")
+                VStack(alignment: .leading) {
+                    // 시간대별로 다르게 보이는거 구현해 주기
+                    
+                    Text("\(userName)님, 즐거운 저녁 보내고 계신가요? ")
+                        .font(.mediumBold24)
+                }
+                .padding([.leading,.trailing], 10)
+                
+                CustomizedRecommendView()
+                
+                NikeNewsView()
             }
             .toolbar { SearchView() }
         }
