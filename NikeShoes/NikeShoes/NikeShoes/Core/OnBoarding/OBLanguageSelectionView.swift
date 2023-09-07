@@ -11,9 +11,12 @@ import SwiftUI
 
 
 enum Language: String,CaseIterable, Identifiable {
-    case kr
-    case en
-    
+    case kr = "한국어"
+    case en = "영어"
+
+    var value: String {
+        self.rawValue
+    }
     var id: Self {
         self
     }
@@ -76,9 +79,6 @@ struct OBLanguageSelectionView: View {
             }
             .pickerStyle(.wheel)
                 .presentationDetents([.fraction(0.3)])
-            
-            
-            
         }
     }
 }
@@ -116,7 +116,7 @@ struct ModalView: View {
     
     @State private var selection = 0
     @Binding var showingSheet: Bool
-    let data = ["한국어"]
+    
     var body: some View {
         VStack {
      
@@ -130,7 +130,8 @@ struct ModalView: View {
                 }
             }
             Picker(selection: $selection, label: Text("value")) {
-                Text("한국어")
+                Text("\(Language.kr.value)")
+                Text("\(Language.en.value)")
             }
             .frame(width: 200)
             .labelsHidden()

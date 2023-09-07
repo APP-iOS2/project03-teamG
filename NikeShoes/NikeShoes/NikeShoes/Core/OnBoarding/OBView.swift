@@ -138,7 +138,7 @@ extension OBContainerView {
         case location
         case mainTab
         
-        var button: String {
+        var title: String {
             switch self {
             case .locationDescription:
                 return ""
