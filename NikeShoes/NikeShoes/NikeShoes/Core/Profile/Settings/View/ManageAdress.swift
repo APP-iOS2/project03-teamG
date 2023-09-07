@@ -14,7 +14,7 @@ struct ManageAdress: View {
     let title: String
     
     var body: some View {
-        VStack{
+        VStack {
             ForEach(viewModel.addresses, id: \.self) { address in
                 AddressRow(address: address, isChecked: $viewModel.isChecked)
             }
@@ -34,7 +34,7 @@ struct ManageAdress: View {
 
 struct ManageAdress_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             ManageAdress(title: "배송지 관리")
         }
     }
@@ -45,9 +45,11 @@ struct AddressRow: View {
     @Binding var isChecked: Bool
     
     var body: some View {
-        HStack{
+        HStack {
             // 기본 배송지 여부
-            Button(action: { isChecked.toggle() }) {
+            Button {
+                isChecked.toggle()
+            } label: {
                 HStack {
                     Image(systemName: isChecked ? "checkmark.square" : "square")
                         .resizable()
@@ -56,7 +58,7 @@ struct AddressRow: View {
                         .foregroundColor(.black)
                     
                     // 배달 정보
-                    VStack{
+                    VStack {
                         AddressText(text: address.name)
                         AddressText(text: address.city)
                         AddressText(text: address.district)
@@ -89,4 +91,3 @@ struct AddressText: View {
             .foregroundColor(.black)
     }
 }
-
