@@ -28,7 +28,7 @@ struct OBLanguageSelectionView: View {
     var description: String = "언어 선택"
     var description2: String = "Nike 앱에서 지원되는 언어로 업데이트하세요."
    
-    @State var myvar: String = "한국어"
+    @State var language: String = "한국어"
     @State private var showingSheet = false
 
     var date: String = ""
@@ -58,13 +58,13 @@ struct OBLanguageSelectionView: View {
                 Spacer()
             }
             
-            Text("\(myvar)") .bold()
+            Text("\(language)") .bold()
                 .font(.body)
                 .foregroundColor(.gray)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
             
-            LanguageSelectionButton(showingSheet: $showingSheet, myvar: $myvar)
+            LanguageSelectionButton(showingSheet: $showingSheet, language: $language)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white, lineWidth: 2)
@@ -74,8 +74,8 @@ struct OBLanguageSelectionView: View {
             Spacer()
             
         }.sheet(isPresented: $showingSheet) {
-            Picker("Flavor", selection: $myvar) {
-                ForEach(Language.allCases) { Text($0.rawValue.capitalized).tag($0.rawValue) }
+            Picker("language", selection: $language) {
+                ForEach(Language.allCases) { Text($0.value.capitalized).tag($0.rawValue) }
             }
             .pickerStyle(.wheel)
                 .presentationDetents([.fraction(0.3)])
@@ -86,7 +86,7 @@ struct OBLanguageSelectionView: View {
 struct LanguageSelectionButton: View {
     
     @Binding var showingSheet: Bool
-    @Binding var myvar: String
+    @Binding var language: String
     let heights = stride(from: 0.5, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
     
     var body: some View {
@@ -96,7 +96,7 @@ struct LanguageSelectionButton: View {
                     showingSheet.toggle()
                     
                 }, label: {
-                    Text("\(myvar)")
+                    Text("\(language)")
                         .font(.body)
                         .foregroundColor(.white)
                         .padding(20)
@@ -108,33 +108,6 @@ struct LanguageSelectionButton: View {
                         .padding(20)
                 })
             }
-        }
-    }
-}
-      
-struct ModalView: View {
-    
-    @State private var selection = 0
-    @Binding var showingSheet: Bool
-    
-    var body: some View {
-        VStack {
-     
-            Button(action: {
-                self.showingSheet = false
-            }) {
-                HStack {
-                    Spacer()
-                    Text("Close")
-                        .padding(.horizontal, 16)
-                }
-            }
-            Picker(selection: $selection, label: Text("value")) {
-                Text("\(Language.kr.value)")
-                Text("\(Language.en.value)")
-            }
-            .frame(width: 200)
-            .labelsHidden()
         }
     }
 }
