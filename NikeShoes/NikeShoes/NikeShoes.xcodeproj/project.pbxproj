@@ -22,6 +22,7 @@
 		219D7D8A2AA8096F0062A38F /* InterestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D892AA8096F0062A38F /* InterestItemView.swift */; };
 		219D7D8C2AA8099C0062A38F /* RecommendStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */; };
 		219D7D8E2AA83B2A0062A38F /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D8D2AA83B2A0062A38F /* CategoryItem.swift */; };
+		219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 219FDAD22AA97C6F0046986B /* .swiftlint.yml */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */; };
 		3B199AD12AA756E700C1E764 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF22AA5B816009FB78A /* ProfileView.swift */; };
@@ -123,6 +124,7 @@
 		219D7D892AA8096F0062A38F /* InterestItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestItemView.swift; sourceTree = "<group>"; };
 		219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendStoreView.swift; sourceTree = "<group>"; };
 		219D7D8D2AA83B2A0062A38F /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
 		3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentLabel.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		9617AEAA2AA5AECC009FB78A = {
 			isa = PBXGroup;
 			children = (
+				219FDAD22AA97C6F0046986B /* .swiftlint.yml */,
 				9617AEB52AA5AECC009FB78A /* NikeShoes */,
 				9617AEB42AA5AECC009FB78A /* Products */,
 				9617AEE12AA5AF97009FB78A /* Frameworks */,
@@ -586,6 +589,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9617AEC12AA5AED0009FB78A /* Build configuration list for PBXNativeTarget "NikeShoes" */;
 			buildPhases = (
+				219FDAD12AA97C190046986B /* SwiftLint Script */,
 				9617AEAF2AA5AECC009FB78A /* Sources */,
 				9617AEB02AA5AECC009FB78A /* Frameworks */,
 				9617AEB12AA5AECC009FB78A /* Resources */,
@@ -640,12 +644,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */,
 				9617AEBE2AA5AED0009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		219FDAD12AA97C190046986B /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9617AEAF2AA5AECC009FB78A /* Sources */ = {
