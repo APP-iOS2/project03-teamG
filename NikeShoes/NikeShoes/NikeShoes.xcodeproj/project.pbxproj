@@ -28,7 +28,6 @@
 		219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADE2AA9A7B50046986B /* FirebaseFirestore */; };
 		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
 		219FDAE32AA9A7B50046986B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */; };
-		219FDAE52AA9A81A0046986B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 219FDAE42AA9A8190046986B /* GoogleService-Info.plist */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */; };
 		3B199AD12AA756E700C1E764 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF22AA5B816009FB78A /* ProfileView.swift */; };
@@ -46,12 +45,13 @@
 		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
 		6485A0552AA9B172008F2DC1 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6485A0542AA9B172008F2DC1 /* AddAddressView.swift */; };
+		6485A0572AA9CC58008F2DC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6485A0562AA9CC57008F2DC1 /* GoogleService-Info.plist */; };
 		64A3F5862AA96D6700C075E3 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A3F5852AA96D6700C075E3 /* AddressViewModel.swift */; };
 		64A3F5882AA96D9E00C075E3 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A3F5872AA96D9E00C075E3 /* Address.swift */; };
 		64CD997E2AA6D39E008D3094 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD997D2AA6D39E008D3094 /* EmailView.swift */; };
 		64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */; };
 		64CD99842AA6E85E008D3094 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99832AA6E85E008D3094 /* CustomButton.swift */; };
-		64CD99862AA70BD4008D3094 /* ManageAdress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99852AA70BD4008D3094 /* ManageAdress.swift */; };
+		64CD99862AA70BD4008D3094 /* ManageAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99852AA70BD4008D3094 /* ManageAddress.swift */; };
 		64CD99882AA711C8008D3094 /* AddressEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99872AA711C8008D3094 /* AddressEditView.swift */; };
 		64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99892AA7183C008D3094 /* LocationView.swift */; };
 		64CD99902AA81234008D3094 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD998F2AA81234008D3094 /* LanguageView.swift */; };
@@ -131,7 +131,6 @@
 		219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendStoreView.swift; sourceTree = "<group>"; };
 		219D7D8D2AA83B2A0062A38F /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		219FDAE42AA9A8190046986B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
 		3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentLabel.swift; sourceTree = "<group>"; };
@@ -145,12 +144,13 @@
 		643BB8462AA6B020000233A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		643BB84A2AA6B054000233A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6485A0542AA9B172008F2DC1 /* AddAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressView.swift; sourceTree = "<group>"; };
+		6485A0562AA9CC57008F2DC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		64A3F5852AA96D6700C075E3 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		64A3F5872AA96D9E00C075E3 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		64CD997D2AA6D39E008D3094 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonNumberView.swift; sourceTree = "<group>"; };
 		64CD99832AA6E85E008D3094 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		64CD99852AA70BD4008D3094 /* ManageAdress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAdress.swift; sourceTree = "<group>"; };
+		64CD99852AA70BD4008D3094 /* ManageAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddress.swift; sourceTree = "<group>"; };
 		64CD99872AA711C8008D3094 /* AddressEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEditView.swift; sourceTree = "<group>"; };
 		64CD99892AA7183C008D3094 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		64CD998F2AA81234008D3094 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 				643BB84A2AA6B054000233A5 /* SettingsView.swift */,
 				64CD997D2AA6D39E008D3094 /* EmailView.swift */,
 				64CD99812AA6E6F8008D3094 /* PhonNumberView.swift */,
-				64CD99852AA70BD4008D3094 /* ManageAdress.swift */,
+				64CD99852AA70BD4008D3094 /* ManageAddress.swift */,
 				6485A0542AA9B172008F2DC1 /* AddAddressView.swift */,
 				64CD99872AA711C8008D3094 /* AddressEditView.swift */,
 				64CD99892AA7183C008D3094 /* LocationView.swift */,
@@ -424,7 +424,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
-				219FDAE42AA9A8190046986B /* GoogleService-Info.plist */,
+				6485A0562AA9CC57008F2DC1 /* GoogleService-Info.plist */,
 				1D1CA3652AA6BBAF009BCCB5 /* Info.plist */,
 				219D7D502AA6F7EC0062A38F /* Extensions */,
 				219D7D512AA6F7F80062A38F /* Model */,
@@ -661,7 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */,
-				219FDAE52AA9A81A0046986B /* GoogleService-Info.plist in Resources */,
+				6485A0572AA9CC58008F2DC1 /* GoogleService-Info.plist in Resources */,
 				9617AEBE2AA5AED0009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */,
 			);
@@ -778,7 +778,7 @@
 				A074C4622AA813770081DB7F /* NavigationNikeSetting.swift in Sources */,
 				64CD99842AA6E85E008D3094 /* CustomButton.swift in Sources */,
 				64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */,
-				64CD99862AA70BD4008D3094 /* ManageAdress.swift in Sources */,
+				64CD99862AA70BD4008D3094 /* ManageAddress.swift in Sources */,
 				96410E522AA88052004C5313 /* ShoesSampleData.swift in Sources */,
 				A074C4552AA6EDEF0081DB7F /* ManageInfoView.swift in Sources */,
 				6485A0552AA9B172008F2DC1 /* AddAddressView.swift in Sources */,
