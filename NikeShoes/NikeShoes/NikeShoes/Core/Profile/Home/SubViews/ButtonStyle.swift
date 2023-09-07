@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ButtonStyle: View {
     var buttonText: String
     var action: () -> Void
@@ -16,12 +15,13 @@ struct ButtonStyle: View {
         VStack {
             Button(action: action) {
                 Text(buttonText)
-                    .font(.system(size: 18, weight: .medium))
-                    .foregroundColor(.black)
+                        .font(.system(size: 18, weight: .medium))
+                        .foregroundColor(.black)
             }
-            .cornerRadius(31.5)
-            .foregroundColor(Color.white)
             .frame(width: 351, height: 63)
+            .background(Color.white)
+            .foregroundColor(Color.white)
+            .cornerRadius(31.5)
             .overlay(RoundedRectangle(cornerRadius: 31.5)
                 .stroke(Color.gray, lineWidth: 0.5))
             
@@ -43,7 +43,6 @@ struct ButtonStyle: View {
     }
         
 }
-
 
 struct ButtonStyle_Previews: PreviewProvider {
     static var previews: some View {

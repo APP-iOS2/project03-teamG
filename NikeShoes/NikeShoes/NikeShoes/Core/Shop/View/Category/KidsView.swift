@@ -27,6 +27,7 @@ struct KidsView: View {
                         
                         Image(imageName)
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
 //                            .scaledToFill()
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                             .clipped()
