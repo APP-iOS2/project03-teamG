@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderDetailsView: View {
     var title: String
     
-    var dateOfPurchase: String = "온라인 구매 - 2023년 9월 4일"
+    var dateOfPurchase: String = "2023년 9월 4일"
     var purchaseNumber: String = "C01272876223"
     var price: Int = 179000
     
@@ -41,7 +41,7 @@ struct OrderDetailsView: View {
                 VStack(alignment: .leading) {
                     Text("온라인 구매 - \(dateOfPurchase)")
                         .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
-                    Text("\(purchaseNumber) ㅡ ₩\(price)")
+                    Text("\(purchaseNumber) ⏤ ₩\(price)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     Rectangle()
@@ -90,10 +90,10 @@ struct OrderDetailsView: View {
                         ButtonView(buttonText: "주문 취소", foreground: .white, background: .black) {
                             self.isModalPresented.toggle()
                         }
-                        .sheet(isPresented: $isModalPresented, content: {
+                        .sheet(isPresented: $isModalPresented) {
                             CancelOrderModalView(isModalPresented: self.$isModalPresented)
-                                .frame(height: UIScreen.main.bounds.height / 3)
-                        })
+                                .presentationDetents([.fraction(0.35), .large])
+                        }
                         Spacer()
                     }
                     
