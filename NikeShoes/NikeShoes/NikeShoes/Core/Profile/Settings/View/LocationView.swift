@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LocationView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var filteredCountries: [String] = countries
     
     let title: String
     
@@ -20,21 +21,27 @@ struct LocationView: View {
             Divider()
             
             TextField("검색", text: $nation)
+                .onChange(of: nation) { newValue in
+                    if newValue.isEmpty {
+                        filteredCountries = countries
+                    } else {
+                        filteredCountries = countries.filter { $0.contains(newValue) }
+                    }
+                }
                 .padding(15)
                 .background(Color.white)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
                 .padding()
             List{
-                ForEach(countries, id: \.self) { item in
+                ForEach(filteredCountries, id: \.self) { item in
                     Text(item)
                         .font(.subheadline)
-                    
                 }
             }
             .listStyle(.plain)
         }
         .modifier(NavigationNikeSetting(title: title))
-}
+    }
 }
 
 struct LocationView_Previews: PreviewProvider {

@@ -10,6 +10,7 @@ struct SettingsView: View {
                         Text(item.title)
                             .font(.medium16)
                             .padding(.vertical)
+                            .foregroundColor(item == .logOut ? Color.nikeRed : Color.black)
                     }
                 }
                 .padding(.horizontal, 20)
@@ -23,8 +24,8 @@ struct SettingsView: View {
                     Rectangle()
                         .fill(Color.lightGray)
                         .listRowSeparator(.hidden)
-                    
                 }
+                
             }
             .listRowInsets(EdgeInsets())
         }
