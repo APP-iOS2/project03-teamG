@@ -16,6 +16,7 @@ struct PhonNumberView: View {
     @State private var isChecked: Bool = false
     @State private var canSendCode: Bool = false
     @State private var showModal: Bool = false
+    @State private var selectedNation: Nation = .Korea
 
     var body: some View {
         ZStack {
@@ -39,7 +40,7 @@ struct PhonNumberView: View {
                 HStack {
                     // 국가 지역 코드 표시 & 모달 열기
                     HStack {
-                        Text("국가 / 지역 ")
+                        Text(selectedNation.details.phoneNumberPrefix)
                         Image(systemName: "chevron.down")
                     }
                     .padding(15)
@@ -52,10 +53,27 @@ struct PhonNumberView: View {
                     }
 
                     // 휴대전화 번호 입력
-                    TextField("Phon Number", text: $phoneNumber)
-                        .padding(15)
-                        .background(Color.white)
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
+                    ZStack{
+                        TextField("Phon Number", text: $phoneNumber)
+                            .padding(15)
+                            .background(Color.white)
+                            .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(selectedNation != Nation.Korea ? Color.red : Color.black, lineWidth: 0.5))
+                        Text("휴대폰 번호")
+                            .font(.caption2)
+                            .foregroundColor(selectedNation != Nation.Korea ? Color.red : .gray)
+                            .background(.white)
+                            .offset(x: -97, y: -25)
+                        if(selectedNation != Nation.Korea) {
+                            Text("유효하지 않은 형식")
+                                .font(.caption2)
+                                .foregroundColor(.red)
+                                .background(.white)
+                                .offset(x: -85, y: 40)
+                        }
+                    }
+                    
+                    
                 }
                 .padding()
                 .onChange(of: [nationCode, phoneNumber]) { _ in
@@ -108,13 +126,30 @@ struct PhonNumberView: View {
             }
 
             // 슬라이드업 모달
-            VStack {
-                Text("국가/지역")
-                ScrollView{
-                    ForEach(codes, id: \.self) { code in
-                        Text(code)
+            VStack(alignment: .leading) {
+                Text("국가 / 지역 코드")
+                    .font(.headline)
+                    .padding()
+                List{
+                    ForEach(Nation.allCases , id: \.self) { code in
+                        HStack{
+                            Text("\(code.details.code) - \(code.details.name) \(code.details.phoneNumberPrefix)")
+                                .font(.medium16)
+                                .padding(.vertical)
+
+                            Spacer()
+                            
+                            if code == selectedNation {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        .onTapGesture {
+                            selectedNation = code
+                            showModal = false
+                        }
                     }
                 }
+                .listStyle(.plain)
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
             .background(Color.white)
@@ -147,25 +182,52 @@ struct PhonNumberView_Previews: PreviewProvider {
 }
 
 
-let codes = [
-    "대한민국 - KR, +82",
-    "미국 - US, +1",
-    "중국 - CN, +86",
-    "일본 - JP, +81",
-    "러시아 - RU, +7",
-    "인도 - IN, +91",
-    "브라질 - BR, +55",
-    "프랑스 - FR, +33",
-    "독일 - DE, +49",
-    "영국 - GB, +44",
-    "이탈리아 - IT, +39",
-    "캐나다 - CA, +1",
-    "호주 - AU, +61",
-    "사우디 아라비아 - SA, +966",
-    "멕시코 - MX, +52",
-    "남아프리카 공화국 - ZA, +27",
-    "터키 - TR, +90",
-    "인도네시아 - ID, +62",
-    "스페인 - ES, +34",
-    "아르헨티나 - AR, +54"
-]
+enum Nation: CaseIterable {
+    case Korea
+    case USA
+    case China
+    case Japan
+    case Russia
+    case India
+    case Brazil
+    case France
+    case Germany
+    case UK
+    case Italy
+    case Canada
+    case Australia
+    case SaudiArabia
+    case Mexico
+    case SouthAfrica
+    case Turkey
+    case Indonesia
+    case Spain
+    case Argentina
+    
+    var details: (code: String, name: String, phoneNumberPrefix: String) {
+        switch self {
+        case .Korea: return ("KR", "대한민국", "+82")
+        case .USA: return ("US", "미국", "+1")
+        case .China: return ("CN", "중국", "+86")
+        case .Japan: return ("JP", "일본", "+81")
+        case .Russia: return ("RU", "러시아", "+7")
+        case .India: return ("IN", "인도", "+91")
+        case .Brazil: return ("BR", "브라질", "+55")
+        case .France: return ("FR", "프랑스", "+33")
+        case .Germany: return ("DE", "독일", "+49")
+        case .UK: return ("GB", "영국", "+44")
+        case .Italy: return ("IT", "이탈리아", "+39")
+        case .Canada: return ("CA", "캐나다", "+1")
+        case .Australia: return ("AU", "호주", "+61")
+        case .SaudiArabia: return ("SA", "사우디 아라비아", "+966")
+        case .Mexico: return ("MX", "멕시코", "+52")
+        case .SouthAfrica: return ("ZA", "남아프리카 공화국", "+27")
+        case .Turkey: return ("TR", "터키", "+90")
+        case .Indonesia: return ("ID", "인도네시아", "+62")
+        case .Spain: return ("ES", "스페인", "+34")
+        case .Argentina: return ("AR", "아르헨티나", "+54")
+        }
+    }
+}
+
+
