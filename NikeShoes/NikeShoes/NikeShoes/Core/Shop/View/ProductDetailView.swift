@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    @State private var isShowingSheet = false
+    @State private var sizeTipToggle = false
+    @State private var reviewToggle = false
+    @State private var moreInfoToggle = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -56,7 +61,7 @@ struct ProductDetailView: View {
                         
                         Text(ShoesSampleData[1].description)
                             .font(.system(size: 16))
-                            .lineSpacing(13)
+                            .lineSpacing(11)
                             .padding(.bottom, 28)
                         
                         Text("""
@@ -68,8 +73,8 @@ struct ProductDetailView: View {
                         .lineSpacing(20)
                         .padding(.bottom, 32)
                         
-                        Button {
-                            print("상품 상세 정보 보기")
+                        NavigationLink {
+                            ProductDetailInfoView()
                         } label: {
                             Text("상품 상세 정보 보기")
                                 .foregroundColor(.textGray)
@@ -77,7 +82,7 @@ struct ProductDetailView: View {
                         .padding(.bottom, 35)
                         
                         Button {
-                            print("사이즈 선택")
+                            isShowingSheet.toggle()
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 31.5)
@@ -91,11 +96,15 @@ struct ProductDetailView: View {
                                     .fontWeight(.medium)
                             }
                         }
+                        .sheet(isPresented: $isShowingSheet) {
+                            SizeView()
+                                .presentationDetents([.medium, .medium])
+                        }
                         
                         .padding(.bottom, 7)
                         
                         Button {
-                            print("장바구니")
+                            print("장바구니에 추가")
                         } label: {
                             ZStack {
                                 Rectangle()
@@ -155,6 +164,44 @@ struct ProductDetailView: View {
                             .stroke(Color.lightGray, lineWidth: 1)
                             .frame(width: 351, height: 100)
                             .background(Color.lightGray)
+                            .padding(.bottom, 30)
+                        
+                        Divider()
+                        
+                        Button {
+                            sizeTipToggle.toggle()
+                        } label: {
+                            VStack(alignment: .leading) {
+                                if sizeTipToggle == false {
+                                    HStack {
+                                        Text("사이즈 & 팁")
+                                        Spacer()
+                                        Image(systemName: "chevron.down")
+                                            .padding(.vertical, 28)
+                                    }
+                                } else {
+                                    HStack {
+                                        Text("사이즈 & 팁")
+                                        Spacer()
+                                        Image(systemName: "chevron.up")
+                                            .padding(.vertical, 28)
+                                    }
+                                    Button {
+                                        
+                                    } label: {
+                                        Text("사이즈 가이드")
+                                            .underline(true, color: .black)
+                                            .font(.system(size: 15))
+                                            .padding(.leading, 37)
+                                            .padding(.bottom, 23)
+                                    }
+                                }
+                            }
+                            .foregroundColor(.black)
+                            .font(.system(size: 18))
+                        }
+                        
+                        Divider()
                     }
                     .padding()
                 }
