@@ -84,6 +84,8 @@
 		A074C4602AA70EEE0081DB7F /* SignOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C45F2AA70EEE0081DB7F /* SignOutView.swift */; };
 		A074C4622AA813770081DB7F /* NavigationNikeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4612AA813770081DB7F /* NavigationNikeSetting.swift */; };
 		A074C4642AA834A20081DB7F /* CustomerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A074C4632AA834A20081DB7F /* CustomerWebView.swift */; };
+		A0DED5C22AA96213000D9E15 /* CustomizedRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */; };
+		A0DED5C42AA96744000D9E15 /* NikeNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */; };
 		B02077022AA6BF3800DD014C /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077012AA6BF3800DD014C /* MessageView.swift */; };
 		B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077032AA6BF8A00DD014C /* InboxView.swift */; };
 		B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02077062AA6C96A00DD014C /* OrdersView.swift */; };
@@ -181,6 +183,8 @@
 		A074C45F2AA70EEE0081DB7F /* SignOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutView.swift; sourceTree = "<group>"; };
 		A074C4612AA813770081DB7F /* NavigationNikeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNikeSetting.swift; sourceTree = "<group>"; };
 		A074C4632AA834A20081DB7F /* CustomerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebView.swift; sourceTree = "<group>"; };
+		A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedRecommendView.swift; sourceTree = "<group>"; };
+		A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeNewsView.swift; sourceTree = "<group>"; };
 		B02077012AA6BF3800DD014C /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B02077032AA6BF8A00DD014C /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		B02077062AA6C96A00DD014C /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
@@ -446,6 +450,8 @@
 			isa = PBXGroup;
 			children = (
 				9617AEE82AA5B816009FB78A /* HomeView.swift */,
+				A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */,
+				A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				219D7D5A2AA6F8760062A38F /* Service.swift in Sources */,
 				219D7D8E2AA83B2A0062A38F /* CategoryItem.swift in Sources */,
 				219D7D562AA6F8630062A38F /* Font.swift in Sources */,
+				A0DED5C42AA96744000D9E15 /* NikeNewsView.swift in Sources */,
 				219D7D5D2AA717F60062A38F /* Components.swift in Sources */,
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */,
@@ -693,6 +700,7 @@
 				961798F52AA6C573009FC991 /* OBStartView.swift in Sources */,
 				961798F92AA6C77C009FC991 /* TempButton.swift in Sources */,
 				961799092AA70B2B009FC991 /* OBLanguageSelectionView.swift in Sources */,
+				A0DED5C22AA96213000D9E15 /* CustomizedRecommendView.swift in Sources */,
 				3B6503A92AA8174900908390 /* FollowingDetailView.swift in Sources */,
 				9617AEFC2AA5B816009FB78A /* MainTabView.swift in Sources */,
 				DC01B54F2AA6E9EB003B6E77 /* ButtonView.swift in Sources */,
