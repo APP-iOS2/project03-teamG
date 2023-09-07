@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SizeView: View {
     @State private var isButtonTapped = false
-    var shoeSize: [Int] = [240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 320, 330]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,9 +30,10 @@ struct SizeView: View {
                     }
                 }
                 
-                ForEach(shoeSize, id:\.self) { size in
+                ForEach(ShoesSampleData[1].size, id:\.self) { size in
                     Button {
                         isButtonTapped = true
+                        print(size)
                     } label: {
                         HStack {
                             Text("\(size)")

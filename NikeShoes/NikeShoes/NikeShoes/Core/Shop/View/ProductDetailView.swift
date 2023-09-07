@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    @State private var isShowingSheet = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -77,7 +79,7 @@ struct ProductDetailView: View {
                         .padding(.bottom, 35)
                         
                         Button {
-                            print("사이즈 선택")
+                            isShowingSheet.toggle()
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 31.5)
@@ -91,11 +93,15 @@ struct ProductDetailView: View {
                                     .fontWeight(.medium)
                             }
                         }
+                        .sheet(isPresented: $isShowingSheet) {
+                            SizeView()
+                                .presentationDetents([.medium, .medium])
+                        }
                         
                         .padding(.bottom, 7)
                         
                         Button {
-                            print("장바구니")
+                            print("장바구니에 추가")
                         } label: {
                             ZStack {
                                 Rectangle()
