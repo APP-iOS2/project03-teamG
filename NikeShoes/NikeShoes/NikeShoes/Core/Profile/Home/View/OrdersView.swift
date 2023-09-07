@@ -11,7 +11,7 @@ struct OrdersView: View {
     
     var title: String
     
-    @State private var tag:Int? = nil
+    @State private var tag: Int? = nil
     
     var body: some View {
         NavigationStack {
@@ -32,7 +32,7 @@ struct OrdersView: View {
                 }
             }*/
             NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
-                ButtonStyle(buttonText: "장바구니 보기", action: {self.tag = 1})
+                ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
             }
         }
         .navigationTitle("주문내역")
@@ -62,4 +62,3 @@ struct OrdersView_Previews: PreviewProvider {
         OrdersView(title: "주문내역")
     }
 }
-
