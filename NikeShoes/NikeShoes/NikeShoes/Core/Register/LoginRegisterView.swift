@@ -21,19 +21,20 @@ struct LoginRegisterView: View {
                 .font(.mediumBold24)
                 .padding(.bottom, 12)
             
-            HStack {
+            HStack(alignment: .top) {
                 Text(selectedCountry)
-                    .padding(.bottom, 40)
                 
-                // TODO: picker....
-                Picker(selection: $selectedCountry) {
-                    ForEach(countries, id: \.self) { country in
-                        Text(country)
+                Menu("변경") {
+                    Picker("국가 변경", selection: $selectedCountry) {
+                        ForEach(countries, id: \.self) { country in
+                            Text(country)
+                        }
                     }
-                } label: {
-                    Text("변경")
                 }
+                .foregroundColor(.gray)
+                .underline()
             }
+            .padding(.bottom, 40)
             
             TextField("이메일", text: $email)
                 .modifier(SignUpTextFieldStyle())
