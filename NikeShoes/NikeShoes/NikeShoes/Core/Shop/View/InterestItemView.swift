@@ -9,17 +9,17 @@ import SwiftUI
 
 struct InterestItemView: View {
     
-    var sampleInterestItems: [String] = ["이런 관심사~", "저런 관심사","이런모델", "저런모델"]
+    var sampleInterestItems: [String] = ["이런 관심사~", "저런 관심사", "이런모델", "저런모델"]
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             
                 HStack(alignment: .bottom) {
                     Text("관심 제품 구매하기")
                         .font(Font.medium20)
                     Spacer()
                     NavigationLink {
-                        //마이페이지에 팔로잉 수정으로 이동
+                        // 마이페이지에 팔로잉 수정으로 이동
                         Text("마이페이지_관심사 수정 뷰로 이동")
                     } label: {
                         Text("관심사 수정")
@@ -30,18 +30,17 @@ struct InterestItemView: View {
                     
                 }
                 .padding(1)
-                .padding([.leading,.trailing])
+                .padding([.leading, .trailing])
                 
-                //가로 카테고리
+                // 가로 카테고리
                 ScrollView(.horizontal) {
                     LazyHStack {
-                        
                         
                         ForEach(sampleInterestItems, id: \.self) { item in
                             
                             NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
                                 
-                                ZStack(alignment: .center){
+                                ZStack(alignment: .center) {
                                     
                                     AsyncImage(url: URL(string: "https://cdn.pixabay.com/photo/2013/02/25/04/37/basketball-85919_1280.jpg")) { image in
                                         image.resizable()
@@ -55,7 +54,7 @@ struct InterestItemView: View {
                                     Text("\(item)")
                                         .foregroundColor(.white)
                                         .font(Font.medium20)
-                                        .padding([.top,.leading],10)
+                                        .padding([.top, .leading], 10)
                                     
                                 }
                             }
@@ -64,9 +63,8 @@ struct InterestItemView: View {
                     }
                     .padding()
                 }
-            
         }
-        .padding([.top,.bottom],20)
+        .padding([.top, .bottom], 20)
     }
 }
 

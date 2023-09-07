@@ -14,7 +14,7 @@ struct RecommendStoreView: View {
     var sampleStore: [String] = ["여기매장", "저기매장", "저어어기 매장", "저어어어기 매장"]
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             
             HStack(alignment: .bottom) {
                 Text("근처 매장")
@@ -32,17 +32,16 @@ struct RecommendStoreView: View {
                 
             }
             .padding(1)
-            .padding([.leading,.trailing])
+            .padding([.leading, .trailing])
             
-            //가로 카테고리
+            // 가로 카테고리
             ScrollView(.horizontal) {
                 LazyHStack {
-                    
                     
                     ForEach(storeModel.stores) { store in
                         
                         NavigationLink(destination: StoreDetailView(store: store)) {
-                            VStack(alignment: .leading){
+                            VStack(alignment: .leading) {
                                 
                                 AsyncImage(url: store.imageURL) { image in
                                     image.resizable()
@@ -56,9 +55,7 @@ struct RecommendStoreView: View {
                                 Text("\(store.name)")
                                     .foregroundColor(.black)
                                     .font(Font.semiBold12)
-                                    .padding([.top,.leading],10)
-                                
-                                
+                                    .padding([.top, .leading], 10)
                                 
                             }
                         }
@@ -69,7 +66,7 @@ struct RecommendStoreView: View {
             }
             
         }
-        .padding([.top,.bottom],20)
+        .padding([.top, .bottom], 20)
     }
 }
 
