@@ -74,7 +74,7 @@ struct ProductDetailView: View {
                             .font(.system(size: 16))
                             .lineSpacing(20)
                             .padding(.bottom, 32)
-                            
+ 
                             NavigationLink {
                                 ProductDetailInfoView()
                             } label: {
