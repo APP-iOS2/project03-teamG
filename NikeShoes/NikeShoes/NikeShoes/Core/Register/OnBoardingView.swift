@@ -45,19 +45,22 @@ struct RegisterContainerView: View {
                 VStack(alignment: .leading) {
                     Spacer()
                     
-                    Text("나이키\n멤버에게\n최고의 제품,\n스포트에 대한 영감과 스토리를\n소개합니다.")
-                        .font(.mediumBold24)
-                        .foregroundColor(.white)
-                        .lineSpacing(6)
-                        .padding(.bottom, 30)
+                    HStack {
+                        Text("나이키\n멤버에게\n최고의 제품,\n스포츠에 대한 영감과 스토리를\n소개합니다.")
+                            .font(.system(size: 30))
+                            .foregroundColor(.white)
+                            .lineSpacing(6)
+                            .padding(.bottom, 30)
+                        Spacer()
+                    }
                     
                     HStack {
                         SignUpButton
                         SignInButton
                     }
                 }
-                .frame(maxWidth: .infinity)
-                .padding([.trailing, .bottom], 60)
+                .padding(.leading, 20)
+                .padding(.bottom, 70)
             } else {
                 OBView()
             }
@@ -71,65 +74,28 @@ struct RegisterContainerView: View {
         NavigationStack {
             switch index {
             case 0:
-                LoginRegisterView()
+                LoginRegisterView(index: $index)
                     .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                
-                ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                    index += 1
-                }
             case 1:
-                ScrollView {
-                    if isPressedRegisterButton {
-                        TermsOfServiceView()
-                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                        
-                        ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                            index += 1
-                        }
-                        ButtonView(buttonText: "취소", foreground: .black, background: .white) {
-                            index -= 1
-                        }
-                    } else if isPressedLoginButton {
-                        CheckPasswordView()
-                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                        
-                        ButtonView(buttonText: "로그인", foreground: .white, background: .black) {
-                            index = 4
-                        }
-                    }
+                if isPressedRegisterButton {
+                    TermsOfServiceView(index: $index)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                } else if isPressedLoginButton {
+                    CheckPasswordView(index: $index)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
                 }
             case 2:
-                ScrollView {
-                    InputUserInfoView()
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                    
-                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                        index += 1
-                    }
-                }
+                InputUserInfoView(index: $index)
+                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
             case 3:
-                ScrollView {
-                    CellPhoneCertificationView()
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                    
-                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                        index += 1
-                    }
-                }
+                CellPhoneCertificationView(index: $index)
+                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
             case 4:
-                VStack(alignment: .leading) {
-                    LoginCompletedView()
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                    
-                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                        isShowingSignInSheet = false
-                    }
-                }
+                LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
+                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
             default:
                 EmptyView()
             }
-            
-            Spacer()
         }
     }
     

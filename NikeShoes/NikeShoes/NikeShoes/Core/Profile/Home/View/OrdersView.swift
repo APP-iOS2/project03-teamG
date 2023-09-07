@@ -9,7 +9,9 @@ import SwiftUI
 
 struct OrdersView: View {
     
-    @State private var tag:Int? = nil
+    var title: String
+    
+    @State private var tag: Int? = nil
     
     var body: some View {
         NavigationStack {
@@ -19,20 +21,23 @@ struct OrdersView: View {
             .listStyle(.plain)
             .frame(height: 170)
             
-//            ZStack {
+/*           ZStack {
                 NavigationLink(destination: OrderDetailsView(), tag: 1, selection: self.$tag) {
-                    ButtonStyle()
+                    ButtonStyle(buttonText: "장바구니 보기")
                 }
                 Button(action: {
                     self.tag = 1
                 }) {
                     EmptyView()
                 }
-//            }
-            
+            }*/
+            NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
+                ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
+            }
         }
-        .navigationTitle("Orders")
+        .navigationTitle("주문내역")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 
@@ -54,7 +59,6 @@ struct OrdersEmptyView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView()
+        OrdersView(title: "주문내역")
     }
 }
-

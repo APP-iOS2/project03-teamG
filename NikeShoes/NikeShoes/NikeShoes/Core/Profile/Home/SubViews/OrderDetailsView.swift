@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct OrderDetailsView: View {
+    var title: String
     
-    var dateOfPurchase: String = "온라인 구매 - 2023년 9월 4일"
+    var dateOfPurchase: String = "2023년 9월 4일"
     var purchaseNumber: String = "C01272876223"
     var price: Int = 179000
     
@@ -31,6 +32,7 @@ struct OrderDetailsView: View {
     var userPhoneNumber: String = "010-0000-0000"
     
     var deliveryFee: Int = 0
+    @State private var isModalPresented = false
     
     var body: some View {
         NavigationStack {
@@ -39,7 +41,7 @@ struct OrderDetailsView: View {
                 VStack(alignment: .leading) {
                     Text("온라인 구매 - \(dateOfPurchase)")
                         .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
-                    Text("\(purchaseNumber) ㅡ ₩\(price)")
+                    Text("\(purchaseNumber) ⏤ ₩\(price)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     Rectangle()
@@ -85,8 +87,12 @@ struct OrderDetailsView: View {
                     
                     HStack {
                         Spacer()
-                        ButtonView(buttonText: "Cancel Order", foreground: .white, background: .black) {
-                            
+                        ButtonView(buttonText: "주문 취소", foreground: .white, background: .black) {
+                            self.isModalPresented.toggle()
+                        }
+                        .sheet(isPresented: $isModalPresented) {
+                            CancelOrderModalView(isModalPresented: self.$isModalPresented)
+                                .presentationDetents([.fraction(0.35), .large])
                         }
                         Spacer()
                     }
@@ -97,7 +103,7 @@ struct OrderDetailsView: View {
                         .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
                     
                     HStack(alignment: .top) {
-                        Text("Shipping")
+                        Text("배송 정보")
                             .font(.bold16)
                             .foregroundColor(.black)
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
@@ -130,7 +136,7 @@ struct OrderDetailsView: View {
                 Divider()
                 
                 HStack {
-                    Text("Purchase")
+                    Text("주문번호")
                         .font(.bold16)
                         .foregroundColor(.black)
                     
@@ -145,7 +151,7 @@ struct OrderDetailsView: View {
                 Divider()
                 
                 HStack {
-                    Text("Payment")
+                    Text("결제 방법")
                         .font(.bold16)
                         .foregroundColor(.black)
                     
@@ -161,12 +167,12 @@ struct OrderDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Group {
-                        Text("Summary")
+                        Text("결제 정보")
                             .font(.bold16)
                             .foregroundColor(.black)
                         
                         HStack {
-                            Text("Subtotal")
+                            Text("총 상품금액")
                             Spacer()
                             Text("₩\(price)")
                         }
@@ -174,7 +180,7 @@ struct OrderDetailsView: View {
                         .foregroundColor(.gray)
                         
                         HStack {
-                            Text("Shipping")
+                            Text("배송비")
                             Spacer()
                             Text("₩\(deliveryFee)")
                         }
@@ -182,7 +188,7 @@ struct OrderDetailsView: View {
                         .foregroundColor(.gray)
                         
                         HStack {
-                            Text("Order Total")
+                            Text("총 결제금액")
                             Spacer()
                             Text("₩\(price-deliveryFee)")
                         }
@@ -191,30 +197,31 @@ struct OrderDetailsView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     
-                    Rectangle()
-                        .fill(Color.defaultGray)
-                        .frame(height: 11)
-                        .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
-                    
-                    NavigationLink {
-                        
-                    } label: {
-                        Text("Quick Help Topics")
-                            .font(.bold16)
-                            .foregroundColor(.black)
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 0))
+                    //                    Rectangle()
+                    //                        .fill(Color.defaultGray)
+                    //                        .frame(height: 11)
+                    //                        .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
+                    //
+                    //                    NavigationLink {
+                    //
+                    //                    } label: {
+                    //                        Text("Quick Help Topics")
+                    //                            .font(.bold16)
+                    //                            .foregroundColor(.black)
+                    //                    }
+                    //                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 0))
                 }
                 .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
             }
         }
-        .navigationTitle("Order Details")
+        .navigationTitle("주문상세")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 
 struct OrderDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailsView()
+        OrderDetailsView(title: "주문 상세")
     }
 }

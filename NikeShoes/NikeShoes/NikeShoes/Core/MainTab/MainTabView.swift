@@ -13,52 +13,56 @@ struct MainTabView: View {
     var shoes: Shoes = Shoes(name: "", category: .female, modelName: .airForce, price: 0, size: [250], description: "", imageURLString: "", like: false)
     
     var body: some View {
-        NavigationStack {
-            TabView(selection: $selectedIndex) {
-                Group {
+        TabView(selection: $selectedIndex) {
+            Group {
+                NavigationStack {
                     HomeView()
-                        .onTapGesture {
-                            self.selectedIndex = 0
-                        }
-                        .tabItem {
-                            Label("홈", systemImage: "house")
-                        }.tag(0)
-                    
-                    GenderTabBarView(tabs: ["남성", "여성", "키즈"])
-                        .onTapGesture {
-                            self.selectedIndex = 1
-                        }
-                        .tabItem {
-                            Label("구매하기", systemImage: "magnifyingglass")
-                        }.tag(1)
-                    
-                    WishView()
-                        .onTapGesture {
-                            self.selectedIndex = 2
-                        }
-                        .tabItem {
-                            Label("위시리스트", systemImage: "heart")
-                        }.tag(2)
-                    
-                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
-                        .onTapGesture {
-                            self.selectedIndex = 3
-                        }
-                        .tabItem {
-                            Label("장바구니", systemImage: "bag")
-                        }.tag(3)
-                    
-                    ProfileView()
-                        .onTapGesture {
-                            self.selectedIndex = 4
-                        }
-                        .tabItem {
-                            Label("프로필", systemImage: "person")
-                        }.tag(4)
                 }
-                .toolbarBackground( .white, for: .tabBar)
+                .onTapGesture {
+                    self.selectedIndex = 0
+                }
+                .tabItem {
+                    Label("홈", systemImage: "house")
+                }.tag(0)
+                
+                GenderTabBarView(tabs: ["남성", "여성", "키즈"])
+                    .onTapGesture {
+                        self.selectedIndex = 1
+                    }
+                    .tabItem {
+                        Label("구매하기", systemImage: "magnifyingglass")
+                    }.tag(1)
+                
+                NavigationStack {
+                    WishView()
+                }
+                    .onTapGesture {
+                        self.selectedIndex = 2
+                    }
+                    .tabItem {
+                        Label("위시리스트", systemImage: "heart")
+                    }.tag(2)
+                
+                NavigationStack {
+                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
+                }
+                    .onTapGesture {
+                        self.selectedIndex = 3
+                    }
+                    .tabItem {
+                        Label("장바구니", systemImage: "bag")
+                    }.tag(3)
+                
+                ProfileView()
+                //MARK: 프로필 버튼 버그로인한 임시 주석처리
+                // .onTapGesture {
+                //     self.selectedIndex = 4
+                // }
+                    .tabItem {
+                        Label("프로필", systemImage: "person")
+                    }.tag(4)
             }
-            
+            .toolbarBackground( .white, for: .tabBar)
         }
     }
 }
