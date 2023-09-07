@@ -12,6 +12,7 @@ struct TempButton: View {
     
     var foreground: Color = .black
     var background: Color = .white
+    let title: String?
     let action: (() -> Void)?
     
     var body: some View {
@@ -20,7 +21,7 @@ struct TempButton: View {
                action?()
             }
         }, label: {
-            Text("Get Started")
+            Text("\(title ?? "다음")")
                 .bold()
         })
         .padding(.horizontal , 30)
@@ -37,7 +38,7 @@ struct TempButton_Previews: PreviewProvider {
         ZStack {
             
             Color.black
-            TempButton {
+            TempButton(title: "다음") {
                 
             }
         }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InboxView: View {
+    var title: String
+    
     var messageImageURL: String = "https://yt3.googleusercontent.com/FY3wMjCWVYn_nxNQjDETIusaGftQOWYY4kF7sMTOy05nMIQQ89BRL5C6UQlUbycILnQvwnX3GQ=s900-c-k-c0x00ffffff-no-rj"
     var messageTitle: String = "나이키 멤버가 된 것을 환영합니다🙌"
     var messageBody: String = "발급된 웰컴 프로모션 코드를 확인해 보세요."
@@ -21,11 +23,12 @@ struct InboxView: View {
         }
         .navigationTitle("수신함")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(NavigationNikeSetting(title: title))
     }
 }
 
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
-        InboxView()
+        InboxView(title: "수신함")
     }
 }

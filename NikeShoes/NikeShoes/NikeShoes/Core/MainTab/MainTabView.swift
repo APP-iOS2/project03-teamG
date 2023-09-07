@@ -49,9 +49,10 @@ struct MainTabView: View {
                         }.tag(3)
                     
                     ProfileView()
-                        .onTapGesture {
-                            self.selectedIndex = 4
-                        }
+                        //MARK: 프로필 버튼 버그로인한 임시 주석처리
+                        // .onTapGesture {
+                        //     self.selectedIndex = 4
+                        // }
                         .tabItem {
                             Label("프로필", systemImage: "person")
                         }.tag(4)

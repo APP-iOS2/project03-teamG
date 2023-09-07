@@ -21,7 +21,7 @@ struct ProfileContentLabel: View {
             NavigationLink {
                 switch profileContentViewType {
                 case .inBoxView:
-                    InboxView()
+                    InboxView(title: "수신함")
                 case .memberReward:
                     MemberRewardView()
                 }

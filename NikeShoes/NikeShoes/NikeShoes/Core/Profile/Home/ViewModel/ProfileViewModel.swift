@@ -9,7 +9,7 @@ enum ProfileViewModel: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .orders: return "oreders"
+        case .orders: return "주문내역"
         case .pass: return "pass"
         case .events: return "events"
         case .settings: return "settings"
@@ -30,7 +30,7 @@ extension ProfileViewModel {
     var destinationView: some View {
         switch self {
         case .orders:
-            return AnyView(OrdersView())
+            return AnyView(OrdersView(title: "주문내역"))
         case .settings:
             return AnyView(SettingsView())
         default:
