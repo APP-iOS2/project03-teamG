@@ -69,8 +69,9 @@ struct ItemListView: View {
                                             .foregroundColor(Color.black)
                                             .bold()
                                         Text("\(data.category.rawValue)")
-                                            .foregroundColor(Color.gray)
+                                            .foregroundColor(Color.textGray)
                                         Text("₩\(data.price)")
+                                            .foregroundColor(Color.black)
                                     }
                                     .padding(0.3)
                                 }
