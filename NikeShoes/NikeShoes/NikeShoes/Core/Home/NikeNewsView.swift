@@ -9,13 +9,13 @@ import SwiftUI
 
 struct NikeNewsView: View {
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             HStack(alignment: .bottom) {
                 Text("나이키 소식")
                     .font(Font.medium20)
                 Spacer()
                 NavigationLink {
-                    //소식모두보기
+                    // 소식모두보기
                     Text("소식 모두 보기")
                 } label: {
                     Text("모두 보기")
@@ -25,9 +25,9 @@ struct NikeNewsView: View {
                 }
             }
             .padding(1)
-            .padding([.leading,.trailing])
+            .padding([.leading, .trailing])
             
-            //소식칸
+            // 소식칸
             LazyVStack {
                 NavigationLink(destination: Text("해당 페이지로")) {
                     VStack(alignment: .leading) {
@@ -52,7 +52,7 @@ struct NikeNewsView: View {
                 .padding()
             }
         }
-        .padding([.top,.bottom],30)
+        .padding([.top, .bottom], 30)
     }
 }
 
