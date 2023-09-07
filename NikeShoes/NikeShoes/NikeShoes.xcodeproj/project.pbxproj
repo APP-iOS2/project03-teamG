@@ -84,6 +84,8 @@
 		96410E522AA88052004C5313 /* ShoesSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96410E502AA88052004C5313 /* ShoesSampleData.swift */; };
 		9E9BD7BC2AA95241002EE227 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BD7BB2AA95241002EE227 /* SizeView.swift */; };
 		9EB260172AA9AC9D0063F0A8 /* ProductDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */; };
+		9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */; };
+		9EB2601B2AA9C0990063F0A8 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */; };
 		9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */; };
 		A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */; };
 		A04B53252AA6C9D000ED4AC1 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */; };
@@ -191,6 +193,8 @@
 		96410E502AA88052004C5313 /* ShoesSampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesSampleData.swift; sourceTree = "<group>"; };
 		9E9BD7BB2AA95241002EE227 /* SizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
 		9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInfoView.swift; sourceTree = "<group>"; };
+		9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeGuideView.swift; sourceTree = "<group>"; };
+		9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
 		9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBestCollectionView.swift; sourceTree = "<group>"; };
 		A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -520,7 +524,9 @@
 				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
 				9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */,
 				9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */,
+				9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */,
 				9E9BD7BB2AA95241002EE227 /* SizeView.swift */,
+				9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */,
 				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
 				219D7D832AA808CB0062A38F /* AppExclusiveView.swift */,
 				219D7D852AA808F10062A38F /* BestItemView.swift */,
@@ -731,6 +737,7 @@
 				219D7D5A2AA6F8760062A38F /* Service.swift in Sources */,
 				219D7D8E2AA83B2A0062A38F /* CategoryItem.swift in Sources */,
 				219D7D562AA6F8630062A38F /* Font.swift in Sources */,
+				9EB2601B2AA9C0990063F0A8 /* MoreInfoView.swift in Sources */,
 				A0DED5C42AA96744000D9E15 /* NikeNewsView.swift in Sources */,
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */,
@@ -756,6 +763,7 @@
 				B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */,
 				B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */,
 				B0343BAE2AA6FAD200F5AB86 /* OrderDetailsView.swift in Sources */,
+				9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */,
 				B020C2A12AA9682300EE33B6 /* CancelOrderModalView.swift in Sources */,
 				DC01B5512AA6F1C3003B6E77 /* TermsOfServiceView.swift in Sources */,
 				961799032AA6FCEE009FC991 /* OBLocationView.swift in Sources */,
