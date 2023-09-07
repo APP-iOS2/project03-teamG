@@ -13,7 +13,6 @@ import SwiftUI
 
 struct OBView: View {
     
-    
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -25,6 +24,7 @@ struct OBView: View {
         }
     }
 }
+
 
 struct OBContainerView: View {
     
@@ -51,7 +51,7 @@ struct OBContainerView: View {
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
                 
                 if isOnBoardingView {
-                    TempButton {
+                    TempButton(title: OnBoardingScreen(rawValue: index)?.title) {
                         index += 1
                     }.padding(.bottom, 20)
                 }
@@ -75,23 +75,17 @@ struct OBContainerView: View {
     
     @ViewBuilder
     private var transitionView: some View {
-        switch index {
-        case 0:
-            OBLocationDescriptionView()
-        case 1:
-            OBLanguageSelectionView()
-        case 2:
-            OBStartView()
-        case 3:
-            OBInterestSelectView()
-        case 4:
-            OBShoesSizeSelectView()
-        case 5:
-            OBAlarmView()
-        case 6:
-            OBLocationView()
-        default:
-            MainTabView()
+        switch OnBoardingScreen(rawValue: index) {
+        case .locationDescription: OBLocationDescriptionView()
+        case .languageSelection:  OBLanguageSelectionView()
+        case .getStated:  OBStartView()
+        case .interest:  OBInterestSelectView()
+        case .sizeSelection:  OBShoesSizeSelectView()
+        case .alarmSelection:  OBAlarmView()
+        case .location:  OBLocationView()
+        case .mainTab:  MainTabView()
+        case .none:
+            fatalError("this is invalid index")
         }
     }
     
@@ -127,9 +121,9 @@ struct OBContainerView: View {
 }
 
 extension OBContainerView {
-    enum OnBoardingScreen: String, CaseIterable, Identifiable {
+    enum OnBoardingScreen: Int, CaseIterable, Identifiable {
         
-        case locationDescription
+        case locationDescription = 0
         case languageSelection
         case getStated
         case interest
@@ -141,19 +135,19 @@ extension OBContainerView {
         var title: String {
             switch self {
             case .locationDescription:
-                return ""
+                return "다음"
             case .languageSelection:
-                return ""
+                return "다음"
             case .getStated:
-                return ""
+                return "시작"
             case .interest:
-                return ""
+                return "다음"
             case .sizeSelection:
-                return ""
+                return "다음"
             case .alarmSelection:
-                return ""
+                return "다음"
             case .location:
-                return ""
+                return "다음"
             case .mainTab:
                 return ""
             }
