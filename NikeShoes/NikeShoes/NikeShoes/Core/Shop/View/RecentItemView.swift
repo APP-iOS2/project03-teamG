@@ -9,11 +9,11 @@ import SwiftUI
 
 struct RecentItemView: View {
     
-    @State var sampleRecentItems: [String] = ["에어 조던 1 미드", "나이키 덩크 로우","3","4","5","6","7","8","9","10"]
+    @State var sampleRecentItems: [String] = ["에어 조던 1 미드", "나이키 덩크 로우", "3", "4", "5", "6", "7", "8", "9", "10"]
     @State var tempItems: [String] = []
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             if !sampleRecentItems.isEmpty {
                 
                 HStack(alignment: .bottom) {
@@ -21,7 +21,7 @@ struct RecentItemView: View {
                         .font(Font.medium20)
                     Spacer()
                     Button {
-                        //sampleRecentItems 삭제
+                        // sampleRecentItems 삭제
                         sampleRecentItems.removeAll()
                     } label: {
                         Text("삭제")
@@ -32,9 +32,9 @@ struct RecentItemView: View {
                     
                 }
                 .padding(1)
-                .padding([.leading,.trailing])
+                .padding([.leading, .trailing])
                 
-                //가로 카테고리
+                // 가로 카테고리
                 ScrollView(.horizontal) {
                     LazyHStack {
                         
@@ -44,7 +44,7 @@ struct RecentItemView: View {
                                 
                                 NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
                                     
-                                    VStack(alignment: .leading){
+                                    VStack(alignment: .leading) {
                                         
                                         AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/%EB%8D%A9%ED%81%AC-%EB%A1%9C%EC%9A%B0-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-ZuZyA5Sj.png")) { image in
                                             image.resizable()
@@ -58,7 +58,7 @@ struct RecentItemView: View {
                                         Text("\(item)")
                                             .foregroundColor(.black)
                                             .font(Font.semiBold12)
-                                            .padding([.top,.leading],10)
+                                            .padding([.top, .leading], 10)
                                         
                                     }
                                 }
@@ -68,7 +68,7 @@ struct RecentItemView: View {
                                 
                                 NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
                                     
-                                    VStack(alignment: .leading){
+                                    VStack(alignment: .leading) {
                                         
                                         AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/%EB%8D%A9%ED%81%AC-%EB%A1%9C%EC%9A%B0-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-ZuZyA5Sj.png")) { image in
                                             image.resizable()
@@ -82,7 +82,7 @@ struct RecentItemView: View {
                                         Text("\(item)")
                                             .foregroundColor(.black)
                                             .font(Font.semiBold12)
-                                            .padding([.top,.leading],10)
+                                            .padding([.top, .leading], 10)
                                         
                                     }
                                 }
@@ -94,7 +94,7 @@ struct RecentItemView: View {
                 }
             }
         }
-        .padding([.top,.bottom],20)
+        .padding([.top, .bottom], 20)
     }
 }
 
