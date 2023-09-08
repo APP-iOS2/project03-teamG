@@ -11,14 +11,14 @@ struct MemberRewardView: View {
     var imageUrl: URL = URL(string: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg") ?? URL(string: "")!
     
     var body: some View {
-            ZStack{
+            ZStack {
                 Rectangle()
                     .foregroundColor(.gray)
                     .edgesIgnoringSafeArea(.all)
                 NavigationLink {
                     MemberRewardDetailView()
                 } label: {
-                    ZStack{
+                    ZStack {
                         GeometryReader { proxy in
                             ProfileAsyncImageView(imageUrl: imageUrl)
                                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
@@ -35,7 +35,7 @@ struct MemberRewardView: View {
 
 struct MemberRewardView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             MemberRewardView()
         }
     }
