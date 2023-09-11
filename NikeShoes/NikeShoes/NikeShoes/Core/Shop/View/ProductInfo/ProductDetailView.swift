@@ -98,7 +98,7 @@ struct ProductDetailView: View {
                             
                             Divider()
                             
-                            ReviewButton()
+                            ReviewButtonView()
                             
                             Divider()
                             
@@ -112,6 +112,9 @@ struct ProductDetailView: View {
                         }
                     }
                     .padding()
+                    .padding(.bottom, 25)
+                    
+                    ProductPhotoView()
                 }
                 .toolbar {
                     ToolbarItem {
