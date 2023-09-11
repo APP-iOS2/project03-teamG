@@ -11,10 +11,17 @@ import Firebase
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     
+    @Published var userInfoEmail: String = ""
+    @Published var userInfoPhoneNumber: String = ""
+    @Published var userInfoBirth: String = ""
+    @Published var userInfoName: String = ""
+    @Published var userInfoCountry: String = ""
+    @Published var userInfoPassword: String = ""
+    
     init() {
         userSession = Auth.auth().currentUser
         
-        print("DEBUG: User session: \(userSession)")
+        print("DEBUG: User session: \(String(describing: userSession))")
     }
     
     func signIn(email: String, password: String) {
@@ -31,37 +38,33 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func register(email: String,
-                  password: String,
-                  firstName: String,
-                  lastName: String,
-                  country: String,
-                  phoneNumber: String,
-                  birth: Date) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+    func register() {
+        Auth.auth().createUser(withEmail: userInfoEmail, password: userInfoPassword) { result, error in
             if let error = error {
                 print("DEBUG: Error registering new user: \(error.localizedDescription)")
                 return
             }
-            
+
             guard let user = result?.user else { return }
             self.userSession = user
-            
+
             print("DEBUG: Registered User successfully")
-            
-            let data = ["email": email,
-                        "firstName": firstName,
-                        "lastName": lastName,
-                        "country": country,
-                        "phoneNumber": phoneNumber,
-                        "birth": birth]
-            
+
+            let data = [
+                "email": self.userInfoEmail,
+                "phoneNumber": self.userInfoPhoneNumber,
+                "dateOfBirth": self.userInfoBirth,
+                "name": self.userInfoName,
+                "country": self.userInfoCountry,
+                "password": self.userInfoPassword
+            ]
+
             Firestore.firestore().collection("users")
                 .document(user.uid)
                 .setData(data) { _ in
                     print("DEBUG: Did upload user data")
                 }
-            
+
         }
     }
     
