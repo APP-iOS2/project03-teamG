@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NikeShoesCore
+import NikeShoes
 
 struct ContentView: View {
     var body: some View {
