@@ -18,11 +18,11 @@ struct FollowingDetailView: View {
     
     var body: some View {
         VStack {
-            Picker("Flavor", selection: $selectedFlavor) {
-                Text("스포츠").tag(FollowingCategory.sports)
-                Text("제품").tag(FollowingCategory.porducts)
-            }
-            .pickerStyle(.segmented)
+//            Picker("Flavor", selection: $selectedFlavor) {
+//                Text("스포츠").tag(FollowingCategory.sports)
+//                Text("제품").tag(FollowingCategory.porducts)
+//            }
+//            .pickerStyle(.segmented)
           
             List {
                 ForEach(0..<3) { index in
@@ -35,8 +35,8 @@ struct FollowingDetailView: View {
             }
             .listStyle(.plain)
         }
-        .navigationTitle("팔로잉")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(NavigationNikeSetting(title: "팔로잉"))
     }
 }
 

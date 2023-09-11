@@ -56,6 +56,7 @@ struct MemberRewardDetailView: View {
                 .padding(.top, 10)
             }
         }
+        .modifier(NavigationNikeSetting(title: ""))
         .preferredColorScheme(.light)
     }
 }

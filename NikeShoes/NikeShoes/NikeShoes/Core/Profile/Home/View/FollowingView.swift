@@ -14,8 +14,8 @@ struct FollowingView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Text("팔로잉(\(followingCount))")
                     .font(.medium12)
                     .bold()
@@ -54,4 +54,3 @@ struct FollowingView_Previews: PreviewProvider {
         FollowingView(followingCount: 3)
     }
 }
-
