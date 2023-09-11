@@ -76,7 +76,7 @@ struct TermsOfServiceView: View {
             } label: {
                 HStack {
                     Image(systemName: checkAllAgree)
-                    Text ("모든 약관에 동의합니다.")
+                    Text("모든 약관에 동의합니다.")
                 }
                 .foregroundColor(.primary)
             }
@@ -89,7 +89,7 @@ struct TermsOfServiceView: View {
             } label: {
                 HStack {
                     Image(systemName: isAgreeTermsOfService ? "checkmark.square.fill" : "square")
-                    Text ("이용약관에 동의합니다 *")
+                    Text("이용약관에 동의합니다 *")
                         .foregroundColor(checkAgreeTermsOfServic ? .primary : .red)
                         .onChange(of: isAgreeTermsOfService) { _ in
                             if isAgreeTermsOfService {
@@ -105,7 +105,7 @@ struct TermsOfServiceView: View {
             } label: {
                 HStack {
                     Image(systemName: isAgreeCollectPersonalInfo ? "checkmark.square.fill" : "square")
-                    Text ("개인 정보 수집 및 이용에 동의합니다. *")
+                    Text("개인 정보 수집 및 이용에 동의합니다. *")
                         .foregroundColor(checkAgreeCollectPersonalInfo ? .primary : .red)
                         .onChange(of: isAgreeCollectPersonalInfo) { _ in
                             if isAgreeCollectPersonalInfo {
@@ -121,7 +121,7 @@ struct TermsOfServiceView: View {
             } label: {
                 HStack(alignment: .top) {
                     Image(systemName: isAgreeThirdParties ? "checkmark.square.fill" : "square")
-                    Text ("개인 정보의 제3자 제공 및 국외 이전에 동의합니다. *")
+                    Text("개인 정보의 제3자 제공 및 국외 이전에 동의합니다. *")
                         .multilineTextAlignment(.leading)
                         .foregroundColor(checkAgreeThirdParties ? .primary : .red)
                         .onChange(of: isAgreeThirdParties) { _ in
