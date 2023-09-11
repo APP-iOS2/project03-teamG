@@ -44,29 +44,31 @@ struct ProductDetailView: View {
                     .padding(.bottom)
                     
                     VStack(alignment: .leading) {
-                        Text("\(ShoesSampleData[1].category.rawValue) 신발")
-                            .padding(.bottom, 5)
-                        
-                        Text(ShoesSampleData[1].name)
-                            .font(.mediumBold24)
-                            .padding(.bottom, 25)
-                        
-                        Text("₩\(ShoesSampleData[1].price)")
-                            .padding(.bottom, 25)
-                        
-                        Text(ShoesSampleData[1].description)
+                        Group {
+                            Text("\(ShoesSampleData[1].category.rawValue) 신발")
+                                .padding(.bottom, 5)
+                            
+                            Text(ShoesSampleData[1].name)
+                                .font(.mediumBold24)
+                                .padding(.bottom, 25)
+                            
+                            Text("₩\(ShoesSampleData[1].price)")
+                                .padding(.bottom, 25)
+                            
+                            Text(ShoesSampleData[1].description)
+                                .font(.system(size: 16))
+                                .lineSpacing(11)
+                                .padding(.bottom, 28)
+                            
+                            Text("""
+                            • 현재 컬러: 화이트/화이트
+                            • 스타일: CW2288-111
+                            • 제조 국가/지역: 중국, 인도, 베트남
+                            """)
                             .font(.system(size: 16))
-                            .lineSpacing(11)
-                            .padding(.bottom, 28)
-                        
-                        Text("""
-                        • 현재 컬러: 화이트/화이트
-                        • 스타일: CW2288-111
-                        • 제조 국가/지역: 중국, 인도, 베트남
-                        """)
-                        .font(.system(size: 16))
-                        .lineSpacing(20)
-                        .padding(.bottom, 32)
+                            .lineSpacing(20)
+                            .padding(.bottom, 32)
+                        }
 
                         NavigationLink {
                             ProductDetailInfoView()
@@ -76,38 +78,42 @@ struct ProductDetailView: View {
                         }
                         .padding(.bottom, 35)
                         
-                        SizeButtonView()
-                            .padding(.bottom, 8)
+                        Group {
+                            SizeButtonView()
+                                .padding(.bottom, 8)
+                            
+                            CartButtonView()
+                                .padding(.bottom, 8)
+                            
+                            BuyWishlistButtonView()
+                                .padding(.bottom, 35)
+                        }
                         
-                        CartButtonView()
-                            .padding(.bottom, 8)
-                        
-                        BuyWishlistButtonView()
-                            .padding(.bottom, 35)
-                        
-                        Rectangle()
-                            .stroke(Color.lightGray, lineWidth: 1)
-                            .frame(width: 351, height: 100)
-                            .background(Color.lightGray)
-                            .padding(.bottom, 30)
-                        
-                        Divider()
-                        
-                        SizeTipButtonView()
-                        
-                        Divider()
-                        
-                        ReviewButton()
-                        
-                        Divider()
-                        
-                        MoreInfoButtonView()
-                        
-                        Divider()
-                        
-                        ShareButtonView()
-                        
-                        Divider()
+                        Group {
+                            Rectangle()
+                                .stroke(Color.lightGray, lineWidth: 1)
+                                .frame(width: 351, height: 100)
+                                .background(Color.lightGray)
+                                .padding(.bottom, 30)
+                            
+                            Divider()
+                            
+                            SizeTipButtonView()
+                            
+                            Divider()
+                            
+                            ReviewButton()
+                            
+                            Divider()
+                            
+                            MoreInfoButtonView()
+                            
+                            Divider()
+                            
+                            ShareButtonView()
+                            
+                            Divider()
+                        }
                     }
                     .padding()
                 }
