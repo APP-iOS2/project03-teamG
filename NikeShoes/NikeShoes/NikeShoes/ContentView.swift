@@ -12,7 +12,7 @@ import NikeShoesCore
 
 struct ContentView: View {
     var isLogin: Bool = false
-    
+    var viewModel: SampleViewModel
     var body: some View {
         if isLogin {
             MainTabView()
@@ -24,6 +24,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: SampleViewModel())
     }
 }
