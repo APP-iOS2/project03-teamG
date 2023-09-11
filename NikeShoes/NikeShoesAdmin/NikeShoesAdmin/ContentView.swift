@@ -16,7 +16,6 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text(NikeShoesCore().text)
         }
-        .padding()
     }
 }
 
