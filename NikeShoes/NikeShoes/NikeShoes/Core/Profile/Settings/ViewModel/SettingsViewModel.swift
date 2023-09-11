@@ -55,7 +55,7 @@ extension SettingsViewModel {
         case .birth:
             return AnyView(EmptyView())
         case .manageAddress:
-            return AnyView(ManageAddress(title: self.title))
+            return AnyView(ManageAdress(title: self.title))
         case .location:
             return AnyView(LocationView(title: self.title))
         case .language:
