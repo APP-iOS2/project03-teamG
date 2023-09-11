@@ -18,11 +18,11 @@ import FirebaseFirestoreSwift
 // 배송 준비중 으로 바뀌겠죠
 // 배송중 - 배송완료
 
-struct OrderDTO: Codable {
-    @DocumentID var id: String?
-    let 신발ID: String
-    let 유저ID: String
-    let 배송상태: String
-    let 결제상태: String
-    let 주문일: Date
+public struct OrderDTO: Codable {
+    @DocumentID public var id: String?
+    public let shoesID: String
+    public let userID: String
+    public var deliveryStatus: String
+    public var paymentStatus: String
+    public let orderDate: Date
 }
