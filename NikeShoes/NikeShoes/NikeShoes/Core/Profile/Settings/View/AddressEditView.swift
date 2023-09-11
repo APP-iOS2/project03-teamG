@@ -1,8 +1,3 @@
-struct UserInfo {
-    var name: String
-    var PhoneNumber: String
-}
-
 import SwiftUI
 
 struct AddressEditView: View {
@@ -12,7 +7,6 @@ struct AddressEditView: View {
     
     let title: String
     let index: Int
-    
     
     @State private var name: String
     @State private var city: String

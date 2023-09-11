@@ -25,10 +25,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct NikeShoesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+    @StateObject var viewModel = AuthViewModel()
+    private var followingViewModel: FollowingViewModel = FollowingViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView(isLogin: false, viewModel: SampleViewModel(service: delegate.serviceLocator()))
+            ContentView()
+                .environmentObject(viewModel)
+                .environmentObject(followingViewModel)
         }
     }
 }

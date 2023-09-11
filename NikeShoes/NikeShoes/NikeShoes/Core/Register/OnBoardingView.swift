@@ -36,14 +36,26 @@ struct RegisterContainerView: View {
         self.index = index
     }
     
+    @State private var imageIndex: Int = 0
+    
+    private var images: [String] = [
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1061,c_limit/b3baaff5-7a0c-46af-9648-2759222e4127/%EB%86%8D%EA%B5%AC-%EC%BD%94%ED%8A%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EA%B3%B3%EC%9D%B4-%EC%9A%B0%EB%A6%AC-%EC%A7%91.jpg",
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_525,c_limit/da98d69b-ae45-4748-b1f6-97cea857a26e/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+        "https://static.nike.com/a/images/w_765,c_limit/8637c195-4e29-4b15-9718-ab57813478b7/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_765,c_limit/13d84f49-1f19-4f0c-82db-16781a511ced/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+    ]
+    
     var body: some View {
         ZStack {
             if index < 4 {
-                Color(.black)
-                    .edgesIgnoringSafeArea(.all)
-                
                 VStack(alignment: .leading) {
                     Spacer()
+                    
+                    Image("nikeWhite")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 90)
+                        .padding(.bottom, 40)
                     
                     HStack {
                         Text("나이키\n멤버에게\n최고의 제품,\n스포츠에 대한 영감과 스토리를\n소개합니다.")
@@ -61,6 +73,7 @@ struct RegisterContainerView: View {
                 }
                 .padding(.leading, 20)
                 .padding(.bottom, 70)
+                .background(imageBackground)
             } else {
                 OBView()
             }
@@ -70,36 +83,45 @@ struct RegisterContainerView: View {
         }
     }
     
-    var SheetConatinerView: some View {
+    private var SheetConatinerView: some View {
         NavigationStack {
-            switch index {
-            case 0:
-                LoginRegisterView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 1:
-                if isPressedRegisterButton {
-                    TermsOfServiceView(index: $index)
+            VStack(alignment: .leading) {
+                Image("nikeJordan")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120)
+                    .padding([.leading, .bottom])
+                
+                switch index {
+                case 0:
+                    LoginRegisterView(index: $index)
                         .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                } else if isPressedLoginButton {
-                    CheckPasswordView(index: $index)
+                case 1:
+                    if isPressedRegisterButton {
+                        TermsOfServiceView(index: $index)
+                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                    } else if isPressedLoginButton {
+                        CheckPasswordView(index: $index)
+                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                    }
+                case 2:
+                    InputUserInfoView(index: $index)
                         .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                case 3:
+                    CellPhoneCertificationView(index: $index)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                case 4:
+                    LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                default:
+                    EmptyView()
                 }
-            case 2:
-                InputUserInfoView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 3:
-                CellPhoneCertificationView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 4:
-                LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            default:
-                EmptyView()
             }
+            Spacer()
         }
     }
     
-    var SignUpButton: some View {
+    private var SignUpButton: some View {
         Button {
             isPressedRegisterButton.toggle()
             isShowingSignInSheet.toggle()
@@ -116,7 +138,7 @@ struct RegisterContainerView: View {
         }
     }
     
-    var SignInButton: some View {
+    private var SignInButton: some View {
         Button {
             isPressedLoginButton.toggle()
             isShowingSignInSheet.toggle()
@@ -129,6 +151,45 @@ struct RegisterContainerView: View {
         .background {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.white, lineWidth: 2)
+        }
+    }
+    
+    private var imageBackground: some View {
+        ZStack {
+            AsyncImage(url: URL(string: images[imageIndex])) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                ProgressView()
+            }
+            .transition(.opacity)
+            .id(images[imageIndex])
+            
+            LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom)
+        }
+        .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                withAnimation(.default) {
+                    imageIndex += 1
+                }
+            })
+        }
+        .onChange(of: imageIndex) { _ in
+            if imageIndex >= images.count-1 {
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    withAnimation(.default) {
+                        imageIndex = 0
+                    }
+                })
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    withAnimation(.default) {
+                        imageIndex += 1
+                    }
+                })
+            }
         }
     }
 }

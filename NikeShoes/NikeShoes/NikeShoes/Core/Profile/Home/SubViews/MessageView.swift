@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MessageView: View {
+    @Binding var messageID: String?
     var messageImageURL: String = "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5362a828-0f5b-4d17-a6c5-d0677dc89baa_1000x1000.jpeg"
     var messageTitle: String = "나이키 멤버가 된 것을 환영합니다🙌"
     var messageBody: String = "발급된 웰컴 프로모션 코드를 확인해 보세요."
@@ -41,6 +42,6 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageView()
+        MessageView(messageID: .constant(""))
     }
 }

@@ -8,14 +8,14 @@
 import SwiftUI
 import NikeShoesCore
 struct FollowingView: View {
-    
+    @EnvironmentObject var followingViewModle: FollowingViewModel
     @State private var action: Int? = 0
     let followingCount: Int
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Text("팔로잉(\(followingCount))")
                     .font(.medium12)
                     .bold()
@@ -33,25 +33,22 @@ struct FollowingView: View {
             }
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(Following.sample, id: \.id) { item in
-                        ProfileAsyncImageView(imageUrl: item.image)
-                            .frame(width: 150, height: 150)
+                    ForEach(followingViewModle.followingData, id: \.id) { item in
+                        if item.isChecked == true {
+                            ProfileAsyncImageView(imageUrl: item.image)
+                                .frame(width: 150, height: 150)
+                        }
                     }
                 }
             }
         }
         .padding(.top, 11)
     }
-    
-    private func emoji(_ value: Int) -> String {
-        guard let scalar = UnicodeScalar(value) else { return "?" }
-        return String(Character(scalar))
-    }
 }
 
 struct FollowingView_Previews: PreviewProvider {
     static var previews: some View {
         FollowingView(followingCount: 3)
+            .environmentObject(FollowingViewModel())
     }
 }
-

@@ -18,12 +18,13 @@ struct SettingLocationView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
+                Button {
                     self.presentationMode.wrappedValue.dismiss()
-                }) {
+                } label: {
                     Image(systemName: "chevron.left")
                 }
                 .foregroundColor(.black)
+                
             }
         }
         .navigationBarTitle(title, displayMode: .inline)
