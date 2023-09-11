@@ -1,4 +1,3 @@
-//
 //  NikeNewsView.swift
 //  NikeShoes
 //
@@ -73,8 +72,6 @@ struct NikeNewsView: View {
                     .background(Color.white)
                     .cornerRadius(50)
             }
-            .padding(20)
-            Spacer()
         }
     }
 }
