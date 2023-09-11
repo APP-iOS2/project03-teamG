@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct OBLocationDescriptionView: View {
     
     var description: String = "위치 업데이트"
@@ -16,7 +15,7 @@ struct OBLocationDescriptionView: View {
     var date: String = ""
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
 
             Spacer(minLength: 300)
 
@@ -44,7 +43,6 @@ struct OBLocationDescriptionView: View {
         }
     }
 }
-
 
 struct OBLocationDescriptionView_Previews: PreviewProvider {
     

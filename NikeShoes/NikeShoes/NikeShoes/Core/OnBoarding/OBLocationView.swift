@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct OBLocationView: View {
     
     var description: String = "위치 서비스를 사용해 보세요. 가까운 나이키 매장 및 해당 매장에서 이용 가능한 서비스를 확인 할 수 있습니다."
@@ -18,15 +17,12 @@ struct OBLocationView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.white)
-                .padding(.horizontal , 20)
+                .padding(.horizontal, 20)
                 .padding(.top, 30)
             Spacer(minLength: 500)
         }
     }
 }
-
-
-
 
 struct OBLocationView_Previews: PreviewProvider {
     static var previews: some View {
@@ -37,5 +33,3 @@ struct OBLocationView_Previews: PreviewProvider {
         }.ignoresSafeArea()
     }
 }
-
-

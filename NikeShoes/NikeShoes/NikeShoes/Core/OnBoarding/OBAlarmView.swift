@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-
 struct OBAlarmView: View {
     
     var description: String = "주문 업데이트 외에 어떤 알림을 받고 \n싶으신가요?"
-    var description2: String = "아래 내용 중 하나 이상을 클릭함으로써, Nike에서 멤버십ID와 개인정보를 이용하고 마케팅 푸쉬 메시지를 받는 것에 동의합니다. 다른 법에서 요구사항이 있지 않는 한 Nike 계정이 유지되는 동안에는 개인정보를 계속 보유할 것입니다. 동의를 하지 않을 권리가 있으나, 동의하지 않을 경우에는 마케팅 푸쉬 메시지를 받으실 수 없습니다. '설정'에 들어가서 언제든지 바꿀 수 있습니다."
+    var description2: String = "아래 내용 중 하나 이상을 클릭함으로써, Nike에서 멤버십ID와 개인정보를 이용하고 마케팅 푸쉬 메시지를 받는 것에 동의합니다."
+    var description3: String = "다른 법에서 요구사항이있지 않는 한 Nike 계정이 유지되는 동안에는 개인정보를 계속 보유할 것입니다."
+    var description4: String = "동의를 하지 않을 권리가 있으나, 동의하지 않을 경우에는 마케팅 푸쉬 메시지를 받으실 수 없습니다. '설정'에 들어가서 언제든지 바꿀 수 있습니다"
     
     var sizes: [Int] = (0..<16).reduce(into: [Int]()) { sizes, _ in
         sizes.isEmpty ? sizes.append(215) : sizes.append(sizes.last! + 5)
@@ -31,11 +32,11 @@ struct OBAlarmView: View {
             .padding(.bottom, 30)
             
             HStack {
-                Text("\(description2)")
+                Text("\(description2 + description3 + description4)")
                     .font(.system(size: 15))
                     .foregroundColor(.white.opacity(0.6))
                     .padding(.horizontal, 10)
-                    .padding(.bottom , 20)
+                    .padding(.bottom, 20)
             }
 
             AlarmList()
@@ -50,7 +51,7 @@ struct AlarmList: View {
 //    let promotion: String = "나이키 멤버 리워드 및 프로모션"
 //    let trainning: String = "기사, 이벤트 및 트레이닝 팁"
     
-    var alarmTexts = ["최신 상품 및 베스트 셀러",  "나이키 멤버 리워드 및 프로모션" ,  "기사, 이벤트 및 트레이닝 팁"]
+    var alarmTexts = ["최신 상품 및 베스트 셀러", "나이키 멤버 리워드 및 프로모션", "기사,이벤트 및 트레이닝 팁"]
     
     var body: some View {
         ForEach(0..<3) { value in
@@ -80,14 +81,13 @@ struct AlarmList: View {
     
 }
 
-
 struct OBAlarmView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black
             Blur(style: .light)
             OBAlarmView()
-                .padding(.top , 100)
+                .padding(.top, 100)
         }.ignoresSafeArea()
     }
 }

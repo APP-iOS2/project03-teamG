@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct OBStartView: View {
     
     var description: String = "맞춤화된 멤버 서비스 제공을 위해 몇 가지 질문에 답해주세요"
@@ -18,16 +17,13 @@ struct OBStartView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.white)
-                .padding(.top,30)
+                .padding(.top, 30)
             
             Spacer(minLength: 500)
             
         }
     }
 }
-
-
-
 
 struct OBStartView_Previews: PreviewProvider {
     static var previews: some View {
@@ -38,5 +34,3 @@ struct OBStartView_Previews: PreviewProvider {
         }.ignoresSafeArea()
     }
 }
-
-
