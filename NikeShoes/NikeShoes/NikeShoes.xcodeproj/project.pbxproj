@@ -24,11 +24,9 @@
 		219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 219FDAD22AA97C6F0046986B /* .swiftlint.yml */; };
 		219FDAD42AA97E760046986B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D532AA6F85B0062A38F /* Color.swift */; };
 		219FDAD52AA97E7A0046986B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF42AA5B816009FB78A /* MainTabView.swift */; };
-		219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADA2AA9A7B50046986B /* FirebaseAuth */; };
+		219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADA2AA9A7B50046986B /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
 		219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */; };
-		219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADE2AA9A7B50046986B /* FirebaseFirestore */; };
 		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
-		219FDAE32AA9A7B50046986B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		21FABC412AAEC2DF00546C17 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC3F2AAEC2DF00546C17 /* SizeView.swift */; };
 		21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */; };
@@ -95,6 +93,8 @@
 		96441C1A2AADBCAE001D4DC3 /* AddressDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96441C192AADBCAE001D4DC3 /* AddressDTO.swift */; };
 		96441C1C2AADBCB5001D4DC3 /* ReiviewDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96441C1B2AADBCB5001D4DC3 /* ReiviewDTO.swift */; };
 		9689982C2AAEAC5200F41C98 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9689982B2AAEAC5200F41C98 /* SampleViewModel.swift */; };
+		9689982E2AAEF79200F41C98 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9689982D2AAEF79200F41C98 /* FirebaseFirestore */; };
+		968998302AAEF79C00F41C98 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9689982F2AAEF79C00F41C98 /* FirebaseFirestoreSwift */; };
 		9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */; };
 		9E92D7F42AADFA580079BFC5 /* BuyWishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F32AADFA580079BFC5 /* BuyWishlistView.swift */; };
 		9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */; };
@@ -272,11 +272,11 @@
 			files = (
 				1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */,
 				9617AEE32AA5AF97009FB78A /* NikeShoesCore in Frameworks */,
-				219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */,
 				219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */,
+				968998302AAEF79C00F41C98 /* FirebaseFirestoreSwift in Frameworks */,
 				219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */,
 				219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */,
-				219FDAE32AA9A7B50046986B /* FirebaseFirestoreSwift in Frameworks */,
+				9689982E2AAEF79200F41C98 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,10 +762,10 @@
 				9617AEE22AA5AF97009FB78A /* NikeShoesCore */,
 				219FDADA2AA9A7B50046986B /* FirebaseAuth */,
 				219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */,
-				219FDADE2AA9A7B50046986B /* FirebaseFirestore */,
 				219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */,
-				219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */,
 				1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */,
+				9689982D2AAEF79200F41C98 /* FirebaseFirestore */,
+				9689982F2AAEF79C00F41C98 /* FirebaseFirestoreSwift */,
 			);
 			productName = NikeShoes;
 			productReference = 9617AEB32AA5AECC009FB78A /* NikeShoes.app */;
@@ -1209,24 +1209,24 @@
 			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAuthCombine-Community";
 		};
-		219FDADE2AA9A7B50046986B /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
 		219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
 		};
-		219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
 		9617AEE22AA5AF97009FB78A /* NikeShoesCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NikeShoesCore;
+		};
+		9689982D2AAEF79200F41C98 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		9689982F2AAEF79C00F41C98 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
