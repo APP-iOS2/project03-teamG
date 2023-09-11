@@ -19,10 +19,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct NikeShoesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+    private var followingViewModel: FollowingViewModel = FollowingViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(followingViewModel)
         }
     }
 }
