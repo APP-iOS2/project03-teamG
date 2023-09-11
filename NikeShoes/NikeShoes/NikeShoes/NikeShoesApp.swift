@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
+import NikeShoesCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
@@ -18,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func serviceLocator() -> FirestoreService {
-        return DefaultFireStroeService()
+        return DefaultFireStoreService()
     }
 }
 

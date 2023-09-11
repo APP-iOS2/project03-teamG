@@ -65,13 +65,14 @@ public protocol FirestoreService {
                 fields: [String: Any]) async throws
 }
 
-public class DefaultFireStroeService: FirestoreService {
+@available(iOS 13.0, *)
+public class DefaultFireStoreService: FirestoreService {
     
     // TODO: Sigle 톤으로 호출해서 사용할 것이냐, 주입해서 사용할 것이냐...
     
     let firestore = Firestore.firestore()
     
-    init() { }
+    public init() { }
     
     public func create<T: Encodable>(send model: T,
                                      collection path: Path) async throws -> String {
