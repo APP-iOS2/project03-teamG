@@ -20,11 +20,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct NikeShoesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var viewModel = AuthViewModel()
-    
+    private var followingViewModel: FollowingViewModel = FollowingViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .environmentObject(followingViewModel)
         }
     }
 }

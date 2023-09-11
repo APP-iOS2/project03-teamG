@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
-
+import NikeShoesCore
 struct FollowingEditCellView: View {
+    @State var isChecked: Bool = true
+    @EnvironmentObject var followingViewModle: FollowingViewModel
+    
+    let id: UUID
     let imageURL: String
     let title: String
-    @State var isChecked: Bool = true
     
     var image: URL {
         URL(string: imageURL) ?? URL(string: "")!
@@ -24,6 +27,7 @@ struct FollowingEditCellView: View {
             Spacer()
             Button {
                 isChecked.toggle()
+                followingViewModle.modifyFollowing(with: id)
             } label: {
                 isChecked ? Image(systemName: "checkmark.circle").foregroundColor(.green) : Image(systemName: "plus.circle").foregroundColor(.primary)
             }
@@ -34,6 +38,9 @@ struct FollowingEditCellView: View {
 
 struct FollowingEditCellView_Previews: PreviewProvider {
     static var previews: some View {
-        FollowingEditCellView(imageURL:  "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg", title: "여성")
+        FollowingEditCellView(id: Following.sample[0].id,
+                              imageURL: Following.sample[0].imageURL
+                              , title: Following.sample[0].title)
+        .environmentObject(FollowingViewModel())
     }
 }
