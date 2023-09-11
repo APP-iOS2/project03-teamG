@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B79B42AA9599B00C85EA9 /* PaymentView.swift */; };
+		1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */; };
 		2172CE172AA89B130048D75A /* MaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE162AA89B130048D75A /* MaleView.swift */; };
 		2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE182AA89B1B0048D75A /* FemaleView.swift */; };
 		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
@@ -82,7 +83,17 @@
 		9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF62AA5B816009FB78A /* BagView.swift */; };
 		96410E512AA88052004C5313 /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96410E4F2AA88051004C5313 /* StoreData.swift */; };
 		96410E522AA88052004C5313 /* ShoesSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96410E502AA88052004C5313 /* ShoesSampleData.swift */; };
+		9E92D7F02AADF8780079BFC5 /* SizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7EF2AADF8780079BFC5 /* SizeButtonView.swift */; };
+		9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */; };
+		9E92D7F42AADFA580079BFC5 /* BuyWishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F32AADFA580079BFC5 /* BuyWishlistView.swift */; };
+		9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */; };
+		9E92D7F82AADFC780079BFC5 /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */; };
+		9E92D7FA2AADFD160079BFC5 /* MoreInfoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F92AADFD160079BFC5 /* MoreInfoButtonView.swift */; };
+		9E92D8002AADFF7C0079BFC5 /* ShareButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7FF2AADFF7C0079BFC5 /* ShareButtonView.swift */; };
 		9E9BD7BC2AA95241002EE227 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BD7BB2AA95241002EE227 /* SizeView.swift */; };
+		9EB260172AA9AC9D0063F0A8 /* ProductDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */; };
+		9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */; };
+		9EB2601B2AA9C0990063F0A8 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */; };
 		9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */; };
 		A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */; };
 		A04B53252AA6C9D000ED4AC1 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */; };
@@ -188,7 +199,17 @@
 		9617AEF62AA5B816009FB78A /* BagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagView.swift; sourceTree = "<group>"; };
 		96410E4F2AA88051004C5313 /* StoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
 		96410E502AA88052004C5313 /* ShoesSampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesSampleData.swift; sourceTree = "<group>"; };
+		9E92D7EF2AADF8780079BFC5 /* SizeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeButtonView.swift; sourceTree = "<group>"; };
+		9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonView.swift; sourceTree = "<group>"; };
+		9E92D7F32AADFA580079BFC5 /* BuyWishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyWishlistView.swift; sourceTree = "<group>"; };
+		9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeTipButtonView.swift; sourceTree = "<group>"; };
+		9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
+		9E92D7F92AADFD160079BFC5 /* MoreInfoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoButtonView.swift; sourceTree = "<group>"; };
+		9E92D7FF2AADFF7C0079BFC5 /* ShareButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButtonView.swift; sourceTree = "<group>"; };
 		9E9BD7BB2AA95241002EE227 /* SizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
+		9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInfoView.swift; sourceTree = "<group>"; };
+		9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeGuideView.swift; sourceTree = "<group>"; };
+		9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
 		9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBestCollectionView.swift; sourceTree = "<group>"; };
 		A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -227,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */,
 				9617AEE32AA5AF97009FB78A /* NikeShoesCore in Frameworks */,
 				219FDADF2AA9A7B50046986B /* FirebaseFirestore in Frameworks */,
 				219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */,
@@ -516,8 +538,7 @@
 				84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */,
 				84F690E82AA6E7760058DDEF /* StoreMapView.swift */,
 				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
-				9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */,
-				9E9BD7BB2AA95241002EE227 /* SizeView.swift */,
+				9E92D7EC2AADF6D40079BFC5 /* ProductInfo */,
 				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
 				219D7D832AA808CB0062A38F /* AppExclusiveView.swift */,
 				219D7D852AA808F10062A38F /* BestItemView.swift */,
@@ -571,6 +592,49 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9E92D7EC2AADF6D40079BFC5 /* ProductInfo */ = {
+			isa = PBXGroup;
+			children = (
+				9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */,
+				9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */,
+				9E92D7FE2AADFEC80079BFC5 /* SizeButton */,
+				9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */,
+				9E92D7F32AADFA580079BFC5 /* BuyWishlistView.swift */,
+				9E92D7FC2AADFE7C0079BFC5 /* SizeTipButton */,
+				9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */,
+				9E92D7FB2AADFD710079BFC5 /* MoreInfoButton */,
+				9E92D7FF2AADFF7C0079BFC5 /* ShareButtonView.swift */,
+			);
+			path = ProductInfo;
+			sourceTree = "<group>";
+		};
+		9E92D7FB2AADFD710079BFC5 /* MoreInfoButton */ = {
+			isa = PBXGroup;
+			children = (
+				9E92D7F92AADFD160079BFC5 /* MoreInfoButtonView.swift */,
+				9EB2601A2AA9C0990063F0A8 /* MoreInfoView.swift */,
+			);
+			path = MoreInfoButton;
+			sourceTree = "<group>";
+		};
+		9E92D7FC2AADFE7C0079BFC5 /* SizeTipButton */ = {
+			isa = PBXGroup;
+			children = (
+				9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */,
+				9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */,
+			);
+			path = SizeTipButton;
+			sourceTree = "<group>";
+		};
+		9E92D7FE2AADFEC80079BFC5 /* SizeButton */ = {
+			isa = PBXGroup;
+			children = (
+				9E92D7EF2AADF8780079BFC5 /* SizeButtonView.swift */,
+				9E9BD7BB2AA95241002EE227 /* SizeView.swift */,
+			);
+			path = SizeButton;
+			sourceTree = "<group>";
+		};
 		DC01B54D2AA6E9D2003B6E77 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +684,7 @@
 				219FDADE2AA9A7B50046986B /* FirebaseFirestore */,
 				219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */,
 				219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */,
+				1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */,
 			);
 			productName = NikeShoes;
 			productReference = 9617AEB32AA5AECC009FB78A /* NikeShoes.app */;
@@ -651,6 +716,7 @@
 			mainGroup = 9617AEAA2AA5AECC009FB78A;
 			packageReferences = (
 				219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 9617AEB42AA5AECC009FB78A /* Products */;
 			projectDirPath = "";
@@ -708,9 +774,11 @@
 				214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */,
 				84F690E92AA6E7760058DDEF /* StoreMapView.swift in Sources */,
 				219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */,
+				9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */,
 				84F690E32AA6CC190058DDEF /* StoreItemView.swift in Sources */,
 				3B199AD52AA7579400C1E764 /* ContentView.swift in Sources */,
 				3B199AD42AA7579000C1E764 /* WishView.swift in Sources */,
+				9E92D7F02AADF8780079BFC5 /* SizeButtonView.swift in Sources */,
 				3B199AD32AA7578B00C1E764 /* GenderTabView.swift in Sources */,
 				3B5977F92AA7EA670021485B /* FollowingView.swift in Sources */,
 				3B199AD22AA7573800C1E764 /* ProfileViewModel.swift in Sources */,
@@ -723,11 +791,13 @@
 				64A3F5862AA96D6700C075E3 /* AddressViewModel.swift in Sources */,
 				A074C4592AA6EDFF0081DB7F /* FindShopView.swift in Sources */,
 				3B6503AB2AA819A700908390 /* FollowingEditCellView.swift in Sources */,
+				9E92D7F82AADFC780079BFC5 /* ReviewButton.swift in Sources */,
 				B02077022AA6BF3800DD014C /* MessageView.swift in Sources */,
 				B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */,
 				219D7D5A2AA6F8760062A38F /* Service.swift in Sources */,
 				219D7D8E2AA83B2A0062A38F /* CategoryItem.swift in Sources */,
 				219D7D562AA6F8630062A38F /* Font.swift in Sources */,
+				9EB2601B2AA9C0990063F0A8 /* MoreInfoView.swift in Sources */,
 				A0DED5C42AA96744000D9E15 /* NikeNewsView.swift in Sources */,
 				9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */,
 				A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */,
@@ -738,6 +808,7 @@
 				9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */,
 				219D7D882AA809160062A38F /* RecentItemView.swift in Sources */,
 				63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */,
+				9EB260172AA9AC9D0063F0A8 /* ProductDetailInfoView.swift in Sources */,
 				9E9BD7BC2AA95241002EE227 /* SizeView.swift in Sources */,
 				84F690E72AA6CE9E0058DDEF /* StoreDetailView.swift in Sources */,
 				84F690EB2AA6F60E0058DDEF /* UserMapView.swift in Sources */,
@@ -752,9 +823,12 @@
 				B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */,
 				B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */,
 				B0343BAE2AA6FAD200F5AB86 /* OrderDetailsView.swift in Sources */,
+				9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */,
 				B020C2A12AA9682300EE33B6 /* CancelOrderModalView.swift in Sources */,
 				DC01B5512AA6F1C3003B6E77 /* TermsOfServiceView.swift in Sources */,
+				9E92D7F42AADFA580079BFC5 /* BuyWishlistView.swift in Sources */,
 				961799032AA6FCEE009FC991 /* OBLocationView.swift in Sources */,
+				9E92D7FA2AADFD160079BFC5 /* MoreInfoButtonView.swift in Sources */,
 				961798F52AA6C573009FC991 /* OBStartView.swift in Sources */,
 				961798F92AA6C77C009FC991 /* TempButton.swift in Sources */,
 				961799092AA70B2B009FC991 /* OBLanguageSelectionView.swift in Sources */,
@@ -762,6 +836,7 @@
 				3B4728572AA97C3100C84E7A /* ProfileEditListStyle.swift in Sources */,
 				3B6503A92AA8174900908390 /* FollowingDetailView.swift in Sources */,
 				DC01B54F2AA6E9EB003B6E77 /* ButtonView.swift in Sources */,
+				9E92D8002AADFF7C0079BFC5 /* ShareButtonView.swift in Sources */,
 				64A3F5882AA96D9E00C075E3 /* Address.swift in Sources */,
 				DC01B5A22AA83CE7003B6E77 /* LoginCompletedView.swift in Sources */,
 				DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */,
@@ -771,6 +846,7 @@
 				9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */,
 				3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */,
 				B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */,
+				9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */,
 				DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */,
 				DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */,
 				961798FB2AA6CCDB009FC991 /* Blur.swift in Sources */,
@@ -1013,6 +1089,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.0.0;
+            };
+        };
+		1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1042,6 +1126,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+        };
+		1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		9617AEE22AA5AF97009FB78A /* NikeShoesCore */ = {
 			isa = XCSwiftPackageProductDependency;
