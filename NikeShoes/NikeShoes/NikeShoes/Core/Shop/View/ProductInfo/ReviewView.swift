@@ -24,6 +24,8 @@ struct ReviewView: UIViewRepresentable  {
         
     }
 }
-#Preview {
-    ReviewView()
+struct ReviewView_Previews: PreviewProvider {
+    static var previews: some View {
+        ReviewView()
+    }
 }
