@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomizedRecommendView: View {
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
     
             HStack(alignment: .bottom) {
                 Text("맞춤 추천 제품")
@@ -25,11 +25,9 @@ struct CustomizedRecommendView: View {
                 }
             }
             .padding(1)
-            .padding([.leading,.trailing])
+            .padding([.leading, .trailing])
             
-            
-            
-            //가로 카테고리
+            // 가로 카테고리
             ScrollView(.horizontal) {
                 LazyHStack {
                     
@@ -71,7 +69,7 @@ struct CustomizedRecommendView: View {
                 .padding()
             }
         }
-        .padding([.top,.bottom],30)
+        .padding([.top, .bottom], 30)
     }
     
 }
