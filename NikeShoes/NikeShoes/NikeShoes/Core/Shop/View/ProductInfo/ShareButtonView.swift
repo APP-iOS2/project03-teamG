@@ -66,6 +66,8 @@ struct ShareButtonView: View {
   }
 }
 
-#Preview {
-    ShareButtonView()
+struct ShareButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        ShareButtonView()
+    }
 }
