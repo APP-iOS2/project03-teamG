@@ -26,7 +26,7 @@ struct ProfileContentLabel: View {
                     MemberRewardView()
                 }
             } label: {
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     Text(title)
                         .font(.bold16)
                         .foregroundColor(.primary)
