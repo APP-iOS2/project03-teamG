@@ -30,7 +30,7 @@ struct SizeView: View {
                     }
                 }
                 
-                ForEach(ShoesSampleData[1].size, id:\.self) { size in
+                ForEach(ShoesSampleData[1].size, id: \.self) { size in
                     Button {
                         isButtonTapped = true
                         print(size)

@@ -13,6 +13,9 @@ import NikeShoesCore
 struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
+//    var isLogin: Bool = false
+//    var viewModel: SampleViewModel
+
     var body: some View {
         if viewModel.userSession != nil {
             MainTabView()
@@ -24,7 +27,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+
         ContentView()
             .environmentObject(AuthViewModel())
+
+//        ContentView(viewModel: SampleViewModel())
+
     }
 }
