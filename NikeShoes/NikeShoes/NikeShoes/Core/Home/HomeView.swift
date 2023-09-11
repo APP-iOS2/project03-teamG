@@ -46,7 +46,7 @@ struct HomeView: View {
                     Spacer()
                 }
             }
-            .padding(10)
+            .padding(16)
             
             CustomizedRecommendView()
             
