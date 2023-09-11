@@ -24,6 +24,7 @@ public protocol FirestoreService {
     ///   - model: DB에 저장할 모델, 반드시 Encodable protocol 을 implement 해야한다.
     ///   - path: API.path의 경로, 모델이 저장될 collection 경로
     /// - Returns: 결과 확인용 문자열
+    @available(iOS 13.0.0, *)
     func create<T: Encodable>(send model: T,
                               collection path: Path) async throws -> String
     
@@ -32,6 +33,7 @@ public protocol FirestoreService {
     ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - type:  API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
     /// - Returns: 결과 데이터 배열
+    @available(iOS 13.0.0, *)
     func fetchAll<T: Decodable>(collection path: Path,
                                 query type: APIQuery<Any>? ) async throws -> [T]
     
@@ -42,6 +44,7 @@ public protocol FirestoreService {
     ///   - snapShot: 가져온 데이터의 마지막 페이지, 옵셔널 값으로 되어있고, nil 일경우 ex) 1~10,  nil 이 아니고 10번째의 snapShot을 보내준경우 ex) 11~20
     ///   - type: API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
     /// - Returns: (데이터 배열과, 마지막 DocumentSnapshot) ... 마지막 documentSnapshot은 다음번 페이지 네이션 요청에 인자로 넣어준다.
+    @available(iOS 13.0.0, *)
     func fetchPagination<T: Decodable>(collection path: Path,
                                        limit count: Int,
                                        lastPage snapShot: DocumentSnapshot?,
@@ -52,6 +55,7 @@ public protocol FirestoreService {
     ///   - path: 삭제할 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - id: 삭제할 모델의 DocumentID, DTO 모델의 ID를 인자로 넣어주면 된다.
     /// - Returns: 결과 확인용 문자열
+    @available(iOS 13.0.0, *)
     func delete(collection path: Path,
                 document id: DocumentRefID) async throws -> String
     
@@ -60,6 +64,7 @@ public protocol FirestoreService {
     ///   - path: 업데이트할 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - id: 업데이트할 모델의 DocumentID, DTO 모델의 ID를 인자로 넣어주면 된다.
     ///   - fields: 업데이트를 하고싶은 fields를 인자로 넘긴다.
+    @available(iOS 13.0.0, *)
     func update(collection path: Path,
                 document id: DocumentRefID,
                 fields: [String: Any]) async throws
