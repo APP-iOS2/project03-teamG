@@ -18,8 +18,8 @@ struct LanguageView: View {
     let Languages = ["한국어", "영어", "스페인어", "프랑스어", "아랍어"]
     
     var body: some View {
-        ZStack(){
-            VStack(alignment: .leading){
+        ZStack {
+            VStack(alignment: .leading) {
                 Spacer()
                 AsyncImage(url: logoURL) { phase in
                     switch phase {
@@ -44,7 +44,7 @@ struct LanguageView: View {
                 Button {
                     showModal.toggle()
                 } label: {
-                    HStack{
+                    HStack {
                         Text(selectedLang)
                             .foregroundColor(.black)
                         
@@ -98,7 +98,7 @@ struct LanguageView: View {
 
 struct LanguageView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             LanguageView(title: "언어 선택")
         }
     }
