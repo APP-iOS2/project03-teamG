@@ -10,29 +10,34 @@ import SwiftUI
 struct OrdersView: View {
     
     var title: String
+    @State var purchaseID: String? = nil
     
-    @State private var tag: Int? = nil
+    @State private var tag: Int? = 0
     
     var body: some View {
         NavigationStack {
-            List {
-                OrderListView()
-            }
-            .listStyle(.plain)
-            .frame(height: 170)
-            
-/*           ZStack {
-                NavigationLink(destination: OrderDetailsView(), tag: 1, selection: self.$tag) {
-                    ButtonStyle(buttonText: "장바구니 보기")
+            if purchaseID == nil {
+                OrdersEmptyView()
+            } else {
+                
+                List {
+                    OrderListView(purchaseID: $purchaseID)
                 }
-                Button(action: {
-                    self.tag = 1
-                }) {
-                    EmptyView()
+                .listStyle(.plain)
+                .frame(height: 170)
+                /*           ZStack {
+                 NavigationLink(destination: OrderDetailsView(), tag: 1, selection: self.$tag) {
+                 ButtonStyle(buttonText: "장바구니 보기")
+                 }
+                 Button(action: {
+                 self.tag = 1
+                 }) {
+                 EmptyView()
+                 }
+                 }*/
+                NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
+                    ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
                 }
-            }*/
-            NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
-                ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
             }
         }
         .navigationTitle("주문내역")
@@ -44,14 +49,22 @@ struct OrdersView: View {
 struct OrdersEmptyView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Nothing to see here - yet")
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(.black)
+            HStack {
+                Text("아직 표시될 내용이 없습니다")
+                    .font(.semiBold24)
+                    .foregroundColor(.black)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
             
-            Text("We'll store your purchases here as soon as you make them.")
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.black)
-                .lineSpacing(8)
+            HStack {
+                Text("구매가 완료되는 대로 구매 내역이 저장됩니다.")
+                    .font(.medium16)
+                    .foregroundColor(.black)
+                    .lineSpacing(8)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
         }
         .padding()
     }
@@ -59,6 +72,7 @@ struct OrdersEmptyView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(title: "주문내역")
+        OrdersView(title: "주문내역", purchaseID: "")
+//        OrdersEmptyView()
     }
 }
