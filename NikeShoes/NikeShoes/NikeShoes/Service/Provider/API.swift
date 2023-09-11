@@ -9,11 +9,11 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-typealias Path = API.Path
+public typealias Path = API.Path
 
-struct API {
+public struct API {
     
-    enum Path: String {
+    public enum Path: String {
         case user
         case promotion
         case shoes
@@ -37,9 +37,9 @@ struct API {
         }
     }
     
-    indirect enum APIQuery<FieldValue> {
-        typealias FieldType = String
-        typealias FieldValue = Any
+    public indirect enum APIQuery<FieldValue> {
+        public typealias FieldType = String
+        public typealias FieldValue = Any
         
         case inOnField(FieldType, [FieldValue])
         case notInField(FieldType, [FieldValue])
@@ -51,11 +51,10 @@ struct API {
         case notEqual(FieldType, FieldValue)
         case arrayContains(FieldType, FieldValue)
         
-        case and([APIQuery<FieldValue>])
-        case or([APIQuery<FieldValue>])
-        
         case filter(APIQuery<FieldValue>)
         
+        case and([APIQuery<FieldValue>])
+        case or([APIQuery<FieldValue>])
         
         func queryBuild(query: CollectionReference) -> Query {
             switch self {
@@ -88,7 +87,7 @@ struct API {
                 return query.whereField(type, arrayContains: value)
                 
             case .filter(let queryType):
-                return queryFilter(query: query,type: queryType)
+                return queryFilter(query: query, type: queryType)
                 
             default:
                 return query
@@ -99,7 +98,6 @@ struct API {
             let filter = type.buildFilter()
             return query.whereFilter(filter)
         }
-        
         
         private func buildFilter() -> Filter {
             switch self {
@@ -131,14 +129,14 @@ struct API {
                 return .whereField(type, arrayContains: value)
                 
             case .and(let queries):
-                let filters = queries.compactMap{ $0.buildFilter() }
+                let filters = queries.compactMap { $0.buildFilter() }
                 return .andFilter(filters)
                 
             case .or(let queries):
-                let filters = queries.compactMap{ $0.buildFilter() }
+                let filters = queries.compactMap { $0.buildFilter() }
                 return .orFilter(filters)
                 
-            case .filter(_):
+            case .filter( _ ):
                 return .init()
             }
         }
