@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -117,19 +119,30 @@ struct ProductDetailView: View {
                     }
                     .padding()
                 }
-                .toolbar {
-                    ToolbarItem {
-                        NavigationLink {
-                            SearchItemView()
-                        } label: {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.black)
-                        }
-                        
+            }
+            .navigationTitle(ShoesSampleData[1].name)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        SearchItemView()
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
                     }
+                    
                 }
-                .navigationTitle(ShoesSampleData[1].name)
-                .navigationBarTitleDisplayMode(.inline)
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.black)
+                    }
+                    
+                }
             }
         }
     }
