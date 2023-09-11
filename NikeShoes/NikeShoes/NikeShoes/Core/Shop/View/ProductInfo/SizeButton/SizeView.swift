@@ -35,15 +35,9 @@ struct SizeView: View {
                         isButtonTapped = true
                         print(size)
                     } label: {
-                        HStack {
-                            Text("\(size)")
-                                .font(.system(size: 17))
-                                .padding(.vertical, 15)
-                            if isButtonTapped {
-                                Spacer()
-                                Text("\(Image(systemName: "checkmark"))")
-                            }
-                        }
+                        Text("\(size)")
+                            .font(.system(size: 17))
+                            .padding(.vertical, 15)
                     }
                 }
             }
