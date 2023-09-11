@@ -11,11 +11,9 @@ struct OnBoardingView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                RegisterContainerView(isContinueButtonClicked: false, isPreviousButtonClicked: false, index: 0)
-                    .navigationBarBackButtonHidden(true)
-            }
+        VStack {
+            RegisterContainerView(isContinueButtonClicked: false, isPreviousButtonClicked: false, index: 0)
+                .navigationBarBackButtonHidden(true)
         }
     }
 }
@@ -212,7 +210,7 @@ struct SignInToolbarStyle: ViewModifier {
                     } label: {
                         Text("취소")
                     }
-
+                    
                 }
             }
     }

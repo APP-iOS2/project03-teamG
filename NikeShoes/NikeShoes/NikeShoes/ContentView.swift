@@ -11,13 +11,13 @@ import SwiftUI
 import NikeShoesCore
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
 //    var isLogin: Bool = false
 //    var viewModel: SampleViewModel
 
     var body: some View {
-        if viewModel.userSession != nil {
+        if authViewModel.userSession != nil {
             MainTabView()
         } else {
             OnBoardingView()

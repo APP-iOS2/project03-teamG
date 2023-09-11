@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InputUserInfoView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     @Binding var index: Int
     
     @State private var firstName: String = ""
@@ -37,6 +39,10 @@ struct InputUserInfoView: View {
     @State private var cautionPassword: String = ""
     @State private var cautionBirth: String = ""
     
+    var name: String {
+        firstName + lastName
+    }
+    
     var birthFormat: String {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
@@ -60,7 +66,13 @@ struct InputUserInfoView: View {
                 
                 ButtonView(buttonText: "계속", foreground: .white, background: .black) {
                     if !firstName.isEmpty && !lastName.isEmpty && isValidPassword(password) && isCheckAgreePrivacyPolicyandTerms() {
+                        
+                        authViewModel.userInfoBirth = birthFormat
+                        authViewModel.userInfoName = name
+                        authViewModel.userInfoPassword = password
+                        
                         index += 1
+                        
                     } else {
                         isCheckFirstName()
                         isCheckLastName()
@@ -69,6 +81,7 @@ struct InputUserInfoView: View {
                         isCheckPasswordCombination()
                         isCheckBirth()
                     }
+                    
                     if !isCheckAgreePrivacyPolicyandTerms() {
                         checkAgreePrivacyPolicyandTerms = false
                     }
@@ -186,7 +199,7 @@ struct InputUserInfoView: View {
             } label: {
                 HStack(alignment: .top) {
                     Image(systemName: isAgreePrivacyPolicyandTerms ? "checkmark.square.fill" : "square")
-                    Text ("나이키의 개인정보 처리방침 및 이용약관에 동의합니다.")
+                    Text("나이키의 개인정보 처리방침 및 이용약관에 동의합니다.")
                         .multilineTextAlignment(.leading)
                         .foregroundColor(checkAgreePrivacyPolicyandTerms ? .primary : .red)
                         .onChange(of: isAgreePrivacyPolicyandTerms) { _ in
@@ -259,7 +272,7 @@ struct InputUserInfoView: View {
     
     func isValidPassword(_ password: String) -> Bool {
         let passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$"
-        let passwordPredicate = NSPredicate(format:"SELF MATCHES %@", passwordRegex)
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
     }
     
