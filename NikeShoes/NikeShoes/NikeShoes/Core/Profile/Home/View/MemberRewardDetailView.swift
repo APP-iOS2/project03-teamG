@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MemberRewardDetailView: View {
     var imageUrl: URL = URL(string: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg") ?? URL(string: "")!
-    
+    @State private var isPresentFAQList = false
     var body: some View {
         VStack(alignment: .leading) {
             ScrollView {
@@ -48,14 +48,30 @@ struct MemberRewardDetailView: View {
                 .padding(.horizontal, 20)
                 
                 Group {
-                    CustomButton(background: .black, foregroundColor: .white, title: "신제품 바로가기") {
+                    NavigationLink {
+                        ShopView(categoryView: MaleView())
+                    } label: {
+                        Text("신제품 바로가기")
+                            .font(.system(size: 18))
+                            .frame(maxWidth: .infinity)
+                            .padding()
                     }
+                    .frame(width: 351, height: 63)
+                    .background(.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(31.5)
+                    
                     CustomButton(background: .black, foregroundColor: .white, title: "쿠폰 유의사항") {
+                        isPresentFAQList = true
                     }
                 }
                 .padding(.top, 10)
             }
         }
+        .sheet(isPresented: $isPresentFAQList) {
+            WebView(url: "https://www.nike.com/kr/help/#contact")
+        }
+        .modifier(NavigationNikeSetting(title: ""))
         .preferredColorScheme(.light)
     }
 }
