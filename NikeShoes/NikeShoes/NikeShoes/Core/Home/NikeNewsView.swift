@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 struct NikeNewsView: View {
     var body: some View {
         VStack(alignment: .leading) {
+
             HStack(alignment: .bottom) {
                 Text("나이키 소식")
                     .font(.medium20)
@@ -54,6 +55,7 @@ struct NikeNewsView: View {
                         Spacer()
                     }
                 }
+
             }
         }
     }
