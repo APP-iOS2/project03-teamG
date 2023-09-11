@@ -12,7 +12,6 @@ struct FindShopView: View {
     
     var body: some View {
         StoreView()
-//        .modifier(NavigationNikeSetting(title: "나이키 매장 찾기"))
     }
 }
 
