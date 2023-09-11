@@ -13,11 +13,11 @@ struct AdressEditView: View {
     @State private var name: String = ""
     
     var body: some View {
-        VStack{
+        VStack {
             Divider()
             
             // User Info
-            VStack{
+            VStack {
                 TextField("이름", text: $name)
                     .padding(15)
                     .background(Color.white)
@@ -41,7 +41,7 @@ struct AdressEditView: View {
 
 struct AdressEditView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             AdressEditView(title: "배송지 수정")
         }
     }
