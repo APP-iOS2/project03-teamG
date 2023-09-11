@@ -8,9 +8,7 @@
 import Foundation
 import NikeShoesCore
 
-
 class SampleViewModel {
-    
     
     let service: FirestoreService
     

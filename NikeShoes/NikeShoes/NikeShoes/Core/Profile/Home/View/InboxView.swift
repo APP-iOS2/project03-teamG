@@ -55,7 +55,6 @@ struct InboxEmptyView: View {
     }
 }
 
-
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
         InboxView(title: "수신함")

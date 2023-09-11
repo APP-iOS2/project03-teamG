@@ -56,8 +56,7 @@ struct CheckPasswordView: View {
                                 isCheckPassword()
                                 password = newValue.trimmingCharacters(in: .whitespaces)
                             }
-                    }
-                    else {
+                    } else {
                         SecureField("비밀번호", text: $password)
                             .onChange(of: password) { newValue in
                                 isCheckPassword()

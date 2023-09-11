@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct ReviewView: UIViewRepresentable  {
+struct ReviewView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UIView {
         let webView: WKWebView = WKWebView()

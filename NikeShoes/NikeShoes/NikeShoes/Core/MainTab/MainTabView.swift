@@ -60,7 +60,7 @@ struct MainTabView: View {
                 }.tag(3)
 
                 ProfileView()
-                //MARK: 프로필 버튼 버그로인한 임시 주석처리
+                // MARK: 프로필 버튼 버그로인한 임시 주석처리
                 // .onTapGesture {
                 //     self.selectedIndex = 4
                 // }
@@ -79,5 +79,3 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView(shoes: Shoes(name: "나이키 에어 포스 1 '07 이지온", category: .female, modelName: .airForce, price: 139000, size: ShoesSampleData[1].size, description: ShoesSampleData[1].description, imageURLString: ShoesSampleData[1].imageURLString, like: false))
     }
 }
-
-

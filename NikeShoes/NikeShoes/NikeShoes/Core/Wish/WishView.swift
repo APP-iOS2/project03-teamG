@@ -14,11 +14,11 @@ struct WishView: View {
     @ObservedObject var storeModel: StoreModel = StoreModel()
     
     var body: some View {
-        ScrollView{
+        ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(storeModel.shoesInfo) { data in
                     if data.like {
-                        ZStack{
+                        ZStack {
                             VStack(alignment: .leading) {
                                 AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
                                     image
@@ -33,10 +33,8 @@ struct WishView: View {
                                         .aspectRatio(contentMode: .fill)
                                         .frame(height: 180)
                                         .clipped()
-                                    
-                                    
                                 }
-                                Group{
+                                Group {
                                     //                                    Text("\(data.modelName.rawValue)")
                                     Text("\(data.name)")
                                     Text("\(data.category.rawValue)")
