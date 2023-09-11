@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct MainTabView: View {
     @State private var selectedIndex = 0
@@ -25,7 +26,7 @@ struct MainTabView: View {
                     Label("홈", systemImage: "house")
                         .environment(\.symbolVariants, .none)
                 }.tag(0)
-                
+
                 NavigationStack {
                     GenderTabBarView(tabs: ["남성", "여성", "키즈"])
                 }
@@ -35,7 +36,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("구매하기", systemImage: "magnifyingglass")
                 }.tag(1)
-                
+
                 NavigationStack {
                     WishView()
                 }
@@ -46,9 +47,9 @@ struct MainTabView: View {
                     Label("위시리스트", systemImage: "heart")
                         .environment(\.symbolVariants, .none)
                 }.tag(2)
-                
+
                 NavigationStack {
-                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Category(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
+                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Gender(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
                 }
                 .onTapGesture {
                     self.selectedIndex = 3
@@ -57,7 +58,7 @@ struct MainTabView: View {
                     Label("장바구니", systemImage: "bag")
                         .environment(\.symbolVariants, .none)
                 }.tag(3)
-                
+
                 ProfileView()
                 //MARK: 프로필 버튼 버그로인한 임시 주석처리
                 // .onTapGesture {
@@ -78,3 +79,5 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView(shoes: Shoes(name: "나이키 에어 포스 1 '07 이지온", category: .female, modelName: .airForce, price: 139000, size: ShoesSampleData[1].size, description: ShoesSampleData[1].description, imageURLString: ShoesSampleData[1].imageURLString, like: false))
     }
 }
+
+

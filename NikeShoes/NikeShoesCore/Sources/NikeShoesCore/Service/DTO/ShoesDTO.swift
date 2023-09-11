@@ -8,33 +8,34 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ShoesDTO: Codable, Identifiable {
-    @DocumentID var id: String?
-    var name: String
-    var category: Category   // Gender : 남성, 여성, 키즈 ,(공용)
-    var modelName: ModelName //  조던 에어 덩크 코르
-    var description: String
-    var price: Int
-    var size: [Int]
-    var colors: [String]
-    var imageURLString: [String]
-    var speciality: [Speciality]
+public struct ShoesDTO: Codable, Identifiable {
+    @DocumentID public var id: String?
+    public var name: String
+    public var category: Gender   // Gender : 남성, 여성, 키즈 ,(공용)
+    public var modelName: ModelName //  조던 에어 덩크 코르
+    public var description: String
+    public var price: Int
+    public var size: [Int]
+    public var colors: [String]
+    public var imageURLString: [String]
+    public var speciality: [Speciality]
+    public var stylingImage: [String]
 }
 
-enum Category: String, Codable {
+public enum Gender: String, Codable {
     case male = "남성",
          female = "여성",
          kids = "키즈"
 }
 
-enum ModelName: String, Codable {
+public enum ModelName: String, Codable {
     case jordan = "조던",
          dunk = "덩크",
          cortez = "코르테즈",
          airForce = "에어 포스 1"
 }
 
-enum Speciality: String, Codable {
+public enum Speciality: String, Codable {
     case onlyApp
     case newProduct
     case hot

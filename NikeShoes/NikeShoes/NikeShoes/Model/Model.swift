@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import NikeShoesCore
+
+class Aa {
+    let ab = Following.sample
+    let bb = ModelName.airForce
+    let cb = Gender.female
+}
