@@ -8,13 +8,12 @@
 import Foundation
 import FirebaseFirestore
 
-typealias DocumentRefID = String
+public typealias DocumentRefID = String
 
-typealias APIQuery = API.APIQuery
+public typealias APIQuery = API.APIQuery
 
 
-extension Firestore {
-
+public extension Firestore {
     func documentBuild(_ document: DocumentRefID) -> DocumentReference {
         self.document(document)
     }
@@ -24,17 +23,26 @@ extension Firestore {
     }
 }
 
-extension CollectionReference {
-    
+public extension CollectionReference {
     func documentBuild(_ document: DocumentRefID) -> DocumentReference {
         self.document(document)
     }
 }
 
-extension CollectionReference {
+public extension CollectionReference {
     func queryBuild(query type: APIQuery<Any>?) -> Query {
         if let type {
             return type.queryBuild(query: self)
+        } else {
+            return self
+        }
+    }
+}
+
+extension Query {
+    func pagination(document snapShot: DocumentSnapshot?) -> Query {
+        if let snapShot {
+            return self.start(afterDocument: snapShot)
         } else {
             return self
         }
