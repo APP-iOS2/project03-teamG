@@ -1,4 +1,5 @@
 import SwiftUI
+import NikeShoesCore
 
 struct ProfileView: View {
     @State private var isProfileEditClicked = false
@@ -27,12 +28,14 @@ struct ProfileView: View {
                 ProfileEditView(isProfileEditClicked: $isProfileEditClicked)
             }
         }
+       
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(FollowingViewModel())
     }
 }
 
