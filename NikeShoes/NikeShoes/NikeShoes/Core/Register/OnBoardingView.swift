@@ -76,39 +76,40 @@ struct RegisterContainerView: View {
     
     private var SheetConatinerView: some View {
         NavigationStack {
-            Image("nikeJordan")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 120)
-                .padding([.leading, .bottom])
-            
-            switch index {
-            case 0:
-                LoginRegisterView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 1:
-                if isPressedRegisterButton {
-                    TermsOfServiceView(index: $index)
+            VStack(alignment: .leading) {
+                Image("nikeJordan")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 120)
+                    .padding([.leading, .bottom])
+                
+                switch index {
+                case 0:
+                    LoginRegisterView(index: $index)
                         .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                } else if isPressedLoginButton {
-                    CheckPasswordView(index: $index)
+                case 1:
+                    if isPressedRegisterButton {
+                        TermsOfServiceView(index: $index)
+                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                    } else if isPressedLoginButton {
+                        CheckPasswordView(index: $index)
+                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                    }
+                case 2:
+                    InputUserInfoView(index: $index)
                         .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                case 3:
+                    CellPhoneCertificationView(index: $index)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                case 4:
+                    LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
+                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
+                default:
+                    EmptyView()
                 }
-            case 2:
-                InputUserInfoView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 3:
-                CellPhoneCertificationView(index: $index)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            case 4:
-                LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
-                    .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-            default:
-                EmptyView()
             }
+            Spacer()
         }
-        
-        Spacer()
     }
     
     private var SignUpButton: some View {
