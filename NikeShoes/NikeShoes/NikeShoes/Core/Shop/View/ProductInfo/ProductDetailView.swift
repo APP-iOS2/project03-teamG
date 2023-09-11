@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -85,16 +87,12 @@ struct ProductDetailView: View {
                             CartButtonView()
                                 .padding(.bottom, 8)
                             
-                            BuyWishlistView()
+                            BuyWishlistButtonView()
                                 .padding(.bottom, 35)
                         }
                         
                         Group {
-                            Rectangle()
-                                .stroke(Color.lightGray, lineWidth: 1)
-                                .frame(width: 351, height: 100)
-                                .background(Color.lightGray)
-                                .padding(.bottom, 30)
+                            DeliveryReturnInfoView()
                             
                             Divider()
                             
@@ -117,19 +115,30 @@ struct ProductDetailView: View {
                     }
                     .padding()
                 }
-                .toolbar {
-                    ToolbarItem {
-                        NavigationLink {
-                            SearchItemView()
-                        } label: {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.black)
-                        }
-                        
+            }
+            .navigationTitle(ShoesSampleData[1].name)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        SearchItemView()
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
                     }
+                    
                 }
-                .navigationTitle(ShoesSampleData[1].name)
-                .navigationBarTitleDisplayMode(.inline)
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.black)
+                    }
+                    
+                }
             }
         }
     }
