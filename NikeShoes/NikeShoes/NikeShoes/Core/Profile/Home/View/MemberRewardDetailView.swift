@@ -11,20 +11,20 @@ struct MemberRewardDetailView: View {
     var imageUrl: URL = URL(string: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg") ?? URL(string: "")!
     
     var body: some View {
-        VStack(alignment: .leading){
-            ScrollView{
+        VStack(alignment: .leading) {
+            ScrollView {
                 ProfileAsyncImageView(imageUrl: imageUrl)
                     .edgesIgnoringSafeArea(.horizontal)
-                VStack(alignment: .leading){
-                    Group{
-                        Group{
+                VStack(alignment: .leading) {
+                    Group {
+                        Group {
                             Text("환영합니다!")
                                 .font(.mediumBold24)
                             Text("나이키 멤버로 함께 할 여정을 응원합니다! ")
                                 .font(.body)
                             Text("앱에서 첫 주문 시, 총 결제 금액에서 15% 할인이 적용됩니다.")
                         }
-                        Group{
+                        Group {
                             Text("[혜택 내용]")
                                 .font(.medium20)
                                 .bold()
@@ -33,7 +33,7 @@ struct MemberRewardDetailView: View {
                             Text("- 프로모션 코드 사용 가능 최대 금액: 300,000원 (최대 45,000할인)")
                                 .font(.body)
                         }
-                        Group{
+                        Group {
                             Text("[유의 사항]")
                                 .font(.medium20)
                                 .bold()
@@ -47,7 +47,7 @@ struct MemberRewardDetailView: View {
                 }
                 .padding(.horizontal, 20)
                 
-                Group{
+                Group {
                     CustomButton(background: .black, foregroundColor: .white, title: "신제품 바로가기") {
                     }
                     CustomButton(background: .black, foregroundColor: .white, title: "쿠폰 유의사항") {
