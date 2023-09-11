@@ -23,6 +23,7 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Label("홈", systemImage: "house")
+                        .environment(\.symbolVariants, .none)
                 }.tag(0)
                 
                 NavigationStack {
@@ -43,6 +44,7 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Label("위시리스트", systemImage: "heart")
+                        .environment(\.symbolVariants, .none)
                 }.tag(2)
                 
                 NavigationStack {
@@ -53,6 +55,7 @@ struct MainTabView: View {
                 }
                 .tabItem {
                     Label("장바구니", systemImage: "bag")
+                        .environment(\.symbolVariants, .none)
                 }.tag(3)
                 
                 ProfileView()
@@ -62,6 +65,7 @@ struct MainTabView: View {
                 // }
                     .tabItem {
                         Label("프로필", systemImage: "person")
+                            .environment(\.symbolVariants, .none)
                     }.tag(4)
             }
             .toolbarBackground( .white, for: .tabBar)
