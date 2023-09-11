@@ -3,7 +3,7 @@ import SwiftUI
 struct AddressEditView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var viewModel: AddressViewModel
+    @ObservedObject var addressViewModel: AddressViewModel
     
     let title: String
     let index: Int
@@ -21,7 +21,7 @@ struct AddressEditView: View {
     init(title: String, viewModel: AddressViewModel, index: Int) {
         let address = viewModel.addresses[index]
         self.title = title
-        self.viewModel = viewModel
+        self.addressViewModel = viewModel
         self.index = index
         
         _name = State(initialValue: address.name)
@@ -49,7 +49,7 @@ struct AddressEditView: View {
                 AddressTextField(title: "postalCode", text: $postalCode)
                 AddressTextField(title: "phoneNumber", text: $phoneNumber)
                 AddressTextField(title: "country", text: $country)
-               
+                
             }
             .padding(.top)
             
@@ -67,7 +67,8 @@ struct AddressEditView: View {
     }
     
     func updateAddress() {
-        let updatedAddress = Address(
+        let updatedAddress = AddressDTO(
+            id: addressViewModel.addresses[index].id,
             name: name,
             city: city,
             district: district,
@@ -79,7 +80,7 @@ struct AddressEditView: View {
             isDefault: isDefault
         )
         
-        viewModel.addresses[index] = updatedAddress
+        addressViewModel.updateAddress(address: updatedAddress)
         presentationMode.wrappedValue.dismiss()
     }
     
