@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct OBWelcomeView: View {
     
     var description: String = "박형환님, 안녕하세요.\n다시 오신것을 환영합니다."
@@ -15,7 +14,7 @@ struct OBWelcomeView: View {
     var date: String = "2023"
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
             
             Spacer(minLength: 300)
             
@@ -35,7 +34,7 @@ struct OBWelcomeView: View {
                     .font(.title2)
                     .foregroundColor(.gray)
                     .padding(.horizontal, 12)
-                    .padding(.vertical,-40)
+                    .padding(.vertical, -40)
                 Spacer()
             }
             
@@ -49,7 +48,6 @@ struct OBWelcomeView: View {
         }
     }
 }
-
 
 struct OBWelcomeView_Previews: PreviewProvider {
     
