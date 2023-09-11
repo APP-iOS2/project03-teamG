@@ -1,11 +1,10 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var isProfileEditClicked = false
     var imageUrl: URL = URL(string: "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png")!
     
     var body: some View {
-        NavigationStack {
+        NavigationStack{
             // MARK: HEADER
             VStack {
                 headerView
@@ -13,8 +12,8 @@ struct ProfileView: View {
                 actionButtonView
             }
             // MARK: CONTENT
-            VStack {
-                List {
+            VStack{
+                List{
                     ProfileContentLabel(title: "수신함", subTitle: "메세지 보기", profileContentViewType: .inBoxView)
                     ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .memberReward)
                         .transition(.opacity)
@@ -22,9 +21,6 @@ struct ProfileView: View {
                 }
                 .listStyle(.plain)
                 Spacer()
-            }
-            .fullScreenCover(isPresented: $isProfileEditClicked) {
-                ProfileEditView(isProfileEditClicked: $isProfileEditClicked)
             }
         }
     }
@@ -71,9 +67,9 @@ extension ProfileView {
                 .padding(.bottom, 30)
             
             // Edit button
-            VStack {
+            VStack{
                 Button {
-                    isProfileEditClicked.toggle()
+                    print("Edit Profile")
                 } label: {
                     Text("프로필 수정")
                         .foregroundColor(.primary)
@@ -108,7 +104,7 @@ extension ProfileView {
             }
         }
     }
-    var profileContentView: some View {
+    var profileContentView: some View{
         ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .inBoxView)
     }
 }

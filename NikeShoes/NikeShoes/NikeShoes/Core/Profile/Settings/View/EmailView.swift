@@ -18,7 +18,7 @@ struct EmailView: View {
     @State private var canEditEmail: Bool = false
     
     var body: some View {
-        VStack {
+        VStack{
             
             Divider()
             
@@ -52,7 +52,7 @@ struct EmailView: View {
                 foregroundColor: canEditEmail ? Color.white : Color.black.opacity(0.5),
                 title: "Done"
             ) {
-                // email update logic
+                // mark: email update logic ----------------
                 self.presentationMode.wrappedValue.dismiss()
             }
             .disabled(!canEditEmail)
@@ -75,7 +75,7 @@ struct EmailView: View {
 
 struct EmailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
+        NavigationStack{
             EmailView(title: "Email")
         }
     }
