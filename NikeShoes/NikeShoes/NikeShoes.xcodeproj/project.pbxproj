@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */; };
 		214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B79B42AA9599B00C85EA9 /* PaymentView.swift */; };
+		1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */; };
 		2172CE172AA89B130048D75A /* MaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE162AA89B130048D75A /* MaleView.swift */; };
 		2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE182AA89B1B0048D75A /* FemaleView.swift */; };
 		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
@@ -658,6 +659,13 @@
 			name = NikeShoes;
 			packageProductDependencies = (
 				9617AEE22AA5AF97009FB78A /* NikeShoesCore */,
+
+				219FDADA2AA9A7B50046986B /* FirebaseAuth */,
+				219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */,
+				219FDADE2AA9A7B50046986B /* FirebaseFirestore */,
+				219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */,
+				219FDAE22AA9A7B50046986B /* FirebaseFirestoreSwift */,
+
 				1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */,
 			);
 			productName = NikeShoes;
@@ -689,6 +697,9 @@
 			);
 			mainGroup = 9617AEAA2AA5AECC009FB78A;
 			packageReferences = (
+
+				219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+
 				1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 9617AEB42AA5AECC009FB78A /* Products */;
@@ -1074,6 +1085,16 @@
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
 				kind = upToNextMajorVersion;
+
+				minimumVersion = 10.0.0;
+            };
+        };
+		1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+
 				minimumVersion = 2.0.0;
 			};
 		};
@@ -1082,6 +1103,13 @@
 /* Begin XCSwiftPackageProductDependency section */
 		1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
+
+			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+        };
+		1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+
 			package = 1D0449322AA9A34900BBF147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};

@@ -89,13 +89,15 @@ struct ProductDetailView: View {
                                 .padding(.bottom, 35)
                         }
                         
-                        Rectangle()
-                            .stroke(Color.lightGray, lineWidth: 1)
-                            .frame(width: 351, height: 100)
-                            .background(Color.lightGray)
-                            .padding(.bottom, 30)
-                        
+
                         Group {
+                            Rectangle()
+                                .stroke(Color.lightGray, lineWidth: 1)
+                                .frame(width: 351, height: 100)
+                                .background(Color.lightGray)
+                                .padding(.bottom, 30)
+                            
+
                             Divider()
                             
                             SizeTipButtonView()
