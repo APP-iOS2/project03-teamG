@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct OBShoesSizeSelectView: View {
     
     var description: String = "신발 사이즈를 알려주세요."
@@ -28,11 +27,10 @@ struct OBShoesSizeSelectView: View {
                     .padding(.horizontal, 24)
             }
             
-            BoxView(sizes: sizes,isSelected: sizes.map {_ in false} )
+            BoxView(sizes: sizes, isSelected: sizes.map { _ in false })
             
             Spacer(minLength: 300)
           
-       
         }
     }
 }
@@ -44,10 +42,10 @@ struct BoxView: View {
     
     var body: some View {
         VStack {
-            ForEach(0..<4){ row in
+            ForEach(0..<4) { row in
                 HStack {
                     Spacer()
-                    ForEach(0..<4){ col in
+                    ForEach(0..<4) { col in
                         ZStack {
                             Button(action: {
                                 isSelected[(row + col + (3 * row))].toggle()
@@ -69,9 +67,6 @@ struct BoxView: View {
     }
 }
 
-
-
-
 struct OBShoesSizeSelectView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
@@ -81,5 +76,3 @@ struct OBShoesSizeSelectView_Previews: PreviewProvider {
         }.ignoresSafeArea()
     }
 }
-
-

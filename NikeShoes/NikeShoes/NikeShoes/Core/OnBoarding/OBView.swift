@@ -7,24 +7,19 @@
 
 import SwiftUI
 
-
-
-
-
 struct OBView: View {
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack{
-            VStack{
-                OBContainerView()
-                    .navigationBarBackButtonHidden(true)
-            }//VStack
-        }
+        
+        VStack {
+            OBContainerView()
+                .navigationBarBackButtonHidden(true)
+        } // VStack
+        
     }
 }
-
 
 struct OBContainerView: View {
     
@@ -43,9 +38,10 @@ struct OBContainerView: View {
             }
             VStack {
                 if isOnBoardingView,
-                   isImageAppearView{
+                   isImageAppearView {
                     progressView
                 }
+                
                 // index가 OnBoarding의 끝나는 지점에 transitionView -> MainTabView 로 변경
                 transitionView
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
@@ -58,8 +54,6 @@ struct OBContainerView: View {
             }
         }
     }
-    
-    private var imageURL: String = "https://static.nike.com/a/images/f_auto/f9b5ee1b-ea2d-4389-b296-1303680aafdd/image.png"
     
     private var isImageAppearView: Bool {
         index != 1 && index != 0
@@ -93,13 +87,9 @@ struct OBContainerView: View {
         Color.black.ignoresSafeArea()
     }
     
-    
     private var imageBackground: some View {
-        AsyncImage(url: URL(string: imageURL)) { image in
-            image.resizable()
-        } placeholder: {
-            ProgressView()
-        }.ignoresSafeArea()
+       Image("nike_back")
+            .ignoresSafeArea()
     }
     
     private var progressView: some View {
@@ -109,8 +99,8 @@ struct OBContainerView: View {
             .background(.gray)
             .tint(.white)
             .cornerRadius(12)
-            .padding(.top,10)
-            .padding(.horizontal,80)
+            .padding(.top, 10)
+            .padding(.horizontal, 80)
         }
     }
     
@@ -159,10 +149,8 @@ extension OBContainerView {
     }
 }
 
-
 struct OBView_Previews: PreviewProvider {
     static var previews: some View {
         OBView()
     }
 }
-
