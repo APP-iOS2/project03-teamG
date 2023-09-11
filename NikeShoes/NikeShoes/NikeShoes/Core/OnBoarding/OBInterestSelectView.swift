@@ -11,7 +11,6 @@ struct OBInterestSelectView: View {
     
     var description: String = "관심 있는 항목을 모두 선택해 주세요. (중복 선택 가능)"
   
-    
     var sizes: [Int] = (0..<16).reduce(into: [Int]()) { sizes, _ in
         sizes.isEmpty ? sizes.append(215) : sizes.append(sizes.last! + 5)
     }
@@ -43,7 +42,6 @@ struct OBInterestSelectView: View {
     }
 }
 
-
 #if DEBUG
 extension Color {
 
@@ -60,8 +58,7 @@ extension Color {
 
 struct InterestListView: View {
     
-    var interestList = ["러닝", "트레이닝 및 짐" ,"라이프스타일", "농구", "축구", "조던", "SNKRS",
-                        "남아" , "여아" , "스케이트보딩", "요가", "골프", "테니스"]
+    var interestList = ["러닝", "트레이닝 및 짐", "라이프스타일", "농구", "축구", "조던", "SNKRS", "남아", "여아", "스케이트보딩", "요가", "골프", "테니스"]
 
     var color: Color {
         Color.random()
@@ -92,14 +89,13 @@ struct InterestListView: View {
     }
 }
 
-
 struct OBInterestSelectView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black
             Blur(style: .light)
             OBInterestSelectView()
-                .padding(.top , 30)
+                .padding(.top, 30)
         }.ignoresSafeArea()
     }
 }

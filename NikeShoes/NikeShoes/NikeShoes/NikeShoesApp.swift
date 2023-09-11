@@ -7,13 +7,19 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseFirestore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
+        return true
+    }
+    
+    func serviceLocator() -> FirestoreService {
+        return DefaultFireStroeService()
+    }
 }
 
 @main
@@ -22,7 +28,7 @@ struct NikeShoesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(isLogin: false, viewModel: SampleViewModel(service: delegate.serviceLocator()))
         }
     }
 }
