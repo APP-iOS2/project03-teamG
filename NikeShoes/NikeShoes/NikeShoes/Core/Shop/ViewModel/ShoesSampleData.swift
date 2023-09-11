@@ -16,6 +16,7 @@
  */
 
 import Foundation
+import NikeShoesCore
 
 protocol ImageURL {
     var imageURLString: String { get set }
@@ -27,7 +28,7 @@ struct Shoes: Identifiable, ImageURL, Hashable {
 
     let id: UUID = UUID()
     var name: String
-    var category: Category
+    var category: Gender
     var modelName: ModelName
     var price: Int
     var size: [Int]

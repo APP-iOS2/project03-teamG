@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import NikeShoesCore
 
 
 class SampleViewModel {
@@ -30,7 +30,7 @@ class SampleViewModel {
     //
     // TODO: 전체 앱에서 공유할 객체 정하기?
     
-    init(service: FirestoreService = DefaultFireStroeService()) {
+    init(service: FirestoreService = DefaultFireStoreService()) {
         self.service = service
 //        action()
     }
@@ -52,11 +52,9 @@ class SampleViewModel {
     // MARK: 정상 작동 완료
     func nike상품등록() async throws {
         do {
-            for value in SampleData.sample {
-                let create: String = try await service.create(send: value, collection: .shoes)
-                // 성공
-                
-            }
+            // let create: String = try await service.create(send: value, collection: .shoes)
+            // 성공
+            // shoesDTO
         } catch {
             throw error
         }
@@ -80,6 +78,7 @@ class SampleViewModel {
     }
 }
 
+/*
 struct SampleData {
     static let sample: [ShoesDTO] = [
         ShoesDTO(name: "에어 조던 1 미드",
@@ -124,3 +123,4 @@ struct SampleData {
                 )
     ]
 }
+*/
