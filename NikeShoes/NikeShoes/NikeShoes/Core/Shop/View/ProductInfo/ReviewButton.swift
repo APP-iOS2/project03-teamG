@@ -26,14 +26,32 @@ struct ReviewButton: View {
                             .padding(.vertical, 28)
                     }
                 } else {
-                    HStack {
-                        Text("리뷰 (9359)")
-                        Spacer()
-                        ForEach(0..<5) { _ in
-                            Image(systemName: "star.fill")
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("리뷰 (9359)")
+                            Spacer()
+                            ForEach(0..<5) { _ in
+                                Image(systemName: "star.fill")
+                            }
+                            Image(systemName: "chevron.up")
+                                .padding(.vertical, 28)
                         }
-                        Image(systemName: "chevron.up")
-                            .padding(.vertical, 28)
+                        
+                        NavigationLink {
+                            WriteReviewView()
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 31.5)
+                                    .stroke(Color.defaultGray, lineWidth: 1.5)
+                                    .frame(width: 123, height: 37)
+                                    .background(.white)
+                                
+                                Text("리뷰 작성하기")
+                                    .font(.system(size: 16))
+                            }
+                        }
+                        
+                        ReviewView()
                     }
                 }
             }
