@@ -42,19 +42,6 @@ struct Shoes: Identifiable, ImageURL, Hashable {
     }
 }
 
-enum Category: String {
-    case male = "남성",
-         female = "여성",
-         kids = "키즈"
-}
-
-enum ModelName: String {
-    case jordan = "조던",
-         dunk = "덩크",
-         cortez = "코르테즈",
-         airForce = "에어 포스 1"
-}
-
 
 let ShoesSampleData: [Shoes] = [
     

@@ -11,10 +11,13 @@ import SwiftUI
 import NikeShoesCore
 
 struct ContentView: View {
-    var isLogin: Bool = false
+    @EnvironmentObject var viewModel: AuthViewModel
     
+//    var isLogin: Bool = false
+//    var viewModel: SampleViewModel
+
     var body: some View {
-        if isLogin {
+        if viewModel.userSession != nil {
             MainTabView()
         } else {
             OnBoardingView()
@@ -24,6 +27,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+
         ContentView()
+            .environmentObject(AuthViewModel())
+
+//        ContentView(viewModel: SampleViewModel())
+
     }
 }

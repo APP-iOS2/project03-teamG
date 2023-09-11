@@ -7,10 +7,7 @@
 
 import SwiftUI
 
-
-
-
-enum Language: String,CaseIterable, Identifiable {
+enum Language: String, CaseIterable, Identifiable {
     case kr = "한국어"
     case en = "영어"
 
@@ -21,7 +18,6 @@ enum Language: String,CaseIterable, Identifiable {
         self
     }
 }
-
 
 struct OBLanguageSelectionView: View {
     
@@ -34,7 +30,7 @@ struct OBLanguageSelectionView: View {
     var date: String = ""
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading) {
 
             Image("nike_ob")
                 .padding(.top, 200)
@@ -111,7 +107,6 @@ struct LanguageSelectionButton: View {
         }
     }
 }
-
 
 struct OBLanguageSelectionView_Previews: PreviewProvider {
     
