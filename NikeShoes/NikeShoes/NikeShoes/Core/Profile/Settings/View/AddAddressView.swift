@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AddAddressView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: AddressViewModel
-
+    @ObservedObject var addressViewModel: AddressViewModel
+    
     @State private var name = ""
     @State private var city = ""
     @State private var district = ""
@@ -63,30 +63,30 @@ struct AddAddressView: View {
     }
     
     func validateAndSaveAddress() {
-            if name.isEmpty || city.isEmpty || district.isEmpty || town.isEmpty || fullAddress.isEmpty || postalCode.isEmpty || phoneNumber.isEmpty || country.isEmpty {
-                alertMessage = "정보를 모두 입력하세요."
-                showAlert = true
-                return
-            }
-
-            let newAddress = Address(
-                name: name,
-                city: city,
-                district: district,
-                town: town,
-                fullAddress: fullAddress,
-                postalCode: postalCode,
-                phoneNumber: phoneNumber,
-                country: country,
-                isDefault: isDefault
-            )
-            viewModel.addAddress(address: newAddress)
-            presentationMode.wrappedValue.dismiss()
+        if name.isEmpty || city.isEmpty || district.isEmpty || town.isEmpty || fullAddress.isEmpty || postalCode.isEmpty || phoneNumber.isEmpty || country.isEmpty {
+            alertMessage = "정보를 모두 입력하세요."
+            showAlert = true
+            return
         }
+        
+        let newAddress = AddressDTO(
+            name: name,
+            city: city,
+            district: district,
+            town: town,
+            fullAddress: fullAddress,
+            postalCode: postalCode,
+            phoneNumber: phoneNumber,
+            country: country,
+            isDefault: isDefault
+        )
+        addressViewModel.addAddress(address: newAddress)
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct AddAddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAddressView(viewModel: AddressViewModel())
+        AddAddressView(addressViewModel: AddressViewModel())
     }
 }
