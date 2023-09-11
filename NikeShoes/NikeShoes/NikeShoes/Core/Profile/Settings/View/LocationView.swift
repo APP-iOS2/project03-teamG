@@ -17,7 +17,7 @@ struct LocationView: View {
     
     var body: some View {
         
-        VStack {
+        VStack{
             Divider()
             
             TextField("검색", text: $nation)
@@ -32,7 +32,7 @@ struct LocationView: View {
                 .background(Color.white)
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
                 .padding()
-            List {
+            List{
                 ForEach(filteredCountries, id: \.self) { item in
                     Text(item)
                         .font(.subheadline)
@@ -46,7 +46,7 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
+        NavigationStack{
             LocationView(title: "국가 / 지역")
         }
     }
