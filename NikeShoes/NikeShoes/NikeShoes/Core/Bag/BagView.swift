@@ -21,6 +21,8 @@ struct BagView: View {
     @State var finalPrice: String = "0"
     @State var isShowingSheet: Bool = false
     
+    @State private var sheetHeight: CGFloat = .zero
+    
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
     var productCount: Int = 1
@@ -46,9 +48,7 @@ struct BagView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 200, height: 200)
                     }
-                    
-                    
-                    
+                          
                     VStack(alignment: .leading) {
                         Text("\(shoes.name)")
                             .bold()
@@ -142,7 +142,7 @@ struct BagView: View {
                             HStack {
                                 TextField("프로모션 코드", text: $userPromCode)
                                     .textFieldStyle(.roundedBorder)
-                                    .frame(width:250)
+                                    .frame(width: 250)
                                 
                                 Spacer()
                                 
@@ -159,16 +159,12 @@ struct BagView: View {
                                 .cornerRadius(3)
                             }
                             .alert(isPresented: $showAlert) {
-                                Alert(title: Text("알림"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
+                                Alert(title: Text("알림"),
+                                      message: Text(alertMessage),
+                                      dismissButton: .default(Text("확인")))
                             }
                         }
                     }
-                    
-                    //                        Button {
-                    //
-                    //                        } label: {
-                    //                            Image(systemName: "plus")
-                    //                        }
                 }
             }
             .padding()
@@ -215,7 +211,6 @@ struct BagView: View {
             
             Spacer()
             
-            
             Button {
                 // 기능 1) faceID 활성화 (구현할지?)
                 
@@ -233,7 +228,7 @@ struct BagView: View {
             .padding()
             .sheet(isPresented: $isShowingSheet) {
                 PaymentView(selectedQty: selectedQty, finalPrice: finalPrice)
-                    .presentationDetents([.medium])
+//                    .presentationDetents([.medium])
                 
             }
         }
@@ -271,7 +266,15 @@ struct BagView: View {
 struct BagView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BagView(userPromCode: .constant(""), shoes: Shoes(name: "에어 조던 1 로우", category: .female, modelName: .airForce, price: 30000, size: [1], description: "", imageURLString: "",like: false))
+            BagView(userPromCode: .constant(""),
+                    shoes: Shoes(name: "에어 조던 1 로우",
+                                 category: .female,
+                                 modelName: .airForce,
+                                 price: 30000,
+                                 size: [1],
+                                 description: "",
+                                 imageURLString: "",
+                                 like: false))
         }
     }
 }
