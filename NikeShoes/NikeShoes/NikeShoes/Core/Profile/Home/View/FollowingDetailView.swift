@@ -17,14 +17,14 @@ struct FollowingDetailView: View {
     @State private var selectedFlavor: FollowingCategory = .sports
     
     var body: some View {
-        VStack{
+        VStack {
             Picker("Flavor", selection: $selectedFlavor) {
                 Text("스포츠").tag(FollowingCategory.sports)
                 Text("제품").tag(FollowingCategory.porducts)
             }
             .pickerStyle(.segmented)
           
-            List{
+            List {
                 ForEach(0..<3) { index in
                     FollowingEditCellView(
                         imageURL: Following.sample[index].imageURL,
@@ -42,9 +42,8 @@ struct FollowingDetailView: View {
 
 struct FollowingDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             FollowingDetailView()
         }
     }
 }
-

@@ -12,12 +12,12 @@ struct FollowingEditCellView: View {
     let title: String
     @State var isChecked: Bool = true
     
-    var image: URL{
+    var image: URL {
         URL(string: imageURL) ?? URL(string: "")!
     }
     
     var body: some View {
-        HStack{
+        HStack {
             ProfileAsyncImageView(imageUrl: image)
                 .frame(width: 100, height: 100)
             Text(title)
