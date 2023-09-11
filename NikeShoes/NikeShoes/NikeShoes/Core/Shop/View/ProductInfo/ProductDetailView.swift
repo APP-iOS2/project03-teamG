@@ -85,7 +85,7 @@ struct ProductDetailView: View {
                             CartButtonView()
                                 .padding(.bottom, 8)
                             
-                            BuyWishlistView()
+                            BuyWishlistButtonView()
                                 .padding(.bottom, 35)
                         }
                         
