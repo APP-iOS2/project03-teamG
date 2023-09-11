@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LoginRegisterView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     @Binding var index: Int
     
     @State private var email: String = ""
@@ -15,10 +17,6 @@ struct LoginRegisterView: View {
     @State private var isEmailValid: Bool = true
     
     @State private var selectedCountry: String = "대한민국"
-    
-    let countries: [String] = [
-        "가나", "가봉", "가이아나", "대한민국", "기타등등"
-    ]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -61,6 +59,8 @@ struct LoginRegisterView: View {
                     cautionEmail = "필수"
                     isEmailValid = false
                 } else {
+                    authViewModel.userInfoEmail = email
+                    authViewModel.userInfoCountry = selectedCountry
                     index += 1
                 }
             }
@@ -80,7 +80,7 @@ struct LoginRegisterView: View {
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CellPhoneCertificationView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     @Binding var index: Int
     
     @State private var cellPhoneNumber: String = ""
@@ -30,7 +32,7 @@ struct CellPhoneCertificationView: View {
                 Text("안전한 구매와 추가 보안 조치를 위해, 일회성 인증코드를 전송합니다.")
                     .padding(.bottom, 12)
                 
-                Text("test@nike.com")
+                Text(authViewModel.userInfoEmail)
                     .accentColor(.black)
                     .padding(.bottom, 20)
                 
@@ -43,7 +45,7 @@ struct CellPhoneCertificationView: View {
                 } label: {
                     HStack(alignment: .top) {
                         Image(systemName: isAgreeReceiveMarketing ? "checkmark.square.fill" : "square")
-                        Text ("(선택사항) 나이키의 생일 리워드, 멤버 전용 혜택, 특별 프로모션 소식 등의 메시지 수신에 동의합니다. 마케팅 커뮤니케이션 목적으로 나이키가 보내는 SMS 마케팅 메시지 수신 및 나이키의 개인 정보 수집 및 이용에 동의합니다.")
+                        Text("(선택사항) 나이키의 생일 리워드, 멤버 전용 혜택, 특별 프로모션 소식 등의 메시지 수신에 동의합니다. 마케팅 커뮤니케이션 목적으로 나이키가 보내는 SMS 마케팅 메시지 수신 및 나이키의 개인 정보 수집 및 이용에 동의합니다.")
                             .multilineTextAlignment(.leading)
                     }
                     .foregroundColor(.primary)
@@ -55,6 +57,8 @@ struct CellPhoneCertificationView: View {
                         isCheckCellPhoneNumber()
                         isCheckCertificationCode()
                     } else {
+                        authViewModel.userInfoPhoneNumber = cellPhoneNumber
+                        authViewModel.register()
                         index += 1
                     }
                 }
@@ -115,10 +119,11 @@ struct CellPhoneCertificationView: View {
     
     func isValidCheckCellPhoneNumber(_ cellPhoneNumber: String) -> Bool {
         let regex = "^01([0|1|6|7|8|9]?) ?([0-9]{4}) ?([0-9]{4})$"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: cellPhoneNumber)
     }
     
+    /// 임의 코드 "12345678"
     func isCheckCertificationCode() {
         if certificationCode == "12345678" {
             cautionCertificationCode = ""
@@ -130,11 +135,5 @@ struct CellPhoneCertificationView: View {
             cautionCertificationCode = "잘못된 인증입니다"
             isCertificationCodeValid = false
         }
-    }
-}
-
-struct CellPhoneCertificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        CellPhoneCertificationView(index: .constant(3))
     }
 }
