@@ -7,7 +7,6 @@
 
 import SwiftUI
 import NikeShoesCore
-import NikeShoes
 
 struct ContentView: View {
     var body: some View {
@@ -17,7 +16,6 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text(NikeShoesCore().text)
         }
-        .padding()
     }
 }
 
