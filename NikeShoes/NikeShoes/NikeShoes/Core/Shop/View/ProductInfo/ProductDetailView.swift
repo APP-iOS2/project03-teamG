@@ -89,7 +89,6 @@ struct ProductDetailView: View {
                                 .padding(.bottom, 35)
                         }
                         
-
                         Group {
                             Rectangle()
                                 .stroke(Color.lightGray, lineWidth: 1)
@@ -97,7 +96,6 @@ struct ProductDetailView: View {
                                 .background(Color.lightGray)
                                 .padding(.bottom, 30)
                             
-
                             Divider()
                             
                             SizeTipButtonView()

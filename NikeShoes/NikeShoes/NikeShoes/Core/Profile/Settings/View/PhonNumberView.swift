@@ -20,10 +20,10 @@ struct PhonNumberView: View {
 
     var body: some View {
         ZStack {
-            VStack(alignment:.leading) {
+            VStack(alignment: .leading) {
                 Divider()
 
-                VStack(alignment:.leading) {
+                VStack(alignment: .leading) {
                     Text("휴대폰 번호를 인증하세요.")
                         .font(.title)
                         .foregroundColor(.black)
@@ -53,7 +53,7 @@ struct PhonNumberView: View {
                     }
 
                     // 휴대전화 번호 입력
-                    ZStack{
+                    ZStack {
                         TextField("Phon Number", text: $phoneNumber)
                             .padding(15)
                             .background(Color.white)
@@ -64,7 +64,7 @@ struct PhonNumberView: View {
                             .foregroundColor(selectedNation != Nation.Korea ? Color.red : .gray)
                             .background(.white)
                             .offset(x: -97, y: -25)
-                        if(selectedNation != Nation.Korea) {
+                        if selectedNation != Nation.Korea {
                             Text("유효하지 않은 형식")
                                 .font(.caption2)
                                 .foregroundColor(.red)
@@ -72,7 +72,6 @@ struct PhonNumberView: View {
                                 .offset(x: -85, y: 40)
                         }
                     }
-                    
                     
                 }
                 .padding()
@@ -97,7 +96,7 @@ struct PhonNumberView: View {
                     }
                     .padding(20)
                 }
-                .onChange(of: isChecked) { isChecked in
+                .onChange(of: isChecked) { _ in
                     validator(nationCode: nationCode, phoneNumber: phoneNumber)
                 }
 
@@ -130,9 +129,9 @@ struct PhonNumberView: View {
                 Text("국가 / 지역 코드")
                     .font(.headline)
                     .padding()
-                List{
-                    ForEach(Nation.allCases , id: \.self) { code in
-                        HStack{
+                List {
+                    ForEach(Nation.allCases, id: \.self) { code in
+                        HStack {
                             Text("\(code.details.code) - \(code.details.name) \(code.details.phoneNumberPrefix)")
                                 .font(.medium16)
                                 .padding(.vertical)
@@ -172,15 +171,13 @@ struct PhonNumberView: View {
     }
 }
 
-
 struct PhonNumberView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             PhonNumberView(title: "PhonNumber")
         }
     }
 }
-
 
 enum Nation: CaseIterable {
     case Korea
@@ -229,5 +226,3 @@ enum Nation: CaseIterable {
         }
     }
 }
-
-
