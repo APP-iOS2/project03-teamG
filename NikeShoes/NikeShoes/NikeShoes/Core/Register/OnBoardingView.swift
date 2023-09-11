@@ -36,6 +36,15 @@ struct RegisterContainerView: View {
         self.index = index
     }
     
+    @State private var imageIndex: Int = 0
+    
+    private var images: [String] = [
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1061,c_limit/b3baaff5-7a0c-46af-9648-2759222e4127/%EB%86%8D%EA%B5%AC-%EC%BD%94%ED%8A%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EA%B3%B3%EC%9D%B4-%EC%9A%B0%EB%A6%AC-%EC%A7%91.jpg",
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_525,c_limit/da98d69b-ae45-4748-b1f6-97cea857a26e/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+        "https://static.nike.com/a/images/w_765,c_limit/8637c195-4e29-4b15-9718-ab57813478b7/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_765,c_limit/13d84f49-1f19-4f0c-82db-16781a511ced/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
+    ]
+    
     var body: some View {
         ZStack {
             if index < 4 {
@@ -145,26 +154,43 @@ struct RegisterContainerView: View {
         }
     }
     
-    private var images: [String] = [
-        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1061,c_limit/b3baaff5-7a0c-46af-9648-2759222e4127/%EB%86%8D%EA%B5%AC-%EC%BD%94%ED%8A%B8%EA%B0%80-%EC%9E%88%EB%8A%94-%EA%B3%B3%EC%9D%B4-%EC%9A%B0%EB%A6%AC-%EC%A7%91.jpg",
-        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_525,c_limit/da98d69b-ae45-4748-b1f6-97cea857a26e/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
-        "https://static.nike.com/a/images/w_765,c_limit/8637c195-4e29-4b15-9718-ab57813478b7/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
-        "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_765,c_limit/13d84f49-1f19-4f0c-82db-16781a511ced/%EB%82%98%EB%A7%8C%EC%9D%98-%EB%9F%AC%EB%8B%9D-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C.jpg",
-    ]
-    
     private var imageBackground: some View {
         ZStack {
-            AsyncImage(url: URL(string: images[0])) { image in
+            AsyncImage(url: URL(string: images[imageIndex])) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             } placeholder: {
                 ProgressView()
             }
+            .transition(.opacity)
+            .id(images[imageIndex])
             
             LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom)
         }
         .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                withAnimation(.default) {
+                    imageIndex += 1
+                }
+            })
+        }
+        .onChange(of: imageIndex) { _ in
+            if imageIndex >= images.count-1 {
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    withAnimation(.default) {
+                        imageIndex = 0
+                    }
+                })
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    withAnimation(.default) {
+                        imageIndex += 1
+                    }
+                })
+            }
+        }
     }
 }
 
