@@ -34,7 +34,8 @@ struct OrdersView: View {
                  }) {
                  EmptyView()
                  }
-                 }*/
+                 }
+                 */
                 NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
                     ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
                 }
@@ -73,6 +74,6 @@ struct OrdersEmptyView: View {
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
         OrdersView(title: "주문내역", purchaseID: "")
-//        OrdersEmptyView()
+        //        OrdersEmptyView()
     }
 }

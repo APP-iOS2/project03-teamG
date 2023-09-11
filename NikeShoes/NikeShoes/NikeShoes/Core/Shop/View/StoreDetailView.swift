@@ -51,8 +51,6 @@ struct StoreDetailView: View {
                     Text(store.storePhoneNumber) // 전화 연결
                         .padding(.top)
                 }
-
-                
                 
                 Divider()
                     // 영업이 종료된 경우
@@ -123,8 +121,7 @@ struct StoreDetailView: View {
             // 버전별 처리
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
-            }
-            else {
+            } else {
                 UIApplication.shared.openURL(openApp)
             }
         }

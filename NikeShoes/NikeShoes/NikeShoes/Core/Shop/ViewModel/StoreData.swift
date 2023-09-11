@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct StoreData: Identifiable, ImageURL {
     var id = UUID().uuidString
     var name: String
@@ -100,7 +99,4 @@ class StoreModel: ObservableObject {
     func setToggle() { // like는 토글용이다.
         
     }
-    
-    
-    
 }

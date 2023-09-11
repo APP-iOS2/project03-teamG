@@ -8,7 +8,7 @@
 import Foundation
 import NikeShoesCore
 
-class Aa {
+class Test {
     let ab = Following.sample
     let bb = ModelName.airForce
     let cb = Gender.female

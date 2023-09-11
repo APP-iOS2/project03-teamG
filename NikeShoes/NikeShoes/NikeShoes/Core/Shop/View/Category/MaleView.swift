@@ -43,10 +43,6 @@ struct MaleView: View {
     }
 }
 
-
-
-
-
 struct MaleView_Previews: PreviewProvider {
     static var previews: some View {
         MaleView()

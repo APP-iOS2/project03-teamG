@@ -23,7 +23,6 @@ protocol ImageURL {
     var imageURL: URL { get }
 }
 
-
 struct Shoes: Identifiable, ImageURL, Hashable {
 
     let id: UUID = UUID()
@@ -37,12 +36,9 @@ struct Shoes: Identifiable, ImageURL, Hashable {
     var like: Bool
     
     var imageURL: URL {
-        get {
-            return URL(string: imageURLString)!
-        }
+        URL(string: imageURLString)!
     }
 }
-
 
 let ShoesSampleData: [Shoes] = [
     

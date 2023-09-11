@@ -77,9 +77,9 @@ struct ItemListView: View {
                                 }
                                 
                                 // 좋아요 버튼
-                                Button(action: {
+                                Button {
                                     isLiked.toggle()
-                                }) {
+                                } label: {
                                     Circle()
                                         .frame(width: 30, height: 30)
                                         .foregroundColor(.white)
