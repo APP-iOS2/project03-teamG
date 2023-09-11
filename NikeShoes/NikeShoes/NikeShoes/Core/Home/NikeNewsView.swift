@@ -5,6 +5,7 @@
 //
 
 import SwiftUI
+import SDWebImage
 import SDWebImageSwiftUI
 
 struct NikeNewsView: View {
