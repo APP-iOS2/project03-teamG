@@ -30,8 +30,7 @@ struct ContentView_Previews: PreviewProvider {
 
         ContentView()
             .environmentObject(AuthViewModel())
-
+            
 //        ContentView(viewModel: SampleViewModel())
-
     }
 }
