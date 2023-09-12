@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TermsOfServiceView: View {
-    @Binding var index: Int
+    @Binding var screen: LoginRegisterScreen
     
     @State private var isAllAgree: Bool = false
     @State private var isAgreeTermsOfService: Bool = false
@@ -57,11 +57,11 @@ struct TermsOfServiceView: View {
                 
                 ButtonView(buttonText: "계속", foreground: .white, background: .black) {
                     if isCheckAllAgree() {
-                        index += 1
+                        screen = .inputUserInfo
                     }
                 }
                 ButtonView(buttonText: "취소", foreground: .black, background: .white) {
-                    index -= 1
+                    screen = .loginRegister
                 }
             }
             .padding(.horizontal)
@@ -190,6 +190,6 @@ struct TermsOfServiceView: View {
 
 struct TermsOfServiceView_Previews: PreviewProvider {
     static var previews: some View {
-        TermsOfServiceView(index: .constant(1))
+        TermsOfServiceView(screen: .constant(.termsOfService))
     }
 }
