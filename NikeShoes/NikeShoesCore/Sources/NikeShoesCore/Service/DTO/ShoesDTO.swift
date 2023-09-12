@@ -24,8 +24,8 @@ public struct ShoesDTO: Codable, Identifiable {
     public init(
             id: String? = nil,
             name: String,
-            category: Gender,
-            modelName: ModelName,
+            category: String,
+            modelName: String,
             description: String,
             price: Int,
             size: [Int],
