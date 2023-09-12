@@ -34,9 +34,10 @@ struct ManageAddress: View {
             
         }
         .modifier(NavigationNikeSetting(title: title))
-        .onAppear() {
-            addressviewModel.fetchData()
+        .task {
+            await addressviewModel.fetchAddresses()
         }
+        
     }
 }
 
