@@ -60,7 +60,7 @@ struct ItemListView: View {
                                         Text("\(data.name)")
                                             .foregroundColor(Color.black)
                                             .bold()
-                                        Text("\(data.category.rawValue)")
+                                        Text("\(data.category)")
                                             .foregroundColor(Color.textGray)
                                         Text("₩\(data.price)")
                                             .foregroundColor(Color.black)

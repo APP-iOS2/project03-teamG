@@ -11,8 +11,8 @@ import FirebaseFirestoreSwift
 public struct ShoesDTO: Codable, Identifiable {
     @DocumentID public var id: String?
     public var name: String
-    public var category: Gender   // Gender : 남성, 여성, 키즈 ,(공용)
-    public var modelName: ModelName //  조던 에어 덩크 코르
+    public var category: String   // Gender : 남성, 여성, 키즈 ,(공용)
+    public var modelName: String //  조던 에어 덩크 코르
     public var description: String
     public var price: Int
     public var size: [Int]
