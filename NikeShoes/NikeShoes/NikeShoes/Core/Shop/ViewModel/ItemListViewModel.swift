@@ -34,14 +34,14 @@ class ItemListViewModel {
     func action() {
         Task {
             let shoes = try await fetchItems()
-            print("shoes : \(shoes)")
+            self.shoes = shoes
         }
     }
     
     // MARK: 상품 리스트 가져오기
     func fetchItems() async throws -> [ShoesDTO] {
         let values: [ShoesDTO] = try await service.fetchAll(collection: .shoes, query: nil)
-        print("values \(values)")
+        //print("values \(values)")
         return values
     }
     
