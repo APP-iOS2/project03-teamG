@@ -26,3 +26,8 @@ public struct OrderDTO: Codable {
     public var paymentStatus: String
     public let orderDate: Date
 }
+
+public enum PaymentStatus: String, Codable {
+    case payment = "결제 완료"
+    case cancel = "주문 취소"
+}

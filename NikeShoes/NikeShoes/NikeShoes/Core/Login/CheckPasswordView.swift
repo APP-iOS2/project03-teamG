@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CheckPasswordView: View {
-    @Binding var index: Int
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    @Binding var screen: LoginRegisterScreen
     
     @State private var password: String = ""
     @State private var cautionPassword: String = ""
@@ -24,11 +26,11 @@ struct CheckPasswordView: View {
                     .padding(.bottom, 12)
                 
                 HStack {
-                    Text("test@nike.com")
+                    Text(authViewModel.userInfo.email)
                         .accentColor(.black)
                     
                     Button {
-                        index = 0
+                        screen = .loginRegister
                     } label: {
                         Text("편집")
                             .underline()
@@ -85,7 +87,7 @@ struct CheckPasswordView: View {
                     .padding(.bottom, 12)
                 
                 Button {
-                    // action ...
+                    screen = .findPassword
                 } label: {
                     Text("비밀번호 찾기")
                         .underline()
@@ -94,10 +96,12 @@ struct CheckPasswordView: View {
                 .padding(.bottom, 35)
                 
                 ButtonView(buttonText: "로그인", foreground: .white, background: .black) {
-                    if isValidPassword(password) == false {
-                        isMatchedPassword = false
-                    } else {
-                        index = 4
+                    authViewModel.signIn(authViewModel.userInfo.email, password) { success in
+                        if success {
+                            screen = .loginCompleted
+                        } else {
+                            isMatchedPassword = false
+                        }
                     }
                 }
             }
@@ -113,25 +117,13 @@ struct CheckPasswordView: View {
             cautionPassword = ""
             isPassworldValid = true
         }
-        if isValidPassword(password) {
-            cautionPassword = ""
-            isPassworldValid = true
-        }
-    }
-    
-    func isValidPassword(_ password: String) -> Bool {
-        if password == "Nike1234" {
-            return true
-        } else {
-            return false
-        }
     }
 }
 
 struct CheckPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            CheckPasswordView(index: .constant(1))
+            CheckPasswordView(screen: .constant(.checkPassword))
         }
     }
 }

@@ -17,11 +17,11 @@ struct ContentView: View {
 //    var viewModel: SampleViewModel
 
     var body: some View {
-        if authViewModel.userSession != nil {
-            MainTabView()
-        } else {
+//        if authViewModel.userSession != nil {
+//            MainTabView()
+//        } else {
             OnBoardingView()
-        }
+//        }
     }
 }
 
@@ -30,8 +30,7 @@ struct ContentView_Previews: PreviewProvider {
 
         ContentView()
             .environmentObject(AuthViewModel())
-
+            
 //        ContentView(viewModel: SampleViewModel())
-
     }
 }

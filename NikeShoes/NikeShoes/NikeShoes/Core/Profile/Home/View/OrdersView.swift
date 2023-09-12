@@ -10,9 +10,8 @@ import SwiftUI
 struct OrdersView: View {
     
     var title: String
-    @State var purchaseID: String? = nil
-    
-    @State private var tag: Int? = 0
+    @State var purchaseID: String? = ""
+//    @State private var tag: Int? = 0
     
     var body: some View {
         NavigationStack {
@@ -20,25 +19,29 @@ struct OrdersView: View {
                 OrdersEmptyView()
             } else {
                 
-                List {
+                ScrollView {
+//                    ForEach
                     OrderListView(purchaseID: $purchaseID)
                 }
+                /*
                 .listStyle(.plain)
                 .frame(height: 170)
-                /*           ZStack {
-                 NavigationLink(destination: OrderDetailsView(), tag: 1, selection: self.$tag) {
-                 ButtonStyle(buttonText: "장바구니 보기")
+                 
+                 ZStack {
+                     NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
+                         ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
+                     }
+                     Button(action: {
+                         self.tag = 1
+                     }) {
+                         EmptyView()
+                     }
                  }
-                 Button(action: {
-                 self.tag = 1
-                 }) {
-                 EmptyView()
-                 }
-                 }
-                 */
+                
                 NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
                     ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
                 }
+                 */
             }
         }
         .navigationTitle("주문내역")
