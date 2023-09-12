@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct LoginRegisterView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    @Binding var index: Int
+    @Binding var screen: LoginRegisterScreen
     
     @State private var email: String = ""
     @State private var cautionEmail: String = ""
@@ -59,9 +60,15 @@ struct LoginRegisterView: View {
                     cautionEmail = "필수"
                     isEmailValid = false
                 } else {
-                    authViewModel.userInfoEmail = email
-                    authViewModel.userInfoCountry = selectedCountry
-                    index += 1
+                    Task {
+                        if await authViewModel.isAlreadySignUp(email) {
+                            screen = .checkPassword
+                        } else {
+                            screen = .termsOfService
+                        }
+                        authViewModel.userInfo.email = email
+                        authViewModel.userInfoCountry = selectedCountry
+                    }
                 }
             }
         }
@@ -87,6 +94,6 @@ struct LoginRegisterView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginRegisterView(index: .constant(0))
+        LoginRegisterView(screen: .constant(.loginRegister))
     }
 }
