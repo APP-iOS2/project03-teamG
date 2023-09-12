@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SizeView: View {
     @State private var isButtonTapped = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,7 +21,7 @@ struct SizeView: View {
                     Spacer()
                     
                     Button {
-                        print("sheet 내리기")
+                        dismiss()
                     } label: {
                         Text("\(Image(systemName: "xmark"))")
                             .font(.system(size: 13))

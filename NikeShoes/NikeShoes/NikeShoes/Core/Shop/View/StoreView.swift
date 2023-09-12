@@ -14,6 +14,7 @@ struct StoreView: View {
     @ObservedObject var storeModel = StoreModel()
     
     @State private var isShowingMapSheet: Bool = false
+    @State private var isShowingSearchSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -32,11 +33,8 @@ struct StoreView: View {
                         .buttonStyle(.plain)
                         
                         StoreItemView(store: store)
-                        
                     }
-                    
                 }
-                
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
@@ -51,7 +49,6 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "chevron.backward")
                     }
-                    
                 }
                 ToolbarItem {
                     Button {
@@ -59,19 +56,20 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "map")
                     }
-                    
                 }
                 ToolbarItem {
                     Button {
-                        //
+                        isShowingSearchSheet = true
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
-                    
                 }
             }
             .fullScreenCover(isPresented: $isShowingMapSheet) {
                 UserMapView(isShowingMapSheet: $isShowingMapSheet)
+            }
+            .fullScreenCover(isPresented: $isShowingSearchSheet) {
+                StoreSearchView(isShowingSearchSheet: $isShowingSearchSheet)
             }
         }
     }
