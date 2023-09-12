@@ -32,11 +32,8 @@ struct StoreView: View {
                         .buttonStyle(.plain)
                         
                         StoreItemView(store: store)
-                        
                     }
-                    
                 }
-                
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
@@ -51,7 +48,6 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "chevron.backward")
                     }
-                    
                 }
                 ToolbarItem {
                     Button {
@@ -59,7 +55,6 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "map")
                     }
-                    
                 }
                 ToolbarItem {
                     Button {
