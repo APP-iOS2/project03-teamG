@@ -10,6 +10,7 @@ import NikeShoesCore
 
 class SearchResultViewModel {
     
+    
     let service: FirestoreService
     let searchKeyword: String
     
