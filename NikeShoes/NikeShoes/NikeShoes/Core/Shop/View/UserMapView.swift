@@ -24,16 +24,7 @@ struct UserMapView: View {
             VStack {
                 let stores = storeModel.stores
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: stores) { store in
-                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1])) {
-                        Button {
-                            selectedStore = store
-                            isShowingStoreSheet = true
-                        } label: {
-                            Image(systemName: "mappin.circle.fill")
-                                .font(.title)
-                                .tint(.blue)
-                        }
-                    }
+                    MapMarker(coordinate: CLLocationCoordinate2D(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1]))
                 }
                 .sheet(isPresented: $isShowingStoreSheet) {
                     Text(selectedStore.name)
