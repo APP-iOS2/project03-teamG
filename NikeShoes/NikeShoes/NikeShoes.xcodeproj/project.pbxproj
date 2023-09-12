@@ -90,10 +90,11 @@
 		9E3A8C152AAEFCBB0070362A /* DeliveryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A8C142AAEFCBB0070362A /* DeliveryInfoView.swift */; };
 		9E3A8C182AAEFD2F0070362A /* DeliveryReturnInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A8C172AAEFD2F0070362A /* DeliveryReturnInfoView.swift */; };
 		9E3A8C1A2AAEFD4E0070362A /* ReturnInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A8C192AAEFD4E0070362A /* ReturnInfoView.swift */; };
+		9E3A8C1C2AAF023C0070362A /* ProductPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A8C1B2AAF023C0070362A /* ProductPhotoView.swift */; };
 		9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */; };
 		9E92D7F42AADFA580079BFC5 /* BuyWishlistButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F32AADFA580079BFC5 /* BuyWishlistButtonView.swift */; };
 		9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */; };
-		9E92D7F82AADFC780079BFC5 /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */; };
+		9E92D7F82AADFC780079BFC5 /* ReviewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F72AADFC780079BFC5 /* ReviewButtonView.swift */; };
 		9E92D7FA2AADFD160079BFC5 /* MoreInfoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92D7F92AADFD160079BFC5 /* MoreInfoButtonView.swift */; };
 		9EB260172AA9AC9D0063F0A8 /* ProductDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */; };
 		9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */; };
@@ -213,10 +214,11 @@
 		9E3A8C142AAEFCBB0070362A /* DeliveryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryInfoView.swift; sourceTree = "<group>"; };
 		9E3A8C172AAEFD2F0070362A /* DeliveryReturnInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryReturnInfoView.swift; sourceTree = "<group>"; };
 		9E3A8C192AAEFD4E0070362A /* ReturnInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnInfoView.swift; sourceTree = "<group>"; };
+		9E3A8C1B2AAF023C0070362A /* ProductPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPhotoView.swift; sourceTree = "<group>"; };
 		9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButtonView.swift; sourceTree = "<group>"; };
 		9E92D7F32AADFA580079BFC5 /* BuyWishlistButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyWishlistButtonView.swift; sourceTree = "<group>"; };
 		9E92D7F52AADFB5D0079BFC5 /* SizeTipButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeTipButtonView.swift; sourceTree = "<group>"; };
-		9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
+		9E92D7F72AADFC780079BFC5 /* ReviewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButtonView.swift; sourceTree = "<group>"; };
 		9E92D7F92AADFD160079BFC5 /* MoreInfoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoButtonView.swift; sourceTree = "<group>"; };
 		9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInfoView.swift; sourceTree = "<group>"; };
 		9EB260182AA9B2970063F0A8 /* SizeGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeGuideView.swift; sourceTree = "<group>"; };
@@ -640,11 +642,12 @@
 			children = (
 				9ED15DFA2AA6E9120015B48C /* ProductDetailView.swift */,
 				9EB260162AA9AC9D0063F0A8 /* ProductDetailInfoView.swift */,
+				9E3A8C1B2AAF023C0070362A /* ProductPhotoView.swift */,
 				21FABC3E2AAEC2DF00546C17 /* SizeButton */,
 				9E92D7F12AADF9820079BFC5 /* CartButtonView.swift */,
 				9E92D7F32AADFA580079BFC5 /* BuyWishlistButtonView.swift */,
 				9E92D7FC2AADFE7C0079BFC5 /* SizeTipButton */,
-				9E92D7F72AADFC780079BFC5 /* ReviewButton.swift */,
+				9E92D7F72AADFC780079BFC5 /* ReviewButtonView.swift */,
 				9EF4DA012AAEAB6E007F7D14 /* WriteReviewView.swift */,
 				9EF4DA032AAEAE74007F7D14 /* ReviewView.swift */,
 				9E92D7FB2AADFD710079BFC5 /* MoreInfoButton */,
@@ -830,7 +833,7 @@
 				64A3F5862AA96D6700C075E3 /* AddressViewModel.swift in Sources */,
 				A074C4592AA6EDFF0081DB7F /* FindShopView.swift in Sources */,
 				3B6503AB2AA819A700908390 /* FollowingEditCellView.swift in Sources */,
-				9E92D7F82AADFC780079BFC5 /* ReviewButton.swift in Sources */,
+				9E92D7F82AADFC780079BFC5 /* ReviewButtonView.swift in Sources */,
 				9EF4DA022AAEAB6E007F7D14 /* WriteReviewView.swift in Sources */,
 				B02077022AA6BF3800DD014C /* MessageView.swift in Sources */,
 				B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */,
@@ -919,6 +922,7 @@
 				DC01B5562AA704F1003B6E77 /* SignInTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
 				2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */,
+				9E3A8C1C2AAF023C0070362A /* ProductPhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
