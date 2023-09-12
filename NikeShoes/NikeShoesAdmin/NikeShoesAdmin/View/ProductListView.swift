@@ -13,12 +13,12 @@ struct ProductListView: View {
 
     var body: some View {
         List(viewModel.shoes.indices, id: \.self) { index in
-            //                NavigationLink {
-            //                    ProductEditView(shoes: $viewModel.shoes[index])
-            //                } label: {
-            //                    Text(viewModel.shoes[index].name)
-            //                }
-            
+            NavigationLink {
+                ProductEditView(shoes: $viewModel.shoes[index])
+            } label: {
+                Text(viewModel.shoes[index].name)
+            }
+
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
