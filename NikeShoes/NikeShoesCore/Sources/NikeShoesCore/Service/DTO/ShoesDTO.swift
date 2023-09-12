@@ -16,29 +16,37 @@ public struct ShoesDTO: Codable, Identifiable {
     public var description: String
     public var price: Int
     public var size: [Int]
-    public var colors: [String]
+    public var colors: [productColor]
     public var imageURLString: [String]
     public var speciality: [Speciality]
     public var stylingImage: [String]
 }
 
-public enum Gender: String, Codable {
+public enum Gender: String, Codable, CaseIterable, Equatable {
     case male = "남성",
          female = "여성",
          kids = "키즈"
 }
 
-public enum ModelName: String, Codable {
+public enum ModelName: String, Codable, CaseIterable, Equatable {
     case jordan = "조던",
          dunk = "덩크",
          cortez = "코르테즈",
          airForce = "에어 포스 1"
 }
 
-public enum Speciality: String, Codable {
+public enum Speciality: String, Codable, CaseIterable, Equatable {
     case onlyApp
     case newProduct
     case hot
+}
+
+public enum productColor: String, Codable, CaseIterable, Equatable {
+    case black
+    case red
+    case white
+    case blue
+    case green
 }
 
 //struct ModelNameDTO: Codable {
