@@ -17,9 +17,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    func serviceLocator() -> FirestoreService {
-        return DefaultFireStroeService()
-    }
+//    func serviceLocator() -> FirestoreService {
+//        return DefaultFireStroeService()
+//    }
 }
 
 @main
