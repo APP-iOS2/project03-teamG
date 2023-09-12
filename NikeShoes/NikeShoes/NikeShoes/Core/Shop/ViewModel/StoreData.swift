@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreData: Identifiable, ImageURL {
+struct StoreData: Identifiable, ImageURL, Equatable {
     var id = UUID().uuidString
     var name: String
     // 서울특별시, 경기도, ...

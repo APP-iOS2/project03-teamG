@@ -23,7 +23,21 @@ struct UserMapView: View {
             VStack {
                 let stores = storeModel.stores
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: stores) { store in
-                    MapMarker(coordinate: CLLocationCoordinate2D(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1]))
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1])) {
+                        Image("marker").resizable()
+                            .frame(width: 50, height: 50)
+                            .onTapGesture {
+                                selectedStore = store
+                            }
+                            .overlay(
+                                CustomCalloutView(store: selectedStore)
+                                    .frame(width: 200, height: 50)
+                                // 마커보다 콜아웃 위치가 위로가게
+                                    .offset(y: -50)
+                                // 선택된 경우에만 표시되도록 투명도 조절
+                                    .opacity(selectedStore == store ? 1.0 : 0.0)
+                            )
+                    }
                 }
                 .onAppear {
                     viewModel.region.center = CLLocationCoordinate2D(latitude: stores.first?.locationCoordinates[0] ?? 0, longitude: stores.first?.locationCoordinates[1] ?? 0)
@@ -42,6 +56,24 @@ struct UserMapView: View {
             }
         }
         
+    }
+}
+
+struct CustomCalloutView: View {
+    let store: StoreData
+    
+    var body: some View {
+        VStack {
+            NavigationLink {
+                StoreDetailView(store: store)
+            } label: {
+                Text(store.name)
+            }
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(8)
+        .shadow(radius: 4)
     }
 }
 
