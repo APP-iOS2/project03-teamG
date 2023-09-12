@@ -8,7 +8,7 @@
 import Foundation
 import NikeShoesCore
 
-class ProductViewModel: ObservableObject {
+public class ProductViewModel: ObservableObject {
     
     let service: FirestoreService
     
@@ -19,7 +19,10 @@ class ProductViewModel: ObservableObject {
         self.service = service
         
         Task {
-            self.shoes = try await fetchShoes()
+            let shoes = try await fetchShoes()
+            await MainActor.run {
+                self.shoes = shoes
+            }
         }
         
     }

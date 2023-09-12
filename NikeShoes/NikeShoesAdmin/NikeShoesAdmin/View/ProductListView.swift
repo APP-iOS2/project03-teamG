@@ -9,29 +9,25 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @StateObject private var viewModel = ProductViewModel()
+    @StateObject var viewModel = ProductViewModel()
 
     var body: some View {
-        if viewModel.shoes.count > 0 {
-//            List(viewModel.shoes.indices, id: \.self) { index in
-////                NavigationLink {
-////                    ProductEditView(shoes: $viewModel.shoes[index])
-////                } label: {
-////                    Text(viewModel.shoes[index].name)
-////                }
-//
-//            }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    NavigationLink {
-//                        ProductAddView()
-//                    } label: {
-//                        Image(systemName: "plus")
-//                    }
-//                }
-//            }
-        } else {
-            EmptyView()
+        List(viewModel.shoes.indices, id: \.self) { index in
+            //                NavigationLink {
+            //                    ProductEditView(shoes: $viewModel.shoes[index])
+            //                } label: {
+            //                    Text(viewModel.shoes[index].name)
+            //                }
+            
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ProductAddView(viewModel: viewModel)
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
         }
     }
 }
