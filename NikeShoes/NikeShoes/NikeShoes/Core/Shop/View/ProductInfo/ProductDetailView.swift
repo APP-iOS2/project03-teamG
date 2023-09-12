@@ -100,7 +100,7 @@ struct ProductDetailView: View {
                             
                             Divider()
                             
-                            ReviewButton()
+                            ReviewButtonView()
                             
                             Divider()
                             
@@ -114,6 +114,9 @@ struct ProductDetailView: View {
                         }
                     }
                     .padding()
+                    .padding(.bottom, 25)
+                    
+                    ProductPhotoView()
                 }
             }
             .navigationTitle(ShoesSampleData[1].name)
