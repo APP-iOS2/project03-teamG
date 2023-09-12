@@ -63,7 +63,6 @@ struct StoreView: View {
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
-                    
                 }
             }
             .fullScreenCover(isPresented: $isShowingMapSheet) {

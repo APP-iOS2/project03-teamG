@@ -15,6 +15,7 @@ struct StoreSearchView: View {
     
     @State private var searchText = ""
     
+    // 검색어와 관련된 매장 필터 
     var filteredStore: [StoreData] {
         if searchText.isEmpty {
             return storeModel.stores
@@ -58,7 +59,6 @@ struct StoreSearchView: View {
                 } label: {
                     Text("닫기")
                 }
-                
             }
         }
     }
