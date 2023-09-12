@@ -46,6 +46,8 @@
 		3B78EBA72AAEBB4A00819E0A /* FollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */; };
 		3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */; };
 		63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */; };
+		63D5B1CE2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */; };
+		63D5B1D02AB0072C00A051F8 /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */; };
 		642014DC2AAEB528002A6BC8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642014DB2AAEB528002A6BC8 /* AuthViewModel.swift */; };
 		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
@@ -165,6 +167,8 @@
 		3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewModel.swift; sourceTree = "<group>"; };
 		3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
+		63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewWithProgressbar.swift; sourceTree = "<group>"; };
+		63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
 		642014DB2AAEB528002A6BC8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		643BB8462AA6B020000233A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -573,6 +577,7 @@
 				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
 				9E92D7EC2AADF6D40079BFC5 /* ProductInfo */,
 				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
+				63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */,
 				219D7D832AA808CB0062A38F /* AppExclusiveView.swift */,
 				219D7D852AA808F10062A38F /* BestItemView.swift */,
 				219D7D872AA809160062A38F /* RecentItemView.swift */,
@@ -621,6 +626,7 @@
 			children = (
 				96410E502AA88052004C5313 /* ShoesSampleData.swift */,
 				96410E4F2AA88051004C5313 /* StoreData.swift */,
+				63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -846,6 +852,7 @@
 				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */,
+				63D5B1D02AB0072C00A051F8 /* ItemListViewModel.swift in Sources */,
 				219D7D882AA809160062A38F /* RecentItemView.swift in Sources */,
 				63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */,
 				9EB260172AA9AC9D0063F0A8 /* ProductDetailInfoView.swift in Sources */,
@@ -886,6 +893,7 @@
 				961798FD2AA6F0C0009FC991 /* OBWelcomeView.swift in Sources */,
 				9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */,
 				3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */,
+				63D5B1CE2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift in Sources */,
 				B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */,
 				9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */,
 				DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */,
