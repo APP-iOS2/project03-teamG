@@ -19,6 +19,7 @@
 		A05AAE232AAEF16C0077A20E /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AAE222AAEF16C0077A20E /* ProductViewModel.swift */; };
 		A05AAE252AAEFFA70077A20E /* ProductAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AAE242AAEFFA70077A20E /* ProductAddView.swift */; };
 		B72CAEE52AAFE8C100D338A7 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */; };
+		B72DBC982AB0472900F9D1E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B72DBC972AB0472900F9D1E7 /* GoogleService-Info.plist */; };
 		B7B2747B2AAEE80B00DD10BA /* AdminLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747A2AAEE80B00DD10BA /* AdminLoginView.swift */; };
 		B7B2747D2AAF025C00DD10BA /* LoginModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747C2AAF025C00DD10BA /* LoginModifier.swift */; };
 		B7B2747F2AAF036E00DD10BA /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747E2AAF036E00DD10BA /* LoginButtonView.swift */; };
@@ -37,6 +38,7 @@
 		A05AAE222AAEF16C0077A20E /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		A05AAE242AAEFFA70077A20E /* ProductAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddView.swift; sourceTree = "<group>"; };
 		B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
+		B72DBC972AB0472900F9D1E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7B2747A2AAEE80B00DD10BA /* AdminLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginView.swift; sourceTree = "<group>"; };
 		B7B2747C2AAF025C00DD10BA /* LoginModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModifier.swift; sourceTree = "<group>"; };
 		B7B2747E2AAF036E00DD10BA /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		9617AECF2AA5AF10009FB78A /* NikeShoesAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				B72DBC972AB0472900F9D1E7 /* GoogleService-Info.plist */,
 				9617AED02AA5AF10009FB78A /* NikeShoesAdminApp.swift */,
 				A09B97842AAF61CE00D0AE6E /* Components */,
 				A09B97832AAF617300D0AE6E /* Model */,
@@ -202,6 +205,7 @@
 			files = (
 				9617AED82AA5AF16009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AED52AA5AF16009FB78A /* Assets.xcassets in Resources */,
+				B72DBC982AB0472900F9D1E7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
