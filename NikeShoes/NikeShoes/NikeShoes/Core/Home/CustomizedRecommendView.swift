@@ -32,7 +32,7 @@ struct CustomizedRecommendView: View {
                 LazyHStack {
                     
                     ForEach(ShoesSampleData, id: \.self) { item in
-                        NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                        NavigationLink(destination: ProductDetailView()) { 
                             
                             VStack(alignment: .leading) {
                                 // 상품 이미지

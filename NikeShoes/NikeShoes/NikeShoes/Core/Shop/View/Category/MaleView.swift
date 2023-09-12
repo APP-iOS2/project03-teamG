@@ -20,7 +20,7 @@ struct MaleView: View {
     var body: some View {
         VStack(spacing: 3) {  // 간격을 3으로 설정
             ForEach(categories, id: \.0) { category, imageName in
-                NavigationLink(destination: ItemListView()) {
+                NavigationLink(destination: ItemListViewWithProgressbar()) {
                     ZStack(alignment: .leading) {  // 왼쪽 정렬
                         Rectangle()
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
