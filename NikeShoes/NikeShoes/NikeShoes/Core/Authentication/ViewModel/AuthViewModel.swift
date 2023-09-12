@@ -17,8 +17,7 @@ class AuthViewModel: ObservableObject {
     @Published var userInfoPassword: String = ""
     
     init() {
-        userSession = Auth.auth().currentUser
-        
+        userSession = Auth.auth().currentUser 
         userInfo = UserDTO(
             firstName: "",
             lastName: "",
@@ -32,7 +31,6 @@ class AuthViewModel: ObservableObject {
             activityArea: "",
             introContent: ""
         )
-        
         print("DEBUG: User session: \(String(describing: userSession))")
     }
     
