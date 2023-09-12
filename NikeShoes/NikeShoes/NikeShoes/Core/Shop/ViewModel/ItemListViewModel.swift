@@ -33,8 +33,16 @@ class ItemListViewModel: ObservableObject {
     func action() {
         // 비동기 작업 실행
         Task {
-            let shoes = try await fetchItems()
-            self.shoes = shoes
+            do {
+                let fetchedShoes = try await fetchItems()
+                // 메인 스레드에서만 UI 업데이트
+                DispatchQueue.main.async {
+                    self.shoes = fetchedShoes
+                }
+            } catch {
+                // 에러 처리
+                print("Error fetching items: \(error)")
+            }
         }
     }
     
