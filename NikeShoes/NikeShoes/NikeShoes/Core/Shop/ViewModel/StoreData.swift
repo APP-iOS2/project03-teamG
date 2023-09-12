@@ -103,4 +103,14 @@ class StoreModel: ObservableObject {
     func setToggle() { // like는 토글용이다.
         
     }
+    
+    func getSearchArray(searchText: String) -> [String] {
+        let mapStores = stores.map { store in
+            store.name
+        }
+        let filterStores = mapStores.filter { store in
+            store.contains(searchText)
+        }
+        return filterStores
+    }
 }

@@ -14,6 +14,7 @@ struct StoreView: View {
     @ObservedObject var storeModel = StoreModel()
     
     @State private var isShowingMapSheet: Bool = false
+    @State private var isShowingSearchSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -58,7 +59,7 @@ struct StoreView: View {
                 }
                 ToolbarItem {
                     Button {
-                        //
+                        isShowingSearchSheet = true
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
@@ -67,6 +68,9 @@ struct StoreView: View {
             }
             .fullScreenCover(isPresented: $isShowingMapSheet) {
                 UserMapView(isShowingMapSheet: $isShowingMapSheet)
+            }
+            .fullScreenCover(isPresented: $isShowingSearchSheet) {
+                StoreSearchView(isShowingSearchSheet: $isShowingSearchSheet)
             }
         }
     }
