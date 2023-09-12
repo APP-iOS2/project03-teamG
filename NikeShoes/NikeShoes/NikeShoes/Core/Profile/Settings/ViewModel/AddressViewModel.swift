@@ -23,7 +23,7 @@ class AddressViewModel: ObservableObject {
                     try db.collection("addresses").document(currentDefault.id ?? "").setData(from: updatedAddress)
                 }
             }
-            let _ = try db.collection("users").document(Auth.auth().currentUser!.uid) .collection("addresses").addDocument(from: address)
+            let _ = try db.collection("user").document(Auth.auth().currentUser!.uid) .collection("addresses").addDocument(from: address)
         } catch {
             print(error.localizedDescription)
         }
@@ -35,7 +35,7 @@ class AddressViewModel: ObservableObject {
             return
         }
         
-        db.collection("users").document(userID).collection("addresses").addSnapshotListener { (querySnapshot, error) in
+        db.collection("user").document(userID).collection("addresses").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
@@ -54,7 +54,7 @@ class AddressViewModel: ObservableObject {
         }
         
         do {
-            try db.collection("users").document(Auth.auth().currentUser!.uid)
+            try db.collection("user").document(Auth.auth().currentUser!.uid)
                 .collection("addresses").document(addressID)
                 .setData(from: address)
         } catch let error {
