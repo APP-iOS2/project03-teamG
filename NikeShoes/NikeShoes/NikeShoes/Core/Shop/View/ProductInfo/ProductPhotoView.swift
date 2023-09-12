@@ -57,7 +57,7 @@ struct ProductPhotoView: View {
                 
                 Text("로우 컷 실루엣이 깔끔하고 매끈한 룩을 연출합니다.")
                     .lineSpacing(10)
-                    .padding(.bottom, 45)
+                    .padding(.bottom, 55)
                 
                 Divider()
             }

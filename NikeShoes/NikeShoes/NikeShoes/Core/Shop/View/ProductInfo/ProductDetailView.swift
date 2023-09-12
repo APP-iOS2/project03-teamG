@@ -115,6 +115,8 @@ struct ProductDetailView: View {
                     .padding(.bottom, 25)
                     
                     ProductPhotoView()
+                    
+                    StylingView()
                 }
                 .toolbar {
                     ToolbarItem {
