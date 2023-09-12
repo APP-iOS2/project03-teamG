@@ -49,7 +49,10 @@ final class UserProfileEditViewModel: ObservableObject {
                                      document: userData.id ?? "",
                                      fields: [
                                         "firstName": userData.firstName,
-                                        "lastName" : userData.lastName ])
+                                        "lastName": userData.lastName,
+                                        "activityArea": userData.activityArea,
+                                        "introContent": userData.introContent
+                                     ])
 //            try await service.update(collection: .user, document: userData.id ?? "", fields: ["address": userData.address])
         } catch {
             print(#function, "firebase CRUD")
