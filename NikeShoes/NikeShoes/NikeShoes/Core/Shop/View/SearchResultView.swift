@@ -1,15 +1,16 @@
 //
-//  ItemListView.swift
+//  SearchResultView.swift
 //  NikeShoes
 //
-//  Created by 여성은 on 2023/09/05.
+//  Created by 이승준 on 2023/09/12.
 //
 
 import SwiftUI
-import NikeShoesCore
 
-// 상품 목록을 표시하는 뷰
-struct ItemListView: View {
+struct SearchResultView: View {
+    
+    //검색 키워드 매개변수
+    var search: String
     
     // 뒤로 가기 버튼의 작동을 관리하기 위한 변수
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -24,7 +25,7 @@ struct ItemListView: View {
     // 네비게이션 타이틀 변수 (현재는 보류)
     
     // 신발 리스트
-    var itemListViewModel: ItemListViewModel = ItemListViewModel()
+    var searchResultViewModel: SearchResultViewModel = SearchResultViewModel(searchKeyword: "조던")
     
     // 뷰 본문
     var body: some View {
@@ -34,7 +35,7 @@ struct ItemListView: View {
                 // 상품 목록을 그리드로 표시
                 LazyVGrid(columns: columns) {
                     // 선택된 탭에 따라 상품을 필터링
-                    ForEach(itemListViewModel.shoes) { data in
+                    ForEach(searchResultViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
                         NavigationLink(destination: ProductDetailView()) {
@@ -109,10 +110,8 @@ struct ItemListView: View {
     }
 }
 
-struct ItemListView_Previews: PreviewProvider {
+struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            ItemListView()
-        }
+        SearchResultView(search: "덩크")
     }
 }

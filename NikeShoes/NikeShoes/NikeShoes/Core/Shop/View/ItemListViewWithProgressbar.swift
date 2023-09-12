@@ -1,47 +1,50 @@
 //
-//  ItemListView.swift
+//  ItemListViewWithProgressbar.swift
 //  NikeShoes
 //
-//  Created by 여성은 on 2023/09/05.
+//  Created by 이승준 on 2023/09/12.
 //
 
 import SwiftUI
-import NikeShoesCore
 
-// 상품 목록을 표시하는 뷰
-struct ItemListView: View {
+struct ItemListViewWithProgressbar: View {
     
-    // 뒤로 가기 버튼의 작동을 관리하기 위한 변수
+    // 화면 전환을 위한 환경 변수
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // 그리드 레이아웃을 위한 컬럼 설정
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
-    // 좋아요 버튼의 상태를 관리하는 변수
+    // 좋아요 버튼의 상태를 관리
     @State var isLiked: Bool = false
     
-    // MARK: 파이어베이스에서 받아온 내용이 반영되어야 하는 변수
-    // 네비게이션 타이틀 변수 (현재는 보류)
+    // 현재 선택된 탭
+    @State private var selectedTab: String = "전체"
     
-    // 신발 리스트
-    var itemListViewModel: ItemListViewModel = ItemListViewModel()
+    // 프로그레스 바 위치 및 넓이
+    @State private var progressBarOffset: CGFloat = 0
+    @State private var progressBarWidth: CGFloat = 0
     
-    // 뷰 본문
+    // 탭 목록
+    var tabs: [String] = ["전체", "조던", "덩크"]
+    
+    // ViewModel을 관찰 (ObservedObject)
+    @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
+                TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
+                    .padding(.bottom, -23)
                 
-                // 상품 목록을 그리드로 표시
                 LazyVGrid(columns: columns) {
                     // 선택된 탭에 따라 상품을 필터링
-                    ForEach(itemListViewModel.shoes) { data in
-                        
-                        // 각 상품을 누르면 ProductDetailView로 이동
+                    ForEach(viewModel.shoes.filter { selectedTab == "전체" ? true : $0.modelName == selectedTab }) { data in
+                        // 상세 화면으로 이동
                         NavigationLink(destination: ProductDetailView()) {
                             ZStack {
                                 VStack(alignment: .leading) {
-                                    // 상품 이미지
-                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                    AsyncImage(url: URL(string: data.imageURLString.first ?? "")) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -54,8 +57,7 @@ struct ItemListView: View {
                                             .frame(height: 180)
                                             .clipped()
                                     }
-                                    
-                                    // 상품 정보
+                                    // 텍스트 정보
                                     Group {
                                         Text("\(data.name)")
                                             .foregroundColor(Color.black)
@@ -69,9 +71,9 @@ struct ItemListView: View {
                                 }
                                 
                                 // 좋아요 버튼
-                                Button {
+                                Button(action: {
                                     isLiked.toggle()
-                                } label: {
+                                }) {
                                     Circle()
                                         .frame(width: 30, height: 30)
                                         .foregroundColor(.white)
@@ -87,11 +89,10 @@ struct ItemListView: View {
                 }
                 .padding()
             }
+            // 네비게이션 바 설정
             .navigationTitle("앱 전용 제품")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
-            
-            // 네비게이션 바 아이템 설정
             .navigationBarItems(
                 leading: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -99,20 +100,21 @@ struct ItemListView: View {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.black)
                 },
-                // 검색 아이콘을 네비게이션 바 오른쪽에 배치
                 trailing: NavigationLink(destination: SearchItemView()) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
                 }
             )
         }
+        // 화면이 나타날 때 데이터 로드
+        .onAppear {
+            viewModel.action()
+        }
     }
 }
 
-struct ItemListView_Previews: PreviewProvider {
+struct ItemListViewWithProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            ItemListView()
-        }
+        ItemListViewWithProgressbar()
     }
 }
