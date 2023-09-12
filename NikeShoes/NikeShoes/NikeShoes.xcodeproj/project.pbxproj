@@ -47,6 +47,7 @@
 		3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */; };
 		63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */; };
 		642014DC2AAEB528002A6BC8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642014DB2AAEB528002A6BC8 /* AuthViewModel.swift */; };
+		642014EA2AB01A58002A6BC8 /* UserInfoEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642014E92AB01A58002A6BC8 /* UserInfoEditViewModel.swift */; };
 		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
 		643BB84B2AA6B054000233A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643BB84A2AA6B054000233A5 /* SettingsView.swift */; };
 		6485A0552AA9B172008F2DC1 /* AddAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6485A0542AA9B172008F2DC1 /* AddAddressView.swift */; };
@@ -166,6 +167,7 @@
 		3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		642014DB2AAEB528002A6BC8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		642014E92AB01A58002A6BC8 /* UserInfoEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoEditViewModel.swift; sourceTree = "<group>"; };
 		64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		643BB8462AA6B020000233A5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		643BB84A2AA6B054000233A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			children = (
 				64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */,
 				64A3F5852AA96D6700C075E3 /* AddressViewModel.swift */,
+				642014E92AB01A58002A6BC8 /* UserInfoEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				64A3F5882AA96D9E00C075E3 /* Address.swift in Sources */,
 				DC01B5A22AA83CE7003B6E77 /* LoginCompletedView.swift in Sources */,
 				DC01B5532AA6FF66003B6E77 /* InputUserInfoView.swift in Sources */,
+				642014EA2AB01A58002A6BC8 /* UserInfoEditViewModel.swift in Sources */,
 				3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */,
 				9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */,
 				9689982C2AAEAC5200F41C98 /* SampleViewModel.swift in Sources */,

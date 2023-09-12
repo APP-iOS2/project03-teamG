@@ -1,9 +1,10 @@
 import SwiftUI
+import NikeShoesCore
 
 struct AddressEditView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var viewModel: AddressViewModel
+    @ObservedObject var addressViewModel: AddressViewModel
     
     let title: String
     let index: Int
@@ -21,7 +22,7 @@ struct AddressEditView: View {
     init(title: String, viewModel: AddressViewModel, index: Int) {
         let address = viewModel.addresses[index]
         self.title = title
-        self.viewModel = viewModel
+        self.addressViewModel = viewModel
         self.index = index
         
         _name = State(initialValue: address.name)
@@ -49,7 +50,7 @@ struct AddressEditView: View {
                 AddressTextField(title: "postalCode", text: $postalCode)
                 AddressTextField(title: "phoneNumber", text: $phoneNumber)
                 AddressTextField(title: "country", text: $country)
-               
+                
             }
             .padding(.top)
             
@@ -60,14 +61,17 @@ struct AddressEditView: View {
                 foregroundColor: .white,
                 title: "저장") {
                     // 배송지 업데이트
-                    updateAddress()
+                    Task {
+                        await updateAddress()
+                    }
                 }
         }
         .modifier(NavigationNikeSetting(title: title))
     }
     
-    func updateAddress() {
-        let updatedAddress = Address(
+    func updateAddress() async {
+        let updatedAddress = AddressDTO(
+            id: addressViewModel.addresses[index].id,
             name: name,
             city: city,
             district: district,
@@ -79,7 +83,7 @@ struct AddressEditView: View {
             isDefault: isDefault
         )
         
-        viewModel.addresses[index] = updatedAddress
+        await addressViewModel.updateAddress(address: updatedAddress)
         presentationMode.wrappedValue.dismiss()
     }
     
