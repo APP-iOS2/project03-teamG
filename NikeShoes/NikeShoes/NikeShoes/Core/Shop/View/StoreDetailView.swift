@@ -38,10 +38,19 @@ struct StoreDetailView: View {
                     }
                     Spacer()
                     
-                    Link(destination: URL(string: "http://maps.apple.com/?ll=\(store.locationCoordinates[0]),\(store.locationCoordinates[1])")!) {
+                    // 지도앱으로 연결해서 pin찍기
+                    Button {
+                        openMapsAppWithPin(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1])
+                    } label: {
                         Image(systemName: "arrow.right.circle")
                             .font(Font.medium20)
                     }
+                    
+                    //이건 지도앱 연결만
+                    //                    Link(destination: URL(string: "http://maps.apple.com/?ll=\(store.locationCoordinates[0]),\(store.locationCoordinates[1])")!) {
+                    //                        Image(systemName: "arrow.right.circle")
+                    //                            .font(Font.medium20)
+                    //                    }
                 }
                 
                 Button {
@@ -129,6 +138,13 @@ struct StoreDetailView: View {
         else {
             print("[외부 앱 열기 실패]")
             print("주소 : \(url)")
+        }
+    }
+    
+    // 지도앱으로 넘어가서 pin 찍기
+    func openMapsAppWithPin(latitude: Double, longitude: Double) {
+        if let url = URL(string: "http://maps.apple.com/?q=\(store.locationCoordinates[0]),\(store.locationCoordinates[1])") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
