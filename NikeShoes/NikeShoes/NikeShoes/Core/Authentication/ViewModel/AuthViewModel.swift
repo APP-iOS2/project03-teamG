@@ -59,7 +59,7 @@ class AuthViewModel: ObservableObject {
                 "password": self.userInfoPassword
             ]
 
-            Firestore.firestore().collection("users")
+            Firestore.firestore().collection("user")
                 .document(user.uid)
                 .setData(data) { _ in
                     print("DEBUG: Did upload user data")
@@ -82,7 +82,7 @@ class AuthViewModel: ObservableObject {
         let uid = user.uid
         
         // Firestore에서 사용자 데이터 삭제
-        Firestore.firestore().collection("users").document(uid).delete { error in
+        Firestore.firestore().collection("user").document(uid).delete { error in
             if let error = error {
                 print("DEBUG: Error deleting user data from Firestore: \(error.localizedDescription)")
                 return
