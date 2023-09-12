@@ -117,6 +117,8 @@ struct ProductDetailView: View {
                     .padding(.bottom, 25)
                     
                     ProductPhotoView()
+                    
+                    StylingView()
                 }
             }
             .navigationTitle(ShoesSampleData[1].name)
