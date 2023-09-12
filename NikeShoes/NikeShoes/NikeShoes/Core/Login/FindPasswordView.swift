@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct FindPasswordView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    @Binding var screen: LoginRegisterScreen
+    
     @State private var certificationCode: String = ""
     @State private var newPassword: String = ""
     
@@ -40,11 +44,11 @@ struct FindPasswordView: View {
                 Text("*******1234")
                 
                 HStack {
-                    Text("test@nike.com")
+                    Text(authViewModel.userInfo.email)
                         .accentColor(.black)
                     
                     Button {
-                        // action ...
+                        screen = .loginRegister
                     } label: {
                         Text("편집")
                             .underline()
@@ -200,6 +204,6 @@ struct FindPasswordView: View {
 
 struct FindPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        FindPasswordView()
+        FindPasswordView(screen: .constant(.findPassword))
     }
 }
