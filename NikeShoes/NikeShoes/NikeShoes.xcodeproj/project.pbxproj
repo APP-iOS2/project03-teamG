@@ -36,6 +36,7 @@
 		3B199AD32AA7578B00C1E764 /* GenderTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEEF2AA5B816009FB78A /* GenderTabView.swift */; };
 		3B199AD42AA7579000C1E764 /* WishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEEA2AA5B816009FB78A /* WishView.swift */; };
 		3B199AD52AA7579400C1E764 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB82AA5AECD009FB78A /* ContentView.swift */; };
+		3B42BECC2AAEF8D500548F45 /* UserProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B42BECB2AAEF8D500548F45 /* UserProfileEditViewModel.swift */; };
 		3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */; };
 		3B44D3162AA6EB11007D8DA7 /* MemberRewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44D3152AA6EB11007D8DA7 /* MemberRewardView.swift */; };
 		3B44D3182AA6FF2D007D8DA7 /* MemberRewardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44D3172AA6FF2D007D8DA7 /* MemberRewardDetailView.swift */; };
@@ -45,6 +46,7 @@
 		3B6503AB2AA819A700908390 /* FollowingEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6503AA2AA819A700908390 /* FollowingEditCellView.swift */; };
 		3B78EBA72AAEBB4A00819E0A /* FollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */; };
 		3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */; };
+		3BFD7D112AB0010400E22D67 /* NikeShoesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BFD7D102AB0010400E22D67 /* NikeShoesCore */; };
 		63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */; };
 		642014DC2AAEB528002A6BC8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642014DB2AAEB528002A6BC8 /* AuthViewModel.swift */; };
 		64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64294BFC2AA6BEF6005CE57A /* SettingsViewModel.swift */; };
@@ -78,7 +80,6 @@
 		9617AEB72AA5AECC009FB78A /* NikeShoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEB62AA5AECC009FB78A /* NikeShoesApp.swift */; };
 		9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AEBA2AA5AED0009FB78A /* Assets.xcassets */; };
 		9617AEBE2AA5AED0009FB78A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9617AEBD2AA5AED0009FB78A /* Preview Assets.xcassets */; };
-		9617AEE32AA5AF97009FB78A /* NikeShoesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9617AEE22AA5AF97009FB78A /* NikeShoesCore */; };
 		9617AEF72AA5B816009FB78A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEE82AA5B816009FB78A /* HomeView.swift */; };
 		9617AEF92AA5B816009FB78A /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEEE2AA5B816009FB78A /* ShopView.swift */; };
 		9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617AEF62AA5B816009FB78A /* BagView.swift */; };
@@ -155,6 +156,7 @@
 		21FABC3F2AAEC2DF00546C17 /* SizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
 		21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeButtonView.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
+		3B42BECB2AAEF8D500548F45 /* UserProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEditViewModel.swift; sourceTree = "<group>"; };
 		3B44D3102AA6BFB2007D8DA7 /* ProfileContentLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentLabel.swift; sourceTree = "<group>"; };
 		3B44D3152AA6EB11007D8DA7 /* MemberRewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRewardView.swift; sourceTree = "<group>"; };
 		3B44D3172AA6FF2D007D8DA7 /* MemberRewardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRewardDetailView.swift; sourceTree = "<group>"; };
@@ -263,7 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */,
-				9617AEE32AA5AF97009FB78A /* NikeShoesCore in Frameworks */,
+				3BFD7D112AB0010400E22D67 /* NikeShoesCore in Frameworks */,
 				219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */,
 				968998302AAEF79C00F41C98 /* FirebaseFirestoreSwift in Frameworks */,
 				219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */,
@@ -407,6 +409,7 @@
 			children = (
 				643BB8462AA6B020000233A5 /* ProfileViewModel.swift */,
 				3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */,
+				3B42BECB2AAEF8D500548F45 /* UserProfileEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -715,13 +718,13 @@
 			);
 			name = NikeShoes;
 			packageProductDependencies = (
-				9617AEE22AA5AF97009FB78A /* NikeShoesCore */,
 				219FDADA2AA9A7B50046986B /* FirebaseAuth */,
 				219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */,
 				219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */,
 				1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */,
 				9689982D2AAEF79200F41C98 /* FirebaseFirestore */,
 				9689982F2AAEF79C00F41C98 /* FirebaseFirestoreSwift */,
+				3BFD7D102AB0010400E22D67 /* NikeShoesCore */,
 			);
 			productName = NikeShoes;
 			productReference = 9617AEB32AA5AECC009FB78A /* NikeShoes.app */;
@@ -811,6 +814,7 @@
 				214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */,
 				21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */,
 				84F690E92AA6E7760058DDEF /* StoreMapView.swift in Sources */,
+				3B42BECC2AAEF8D500548F45 /* UserProfileEditViewModel.swift in Sources */,
 				219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */,
 				9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */,
 				21FABC412AAEC2DF00546C17 /* SizeView.swift in Sources */,
@@ -1166,7 +1170,7 @@
 			package = 219FDAD92AA9A7B50046986B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
 		};
-		9617AEE22AA5AF97009FB78A /* NikeShoesCore */ = {
+		3BFD7D102AB0010400E22D67 /* NikeShoesCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NikeShoesCore;
 		};

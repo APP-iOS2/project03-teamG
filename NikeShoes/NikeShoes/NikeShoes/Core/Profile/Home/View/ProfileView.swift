@@ -28,7 +28,6 @@ struct ProfileView: View {
                 ProfileEditView(isProfileEditClicked: $isProfileEditClicked)
             }
         }
-       
     }
 }
 
