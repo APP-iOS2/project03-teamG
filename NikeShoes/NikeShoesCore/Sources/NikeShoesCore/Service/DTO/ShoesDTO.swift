@@ -16,10 +16,36 @@ public struct ShoesDTO: Codable, Identifiable {
     public var description: String
     public var price: Int
     public var size: [Int]
-    public var colors: [productColor]
+    public var colors: [ProductColor]
     public var imageURLString: [String]
     public var speciality: [Speciality]
     public var stylingImage: [String]
+    
+    public init(
+            id: String? = nil,
+            name: String,
+            category: Gender,
+            modelName: ModelName,
+            description: String,
+            price: Int,
+            size: [Int],
+            colors: [ProductColor],
+            imageURLString: [String],
+            speciality: [Speciality],
+            stylingImage: [String]
+        ) {
+            self.id = id
+            self.name = name
+            self.category = category
+            self.modelName = modelName
+            self.description = description
+            self.price = price
+            self.size = size
+            self.colors = colors
+            self.imageURLString = imageURLString
+            self.speciality = speciality
+            self.stylingImage = stylingImage
+        }
 }
 
 public enum Gender: String, Codable, CaseIterable, Equatable {
@@ -41,7 +67,7 @@ public enum Speciality: String, Codable, CaseIterable, Equatable {
     case hot
 }
 
-public enum productColor: String, Codable, CaseIterable, Equatable {
+public enum ProductColor: String, Codable, CaseIterable, Equatable {
     case black
     case red
     case white
