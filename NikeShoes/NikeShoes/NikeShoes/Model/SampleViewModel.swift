@@ -18,15 +18,15 @@ class SampleViewModel {
 
     // 모델은 베이스로 정해놓음
     //
-    // Todo: db path 정의해서 만들기
+    // TODO: db path 정의해서 만들기
     //
-    // Todo: Service 쪽 generic으로 만들기
+    // TODO: Service 쪽 generic으로 만들기
 
-    // Todo: ViewModel 만들기
+    // TODO: ViewModel 만들기
     //
-    // Todo: ViewModel -> View로 데이터 바인딩
+    // TODO: ViewModel -> View로 데이터 바인딩
     //
-    // Todo: 전체 앱에서 공유할 객체 정하기?
+    // TODO: 전체 앱에서 공유할 객체 정하기?
     
     init(service: FirestoreService = DefaultFireStoreService()) {
         self.service = service

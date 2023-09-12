@@ -53,7 +53,7 @@ struct SearchItemView: View {
                                 }
                                 // 2. NavigationLink로 넘어가면 이전 화면이 검색화면 이므로 문제가 될 수 있다.
                                 // 2.1 아니면 아예 못돌아오게 Back 버튼을 순기던지
-                                SearchResultView(search: searchText)
+                                
                             } else {// 빈 텍스트 or 스페이스바 밖에 없어서 빈 텍스트로 변한 것
                                 // 그냥 아무 동작도 안하는게 좋을듯
                                 self.focused = true // 키보드가 계속 올라와 있게 유지
@@ -132,7 +132,8 @@ struct SearchItemView: View {
                         ForEach(searchHistory, id: \.self) { item in
                             HStack {
                                 Button {
-                                    //검색 순서
+                                    // 1. 누르면 바로 최근 검색순 1위로 올라가야 함
+                                    // 어떻게 지울까?
                                     searchHistory.insert(item, at: 0)
                                     for index in 1..<searchHistory.count {
                                          if searchHistory[index] == item {// 기존에 존재한 검색인 경우
@@ -141,7 +142,6 @@ struct SearchItemView: View {
                                         }
                                     }
                                     // 2. 검색어를 들고 해당 뷰로 넘어가야 함
-                                    
                                 } label: {
                                     Text(item)
                                         .font(.system(size: 12))
