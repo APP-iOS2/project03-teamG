@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Following: Identifiable{
+public struct Following: Identifiable, Codable {
     public let id: UUID = UUID()
     public let title: String
     public let imageURL: String
