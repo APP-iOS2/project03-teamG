@@ -37,8 +37,10 @@ struct StoreDetailView: View {
                         Text(store.detailAddress)
                     }
                     Spacer()
+                    
+                    // 지도앱으로 연결해서 pin찍기
                     Button {
-                        isShowingMap = true
+                        openMapsAppWithPinAndName(name: store.name, latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1])
                     } label: {
                         Image(systemName: "arrow.right.circle")
                             .font(Font.medium20)
@@ -53,7 +55,7 @@ struct StoreDetailView: View {
                 }
                 
                 Divider()
-                    // 영업이 종료된 경우
+                // 영업이 종료된 경우
                 if store.operationTime > store.terminatedTime {
                     HStack {
                         Text("영업 종료")
@@ -97,10 +99,6 @@ struct StoreDetailView: View {
                 
             }
         }
-        // 매장 위치 보여주는 맵뷰 띄우는 sheet
-        .sheet(isPresented: $isShowingMap) {
-            StoreMapView(store: store, isShowingMap: $isShowingMap)
-        }
         // 전화번호 누르면 나오는 dialog
         .confirmationDialog("매장 전화 연결", isPresented: $callingStore) {
             Button {
@@ -130,6 +128,14 @@ struct StoreDetailView: View {
         else {
             print("[외부 앱 열기 실패]")
             print("주소 : \(url)")
+        }
+    }
+    
+    // 지도앱으로 넘어가서 pin 찍기, 위치 이름 나오게하기
+    func openMapsAppWithPinAndName(name: String, latitude: Double, longitude: Double) {
+        if let encodedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: "http://maps.apple.com/?q=\(encodedName)&ll=\(latitude),\(longitude)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
