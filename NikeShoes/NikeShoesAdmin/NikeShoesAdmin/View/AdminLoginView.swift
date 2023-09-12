@@ -40,29 +40,40 @@ struct AdminLoginView: View {
     @State private var cautionPassword: String = ""
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Text("등록된 관리자 계정으로 로그인을 진행해주세요.")
-                    .font(.body)
-                    .padding(.bottom, 12)
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("등록된 관리자 계정으로 로그인을 진행해주세요.")
+                        .font(.body)
+                        .padding(.bottom, 12)
+                    
+                    NameTextField
+                    
+                    PasswordTextField
+                    
+                    AgreePrivacyPolicyandTerms
+                    
+                    HStack {
+                        Spacer()
+//                        NavigationLink {
+//                            ContentView()
+//                        } label: {
+//                            Text("dddd")
+//                        }
 
-                NameTextField
-                
-                PasswordTextField
-                
-                AgreePrivacyPolicyandTerms
-                
-                HStack {
-                    Spacer()
-                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                        forNextView = true
+
+                        ButtonView(buttonText: "계속", foreground: .white, background: .black) {
+                            forNextView = true
+                        }
+                        Spacer()
                     }
-                    Spacer()
                 }
-        }
+            }
+     
         }.fullScreenCover(isPresented: $forNextView) {
             ContentView()
         }
+        //.navigationBarBackButtonHidden()
         
         .padding(.horizontal)
     }
@@ -202,6 +213,7 @@ struct AdminLoginView: View {
             return false
         }
     }
+        
 }
 
 struct AdminLoginView_Previews: PreviewProvider {
