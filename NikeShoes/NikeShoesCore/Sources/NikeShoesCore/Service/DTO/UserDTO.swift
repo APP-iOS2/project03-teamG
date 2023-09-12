@@ -21,4 +21,19 @@ public struct UserDTO: Codable {
     public var size: [Int]
     public var activityArea : String //활동 지역(프로필 수정 뷰)
     public var introContent: String //자기소개(프로필 수정 뷰)
+    
+    public init(id: String? = nil, firstName: String, lastName: String, email: String, phoneNumber: String, dateOfBirth: String, memberReward: String, address: [AddressDTO], following: [Following], size: [Int], activityArea: String, introContent: String) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.phoneNumber = phoneNumber
+        self.dateOfBirth = dateOfBirth
+        self.memberReward = memberReward
+        self.address = address
+        self.following = following
+        self.size = size
+        self.activityArea = activityArea
+        self.introContent = introContent
+    }
 }
