@@ -18,14 +18,13 @@ struct NikeNewsView: View {
     private var headerSection: some View {
         HStack(alignment: .bottom) {
             Text("나이키 소식")
-                .font(.medium20)
+                .font(.title)
             Spacer()
-            NavigationLink(destination: Text("소식 모두 보기")) {
-                Text("모두 보기")
-                    .font(.system(size: 16))
-                    .fontWeight(.regular)
-                    .foregroundColor(.textGray)
+            Button("모두 보기") {
+                // 아무 동작 X
             }
+            .font(.system(size: 16))
+            .foregroundColor(Color.gray)
         }
         .padding(EdgeInsets(top: 1, leading: 16, bottom: 20, trailing: 16))
     }
@@ -55,18 +54,18 @@ struct NikeNewsView: View {
             .bold()
             .font(.system(size: 40, weight: .heavy))
             .foregroundColor(.white)
-            .padding(.bottom, -10)  // 텍스트와 버튼 사이의 간격을 줄이기 위해
+            .padding(.bottom, -10)
     }
     // 콘텐츠내 버튼
     private var actionButton: some View {
-        NavigationLink(destination: Text("자세한 내용")) {
-            Text("자세히 보기")
-                .foregroundColor(.black)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color.white)
-                .cornerRadius(50)
+        Button("자세히 보기") {
+            // 아무 동작 X
         }
+        .foregroundColor(.black)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(Color.white)
+        .cornerRadius(50)
     }
 }
 
