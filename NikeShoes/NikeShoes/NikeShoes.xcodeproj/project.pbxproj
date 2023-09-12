@@ -59,6 +59,7 @@
 		64CD99882AA711C8008D3094 /* AddressEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99872AA711C8008D3094 /* AddressEditView.swift */; };
 		64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99892AA7183C008D3094 /* LocationView.swift */; };
 		64CD99902AA81234008D3094 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD998F2AA81234008D3094 /* LanguageView.swift */; };
+		841893902AAFF8C300798BA4 /* StoreSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */; };
 		84F690E12AA6CBB70058DDEF /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E02AA6CBB70058DDEF /* StoreView.swift */; };
 		84F690E32AA6CC190058DDEF /* StoreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E22AA6CC190058DDEF /* StoreItemView.swift */; };
 		84F690E72AA6CE9E0058DDEF /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */; };
@@ -179,6 +180,7 @@
 		64CD99872AA711C8008D3094 /* AddressEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressEditView.swift; sourceTree = "<group>"; };
 		64CD99892AA7183C008D3094 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		64CD998F2AA81234008D3094 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchView.swift; sourceTree = "<group>"; };
 		84F690E02AA6CBB70058DDEF /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		84F690E22AA6CC190058DDEF /* StoreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemView.swift; sourceTree = "<group>"; };
 		84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				9617AEEE2AA5B816009FB78A /* ShopView.swift */,
 				A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */,
 				84F690E02AA6CBB70058DDEF /* StoreView.swift */,
+				8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */,
 				84F690E22AA6CC190058DDEF /* StoreItemView.swift */,
 				84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */,
 				84F690E82AA6E7760058DDEF /* StoreMapView.swift */,
@@ -903,6 +906,7 @@
 				A074C45B2AA6EE190081DB7F /* CustomerServiceView.swift in Sources */,
 				96410E512AA88052004C5313 /* StoreData.swift in Sources */,
 				64294BFD2AA6BEF6005CE57A /* SettingsViewModel.swift in Sources */,
+				841893902AAFF8C300798BA4 /* StoreSearchView.swift in Sources */,
 				A074C4622AA813770081DB7F /* NavigationNikeSetting.swift in Sources */,
 				64CD99842AA6E85E008D3094 /* CustomButton.swift in Sources */,
 				64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */,
