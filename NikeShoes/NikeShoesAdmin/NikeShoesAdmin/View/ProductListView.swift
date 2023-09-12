@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @StateObject private var viewModel = ProductViewModel()
+    @StateObject var viewModel = ProductViewModel()
 
     var body: some View {
-        List($viewModel.shoes, id: \.self) { shoes in
+        List(viewModel.shoes.indices, id: \.self) { index in
             NavigationLink {
-                ProductEditView(shoes: shoes)
+                ProductEditView(shoes: $viewModel.shoes[index])
             } label: {
-                Text(shoes.wrappedValue.name)
+                Text(viewModel.shoes[index].name)
             }
-            
+
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
-                    ProductAddView()
+                    ProductAddView(viewModel: viewModel)
                 } label: {
                     Image(systemName: "plus")
                 }

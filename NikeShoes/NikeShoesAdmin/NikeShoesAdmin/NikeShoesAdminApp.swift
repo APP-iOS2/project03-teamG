@@ -7,8 +7,9 @@
 
 import SwiftUI
 import FirebaseCore
-import FirebaseFirestore
-import NikeShoesCore
+
+//import FirebaseFirestore
+//import NikeShoesCore
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -19,14 +20,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    func serviceLocator() -> FirestoreService {
-        return DefaultFireStoreService()
-    }
+
+
+//    func serviceLocator() -> FirestoreService {
+//        return DefaultFireStoreService()
+//    }
 }
 
 @main
-struct NikeShoesAdminApp: App {
+struct NikeShoesAdminApp: App  {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
+
     var body: some Scene {
         WindowGroup {
             PromotionView()
