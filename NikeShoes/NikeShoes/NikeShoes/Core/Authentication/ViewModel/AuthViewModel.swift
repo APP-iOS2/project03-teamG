@@ -34,22 +34,23 @@ class AuthViewModel: ObservableObject {
         print("DEBUG: User session: \(String(describing: userSession))")
     }
     
-    func signIn(_ email: String, _ password: String) -> Bool {
-        var signInResult: Bool = false
-        
+    func signIn(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: signIn Error \(error.localizedDescription)")
+                completion(false) // 로그인 실패 시 false 반환
                 return
             }
             
-            guard let user = result?.user else { return }
+            guard let user = result?.user else {
+                completion(false) // 사용자가 nil일 경우 false 반환
+                return
+            }
+            
             self.userSession = user
             print("DEBUG: signIn User successfully")
-            signInResult = true
+            completion(true) // 로그인 성공 시 true 반환
         }
-        
-        return signInResult
     }
     
     func register() {
@@ -79,22 +80,18 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func isAlreadySignUp(_ email: String) async -> Bool {
-        // TODO: document(userSession!.uid) 말고 전체 문서에 대한 데이터 접근 필요...
+    func isAlreadySignUp(_ email: String) async throws -> Bool {
         do {
-            let datas = try await Firestore.firestore().collection("user").document(userSession!.uid).getDocument()
-            if let data = datas.data(), !data.isEmpty {
-                if data["email"]! as! String == email {
+            let datas = try await Firestore.firestore().collection("user").getDocuments()
+            for document in datas.documents {
+                let data = document.data()
+                if let documentEmail = data["email"] as? String, documentEmail == email {
                     return true
-                } else {
-                    return false
                 }
-            } else {
-                return false
             }
-        } catch {
-            print("\(error.localizedDescription)")
             return false
+        } catch {
+            throw error
         }
     }
     
