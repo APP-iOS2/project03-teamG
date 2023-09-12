@@ -17,12 +17,11 @@ struct ContentView: View {
 //    var viewModel: SampleViewModel
 
     var body: some View {
-//        if authViewModel.userSession != nil {
-//            MainTabView()
-//        } else {
-//            OnBoardingView()
-//        }
-        StoreView()
+        if authViewModel.userSession != nil {
+            MainTabView()
+        } else {
+            OnBoardingView()
+        }
     }
 }
 
