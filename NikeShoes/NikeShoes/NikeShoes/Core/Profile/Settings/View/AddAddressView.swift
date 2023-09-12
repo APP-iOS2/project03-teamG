@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct AddAddressView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: AddressViewModel
-
+    @ObservedObject var addressViewModel: AddressViewModel
+    
     @State private var name = ""
     @State private var city = ""
     @State private var district = ""
@@ -51,9 +52,12 @@ struct AddAddressView: View {
             CustomButton(
                 background: .black,
                 foregroundColor: .white,
-                title: "Save Address",
-                action: validateAndSaveAddress
-            )
+                title: "Save Address"
+            ) {
+                Task {
+                    validateAndSaveAddress
+                }
+            }
             .padding()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Invalid Input"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -62,31 +66,31 @@ struct AddAddressView: View {
         .navigationTitle("Add New Address")
     }
     
-    func validateAndSaveAddress() {
-            if name.isEmpty || city.isEmpty || district.isEmpty || town.isEmpty || fullAddress.isEmpty || postalCode.isEmpty || phoneNumber.isEmpty || country.isEmpty {
-                alertMessage = "정보를 모두 입력하세요."
-                showAlert = true
-                return
-            }
-
-            let newAddress = Address(
-                name: name,
-                city: city,
-                district: district,
-                town: town,
-                fullAddress: fullAddress,
-                postalCode: postalCode,
-                phoneNumber: phoneNumber,
-                country: country,
-                isDefault: isDefault
-            )
-            viewModel.addAddress(address: newAddress)
-            presentationMode.wrappedValue.dismiss()
+    func validateAndSaveAddress() async {
+        if name.isEmpty || city.isEmpty || district.isEmpty || town.isEmpty || fullAddress.isEmpty || postalCode.isEmpty || phoneNumber.isEmpty || country.isEmpty {
+            alertMessage = "정보를 모두 입력하세요."
+            showAlert = true
+            return
         }
+        
+        let newAddress = AddressDTO(
+            name: name,
+            city: city,
+            district: district,
+            town: town,
+            fullAddress: fullAddress,
+            postalCode: postalCode,
+            phoneNumber: phoneNumber,
+            country: country,
+            isDefault: isDefault
+        )
+        await addressViewModel.addAddress(address: newAddress)
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct AddAddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddAddressView(viewModel: AddressViewModel())
+        AddAddressView(addressViewModel: AddressViewModel())
     }
 }

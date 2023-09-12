@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhonNumberView: View {
     @Environment(\.presentationMode) var presentationMode
+    let userInfoEdit = UserInfoEditViewModel()
     let title: String
 
     @State private var nationCode: String = ""
@@ -105,7 +106,10 @@ struct PhonNumberView: View {
                     foregroundColor: canSendCode ? Color.white : Color.black.opacity(0.5),
                     title: "코드전송"
                 ) {
-                    self.presentationMode.wrappedValue.dismiss()
+                    Task {
+                        await userInfoEdit.updatePhoneNumber(newPhoneNumber: phoneNumber)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
                 .padding()
                 .disabled(canSendCode)
