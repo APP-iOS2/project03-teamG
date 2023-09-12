@@ -37,9 +37,8 @@ struct StoreDetailView: View {
                         Text(store.detailAddress)
                     }
                     Spacer()
-                    Button {
-                        isShowingMap = true
-                    } label: {
+                    
+                    Link(destination: URL(string: "http://maps.apple.com/?ll=\(store.locationCoordinates[0]),\(store.locationCoordinates[1])")!) {
                         Image(systemName: "arrow.right.circle")
                             .font(Font.medium20)
                     }
@@ -53,7 +52,7 @@ struct StoreDetailView: View {
                 }
                 
                 Divider()
-                    // 영업이 종료된 경우
+                // 영업이 종료된 경우
                 if store.operationTime > store.terminatedTime {
                     HStack {
                         Text("영업 종료")
