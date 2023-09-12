@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReviewButtonView: View {
+struct ReviewButton: View {
     @State private var reviewToggle = false
     
     var body: some View {
@@ -63,6 +63,6 @@ struct ReviewButtonView: View {
 
 struct ReviewButton_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewButtonView()
+        ReviewButton()
     }
 }
