@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 struct ProductAddView: View {
     
     @ObservedObject var viewModel: ProductViewModel
-    @Environment (\.dismiss) var dismiss
     
     @State private var name: String = ""
     @State private var price: String = ""
@@ -84,8 +83,8 @@ struct ProductAddView: View {
                         
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("이미지 URL (2개 이상일 경우 붙여서작성)")
-                                TextField("ex)htttps://~~~https://~~~", text: $imageURLString)
+                                Text("이미지 URL")
+                                TextField("ex)htttps://~~~,https://~~~", text: $imageURLString)
                                     .textFieldStyle(.roundedBorder)
                             }
                             .padding(.trailing, 20)
@@ -234,7 +233,7 @@ struct ProductAddView: View {
                         .padding(.bottom)
                         
                         VStack(alignment: .leading) {
-                            Text("본문 URL 이미지(opt)(2개 이상일 경우 붙여서작성)")
+                            Text("본문 URL 이미지(opt)")
                             TextField("ex)https://~~~,https://~~~", text: $styilingImage)
                                 .textFieldStyle(.roundedBorder)
                         }
@@ -248,7 +247,6 @@ struct ProductAddView: View {
                     Button {
                         Task {
                             await addShoesDTO()
-                            dismiss()
                         }
                     } label: {
                         Text("추가")
@@ -295,14 +293,15 @@ struct ProductAddView: View {
     }
 
     private func makeURLStrings(inputString: String) -> [String] {
-        let separator: String = "https://"
-        let components = inputString.split(separator: separator)
-        if components.count > 0 {
-            let resultArray = components.map { "https://" + $0 }
-            return resultArray
-        } else {
-            return []
+        var result = [String]()
+        
+        let components = inputString.components(separatedBy: ",")
+        
+        
+        for component in components {
+            result.append(component)
         }
+        return result
     }
 }
 

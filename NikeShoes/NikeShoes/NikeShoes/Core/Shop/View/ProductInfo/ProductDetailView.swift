@@ -100,7 +100,7 @@ struct ProductDetailView: View {
                             
                             Divider()
                             
-                            ReviewButton()
+                            ReviewButtonView()
                             
                             Divider()
                             
