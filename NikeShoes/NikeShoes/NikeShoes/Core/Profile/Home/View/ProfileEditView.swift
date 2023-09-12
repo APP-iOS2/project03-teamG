@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct ProfileEditView: View {
-    @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel = UserProfileEditViewModel()
+    @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel
     @Binding var isProfileEditClicked: Bool
     @State private var firstName: String = "이름 없음"
     @State private var lastName: String = "이름 없음"
@@ -91,7 +91,7 @@ struct ProfileEditView: View {
 
 struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView(isProfileEditClicked: .constant(true))
+        ProfileEditView(userProfileEditViewModel: UserProfileEditViewModel(), isProfileEditClicked: .constant(true))
     }
 }
 
@@ -128,7 +128,6 @@ struct PhotoPicker: View {
                                 // 이미지 데이터를 파일로 저장
                                 do {
                                     try imageData.write(to: fileURL)
-                                    print("Image saved successfully.")
                                 } catch {
                                     print("Error saving image: \(error)")
                                 }
