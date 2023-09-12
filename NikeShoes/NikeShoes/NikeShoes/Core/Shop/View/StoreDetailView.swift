@@ -99,10 +99,6 @@ struct StoreDetailView: View {
                 
             }
         }
-        // 매장 위치 보여주는 맵뷰 띄우는 sheet
-        .sheet(isPresented: $isShowingMap) {
-            StoreMapView(store: store, isShowingMap: $isShowingMap)
-        }
         // 전화번호 누르면 나오는 dialog
         .confirmationDialog("매장 전화 연결", isPresented: $callingStore) {
             Button {
