@@ -52,9 +52,12 @@ struct AddAddressView: View {
             CustomButton(
                 background: .black,
                 foregroundColor: .white,
-                title: "Save Address",
-                action: validateAndSaveAddress
-            )
+                title: "Save Address"
+            ) {
+                Task {
+                    validateAndSaveAddress
+                }
+            }
             .padding()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Invalid Input"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -63,7 +66,7 @@ struct AddAddressView: View {
         .navigationTitle("Add New Address")
     }
     
-    func validateAndSaveAddress() {
+    func validateAndSaveAddress() async {
         if name.isEmpty || city.isEmpty || district.isEmpty || town.isEmpty || fullAddress.isEmpty || postalCode.isEmpty || phoneNumber.isEmpty || country.isEmpty {
             alertMessage = "정보를 모두 입력하세요."
             showAlert = true
@@ -81,7 +84,7 @@ struct AddAddressView: View {
             country: country,
             isDefault: isDefault
         )
-        addressViewModel.addAddress(address: newAddress)
+        await addressViewModel.addAddress(address: newAddress)
         presentationMode.wrappedValue.dismiss()
     }
 }

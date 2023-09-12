@@ -61,13 +61,15 @@ struct AddressEditView: View {
                 foregroundColor: .white,
                 title: "저장") {
                     // 배송지 업데이트
-                    updateAddress()
+                    Task {
+                        await updateAddress()
+                    }
                 }
         }
         .modifier(NavigationNikeSetting(title: title))
     }
     
-    func updateAddress() {
+    func updateAddress() async {
         let updatedAddress = AddressDTO(
             id: addressViewModel.addresses[index].id,
             name: name,
@@ -81,7 +83,7 @@ struct AddressEditView: View {
             isDefault: isDefault
         )
         
-        addressViewModel.updateAddress(address: updatedAddress)
+        await addressViewModel.updateAddress(address: updatedAddress)
         presentationMode.wrappedValue.dismiss()
     }
     
