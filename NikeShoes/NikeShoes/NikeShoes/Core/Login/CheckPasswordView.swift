@@ -96,10 +96,12 @@ struct CheckPasswordView: View {
                 .padding(.bottom, 35)
                 
                 ButtonView(buttonText: "로그인", foreground: .white, background: .black) {
-                    if authViewModel.signIn(authViewModel.userInfo.email, password) {
-                        screen = .loginCompleted
-                    } else {
-                        isMatchedPassword = false
+                    authViewModel.signIn(authViewModel.userInfo.email, password) { success in
+                        if success {
+                            screen = .loginCompleted
+                        } else {
+                            isMatchedPassword = false
+                        }
                     }
                 }
             }
@@ -114,18 +116,6 @@ struct CheckPasswordView: View {
         } else {
             cautionPassword = ""
             isPassworldValid = true
-        }
-        if isValidPassword(password) {
-            cautionPassword = ""
-            isPassworldValid = true
-        }
-    }
-    
-    func isValidPassword(_ password: String) -> Bool {
-        if password == "Nike1234" {
-            return true
-        } else {
-            return false
         }
     }
 }
