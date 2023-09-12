@@ -23,7 +23,7 @@ protocol ImageURL {
     var imageURL: URL { get }
 }
 
-struct Shoes: Identifiable, ImageURL, Hashable, Codable {
+struct Shoes: Identifiable, ImageURL, Hashable {
 
     let id: UUID = UUID()
     var name: String
