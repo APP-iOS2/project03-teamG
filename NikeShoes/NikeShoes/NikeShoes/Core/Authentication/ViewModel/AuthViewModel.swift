@@ -7,24 +7,38 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
+import NikeShoesCore
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
-    
-    @Published var userInfoEmail: String = ""
-    @Published var userInfoPhoneNumber: String = ""
-    @Published var userInfoBirth: String = ""
-    @Published var userInfoName: String = ""
+    @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
     
     init() {
         userSession = Auth.auth().currentUser
         
+        userInfo = UserDTO(
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            dateOfBirth: "",
+            memberReward: "",
+            address: [],
+            following: [],
+            size: [],
+            activityArea: "",
+            introContent: ""
+        )
+        
         print("DEBUG: User session: \(String(describing: userSession))")
     }
     
-    func signIn(email: String, password: String) {
+    func signIn(_ email: String, _ password: String) -> Bool {
+        var signInResult: Bool = false
+        
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: signIn Error \(error.localizedDescription)")
@@ -34,12 +48,14 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             self.userSession = user
             print("DEBUG: signIn User successfully")
-            
+            signInResult = true
         }
+        
+        return signInResult
     }
     
     func register() {
-        Auth.auth().createUser(withEmail: userInfoEmail, password: userInfoPassword) { result, error in
+        Auth.auth().createUser(withEmail: userInfo.email, password: userInfoPassword) { result, error in
             if let error = error {
                 print("DEBUG: Error registering new user: \(error.localizedDescription)")
                 return
@@ -50,21 +66,37 @@ class AuthViewModel: ObservableObject {
 
             print("DEBUG: Registered User successfully")
 
-            let data = [
-                "email": self.userInfoEmail,
-                "phoneNumber": self.userInfoPhoneNumber,
-                "dateOfBirth": self.userInfoBirth,
-                "name": self.userInfoName,
+            let data: [String: Any] = [
+                "firstName": self.userInfo.firstName,
+                "lastName": self.userInfo.lastName,
+                "email": self.userInfo.email,
+                "phoneNumber": self.userInfo.phoneNumber,
+                "dateOfBirth": self.userInfo.dateOfBirth,
                 "country": self.userInfoCountry,
-                "password": self.userInfoPassword
             ]
 
-            Firestore.firestore().collection("users")
+            Firestore.firestore().collection("user")
                 .document(user.uid)
-                .setData(data) { _ in
-                    print("DEBUG: Did upload user data")
+                .setData(data, merge: true)
+        }
+    }
+    
+    func isAlreadySignUp(_ email: String) async -> Bool {
+        // TODO: document(userSession!.uid) 말고 전체 문서에 대한 데이터 접근 필요...
+        do {
+            let datas = try await Firestore.firestore().collection("user").document(userSession!.uid).getDocument()
+            if let data = datas.data(), !data.isEmpty {
+                if data["email"]! as! String == email {
+                    return true
+                } else {
+                    return false
                 }
-
+            } else {
+                return false
+            }
+        } catch {
+            print("\(error.localizedDescription)")
+            return false
         }
     }
     
@@ -82,7 +114,7 @@ class AuthViewModel: ObservableObject {
         let uid = user.uid
         
         // Firestore에서 사용자 데이터 삭제
-        Firestore.firestore().collection("users").document(uid).delete { error in
+        Firestore.firestore().collection("user").document(uid).delete { error in
             if let error = error {
                 print("DEBUG: Error deleting user data from Firestore: \(error.localizedDescription)")
                 return
