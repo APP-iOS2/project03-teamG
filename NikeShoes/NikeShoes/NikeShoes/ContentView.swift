@@ -18,9 +18,9 @@ struct ContentView: View {
 
     var body: some View {
 //        if authViewModel.userSession != nil {
-//            MainTabView()
+            MainTabView()
 //        } else {
-            OnBoardingView()
+//            OnBoardingView()
 //        }
     }
 }
