@@ -4,7 +4,7 @@ import NikeShoesCore
 struct AddressEditView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var addressViewModel: AddressViewModel
+    @ObservedObject var viewModel: AddressViewModel
     
     let title: String
     let index: Int
@@ -20,9 +20,12 @@ struct AddressEditView: View {
     @State private var isDefault: Bool
     
     init(title: String, viewModel: AddressViewModel, index: Int) {
+        if viewModel.addresses.isEmpty {
+            viewModel.addresses.append(sample)
+        }
         let address = viewModel.addresses[index]
         self.title = title
-        self.addressViewModel = viewModel
+        self.viewModel = viewModel
         self.index = index
         
         _name = State(initialValue: address.name)
@@ -50,7 +53,7 @@ struct AddressEditView: View {
                 AddressTextField(title: "postalCode", text: $postalCode)
                 AddressTextField(title: "phoneNumber", text: $phoneNumber)
                 AddressTextField(title: "country", text: $country)
-                
+               
             }
             .padding(.top)
             
@@ -61,17 +64,15 @@ struct AddressEditView: View {
                 foregroundColor: .white,
                 title: "저장") {
                     // 배송지 업데이트
-                    Task {
-                        await updateAddress()
-                    }
+                    updateAddress()
                 }
         }
         .modifier(NavigationNikeSetting(title: title))
     }
     
-    func updateAddress() async {
+    func updateAddress() {
         let updatedAddress = AddressDTO(
-            id: addressViewModel.addresses[index].id,
+            id: viewModel.addresses[index].id,
             name: name,
             city: city,
             district: district,
@@ -83,7 +84,8 @@ struct AddressEditView: View {
             isDefault: isDefault
         )
         
-        await addressViewModel.updateAddress(address: updatedAddress)
+        viewModel.addresses[index] = updatedAddress
+        viewModel.setAsDefault(index: index)
         presentationMode.wrappedValue.dismiss()
     }
     

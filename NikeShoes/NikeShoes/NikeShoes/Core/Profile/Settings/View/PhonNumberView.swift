@@ -12,7 +12,7 @@ struct PhonNumberView: View {
     let userInfoEdit = UserInfoEditViewModel()
     let title: String
 
-    @State private var nationCode: String = ""
+    @State private var nationCode: String = "+82"
     @State private var phoneNumber: String = ""
     @State private var isChecked: Bool = false
     @State private var canSendCode: Bool = false
@@ -112,7 +112,7 @@ struct PhonNumberView: View {
                     }
                 }
                 .padding()
-                .disabled(canSendCode)
+                .disabled(!canSendCode)
 
                 Spacer()
             }
@@ -165,8 +165,7 @@ struct PhonNumberView: View {
     }
 
     func validator(nationCode: String, phoneNumber: String) {
-        if !nationCode.isEmpty && !phoneNumber.isEmpty {
-            print(nationCode, phoneNumber)
+        if !phoneNumber.isEmpty {
             canSendCode = isChecked
             return
         }
