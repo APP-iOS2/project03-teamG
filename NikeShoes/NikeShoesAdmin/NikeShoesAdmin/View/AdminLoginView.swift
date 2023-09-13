@@ -10,7 +10,6 @@ import SwiftUI
 import SwiftUI
 
 struct AdminLoginView: View {
-    @Binding var index: Int
     @State var forNextView:Bool = false
     
     @State private var firstName: String = ""
@@ -41,35 +40,27 @@ struct AdminLoginView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("등록된 관리자 계정으로 로그인을 진행해주세요.")
-                        .font(.body)
-                        .padding(.bottom, 12)
+            VStack(alignment: .leading) {
+                Text("등록된 관리자 계정으로 로그인을 진행해주세요.")
+                    .font(.body)
+                    .padding(.bottom, 12)
+                
+                NameTextField
+                
+                PasswordTextField
+                
+                AgreePrivacyPolicyandTerms
+                
+                HStack {
+                    Spacer()
                     
-                    NameTextField
-                    
-                    PasswordTextField
-                    
-                    AgreePrivacyPolicyandTerms
-                    
-                    HStack {
-                        Spacer()
-//                        NavigationLink {
-//                            ContentView()
-//                        } label: {
-//                            Text("dddd")
-//                        }
-
-
-                        ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                            forNextView = true
-                        }
-                        Spacer()
+                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
+                        forNextView = true
                     }
+                    Spacer()
                 }
-            }
-     
+            }.frame(maxWidth: 500)
+            
         }.fullScreenCover(isPresented: $forNextView) {
             ContentView()
         }
@@ -218,6 +209,6 @@ struct AdminLoginView: View {
 
 struct AdminLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminLoginView(index: .constant(2))
+        AdminLoginView()
     }
 }
