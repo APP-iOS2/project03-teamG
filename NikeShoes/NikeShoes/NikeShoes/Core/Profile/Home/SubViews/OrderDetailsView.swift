@@ -10,13 +10,12 @@ import NikeShoesCore
 import Firebase
 
 struct OrderDetailsView: View {
-    @EnvironmentObject var orderViewModel: OrderViewModel
-    var dto: OrderDTO
+    @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
     
     var title: String
     
     var purchaseID: String = "C01272876223"
-    @State var price: Int = 179000
+    var price: Int = 179000
     
     var orderListImageURL: String = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d3123e79-53e5-4a03-aa5b-fbc5c18b9bfd/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-FBbeey7u.png"
     var productName: String = "에어 조던 1 로우 G"
@@ -25,14 +24,14 @@ struct OrderDetailsView: View {
     var productSerialNumber: String = "Style DD9315-104"
     var productColor: String = "화이트/미드나이트 네이비/블랙"
     
-//    var userName: String = "장수지"
+    var userName: String = "장수지"
     var streetAddress: String = "00로 00나길 0"
     var building: String = "000호"
     var province: String = "서울특별시"
     var district: String = "00구"
     var postalCode: String = "12345"
-//    var userEmail: String = "ddudi@gmail.com"
-//    var userPhoneNumber: String = "010-0000-0000"
+    var userEmail: String = "ddudi@gmail.com"
+    var userPhoneNumber: String = "010-0000-0000"
     
     var deliveryFee: Int = 0
     @State private var isModalPresented = false
@@ -42,8 +41,10 @@ struct OrderDetailsView: View {
             ScrollView {
                 Divider()
                 VStack(alignment: .leading) {
-                    Text("온라인 구매 - \(orderViewModel.toString(orderDate: dto.orderDate))")
+                    if let orderData = orderViewModel.orderData?.first?.orderDate {
+                        Text("온라인 구매 - \(orderData)")
                             .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
+                    }
                     
                     Text("\(purchaseID) ⏤ ₩\(price)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
@@ -53,10 +54,12 @@ struct OrderDetailsView: View {
                         .frame(height: 11)
                         .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
                     
-                        Text(dto.deliveryStatus.rawValue)
+                    if let orderData = orderViewModel.orderData?.first?.deliveryStatus {
+                        Text(orderData.rawValue)
                             .font(.bold16)
                             .foregroundColor(.nikeGreen)
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                    }
                     
                     HStack(alignment: .top, spacing: 15) {
                         AsyncImage(url: URL(string: orderListImageURL)) { image in
@@ -89,18 +92,16 @@ struct OrderDetailsView: View {
                     }
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 13, trailing: 0))
                     
-                    if dto.deliveryStatus == .orderComplete || dto.deliveryStatus == .paymentComfirm {
-                        HStack {
-                            Spacer()
-                            ButtonView(buttonText: "주문 취소", foreground: .white, background: .black) {
-                                self.isModalPresented.toggle()
-                            }
-                            .sheet(isPresented: $isModalPresented) {
-                                CancelOrderModalView(isModalPresented: self.$isModalPresented, price: $price)
-                                    .presentationDetents([.fraction(0.35), .large])
-                            }
-                            Spacer()
+                    HStack {
+                        Spacer()
+                        ButtonView(buttonText: "주문 취소", foreground: .white, background: .black) {
+                            self.isModalPresented.toggle()
                         }
+                        .sheet(isPresented: $isModalPresented) {
+                            CancelOrderModalView(isModalPresented: self.$isModalPresented)
+                                .presentationDetents([.fraction(0.35), .large])
+                        }
+                        Spacer()
                     }
                     
                     Rectangle()
@@ -117,19 +118,17 @@ struct OrderDetailsView: View {
                         Spacer()
                         
                         VStack(alignment: .trailing, spacing: 6) {
-                            if let orderData = orderViewModel.userData {
-                                Text("\(orderData.lastName)\(orderData.firstName)")
-                                
-                                HStack {
-                                    Text(province)
-                                    Text(district)
-                                }
-                                
-                                Text("\(streetAddress)")
-                                Text(postalCode)
-                                Text("\(orderData.email)")
-                                Text("\(orderData.phoneNumber)")
+                            Text(userName)
+                            
+                            HStack {
+                                Text(province)
+                                Text(district)
                             }
+                            
+                            Text(streetAddress)
+                            Text(postalCode)
+                            Text(userEmail)
+                            Text(userPhoneNumber)
                         }
                         .font(.medium16)
                         .foregroundColor(.gray)
@@ -211,12 +210,19 @@ struct OrderDetailsView: View {
         .navigationTitle("주문상세")
         .navigationBarTitleDisplayMode(.inline)
         .modifier(NavigationNikeSetting(title: title))
+        
+        .task {
+            do {
+                try await orderViewModel.fetchData()
+            } catch {
+                
+            }
+        }
     }
 }
 
 struct OrderDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailsView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .deliveryComplete, orderDate: Date()), title: "주문 상세")
-            .environmentObject(OrderViewModel())
+        OrderDetailsView(title: "주문 상세")
     }
 }
