@@ -378,8 +378,8 @@ struct ProductEditView: View {
         description = shoes.description
         selectedColors = shoes.colors
         selectedSpecialities = shoes.speciality
-        selectedModel = shoes.modelName
-        selectedGender = shoes.category
+        selectedModel = ModelName(rawValue: shoes.modelName) ?? .airForce
+        selectedGender = Gender(rawValue: shoes.category) ?? .female
     }
     
     private func makeSizeList() -> [Int] {
@@ -407,7 +407,7 @@ struct ProductEditView: View {
 struct ProductEditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ProductEditView(viewModel: ProductViewModel(), shoes: ShoesDTO(name: "나이키 에어포스", category: .kids, modelName: .airForce, description: "에어포스", price: 150000, size: [220,240,290], colors: [.black], imageURLString: ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAaVBMVEX///8AAADl5eX29vb5+fm8vLzs7OzKyspOTk7g4ODY2Nj8/PySkpKMjIyenp6bm5saGhrQ0NBcXFx1dXWnp6dtbW07Ozuurq7CwsIyMjJoaGh8fHxTU1MVFRUsLCwjIyNHR0eEhIQNDQ20t47jAAACCElEQVRoge3XyZaDIBAF0C6N4DzHKWpM/v8jWzO0RhHB4KLPqbsN+CJQCD8/CCGEEEIIIYQQQgj9O9phT9Z1zo8GPSZUK1Kbk0trR32mbrvVOeK1sKFQHUryJASPP3sEypPKTId6GUCbb41hC4G6UNuPoRdvL5i+HVGTqeVneLgJlEcAYCrIJIXXPkOvPq9y3mjf0v0yU4/8LnyGgmkIrRUy/MmvitcyqhLeqkiwIKuh9e7VTOjN/MuE8GKJdswfHXZl6lYQX8dQKAPx1ak1Q49MPpQYlxKmOrFpfXmUmnQu9Uz4JFCtU8Wz112ii5VWMCdSrR/e0yO4BvvBXWRC6Et/UtJ3X2O7rU7dbBkKtUDXOWecno2Gdl6HjFA42/Kpk9flvrBmJKwX7Qd44yu3qpk8hP3HSeSZDTMUsnTvt4ROH3NffPj1fuW27MxhExbZ+tmS+VyN69LpVy57cB8q7uFly3LobnlkW7YRrEzoy95pfaG8Z69q5Kt1xt2Raio4/iXbMTOJ8FeOJ5YLvbtqzmBOLZPapfvrZkbifeNC4fFadH6bZNcmvCoQSg1d1RdFSyC1zZXeX564m9LAPOZuurFhiZ9JZS0PSiNXWd0wrJVwvXmD/NKNEdq5hw3wKPoc62vsWwesYBYrr7qsbLPOTFJb0TVY1ImQI5cRQgghhBBCCCGEEELifgEUhRRaGyMaJgAAAABJRU5ErkJggg=="], speciality: [.hot, .newProduct], stylingImage: []))
+            ProductEditView(viewModel: ProductViewModel(), shoes: ShoesDTO(name: "나이키 에어포스", category: "키즈", modelName: "에어 포스 1", description: "에어포스", price: 150000, size: [220,240,290], colors: [.black], imageURLString: ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAaVBMVEX///8AAADl5eX29vb5+fm8vLzs7OzKyspOTk7g4ODY2Nj8/PySkpKMjIyenp6bm5saGhrQ0NBcXFx1dXWnp6dtbW07Ozuurq7CwsIyMjJoaGh8fHxTU1MVFRUsLCwjIyNHR0eEhIQNDQ20t47jAAACCElEQVRoge3XyZaDIBAF0C6N4DzHKWpM/v8jWzO0RhHB4KLPqbsN+CJQCD8/CCGEEEIIIYQQQgj9O9phT9Z1zo8GPSZUK1Kbk0trR32mbrvVOeK1sKFQHUryJASPP3sEypPKTId6GUCbb41hC4G6UNuPoRdvL5i+HVGTqeVneLgJlEcAYCrIJIXXPkOvPq9y3mjf0v0yU4/8LnyGgmkIrRUy/MmvitcyqhLeqkiwIKuh9e7VTOjN/MuE8GKJdswfHXZl6lYQX8dQKAPx1ak1Q49MPpQYlxKmOrFpfXmUmnQu9Uz4JFCtU8Wz112ii5VWMCdSrR/e0yO4BvvBXWRC6Et/UtJ3X2O7rU7dbBkKtUDXOWecno2Gdl6HjFA42/Kpk9flvrBmJKwX7Qd44yu3qpk8hP3HSeSZDTMUsnTvt4ROH3NffPj1fuW27MxhExbZ+tmS+VyN69LpVy57cB8q7uFly3LobnlkW7YRrEzoy95pfaG8Z69q5Kt1xt2Raio4/iXbMTOJ8FeOJ5YLvbtqzmBOLZPapfvrZkbifeNC4fFadH6bZNcmvCoQSg1d1RdFSyC1zZXeX564m9LAPOZuurFhiZ9JZS0PSiNXWd0wrJVwvXmD/NKNEdq5hw3wKPoc62vsWwesYBYrr7qsbLPOTFJb0TVY1ImQI5cRQgghhBBCCCGEEELifgEUhRRaGyMaJgAAAABJRU5ErkJggg=="], speciality: [.hot, .newProduct], stylingImage: []))
         }
     }
 }

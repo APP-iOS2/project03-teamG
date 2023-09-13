@@ -43,7 +43,7 @@ class OrderViewModel: ObservableObject {
     func createOrder(orderDTO: OrderDTO) async throws {
         do {
             let _: String = try await
-            service.create(send: orderDTO, collection: .orderlist)
+            service.create(send: orderDTO, collection: .orderlist, document: nil, collection2: nil)
         } catch {
             throw error
         }

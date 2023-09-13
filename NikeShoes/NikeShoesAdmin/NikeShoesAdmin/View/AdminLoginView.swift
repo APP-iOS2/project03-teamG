@@ -42,7 +42,7 @@ struct AdminLoginView: View {
         NavigationStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.clear)
-                .frame(width: 500, height: .infinity)
+                .frame(width: 500)
                 .padding(.vertical)
             //                .fill(.white)
             
