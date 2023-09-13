@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var itemListViewModel: ItemListViewModel
     
     var userName: String = "최소정"
     @State var isShowingSearchSheet: Bool = false
@@ -65,6 +66,9 @@ struct HomeView: View {
                     .font(.regular12)
             }
             .padding(20)
+        }
+        .task {
+            await itemListViewModel.action()
         }
         .toolbar {
             ToolbarItem {
