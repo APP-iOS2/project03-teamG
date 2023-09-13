@@ -37,7 +37,7 @@ struct ItemListView: View {
                     ForEach(itemListViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: data)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
