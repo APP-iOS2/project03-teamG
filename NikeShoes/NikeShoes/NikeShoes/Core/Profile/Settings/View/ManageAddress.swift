@@ -23,7 +23,7 @@ struct ManageAddress: View {
             
             Spacer()
             
-            NavigationLink(destination: AddAddressView(addressViewModel: addressviewModel)) {
+            NavigationLink(destination: AddAddressView(viewModel: addressviewModel)) {
                 Text("배송지 추가")
                     .font(.system(size: 18))
                     .frame(width: 351, height: 63)
@@ -34,10 +34,9 @@ struct ManageAddress: View {
             
         }
         .modifier(NavigationNikeSetting(title: title))
-        .task {
-            await addressviewModel.fetchAddresses()
+        .onAppear() {
+            addressviewModel.fetchData()
         }
-        
     }
 }
 
