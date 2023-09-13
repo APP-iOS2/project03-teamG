@@ -14,15 +14,16 @@ struct CollectionInfo {
     let imageURL: String
     let speciality: Speciality?
     let navigationTitle: String
+    let customTabs: [String]
 }
 
 struct AppBestCollectionView: View {
     // 샘플 컬렉션 데이터
     var sampleCollections: [CollectionInfo] = [
-        CollectionInfo(title: "앱 전용 제품", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/0a286516-b1a3-4a3d-975f-170b7b8a7a50/nike-just-do-it.jpg", speciality: .onlyApp, navigationTitle: "앱 전용 제품"),
-        CollectionInfo(title: "신제품", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/de43c365-10d2-41c9-89ba-7ed7cbcdb817/nike-just-do-it.jpg", speciality: .newProduct, navigationTitle: "신제품"),
-        CollectionInfo(title: "이번 주 베스트", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/30dc6933-29ef-4973-a3f5-947e9f23a122/nike-just-do-it.jpg", speciality: .hot, navigationTitle: "이번 주 베스트"),
-        CollectionInfo(title: "전체 제품 보기", imageURL: "https://static.nike.com/a/images/w_960,c_limit,f_auto/e2330902-f398-4559-95c1-405cdef9fc66/get-%E2%80%98em-while-you-can.jpg", speciality: nil, navigationTitle: "전체 제품 보기")
+        CollectionInfo(title: "앱 전용 제품", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/0a286516-b1a3-4a3d-975f-170b7b8a7a50/nike-just-do-it.jpg", speciality: .onlyApp, navigationTitle: "앱 전용 제품", customTabs: ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]),
+        CollectionInfo(title: "신제품", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/de43c365-10d2-41c9-89ba-7ed7cbcdb817/nike-just-do-it.jpg", speciality: .newProduct, navigationTitle: "신제품", customTabs: ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]),
+        CollectionInfo(title: "이번 주 베스트", imageURL: "https://static.nike.com/a/images/f_auto/dpr_1.7,cs_srgb/w_827,c_limit/30dc6933-29ef-4973-a3f5-947e9f23a122/nike-just-do-it.jpg", speciality: .hot, navigationTitle: "이번 주 베스트", customTabs: ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]),
+        CollectionInfo(title: "전체 제품 보기", imageURL: "https://static.nike.com/a/images/w_960,c_limit,f_auto/e2330902-f398-4559-95c1-405cdef9fc66/get-%E2%80%98em-while-you-can.jpg", speciality: nil, navigationTitle: "전체 제품 보기", customTabs: ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"])
     ]
     
     var currentGender: String
@@ -45,7 +46,8 @@ struct AppBestCollectionView: View {
                                 speciality: collection.speciality,
                                 modelName: nil,
                                 navigationTitle: collection.navigationTitle,
-                                currentGender: currentGender
+                                currentGender: currentGender,
+                                customTabs: collection.customTabs
                             )
                         ) {
                             VStack(alignment: .leading) {

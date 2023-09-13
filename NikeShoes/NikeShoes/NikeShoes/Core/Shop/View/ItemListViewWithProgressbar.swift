@@ -15,14 +15,16 @@ struct ItemListViewWithProgressbar: View {
     var speciality: Speciality?
     var currentGender: String
     var modelName: ModelName?
+    var tabs: [String]
     
     // 초기화
-    init(speciality: Speciality?, modelName: ModelName?, navigationTitle: String, currentGender: String) {
+    init(speciality: Speciality?, modelName: ModelName?, navigationTitle: String, currentGender: String, customTabs: [String]) {
         self.speciality = speciality
         self.modelName = modelName
         self.navigationTitle = navigationTitle
         self.currentGender = currentGender
         self.viewModel = ItemListViewModel()
+        self.tabs = customTabs
     }
     
     // 환경 변수 설정
@@ -42,7 +44,7 @@ struct ItemListViewWithProgressbar: View {
     @State private var progressBarWidth: CGFloat = 0
     
     // 탭 목록
-    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
+//    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel
     @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
@@ -57,9 +59,10 @@ struct ItemListViewWithProgressbar: View {
                 // 상품 그리드 뷰
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.shoes.filter {
-                        ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil) &&
+                        ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
                         ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
-                        ($0.category == self.currentGender || self.currentGender == "공용")
+                        ($0.category == self.currentGender || self.currentGender == "공용") &&
+                        ($0.modelName == self.selectedTab || self.selectedTab == "전체")
                     }) { data in
                             NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                                 // 상품 카드 뷰
@@ -139,6 +142,7 @@ struct ItemListViewWithProgressbar: View {
 
 struct ItemListViewWithProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성")
+        ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성", customTabs: ["전체", "에어맥스", "에어포스"])
+
     }
 }
