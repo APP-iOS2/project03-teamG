@@ -11,11 +11,11 @@ import NikeShoesCore
 struct MainTabView: View {
     @State private var selectedIndex = 0
     @State var userPromCode = ""
-    var shoes: Shoes = Shoes(name: "", category: .female, modelName: .airForce, price: 0, size: [250], description: "", imageURLString: "", like: false)
+    var shoesData: ShoesDTO = ShoesDTO(name: "", category: "", modelName: "", description: "", price: 0, size: [1], colors: [ProductColor.black], imageURLString: [""], speciality: [Speciality.hot], stylingImage: [""])
     
     var body: some View {
         TabView(selection: $selectedIndex) {
-            Group {
+//            Group {
                 NavigationStack {
                     HomeView()
                 }
@@ -49,7 +49,7 @@ struct MainTabView: View {
                 }.tag(2)
 
                 NavigationStack {
-                    BagView(userPromCode: $userPromCode, shoes: Shoes(name: shoes.name, category: Gender(rawValue: shoes.category.rawValue) ?? .female, modelName: self.shoes.modelName, price: shoes.price, size: shoes.size, description: shoes.description, imageURLString: shoes.imageURLString, like: false))
+                    BagView(userPromCode: $userPromCode, shoesData: ShoesDTO(name: shoesData.name, category: shoesData.category, modelName: shoesData.modelName, description: shoesData.description, price: shoesData.price, size: shoesData.size, colors: shoesData.colors, imageURLString: shoesData.imageURLString, speciality: shoesData.speciality, stylingImage: shoesData.stylingImage))
                 }
                 .onTapGesture {
                     self.selectedIndex = 3
@@ -72,11 +72,11 @@ struct MainTabView: View {
             }
             .toolbarBackground( .white, for: .tabBar)
         }
-    }
+//    }
 }
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(shoes: Shoes(name: "나이키 에어 포스 1 '07 이지온", category: .female, modelName: .airForce, price: 139000, size: ShoesSampleData[1].size, description: ShoesSampleData[1].description, imageURLString: ShoesSampleData[1].imageURLString, like: false))
+        MainTabView(shoesData: ShoesDTO(name: "", category: "", modelName: "", description: "", price: 0, size: [1], colors: [ProductColor.black], imageURLString: [""], speciality: [Speciality.hot], stylingImage: [""]))
     }
 }
