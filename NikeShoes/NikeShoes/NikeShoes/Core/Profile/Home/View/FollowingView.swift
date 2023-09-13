@@ -20,17 +20,16 @@ struct FollowingView: View {
                     .font(.medium12)
                     .bold()
                 Spacer()
-                NavigationLink(destination: FollowingDetailView()) {}
-                    .opacity(0)
-                    .background(
-                        HStack {
-                            Spacer()
-                            Text("편집")
-                                .font(.regular12)
-                                .foregroundColor(.gray)
-                        }
-                    )
-            }
+                NavigationLink(destination: FollowingDetailView().environmentObject(followingViewModle), label: {
+                    HStack {
+                        Spacer()
+                        Text("편집")
+                            .font(.regular12)
+                            .foregroundColor(.gray)
+                    }
+                })
+                  
+            }.padding()
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(followingViewModle.followingData, id: \.id) { item in
