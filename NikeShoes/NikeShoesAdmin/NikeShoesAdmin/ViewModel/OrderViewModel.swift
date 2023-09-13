@@ -60,7 +60,7 @@ class OrderViewModel: ObservableObject {
         let formatter: DateFormatter = DateFormatter()
         
         formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(abbreviation: "KST") // "2018-03-21 18:07:27"
+        formatter.timeZone = TimeZone(abbreviation: "KST") // "2018-03-21 18:07"
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         return formatter.string(from: orderDate)

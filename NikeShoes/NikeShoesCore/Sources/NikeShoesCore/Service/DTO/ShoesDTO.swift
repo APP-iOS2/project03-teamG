@@ -66,6 +66,7 @@ public enum Speciality: String, Codable, CaseIterable, Equatable {
     case newProduct
     case hot
     case none
+    case allProducts
 }
 
 public enum ProductColor: String, Codable, CaseIterable, Equatable {
