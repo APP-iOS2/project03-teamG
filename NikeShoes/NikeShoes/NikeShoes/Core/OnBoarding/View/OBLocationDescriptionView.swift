@@ -44,7 +44,7 @@ struct OBLocationDescriptionView: View {
             HStack {
                 Spacer()
                 TempButton(title: OBScreen.locationDescription.title) {
-                    Task {
+                    withAnimation {
                         index += 1
                     }
                 }.padding(20)
