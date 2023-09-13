@@ -17,24 +17,26 @@ struct ItemListView: View {
     // 그리드 레이아웃을 위한 컬럼 설정
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
-    // 좋아요 버튼의 상태를 관리하는 변수
-    @State var isLiked: Bool = false
-    
     // MARK: 파이어베이스에서 받아온 내용이 반영되어야 하는 변수
     // 네비게이션 타이틀 변수 (현재는 보류)
     
     // 신발 리스트
-    var itemListViewModel: ItemListViewModel = ItemListViewModel()
+    @EnvironmentObject var itemListViewModel: ItemListViewModel
+    
+    @EnvironmentObject var wishListViewModel: WishListViewModel
+    
+    // 좋아요 버튼의 상태를 관리하는 변수
+    @State var isLiked: Bool = false
     
     // 뷰 본문
     var body: some View {
         NavigationStack {
             ScrollView {
-                
                 // 상품 목록을 그리드로 표시
                 LazyVGrid(columns: columns) {
                     // 선택된 탭에 따라 상품을 필터링
-                    ForEach(itemListViewModel.shoes) { data in
+                   
+                    ForEach(Array(zip(itemListViewModel.shoes.indices, itemListViewModel.shoes)), id: \.0) { index, data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
                         NavigationLink(destination: ProductDetailView(shoesData: data)) {
@@ -70,14 +72,26 @@ struct ItemListView: View {
                                 
                                 // 좋아요 버튼
                                 Button {
-                                    isLiked.toggle()
+                                    itemListViewModel.liked[index].toggle()
+                                    Task {
+                                        do {
+                                            itemListViewModel.liked[index]
+                                            ?
+                                            try await wishListViewModel.likeUpdate(shoes: data.toLike())
+                                            :
+                                            try await wishListViewModel.unLikeShoes(shoes: data.toLike())
+                                        } catch {
+                                            Log.debug("BuyWishlistButtonView Error ❌")
+                                            itemListViewModel.liked[index].toggle()
+                                        }
+                                    }
                                 } label: {
                                     Circle()
                                         .frame(width: 30, height: 30)
                                         .foregroundColor(.white)
                                         .overlay(
-                                            Image(systemName: isLiked ? "heart.fill" : "heart")
-                                                .foregroundColor(isLiked ? .red : .gray)
+                                            Image(systemName: itemListViewModel.liked[index] ? "heart.fill" : "heart")
+                                                .foregroundColor(itemListViewModel.liked[index] ? .red : .gray)
                                         )
                                 }
                                 .offset(x: 65, y: -110)
@@ -105,6 +119,8 @@ struct ItemListView: View {
                         .foregroundColor(.black)
                 }
             )
+        }.task {
+            await itemListViewModel.action()
         }
     }
 }
