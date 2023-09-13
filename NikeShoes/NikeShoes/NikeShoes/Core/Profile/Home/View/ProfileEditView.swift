@@ -25,7 +25,9 @@ struct ProfileEditView: View {
                     Text("취소")
                 }
                 .tint(.black)
+                
                 Spacer()
+                
                 Button {
                     userProfileEditViewModel.updateUserData(firstName: firstName, lastName: lastName, activityArea: activityArea, introContent: introContent)
                     Task {
@@ -73,7 +75,7 @@ struct ProfileEditView: View {
             }
             .listStyle(InsetListStyle())
         }
-        .onAppear{
+        .onAppear {
             firstName = userProfileEditViewModel.userData?.firstName ?? "이름값 없음"
             lastName = userProfileEditViewModel.userData?.lastName ?? "이름값 없음"
             activityArea = userProfileEditViewModel.userData?.activityArea ?? "활동지역 없음"
@@ -89,7 +91,6 @@ struct ProfileEditView_Previews: PreviewProvider {
 }
 
 struct PhotoPicker: View {
-//    @AppStorage("selectedImageString") var selectedImageString: String = "camera.circle.fill"
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
     
