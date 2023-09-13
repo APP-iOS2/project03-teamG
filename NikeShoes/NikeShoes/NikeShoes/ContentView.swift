@@ -20,8 +20,9 @@ struct ContentView: View {
 //        if authViewModel.userSession != nil {
 //            MainTabView()
 //        } else {
-            OnBoardingView()
+           // OnBoardingView()
 //        }
+        StoreView()
     }
 }
 
