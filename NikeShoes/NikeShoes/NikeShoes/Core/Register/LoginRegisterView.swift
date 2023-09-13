@@ -60,14 +60,18 @@ struct LoginRegisterView: View {
                     cautionEmail = "필수"
                     isEmailValid = false
                 } else {
-                    Task {
-                        if try await authViewModel.isAlreadySignUp(email) {
-                            screen = .checkPassword
+                    authViewModel.isAlreadySignUp(email) { (isInUse, error) in
+                        if let error = error {
+                            print("\(error.localizedDescription)")
                         } else {
-                            screen = .termsOfService
+                            if isInUse {
+                                screen = .checkPassword
+                            } else {
+                                screen = .termsOfService
+                            }
+                            authViewModel.userInfo.email = email
+                            authViewModel.userInfoCountry = selectedCountry
                         }
-                        authViewModel.userInfo.email = email
-                        authViewModel.userInfoCountry = selectedCountry
                     }
                 }
             }
