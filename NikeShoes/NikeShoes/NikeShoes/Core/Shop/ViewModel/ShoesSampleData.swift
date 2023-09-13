@@ -25,7 +25,7 @@ protocol ImageURL {
 
 struct Shoes: Identifiable, ImageURL, Hashable, Codable {
 
-    let id: UUID = UUID()
+    var id: String?
     var name: String
     var category: Gender
     var modelName: ModelName
