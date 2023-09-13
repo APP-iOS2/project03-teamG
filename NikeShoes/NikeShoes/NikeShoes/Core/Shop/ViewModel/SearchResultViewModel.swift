@@ -8,7 +8,7 @@
 import Foundation
 import NikeShoesCore
 
-class SearchResultViewModel {
+class SearchResultViewModel: ObservableObject {
     
     let service: FirestoreService
     let searchKeyword: String
@@ -45,6 +45,7 @@ class SearchResultViewModel {
             $0.name.contains(search)
             || $0.category.contains(search)
             || $0.modelName.contains(search)
+            || $0.speciality.contains(Speciality(rawValue: search) ?? .none)
         }
         return filteredShoes
     }

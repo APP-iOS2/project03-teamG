@@ -96,9 +96,8 @@ struct SearchItemView: View {
                     ScrollView {
                         ForEach(top10, id: \.self) { item in
                             HStack {
-                                NavigationLink(destination: Text("인기 검색어 \(item)에 대한 결과")) {
+                                NavigationLink(destination: Text("범인 아님") /*SearchResultView(search: item)*/) {
                                     Text(item)
-                                        .font(.system(size: 12))
                                 }
                                 .padding(.leading, 30)
                                 .padding(.top, 10)
@@ -141,7 +140,6 @@ struct SearchItemView: View {
                                     
                                 } label: {
                                     Text(item)
-                                        .font(.system(size: 12))
                                 }
                                 .tint(.black)
                                 .padding(.leading, 30)
