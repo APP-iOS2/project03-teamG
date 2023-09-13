@@ -17,7 +17,7 @@ struct InboxView: View {
     var body: some View {
         NavigationStack {
             if messageID == nil {
-                InboxEmptyView()
+                OrdersEmptyView()
             } else {
                 List {
                     MessageView(messageID: $messageID, messageTitle: messageTitle, messageBody: messageBody)
