@@ -44,6 +44,8 @@ struct UserMapView: View {
                     //viewModel.checkLocationServicesIsEnabled()
                 }
             }
+            .navigationTitle("근처매장")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button {
