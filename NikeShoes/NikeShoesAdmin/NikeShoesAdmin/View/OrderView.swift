@@ -6,95 +6,94 @@
 //
 
 import SwiftUI
-
-struct Ordered: Identifiable {
-    var id: UUID = UUID()
-    var userId: String
-    var productId: String
-    var orderDate: String
-    var paymentComplete: Bool
-    var address: String
-}
+import NikeShoesCore
 
 struct OrderView: View {
-    var orderArray: [Ordered] = [
-        Ordered(userId: "성은띠", productId: "에어포스어쩌구235", orderDate: "2023-09-12", paymentComplete: false, address: "서울시 강서구 어쩌구"),
-        Ordered(userId: "뚜디오스", productId: "조던PINK225", orderDate: "2023-08-31", paymentComplete: true, address: "서울시 동작구 어쩌구"),
-        Ordered(userId: "소뎡소뎡", productId: "덩크로우240", orderDate: "2023-09-10", paymentComplete: false, address: "서울시 서대문구 어쩌구"),
-        Ordered(userId: "팀짱형쭌", productId: "코르테즈BLUE275", orderDate: "2023-09-12", paymentComplete: true, address: "서울시 어디구 어쩌동"),
-    ]
+    
+    @ObservedObject var orderViewModel: OrderViewModel = OrderViewModel()
     @State var ischeckedPayment: Bool = false
-    @State var deliveryCheck: String = "배송 전"
+    @State var deliveryStatus: String = "주문 상태"
+    @State private var selectedStatus = DeliveryStatus.orderComplete
     
     var body: some View {
-       List {
-           ForEach(orderArray) {order in
-               HStack {
-                   Text("주문 번호: \(order.id)")
-                       .font(.caption)
-                       .foregroundColor(.gray)
-                   
-                   Spacer()
-                   
-                   // 데이터 연결 후 값 바꿔줄 수 있게 변경
-                   if order.paymentComplete {
-                       Text("입금 완료")
-                   } else {
-                       Button {
-                           //order.paymentComplete 값 바꿔주기
-                       } label: {
-                           Text("입금 확인 중")
-                       }
-                   }
-                   
-               }
-               HStack {
-                   VStack(alignment: .leading) {
-                       Group {
-                           Text("\(order.orderDate)")
-                           Text("주문자: \(order.userId)")
-                           Text("제품코드: \(order.productId)")
-                           Text("배송지: \(order.address)")
-                       }
-                       .padding(.bottom, 1)
-                   }
-                   
-                   Spacer()
-                   
-                   //데이터 연결 전에 임의 버튼들
-                   VStack(alignment: .trailing) {
-                       Button {
-                           ischeckedPayment.toggle()
-                       } label: {
-                           Text(ischeckedPayment ? "입금 완료" : "입금 확인 중")
-                       }
-                       .buttonStyle(.bordered)
-                       
-                       //배송 관련 정보는 체크할건지 !
-                       if ischeckedPayment {
-                           Menu {
-                               //
-                               Button("어쩌꾸") {
-                                   deliveryCheck = "어쩌구 중"
-                               }
-                               Button("발송 완료?") {
-                                   deliveryCheck = "발송 완료"
-                               }
-                           } label: {
-                               Text("\(deliveryCheck)")
-                                   .buttonStyle(.bordered)
-                                   .background(Color.white)
-                           }
-                       }
-                   }
-               }
-           }
+        List {
+            ForEach(orderViewModel.orderArray) {order in
+                HStack {
+                    Text("주문 번호: \(order.id ?? "")")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    Spacer()
+                
+                    Menu {
+                        //
+                        Button(DeliveryStatus.orderComplete.rawValue) {
+                            deliveryStatus = "주문 완료"
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.orderComplete.rawValue)
+                            }
+                            
+                        }
+                        Button(DeliveryStatus.paymentComfirm.rawValue) {
+                            deliveryStatus = "입금 확인"
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.paymentComfirm.rawValue)
+                            }
+                        }
+                        Button(DeliveryStatus.shipping.rawValue) {
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.shipping.rawValue)
+                            }
+                        }
+                        Button(DeliveryStatus.deliveryComplete.rawValue) {
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.deliveryComplete.rawValue)
+                            }
+                        }
+                        
+                    } label: {
+                        Text("\(order.deliveryStatus.rawValue)")
+                            .fontWeight(.semibold)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    
+                    
+                    
+                }
+                HStack {
+                    VStack(alignment: .leading) {
+                        Group {
+                            Text("\(orderViewModel.toString(orderDate: order.orderDate))")
+                            Text("주문자: \(order.userID)")
+                            Text("제품코드: \(order.shoesID)")
+                            Text("배송지: \(order.address)")
+                        }
+                        .padding(.bottom, 1)
+                    }
+            
+                }
+            }
+        }
+        // TODO: 이거 적용 안되는듯
+        .refreshable {
+            Task { try await orderViewModel.fetchOrder()
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    let orderDTO: OrderDTO = OrderDTO(id: "wnans1qjs", shoesID: "AJ4v0y1e9hFgYfUcel9T", userID: "HIKeuU6XTsQehBASib1M49UoWen2", address: "성훈님 개발천재짱짱짱!!!! ", deliveryStatus: .orderComplete, orderDate: Date())
+                    
+                    Task { try await orderViewModel.createOrder(orderDTO: orderDTO)
+                    }
+                } label: {
+                    Text("주문 추가")
+                }
+            }
         }
     }
 }
 
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderView()
+        NavigationStack {
+            OrderView()
+        }
     }
 }
