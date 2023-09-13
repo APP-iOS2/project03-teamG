@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct BagView: View {
     @Binding var userPromCode: String
@@ -28,8 +29,9 @@ struct BagView: View {
     var quantities = [1, 2, 3]
     var productCount: Int = 1
     
-    var promotionCode: PromotionCode = PromotionCode(code: "", discountRate: 0.0)
-    var shoes: Shoes
+    var promotionCode: PromotionDTO = PromotionDTO(id: "", code: "", discountRate: 0.0, restrict: 1, promotionExpireDate: Date())
+//    var shoes: Shoes
+    var shoesData: ShoesDTO
     
     var body: some View {
         VStack {
@@ -39,43 +41,40 @@ struct BagView: View {
                     Button {
                         //                            ProductDetailView()
                     } label: {
-                        AsyncImage(url: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST0yWep66t1F76Ud7TeOu_JkZZVRZ_9F3ntLEyvWlN7OMHg0T56IZMcJrW8nfQQiuiZyQ&usqp=CA")) { img in
-                            img
-                                .resizable()
-                            
-                        } placeholder: {
-                            ProgressView()
+                            AsyncImage(url: URL(string: shoesData.imageURLString[0])) { img in
+                                img
+                                    .resizable()
+                                
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200, height: 200)
                         }
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
-                    }
+                    
                           
                     VStack(alignment: .leading) {
-                        Text("\(shoes.name)")
+                        Text("\(shoesData.name)")
                             .bold()
                             .font(.caption)
                         
                         // MARK: shoes 데이터로 변경하기
-                        Text("화이트/알루미늄/울프 그레이")
-                            .font(.caption)
-                        Text("\(shoes.category.rawValue)")
+                        ForEach(shoesData.colors, id: \.self) { color in
+                            Text("\(color.rawValue)")
+                                .font(.caption)
+                        }
+                        Text("\(shoesData.category)")
                             .font(.caption)
                         
                         // MARK: ProductDetailView에서 사용자가 선택한 값으로 변경하기
-                        Text("250")
-                            .font(.caption)
+                        ForEach(shoesData.size, id: \.self) { size in
+                            Text("\(size)")
+                                .font(.caption)
+                        }
                     }
                     
                     Spacer()
                 }
-                
-            } else {
-                Spacer()
-                
-                Text(defaultText)
-                
-                Spacer()
-            }
             
             HStack {
                 Text("수량")
@@ -210,59 +209,70 @@ struct BagView: View {
             }
             .padding()
             
-            Spacer()
-            
-            Button {
-                // 기능 1) faceID 활성화 (구현할지?)
+                Spacer()
                 
-                // 기능 2) 결제 sheet 활성화
-                isShowingSheet.toggle()
-            } label: {
-                //                    Image()
-                Text("구매하기")
-                    .font(.title3)
-                    .frame(width: 370, height: 70)
-            }
-            .foregroundColor(.white)
-            .background(Color.black)
-            .cornerRadius(40)
-            .padding()
-            .sheet(isPresented: $isShowingSheet) {
-                PaymentView(selectedQty: selectedQty, finalPrice: finalPrice)
-                    .overlay {
-                        GeometryReader { geometry in
-                            Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+                Button {
+                    // 기능 1) faceID 활성화 (구현할지?)
+                    
+                    // 기능 2) 결제 sheet 활성화
+                    isShowingSheet.toggle()
+                } label: {
+                    //                    Image()
+                    Text("구매하기")
+                        .font(.title3)
+                        .frame(width: 370, height: 70)
+                }
+                .foregroundColor(.white)
+                .background(Color.black)
+                .cornerRadius(40)
+                .padding()
+                .sheet(isPresented: $isShowingSheet) {
+                    PaymentView(selectedQty: selectedQty, finalPrice: finalPrice)
+                        .overlay {
+                            GeometryReader { geometry in
+                                Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+                            }
                         }
-                    }
-                    .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
-                        
-                            sheetHeight = newHeight
-                        
-                    }
-                    .presentationDetents([.height(sheetHeight)])
-//                    .presentationDetents([.medium])
+                        .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
+                            
+                                sheetHeight = newHeight
+                            
+                        }
+                        .presentationDetents([.height(sheetHeight)])
+    //                    .presentationDetents([.medium])
+                    
+                }
                 
+            } else {
+                Spacer()
+                
+                Text(defaultText)
+                
+                Spacer()
             }
+                
+            
         }
         .navigationTitle("장바구니")
         .padding(.top, 1)
     }
     
     func originalTotalPrice() -> Int {
-        let result = shoes.price * selectedQty
+        let result = shoesData.price * selectedQty
         return result
     }
     
     func finalTotalPrice() -> String {
         let promDiscount = promotionCode.discountRate
-        let result = Double(shoes.price * selectedQty) * promDiscount
+        let result = Double(shoesData.price * selectedQty) * promDiscount
         let formattedValue = String(format: "%.0f", result)
         
         return formattedValue
     }
     
     private func checkPromCode() {
-        if promotionCodes.contains(where: { $0.code == userPromCode }) {
+//        if promotionCode.code.contains(where: { $0.code == userPromCode }) {
+        if promotionCode.code.contains(userPromCode) {
             alertMessage = "할인이 적용되었습니다."
             finalPrice = finalTotalPrice()
             print("vaild \(userPromCode)")
@@ -278,15 +288,7 @@ struct BagView: View {
 struct BagView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BagView(userPromCode: .constant(""),
-                    shoes: Shoes(name: "에어 조던 1 로우",
-                                 category: .female,
-                                 modelName: .airForce,
-                                 price: 30000,
-                                 size: [1],
-                                 description: "",
-                                 imageURLString: "",
-                                 like: false))
+            BagView(userPromCode: .constant("테스트20"), shoesData: detailSample)
         }
     }
 }

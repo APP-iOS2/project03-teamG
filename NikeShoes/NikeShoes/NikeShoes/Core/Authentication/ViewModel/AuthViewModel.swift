@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import NikeShoesCore
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
@@ -16,6 +17,8 @@ class AuthViewModel: ObservableObject {
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
     @Published var isLogin: Bool = false
+    
+    private var db = Firestore.firestore()
     
     init(service: FirestoreService) {
         userSession = Auth.auth().currentUser 
@@ -36,6 +39,21 @@ class AuthViewModel: ObservableObject {
     
     private let service: FirestoreService
     
+    func fetchUser() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        
+        db.collection("user").document(userID).getDocument { (document, error) in
+            if let user = try? document?.data(as: UserDTO.self ){
+                self.userInfo = user
+            } else {
+                print(userID)
+                print("User not found: \(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
     
     func signIn(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
