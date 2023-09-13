@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     var userName: String = "최소정"
+    @State var isShowingSearchSheet: Bool = false
     // 시간 별 인사
     var date: String {
         let now: Date = Date()
@@ -64,7 +65,19 @@ struct HomeView: View {
             }
             .padding(20)
         }
-        .toolbar { SearchView() }
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    isShowingSearchSheet = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $isShowingSearchSheet) {
+            SearchItemView()
+        }
+        //.toolbar { SearchView() }
     }
 }
 

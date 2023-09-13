@@ -34,7 +34,7 @@ struct SearchResultView: View {
     
     // 뷰 본문
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             ScrollView {
                 
                 // 상품 목록을 그리드로 표시
@@ -92,7 +92,7 @@ struct SearchResultView: View {
                     }
                 }
                 .padding()
-            }
+            //}
             .navigationTitle("앱 전용 제품")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
@@ -112,11 +112,16 @@ struct SearchResultView: View {
                 }
             )
         }
+        .onAppear {
+            print("SRV Called")
+        }
     }
 }
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(search: "onlyApp")
+        NavigationStack{
+            SearchResultView(search: "onlyApp")
+        }
     }
 }
