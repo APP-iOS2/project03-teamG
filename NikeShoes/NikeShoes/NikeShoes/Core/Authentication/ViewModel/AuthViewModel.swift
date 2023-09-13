@@ -127,20 +127,26 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func isAlreadySignUp(_ email: String) async throws -> Bool {
-        do {
-            let datas = try await Firestore.firestore().collection("user").getDocuments()
-            for document in datas.documents {
-                let data = document.data()
-                if let documentEmail = data["email"] as? String, documentEmail == email {
-                    return true
+    func isAlreadySignUp(_ email: String, completion: @escaping (Bool, Error?) -> Void) {
+        Auth.auth().fetchSignInMethods(forEmail: email) { signInMethods, error in
+            if let error = error {
+                let err = error as NSError
+                
+                switch err {
+                case AuthErrorCode.emailAlreadyInUse:
+                    completion(false, err)
+                default:
+                    print("unknown error: \(err.localizedDescription)")
                 }
+            } else {
+                guard let signInMethods = signInMethods else {
+                    return completion(false, nil)
+                }
+                completion(true, nil)
             }
-            return false
-        } catch {
-            throw error
         }
     }
+    
     func resetPassword(forEmail email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {
