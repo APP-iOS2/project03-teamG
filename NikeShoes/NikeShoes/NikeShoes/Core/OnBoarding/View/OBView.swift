@@ -11,6 +11,8 @@ struct OBView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @EnvironmentObject var obViewModel: OBViewModel
+    
     var body: some View {
         
         VStack {
@@ -45,12 +47,6 @@ struct OBContainerView: View {
                 // index가 OnBoarding의 끝나는 지점에 transitionView -> MainTabView 로 변경
                 transitionView
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                
-                if isOnBoardingView {
-                    TempButton(title: OnBoardingScreen(rawValue: index)?.title) {
-                        index += 1
-                    }.padding(.bottom, 20)
-                }
             }
         }
     }
@@ -69,14 +65,14 @@ struct OBContainerView: View {
     
     @ViewBuilder
     private var transitionView: some View {
-        switch OnBoardingScreen(rawValue: index) {
-        case .locationDescription: OBLocationDescriptionView()
-        case .languageSelection:  OBLanguageSelectionView()
-        case .getStated:  OBStartView()
-        case .interest:  OBInterestSelectView()
-        case .sizeSelection:  OBShoesSizeSelectView()
-        case .alarmSelection:  OBAlarmView()
-        case .location:  OBLocationView()
+        switch OBScreen(rawValue: index) {
+        case .locationDescription: OBLocationDescriptionView(index: $index)
+        case .languageSelection:  OBLanguageSelectionView(index: $index)
+        case .getStated:  OBStartView(index: $index)
+        case .interest:  OBInterestSelectView(index: $index)
+        case .sizeSelection:  OBShoesSizeSelectView(index: $index)
+        case .alarmSelection:  OBAlarmView(index: $index)
+        case .location:  OBLocationView(index: $index)
         case .mainTab:  MainTabView()
         case .none:
             fatalError("this is invalid index")
@@ -89,6 +85,7 @@ struct OBContainerView: View {
     
     private var imageBackground: some View {
        Image("nike_back")
+            .resizable()
             .ignoresSafeArea()
     }
     
@@ -109,6 +106,8 @@ struct OBContainerView: View {
             .ignoresSafeArea()
     }
 }
+
+typealias OBScreen = OBContainerView.OnBoardingScreen
 
 extension OBContainerView {
     enum OnBoardingScreen: Int, CaseIterable, Identifiable {
@@ -152,5 +151,6 @@ extension OBContainerView {
 struct OBView_Previews: PreviewProvider {
     static var previews: some View {
         OBView()
+            .environmentObject(OBViewModel(service: ViewModelFactory.shared.makeService()))
     }
 }

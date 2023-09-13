@@ -9,14 +9,18 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import NikeShoesCore
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
+    @Published var isLogin: Bool = false
     
-    init() {
+    private var db = Firestore.firestore()
+    
+    init(service: FirestoreService) {
         userSession = Auth.auth().currentUser 
         userInfo = UserDTO(
             firstName: "",
@@ -27,11 +31,28 @@ class AuthViewModel: ObservableObject {
             memberReward: "",
             address: [],
             following: [],
-            size: [],
-            activityArea: "",
-            introContent: ""
+            size: []
         )
-        print("DEBUG: User session: \(String(describing: userSession))")
+        self.service = service
+//        print("DEBUG: User session: \(String(describing: userSession))")
+    }
+    
+    private let service: FirestoreService
+    
+    func fetchUser() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        
+        db.collection("user").document(userID).getDocument { (document, error) in
+            if let user = try? document?.data(as: UserDTO.self ){
+                self.userInfo = user
+            } else {
+                print(userID)
+                print("User not found: \(String(describing: error?.localizedDescription))")
+            }
+        }
     }
     
     func signIn(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
@@ -50,6 +71,32 @@ class AuthViewModel: ObservableObject {
             self.userSession = user
             print("DEBUG: signIn User successfully")
             completion(true) // 로그인 성공 시 true 반환
+        }
+    }
+    
+    @MainActor
+    func registerUser() async -> Bool {
+        do {
+            let result = try await Auth.auth().createUser(withEmail: userInfo.email, password: userInfoPassword)
+            self.userSession = result.user
+            let debugResult = try await service.createDocument(send: userInfo, collection: .user, document: result.user.uid)
+            return true
+        } catch {
+            print("registerUser : \(error)")
+        }
+        return false
+    }
+    
+    @MainActor
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        do {
+            try await service.delete(collection: .user, document: user.uid)
+            try await user.delete()
+            self.signOut()
+        } catch {
+            print("deleteAccount error: \(error)")
+            throw error
         }
     }
     
@@ -92,6 +139,17 @@ class AuthViewModel: ObservableObject {
             return false
         } catch {
             throw error
+        }
+    }
+    func resetPassword(forEmail email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                // 비밀번호 재설정 이메일 전송 중 오류가 발생한 경우
+                completion(error)
+            } else {
+                // 비밀번호 재설정 이메일이 성공적으로 전송된 경우
+                completion(nil)
+            }
         }
     }
     

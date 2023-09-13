@@ -12,13 +12,19 @@ struct ProductListView: View {
     @StateObject var viewModel = ProductViewModel()
 
     var body: some View {
-        List(viewModel.shoes.indices, id: \.self) { index in
-            //                NavigationLink {
-            //                    ProductEditView(shoes: $viewModel.shoes[index])
-            //                } label: {
-            //                    Text(viewModel.shoes[index].name)
-            //                }
-            
+        List {
+            ForEach(viewModel.shoes.indices, id: \.self) { index in
+                NavigationLink {
+                    ProductEditView(viewModel: viewModel, shoes: viewModel.shoes[index])
+                } label: {
+                    Text(viewModel.shoes[index].name)
+                }
+            }
+            .onDelete { index in
+                Task {
+                    try await viewModel.deleteShoes(index)
+                }
+            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -27,6 +33,11 @@ struct ProductListView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+            }
+        }
+        .refreshable {
+            Task {
+             try await viewModel.fetchShoes()
             }
         }
     }
