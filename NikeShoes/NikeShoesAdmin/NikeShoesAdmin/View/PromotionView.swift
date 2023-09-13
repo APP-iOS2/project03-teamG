@@ -12,35 +12,19 @@ import FirebaseFirestoreSwift
 
 struct PromotionView: View {
     
-    let service: FirestoreService
-   
-    
-    init(service: FirestoreService = DefaultFireStoreService()) {
-        self.service = service
-        //        action()
-    }
-    
-    
     @DocumentID  var id: String?
-    @StateObject var promotionStore: PromotionViewModel = PromotionViewModel()
-    //    @State var promotionRange: PromotionRange = .All
+    @StateObject var promotionStore: MemberRewardViewModel = MemberRewardViewModel()
     @State var promotionCode: String = ""
     @State var promotionPercent: String = ""
     @State var promotionExpireDate: Date = Date()
-    @State var promotionExpireDate1: Date = Date()
     
     var body: some View {
         
         NavigationStack {
             
             HStack {
+                
                 VStack(alignment:.leading) {
-                    //
-                    //                    Picker("프로모션", selection: $promotionRange) {
-                    //                        Text("전체").tag(PromotionRange.All)
-                    //                        Text("멤버").tag(PromotionRange.Individual)
-                    //                    }
-                    
                     
                     TextField("프로모션 코드", text: $promotionCode)
                     TextField("프로모션 할인(숫자로 입력)", text: $promotionPercent)
@@ -49,19 +33,14 @@ struct PromotionView: View {
                     Button {
                         
                         Task {
-                            let new = PromotionModel(id: id, promotionCode: promotionCode, promotionPercent: Int(promotionPercent) ?? 0, promotionExpireDate: promotionExpireDate)
+                            let new = PromotionDTO(code: promotionCode, discountRate: Double(promotionPercent) ?? 0, restrict: 0, promotionExpireDate: promotionExpireDate)
                             
-                            addNewPromotion(new)
+                            let newPromotion = try await promotionStore.service.create(send: new, collection: .promotion)
                             
-                            //                            try await service.update(collection: .promotion, document: , fields: ["memberReward" : "test1"])
-                            let abc = try await service.create(send: new, collection: .promotion)
-                            
-                            print("\(abc)")
-                            
-                            
+                            let newFetch = try await promotionStore.fetchPromotion()
+                            promotionStore.memberReward = newFetch
+                            resetPromotion()
                         }
-                        
-                        
                     } label: {
                         Text("등록")
                     }
@@ -72,77 +51,50 @@ struct PromotionView: View {
                 .padding()
                 VStack {
                     Section("진행중인 프로모션") {
-                        List{
-                            ForEach(promotionStore.promotionStore) { code
+                        List {
+                            ForEach(promotionStore.memberReward) { code in
                                 
-                                in
-                                
-                                HStack {
-                                    Text("프로모션 코드 :\(code.promotionCode),  할인률: \(code.promotionPercent) % , 종료날짜: \(code.promotionExpireDate.description)")
+                                VStack(alignment:.leading) {
+                                    Text("프로모션 코드: \(code.code)")
+                                    Text("할인률: " + String(format: "%.0f", code.discountRate) + "%")
+                                    Text("종료 날짜: \(code.promotionExpireDate.description)")
+                                    
                                 }
                             }
                             .onDelete { index in
-                                promotionStore.promotionStore.remove(atOffsets: index)
+                                
+                                Task {
+                                    
+                                    var tempPromotion: PromotionDTO?
+                                    
+                                    let deletedIndexes = index.map { $0 }
+                                    
+                                    for index in deletedIndexes {
+                                        let memberReward = promotionStore.memberReward[index]
+                                        tempPromotion = memberReward
+                                    }
+                                    
+                                    guard let removedPromotion = tempPromotion else {return}
+                                    guard let removedID = removedPromotion.id else {return}
+                                    
+                                    let result = try await promotionStore.deletePromotion(removedPromotion, id: removedID)
+                                    
+                                    promotionStore.memberReward.remove(atOffsets: index)
+                                }
                             }
                         }
                         .listStyle(.plain)
                     }
-                    
                 }
-                
             }
             .navigationTitle("멤버 리워드 제공")
         }
     }
     
-    func addNewPromotion(_ new:PromotionModel) {
-       
-    
-        promotionStore.promotionStore.append(new)
-        //        promotionRange = .All
+    func resetPromotion() {
         promotionCode = ""
         promotionPercent = ""
         promotionExpireDate = Date()
-        
-        
     }
-    
-    
-}
-enum PromotionRange {
-    case All
-    case Individual
-    
-}
-struct PromotionModel:Hashable, Codable, Identifiable {
-
-    
-    @DocumentID var id: String?
-    //    var promotionRange: PromotionRange
-    var promotionCode:String
-    var promotionPercent:Int
-    var promotionExpireDate: Date
-    
-}
-
-class PromotionViewModel: ObservableObject {
-    
-    @Published var promotionStore : [PromotionModel] =
-    [
-        
-        PromotionModel(
-        promotionCode: "할인50",
-        promotionPercent: 50, promotionExpireDate: Date()),
-     PromotionModel(
-        promotionCode: "할인50",
-        promotionPercent: 50, promotionExpireDate: Date()),
-     PromotionModel(
-        promotionCode: "할인50",
-        promotionPercent: 50, promotionExpireDate: Date()),
-     PromotionModel(
-        promotionCode: "할인50",
-        promotionPercent: 50, promotionExpireDate: Date()),
-    ]
-    
 }
 

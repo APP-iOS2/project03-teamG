@@ -18,8 +18,6 @@
 		A05AAE212AAEF1450077A20E /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AAE202AAEF1450077A20E /* ProductListView.swift */; };
 		A05AAE232AAEF16C0077A20E /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AAE222AAEF16C0077A20E /* ProductViewModel.swift */; };
 		A05AAE252AAEFFA70077A20E /* ProductAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AAE242AAEFFA70077A20E /* ProductAddView.swift */; };
-		B72CAEE52AAFE8C100D338A7 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */; };
-
 		A09B97882AB007B600D0AE6E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A09B97872AB007B600D0AE6E /* FirebaseAuth */; };
 		A09B978A2AB007B600D0AE6E /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A09B97892AB007B600D0AE6E /* FirebaseAuthCombine-Community */; };
 		A09B978C2AB007B600D0AE6E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A09B978B2AB007B600D0AE6E /* FirebaseDatabase */; };
@@ -28,7 +26,8 @@
 		A09B97922AB007B600D0AE6E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A09B97912AB007B600D0AE6E /* FirebaseFirestoreCombine-Community */; };
 		A09B97942AB007B600D0AE6E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A09B97932AB007B600D0AE6E /* FirebaseFirestoreSwift */; };
 		A09B97962AB0082A00D0AE6E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A09B97952AB0082A00D0AE6E /* GoogleService-Info.plist */; };
-
+		B7068CA92AB13BE800C885F4 /* MemberRewardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7068CA82AB13BE800C885F4 /* MemberRewardViewModel.swift */; };
+		B72CAEE52AAFE8C100D338A7 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */; };
 		B7B2747B2AAEE80B00DD10BA /* AdminLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747A2AAEE80B00DD10BA /* AdminLoginView.swift */; };
 		B7B2747D2AAF025C00DD10BA /* LoginModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747C2AAF025C00DD10BA /* LoginModifier.swift */; };
 		B7B2747F2AAF036E00DD10BA /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B2747E2AAF036E00DD10BA /* LoginButtonView.swift */; };
@@ -46,10 +45,9 @@
 		A05AAE202AAEF1450077A20E /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		A05AAE222AAEF16C0077A20E /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		A05AAE242AAEFFA70077A20E /* ProductAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddView.swift; sourceTree = "<group>"; };
-		B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
-
 		A09B97952AB0082A00D0AE6E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-
+		B7068CA82AB13BE800C885F4 /* MemberRewardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRewardViewModel.swift; sourceTree = "<group>"; };
+		B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
 		B7B2747A2AAEE80B00DD10BA /* AdminLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginView.swift; sourceTree = "<group>"; };
 		B7B2747C2AAF025C00DD10BA /* LoginModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModifier.swift; sourceTree = "<group>"; };
 		B7B2747E2AAF036E00DD10BA /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
@@ -94,9 +92,7 @@
 		9617AECF2AA5AF10009FB78A /* NikeShoesAdmin */ = {
 			isa = PBXGroup;
 			children = (
-
 				A09B97952AB0082A00D0AE6E /* GoogleService-Info.plist */,
-
 				9617AED02AA5AF10009FB78A /* NikeShoesAdminApp.swift */,
 				A09B97842AAF61CE00D0AE6E /* Components */,
 				A09B97832AAF617300D0AE6E /* Model */,
@@ -158,6 +154,7 @@
 			children = (
 				A05AAE222AAEF16C0077A20E /* ProductViewModel.swift */,
 				A0110E152AAFF30000507126 /* OrderViewModel.swift */,
+				B7068CA82AB13BE800C885F4 /* MemberRewardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 				A09B97962AB0082A00D0AE6E /* GoogleService-Info.plist in Resources */,
 				9617AED82AA5AF16009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AED52AA5AF16009FB78A /* Assets.xcassets in Resources */,
-				B72DBC982AB0472900F9D1E7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +257,7 @@
 				9617AED12AA5AF10009FB78A /* NikeShoesAdminApp.swift in Sources */,
 				A05AAE252AAEFFA70077A20E /* ProductAddView.swift in Sources */,
 				A05AAE212AAEF1450077A20E /* ProductListView.swift in Sources */,
+				B7068CA92AB13BE800C885F4 /* MemberRewardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
