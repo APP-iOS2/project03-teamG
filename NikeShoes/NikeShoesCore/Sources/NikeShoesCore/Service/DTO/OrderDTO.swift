@@ -41,7 +41,7 @@ public struct OrderDTO: Codable, Identifiable {
     }
 }
 
-public enum DeliveryStatus: String, Codable {
+public enum DeliveryStatus: String, Codable, CaseIterable {
     case orderComplete = "주문 완료"
     case paymentComfirm = "입금 확인"
     case shipping = "배송 중"
