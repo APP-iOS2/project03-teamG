@@ -15,10 +15,9 @@ class AuthViewModel: ObservableObject {
     @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
-    
     @Published var isLogin: Bool = false
     
-    init() {
+    init(service: FirestoreService) {
         userSession = Auth.auth().currentUser 
         userInfo = UserDTO(
             firstName: "",
@@ -29,12 +28,14 @@ class AuthViewModel: ObservableObject {
             memberReward: "",
             address: [],
             following: [],
-            size: [],
-            activityArea: "",
-            introContent: ""
+            size: []
         )
-        print("DEBUG: User session: \(String(describing: userSession))")
+        self.service = service
+//        print("DEBUG: User session: \(String(describing: userSession))")
     }
+    
+    private let service: FirestoreService
+    
     
     func signIn(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -53,6 +54,37 @@ class AuthViewModel: ObservableObject {
             print("DEBUG: signIn User successfully")
             completion(true) // 로그인 성공 시 true 반환
         }
+    }
+    
+    @MainActor
+    func registerUser() async -> Bool {
+        do {
+            let result = try await Auth.auth().createUser(withEmail: userInfo.email, password: userInfoPassword)
+            self.userSession = result.user
+            let debugResult = try await service.createDocument(send: userInfo, collection: .user, document: result.user.uid)
+            return true
+        } catch {
+            print("registerUser : \(error)")
+        }
+        return false
+    }
+    
+    @MainActor
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        do {
+            try await service.delete(collection: .user, document: user.uid)
+            try await user.delete()
+            self.signOut()
+        } catch {
+            print("deleteAccount error: \(error)")
+            throw error
+        }
+    }
+    
+    private func signOut() {
+        userSession = nil
+        try? Auth.auth().signOut()
     }
     
     func register() {
@@ -96,7 +128,6 @@ class AuthViewModel: ObservableObject {
             throw error
         }
     }
-    
     func resetPassword(forEmail email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {

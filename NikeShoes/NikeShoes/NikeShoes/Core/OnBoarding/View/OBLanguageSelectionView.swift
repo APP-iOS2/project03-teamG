@@ -10,6 +10,9 @@ import SwiftUI
 enum Language: String, CaseIterable, Identifiable {
     case kr = "한국어"
     case en = "영어"
+    case sp = "스페인어"
+    case pr = "프랑스어"
+    case ar = "아랍어"
 
     var value: String {
         self.rawValue
@@ -21,6 +24,8 @@ enum Language: String, CaseIterable, Identifiable {
 
 struct OBLanguageSelectionView: View {
     
+    @EnvironmentObject var obViewModel: OBViewModel
+    @Binding var index: Int
     var description: String = "언어 선택"
     var description2: String = "Nike 앱에서 지원되는 언어로 업데이트하세요."
    
@@ -69,6 +74,16 @@ struct OBLanguageSelectionView: View {
             
             Spacer()
             
+            HStack {
+                Spacer()
+                TempButton(title: OBScreen.languageSelection.title) {
+                    Task {
+                        index += 1
+                    }
+                }.padding(20)
+                Spacer()
+            }
+            
         }.sheet(isPresented: $showingSheet) {
             Picker("language", selection: $language) {
                 ForEach(Language.allCases) { Text($0.value.capitalized).tag($0.rawValue) }
@@ -114,7 +129,7 @@ struct OBLanguageSelectionView_Previews: PreviewProvider {
         
         ZStack {
             Color.black
-            OBLanguageSelectionView()
+            OBLanguageSelectionView(index: .constant(5))
         }.ignoresSafeArea()
     }
 }
