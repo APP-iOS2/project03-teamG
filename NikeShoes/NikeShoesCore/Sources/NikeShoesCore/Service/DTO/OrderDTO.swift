@@ -47,4 +47,5 @@ public enum DeliveryStatus: String, Codable, CaseIterable {
     case paymentComfirm = "입금 확인"
     case shipping = "배송 중"
     case deliveryComplete = "배송 완료"
+    case orderCancel = "주문 취소"
 }
