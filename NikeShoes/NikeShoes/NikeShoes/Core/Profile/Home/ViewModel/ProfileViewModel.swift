@@ -12,7 +12,7 @@ enum ProfileViewModel: Int, CaseIterable {
         case .orders: return "주문내역"
         case .pass: return "패스"
         case .events: return "이벤트"
-        case .settings: return "셋팅"
+        case .settings: return "설정"
         }
     }
     
@@ -33,12 +33,10 @@ extension ProfileViewModel {
             return AnyView(OrdersView(title: "주문내역"))
         case .settings:
             return AnyView(SettingsView())
-        default:
-            return AnyView(EmptyView())
-//        case .pass:
-//            return AnyView(SettingsView())
-//        case .events:
-//            return AnyView(SettingsView())
+        case .pass:
+            return AnyView(ProfilePassView())
+        case .events:
+            return AnyView(EventView())
         }
     }
 }

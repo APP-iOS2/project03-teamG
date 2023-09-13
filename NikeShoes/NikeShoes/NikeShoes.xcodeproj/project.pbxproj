@@ -45,7 +45,9 @@
 		3B6503A92AA8174900908390 /* FollowingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6503A82AA8174900908390 /* FollowingDetailView.swift */; };
 		3B6503AB2AA819A700908390 /* FollowingEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6503AA2AA819A700908390 /* FollowingEditCellView.swift */; };
 		3B78EBA72AAEBB4A00819E0A /* FollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */; };
+		3B918EA12AB1AE910075856C /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B918EA02AB1AE910075856C /* EventView.swift */; };
 		3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */; };
+		3BAE1CFD2AB1A93B00AEA2FD /* ProfilePassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE1CFC2AB1A93B00AEA2FD /* ProfilePassView.swift */; };
 		3BFD7D112AB0010400E22D67 /* NikeShoesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BFD7D102AB0010400E22D67 /* NikeShoesCore */; };
 		63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */; };
 		63D5B1CE2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */; };
@@ -180,7 +182,9 @@
 		3B6503A82AA8174900908390 /* FollowingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingDetailView.swift; sourceTree = "<group>"; };
 		3B6503AA2AA819A700908390 /* FollowingEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingEditCellView.swift; sourceTree = "<group>"; };
 		3B78EBA62AAEBB4A00819E0A /* FollowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewModel.swift; sourceTree = "<group>"; };
+		3B918EA02AB1AE910075856C /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		3BAE1CFC2AB1A93B00AEA2FD /* ProfilePassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePassView.swift; sourceTree = "<group>"; };
 		63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewWithProgressbar.swift; sourceTree = "<group>"; };
 		63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 		643BB8432AA6AFD2000233A5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3B918EA02AB1AE910075856C /* EventView.swift */,
 				3B44D3172AA6FF2D007D8DA7 /* MemberRewardDetailView.swift */,
 				3B5977F82AA7EA670021485B /* FollowingView.swift */,
 				9617AEF22AA5B816009FB78A /* ProfileView.swift */,
@@ -431,6 +436,7 @@
 				B02077062AA6C96A00DD014C /* OrdersView.swift */,
 				B02077032AA6BF8A00DD014C /* InboxView.swift */,
 				3B6503A82AA8174900908390 /* FollowingDetailView.swift */,
+				3BAE1CFC2AB1A93B00AEA2FD /* ProfilePassView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -986,11 +992,13 @@
 				3B44D3112AA6BFB2007D8DA7 /* ProfileContentLabel.swift in Sources */,
 				63D5B1CE2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift in Sources */,
 				B0343BAA2AA6F7BD00F5AB86 /* ButtonStyle.swift in Sources */,
+				3B918EA12AB1AE910075856C /* EventView.swift in Sources */,
 				964DC9F72AAFFEB000178A67 /* OBViewModel.swift in Sources */,
 				9E92D7F62AADFB5D0079BFC5 /* SizeTipButtonView.swift in Sources */,
 				DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */,
 				DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */,
 				961798FB2AA6CCDB009FC991 /* Blur.swift in Sources */,
+				3BAE1CFD2AB1A93B00AEA2FD /* ProfilePassView.swift in Sources */,
 				961799072AA70A72009FC991 /* OBLocationDescriptionView.swift in Sources */,
 				64CD99902AA81234008D3094 /* LanguageView.swift in Sources */,
 				961799012AA6F507009FC991 /* OBAlarmView.swift in Sources */,
