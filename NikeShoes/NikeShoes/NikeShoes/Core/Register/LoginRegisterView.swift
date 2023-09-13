@@ -42,7 +42,7 @@ struct LoginRegisterView: View {
             
             TextField("이메일", text: $email)
                 .keyboardType(.emailAddress)
-                .modifier(SignInTextFieldStyle(isTextFieldValid: $isEmailValid))
+                .signInTextFieldStyle(isTextFieldValid: $isEmailValid)
                 .onChange(of: email) { newValue in
                     isCheckEmail()
                     email = newValue.trimmingCharacters(in: .whitespaces)
@@ -62,8 +62,10 @@ struct LoginRegisterView: View {
                 } else {
                     Task {
                         if try await authViewModel.isAlreadySignUp(email) {
+                            authViewModel.isLogin = true
                             screen = .checkPassword
                         } else {
+                            authViewModel.isLogin = false
                             screen = .termsOfService
                         }
                         authViewModel.userInfo.email = email

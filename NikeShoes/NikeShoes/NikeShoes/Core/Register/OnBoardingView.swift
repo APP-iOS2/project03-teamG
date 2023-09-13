@@ -85,25 +85,25 @@ struct RegisterContainerView: View {
                 switch screen {
                 case .loginRegister:
                     LoginRegisterView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .termsOfService:
                     TermsOfServiceView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .checkPassword:
                     CheckPasswordView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .findPassword:
                     FindPasswordView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .inputUserInfo:
                     InputUserInfoView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .cellPhoneCertification:
                     CellPhoneCertificationView(screen: $screen)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .loginCompleted:
                     LoginCompletedView(isShowingSignInSheet: $isShowingSignInSheet)
-                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 }
             }
             Spacer()
@@ -181,25 +181,25 @@ struct RegisterContainerView: View {
     }
 }
 
-struct SignInToolbarStyle: ViewModifier {
-    @Binding var screen: LoginRegisterScreen
-    @Binding var isShowingSignInSheet: Bool
-    
-    func body(content: Content) -> some View {
-        content
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        screen = .loginRegister
-                        isShowingSignInSheet = false
-                    } label: {
-                        Text("취소")
-                    }
-
-                }
-            }
-    }
-}
+//struct SignInToolbarStyle: ViewModifier {
+//    @Binding var screen: LoginRegisterScreen
+//    @Binding var isShowingSignInSheet: Bool
+//
+//    func body(content: Content) -> some View {
+//        content
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button {
+//                        screen = .loginRegister
+//                        isShowingSignInSheet = false
+//                    } label: {
+//                        Text("취소")
+//                    }
+//
+//                }
+//            }
+//    }
+//}
 
 enum LoginRegisterScreen: CaseIterable {
     case loginRegister
