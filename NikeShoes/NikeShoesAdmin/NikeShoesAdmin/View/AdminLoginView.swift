@@ -40,28 +40,37 @@ struct AdminLoginView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Text("등록된 관리자 계정으로 로그인을 진행해주세요.")
-                    .font(.body)
-                    .padding(.bottom, 12)
-                
-                NameTextField
-                
-                PasswordTextField
-                
-                AgreePrivacyPolicyandTerms
-                
-                HStack {
-                    Spacer()
-                    
-                    ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                        forNextView = true
-                    }
-                    Spacer()
-                }
-            }.frame(maxWidth: 500)
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.clear)
+                .frame(width: 500, height: .infinity)
+                .padding(.vertical)
+            //                .fill(.white)
             
-        }.fullScreenCover(isPresented: $forNextView) {
+                .overlay {
+                    VStack(alignment: .leading) {
+                        Text("관리자 계정 로그인")
+                            .padding(.bottom, 12)
+                        
+                        NameTextField
+                        
+                        PasswordTextField
+                        
+                        AgreePrivacyPolicyandTerms
+                        
+                        HStack {
+                            Spacer()
+                            
+                            ButtonView(buttonText: "계속", foreground: .white, background: .black) {
+                                forNextView = true
+                            }
+                            Spacer()
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                }
+                .padding(.vertical, 50)
+        }
+        .fullScreenCover(isPresented: $forNextView) {
             ContentView()
         }
         //.navigationBarBackButtonHidden()
