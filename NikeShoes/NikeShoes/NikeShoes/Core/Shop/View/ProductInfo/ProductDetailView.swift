@@ -10,10 +10,10 @@ import NikeShoesCore
 
 struct ProductDetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var bagViewModel: BagViewModel
+    
     @State private var selectedImageIndex = 0
     var shoesData: ShoesDTO
-    
-    @ObservedObject var bagViewModel: BagViewModel = BagViewModel()
     
     var body: some View {
         NavigationStack {
