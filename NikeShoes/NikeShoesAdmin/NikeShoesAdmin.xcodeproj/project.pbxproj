@@ -95,7 +95,6 @@
 				A09B97952AB0082A00D0AE6E /* GoogleService-Info.plist */,
 				9617AED02AA5AF10009FB78A /* NikeShoesAdminApp.swift */,
 				A09B97842AAF61CE00D0AE6E /* Components */,
-				A09B97832AAF617300D0AE6E /* Model */,
 				A09B97852AAF61E300D0AE6E /* ViewModel */,
 				A09B97822AAF616C00D0AE6E /* View */,
 				9617AED42AA5AF16009FB78A /* Assets.xcassets */,
@@ -132,13 +131,6 @@
 				B72CAEE42AAFE8C100D338A7 /* PromotionView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A09B97832AAF617300D0AE6E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A09B97842AAF61CE00D0AE6E /* Components */ = {
