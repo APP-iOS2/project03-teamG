@@ -3,7 +3,6 @@ import NikeShoesCore
 
 struct ProfileView: View {
     @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel = UserProfileEditViewModel()
-//    @State private var userDTO: UserDTO = UserProfileEditViewModel.sampleData
     @State private var isProfileEditClicked = true
     @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
     @State private var firstName: String = "성"
@@ -90,14 +89,12 @@ extension ProfileView {
             }
             .frame(width: 200, height: 30)
             .border(.gray)
-            
         }
     }
     
     var actionButtonView: some View {
         HStack {
             ForEach(ProfileViewModel.allCases, id: \.rawValue) { item in
-                
                 NavigationLink(destination: item.destinationView) {
                     VStack(alignment: .center) {
                         Image(systemName: item.imageName)
