@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct ProductLinkView: View {
     var body: some View {
         NavigationLink {
-            ProductDetailView()
+            ProductDetailView(shoesData: detailSample)
         } label: {
             HStack {
                 AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in

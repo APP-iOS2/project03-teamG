@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct SearchResultView: View {
     
@@ -38,7 +39,7 @@ struct SearchResultView: View {
                     ForEach(searchResultViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
