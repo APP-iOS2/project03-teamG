@@ -14,7 +14,8 @@ struct MemberRewardView: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.gray)
-                    .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea(.horizontal)
                     .blur(radius: 1)
                     
                 NavigationLink {

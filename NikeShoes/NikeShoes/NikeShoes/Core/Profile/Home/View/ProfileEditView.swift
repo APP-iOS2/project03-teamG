@@ -15,8 +15,7 @@ struct ProfileEditView: View {
     @State private var lastName: String = "이름 없음"
     @State private var activityArea: String = "거주지/도시"
     @State private var introContent: String = "자기소개 없음"
-//    @State private var isOnPhotopicker: Bool = false
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -26,7 +25,9 @@ struct ProfileEditView: View {
                     Text("취소")
                 }
                 .tint(.black)
+                
                 Spacer()
+                
                 Button {
                     userProfileEditViewModel.updateUserData(firstName: firstName, lastName: lastName, activityArea: activityArea, introContent: introContent)
                     Task {
@@ -74,17 +75,11 @@ struct ProfileEditView: View {
             }
             .listStyle(InsetListStyle())
         }
-        .task {
-            do {
-                // TODO: Firebase 메소드를 Escape 클로저를 반환해 리팩토링 해보기
-                try await userProfileEditViewModel.fetchUserData()
-                firstName = userProfileEditViewModel.userData?.firstName ?? "이름값 없음"
-                lastName = userProfileEditViewModel.userData?.lastName ?? "이름값 없음"
-                activityArea = userProfileEditViewModel.userData?.activityArea ?? "활동지역 없음"
-                introContent = userProfileEditViewModel.userData?.introContent ?? "자기소개 없음"
-            } catch {
-                print(error)
-            }
+        .onAppear {
+            firstName = userProfileEditViewModel.userData?.firstName ?? "이름값 없음"
+            lastName = userProfileEditViewModel.userData?.lastName ?? "이름값 없음"
+            activityArea = userProfileEditViewModel.userData?.activityArea ?? "활동지역 없음"
+            introContent = userProfileEditViewModel.userData?.introContent ?? "자기소개 없음"
         }
     }
 }
@@ -96,7 +91,6 @@ struct ProfileEditView_Previews: PreviewProvider {
 }
 
 struct PhotoPicker: View {
-//    @AppStorage("selectedImageString") var selectedImageString: String = "camera.circle.fill"
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
     
@@ -117,11 +111,11 @@ struct PhotoPicker: View {
         .onChange(of: selectedItem) { newItem in
             Task {
                 newItem?.loadTransferable(type: Data.self, completionHandler: { result in
-                    DispatchQueue.main.async {
+                    
                         switch result {
                         case .success(let success):
                             if let imageData = success,
-                               let uiImage = UIImage(data: imageData) {
+                                let _ = UIImage(data: imageData) {
                                 // 파일 경로를 설정
                                 let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                                 let fileURL = documentsDirectory.appendingPathComponent("selected_image.jpg")
@@ -143,7 +137,7 @@ struct PhotoPicker: View {
                             print(error)
                             selectedImage = Image(systemName: "camera.circle.fill")
                         }
-                    }
+                    
                 })
             }
         }

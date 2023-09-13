@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 import NikeShoesCore
 
 final class UserProfileEditViewModel: ObservableObject {
-    @Published var userData: UserDTO?
+    @Published var userData: UserDTO? = sampleData
     let service: FirestoreService
     
     init(service: FirestoreService = DefaultFireStoreService()) {
@@ -31,10 +33,9 @@ final class UserProfileEditViewModel: ObservableObject {
     @MainActor
     func fetchUserData() async throws {
         do {
-            let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", "tjdwns@naver.com"))
-//            DispatchQueue.main.async {
-                self.userData = values.first
-//            }
+            
+            let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", Auth.auth().currentUser?.email ?? ""))
+            self.userData = values.first
         } catch {
             throw error
         }
@@ -50,10 +51,9 @@ final class UserProfileEditViewModel: ObservableObject {
                                      fields: [
                                         "firstName": userData.firstName,
                                         "lastName": userData.lastName,
-                                        "activityArea": userData.activityArea,
-                                        "introContent": userData.introContent
+                                        "activityArea": userData.activityArea ?? "",
+                                        "introContent": userData.introContent ?? ""
                                      ])
-//            try await service.update(collection: .user, document: userData.id ?? "", fields: ["address": userData.address])
         } catch {
             print(#function, "firebase CRUD")
             throw error
