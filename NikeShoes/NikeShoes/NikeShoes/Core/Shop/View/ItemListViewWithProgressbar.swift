@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct ItemListViewWithProgressbar: View {
     
@@ -39,7 +40,7 @@ struct ItemListViewWithProgressbar: View {
                 
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.shoes.filter { selectedTab == "전체" ? true : $0.modelName == selectedTab }) { data in
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     AsyncImage(url: URL(string: data.imageURLString.first ?? "")) { image in

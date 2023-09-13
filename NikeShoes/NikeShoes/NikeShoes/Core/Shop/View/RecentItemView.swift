@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct RecentItemView: View {
     
@@ -42,7 +43,7 @@ struct RecentItemView: View {
                         if sampleRecentItems.count < 6 {
                             ForEach(sampleRecentItems, id: \.self) { item in
                                 
-                                NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                                NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
                                     
                                     VStack(alignment: .leading) {
                                         
@@ -66,7 +67,7 @@ struct RecentItemView: View {
                         } else {
                             ForEach(sampleRecentItems[0...4], id: \.self) { item in
                                 
-                                NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                                NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
                                     
                                     VStack(alignment: .leading) {
                                         
