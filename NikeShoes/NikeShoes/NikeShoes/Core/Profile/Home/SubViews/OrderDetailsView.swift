@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import NikeShoesCore
+import Firebase
 
 struct OrderDetailsView: View {
+    @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
+    
     var title: String
     
-    var dateOfPurchase: String = "2023년 9월 4일"
     var purchaseID: String = "C01272876223"
     var price: Int = 179000
     
     var orderListImageURL: String = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d3123e79-53e5-4a03-aa5b-fbc5c18b9bfd/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-FBbeey7u.png"
-    var orderState: String = "주문 완료"
     var productName: String = "에어 조던 1 로우 G"
     var productType: String = "골프화"
     var productSize: String = "290"
@@ -39,8 +41,11 @@ struct OrderDetailsView: View {
             ScrollView {
                 Divider()
                 VStack(alignment: .leading) {
-                    Text("온라인 구매 - \(dateOfPurchase)")
-                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
+                    if let orderData = orderViewModel.orderData?.first?.orderDate {
+                        Text("온라인 구매 - \(orderData)")
+                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
+                    }
+                    
                     Text("\(purchaseID) ⏤ ₩\(price)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
@@ -49,10 +54,12 @@ struct OrderDetailsView: View {
                         .frame(height: 11)
                         .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
                     
-                    Text(orderState)
-                        .font(.bold16)
-                        .foregroundColor(.nikeGreen)
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                    if let orderData = orderViewModel.orderData?.first?.deliveryStatus {
+                        Text(orderData.rawValue)
+                            .font(.bold16)
+                            .foregroundColor(.nikeGreen)
+                            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                    }
                     
                     HStack(alignment: .top, spacing: 15) {
                         AsyncImage(url: URL(string: orderListImageURL)) { image in
@@ -196,20 +203,6 @@ struct OrderDetailsView: View {
                         .foregroundColor(.black)
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                    
-                    //                    Rectangle()
-                    //                        .fill(Color.defaultGray)
-                    //                        .frame(height: 11)
-                    //                        .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
-                    //
-                    //                    NavigationLink {
-                    //
-                    //                    } label: {
-                    //                        Text("Quick Help Topics")
-                    //                            .font(.bold16)
-                    //                            .foregroundColor(.black)
-                    //                    }
-                    //                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 0))
                 }
                 .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
             }
@@ -217,6 +210,14 @@ struct OrderDetailsView: View {
         .navigationTitle("주문상세")
         .navigationBarTitleDisplayMode(.inline)
         .modifier(NavigationNikeSetting(title: title))
+        
+        .task {
+            do {
+                try await orderViewModel.fetchData()
+            } catch {
+                
+            }
+        }
     }
 }
 
