@@ -13,8 +13,8 @@ struct FollowingView: View {
     let followingCount: Int
     var checkFollowingCount: Int {
         var check: Int = 0
-        followingViewModle.followingData.map { data in
-            if data.isChecked {
+        followingViewModle.followingData.forEach { following in
+            if following.isChecked {
                 check += 1
             }
         }
@@ -29,16 +29,18 @@ struct FollowingView: View {
                     .font(.medium12)
                     .bold()
                 Spacer()
-                NavigationLink(destination: FollowingDetailView().environmentObject(followingViewModle), label: {
-                    HStack {
-                        Spacer()
-                        Text("편집")
-                            .font(.regular12)
-                            .foregroundColor(.gray)
-                    }
-                })
-                  
-            }.padding()
+                NavigationLink(destination: FollowingDetailView().environmentObject(followingViewModle), label: {})
+                    .opacity(0)
+                    .background(
+                        HStack {
+                            Spacer()
+                            Text("편집")
+                                .font(.regular12)
+                                .foregroundColor(.gray)
+                        }
+                    )
+            }
+            .padding(0)
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(followingViewModle.followingData, id: \.id) { item in
