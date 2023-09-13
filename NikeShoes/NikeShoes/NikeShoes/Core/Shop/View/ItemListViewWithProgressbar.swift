@@ -3,7 +3,7 @@
 //  NikeShoes
 //
 //  Created by 이승준 on 2023/09/12.
-//
+///
 
 import SwiftUI
 import NikeShoesCore
@@ -13,11 +13,16 @@ struct ItemListViewWithProgressbar: View {
     // 컬렉션에 네비게이션 제목과 상품 필터 기능을 위한 변수
     var navigationTitle: String
     var speciality: Speciality?
+    var currentGender: String
+    var modelName: ModelName?
     
     // 초기화
-    init(speciality: Speciality?, navigationTitle: String) {
+    init(speciality: Speciality?, modelName: ModelName?, navigationTitle: String, currentGender: String) {
         self.speciality = speciality
+        self.modelName = modelName
         self.navigationTitle = navigationTitle
+        self.currentGender = currentGender
+        self.viewModel = ItemListViewModel()
     }
     
     // 환경 변수 설정
@@ -51,8 +56,11 @@ struct ItemListViewWithProgressbar: View {
                 
                 // 상품 그리드 뷰
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.shoes.filter { speciality == nil ? true : $0.speciality.contains(self.speciality!) }) { data in
-                        if selectedTab == "전체" || data.modelName == selectedTab {
+                    ForEach(viewModel.shoes.filter {
+                        ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil) &&
+                        ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
+                        ($0.category == self.currentGender || self.currentGender == "공용")
+                    }) { data in
                             NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                                 // 상품 카드 뷰
                                 ZStack {
@@ -128,10 +136,9 @@ struct ItemListViewWithProgressbar: View {
             }
         }
     }
-}
 
 struct ItemListViewWithProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListViewWithProgressbar(speciality: .onlyApp, navigationTitle: "앱 전용 제품")
+        ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성")
     }
 }
