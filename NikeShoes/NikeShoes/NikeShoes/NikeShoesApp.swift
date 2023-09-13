@@ -29,12 +29,15 @@ struct NikeShoesApp: App {
     
     @StateObject var followingViewModel: FollowingViewModel = FollowingViewModel()
 
+    @StateObject var wishListViewModel: WishListViewModel = WishListViewModel(service: ViewModelFactory.shared.makeService() )
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
                 .environmentObject(followingViewModel)
                 .environmentObject(obViewModel)
+                .environmentObject(wishListViewModel)
         }
     }
 }

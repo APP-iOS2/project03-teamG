@@ -35,7 +35,6 @@ struct HomeView: View {
                     } else if date < "18:00" {
                         Text("\(userName)님, 활기찬 오후 보내세요!")
                             .font(.mediumBold24)
-                        
                     } else if date < "22:00" {
                         Text("\(userName)님, 즐거운 저녁 보내고 계신가요?")
                             .font(.mediumBold24)
