@@ -67,11 +67,17 @@ public protocol FirestoreService {
                                 collection path2: Path,
                                 query type: APIQuery<Any>? ) async throws -> [T]
     
+    
+    /// wishlist 전용
+    func fetch(collection path: Path,
+               document id: DocumentRefID,
+               collection path2: Path) async throws -> [String : DocumentRefID]
+    
     /// 특정 document의 데이터를  documentID를 인자로 주어서 document를 가지고 오는 함수 입니다.
     /// - Parameters:
     ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - type:  API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
-    /// - Returns: 결과 데이터 배열
+    /// - Returns: 결과 데이터
     func fetchDocument<T: Decodable>(collection path: Path,
                                      document id: DocumentRefID,
                                      query type: APIQuery<Any>? ) async throws -> T
@@ -199,6 +205,26 @@ public class DefaultFireStoreService: FirestoreService {
             let resultData = documents.compactMap { try? $0.data(as: T.self) } as! [T]
             let lastDocument = documents.last
             return (resultData, lastDocument)
+        } catch {
+            throw APIError.fetchingError(error)
+        }
+    }
+    
+    public func fetch(collection path: Path,
+                      document id: DocumentRefID,
+                      collection path2: Path) async throws -> [String : DocumentRefID] {
+        
+        do {
+            return try await firestore
+                .collection(path)
+                .documentBuild(id, collection: path2)
+                .getDocuments()
+                .documents
+                .reduce(into: [:], { dic , value in
+                    guard let id = value.data()["shoesID"] as? String else { return }
+                    let docID = value.documentID
+                    dic[id] = docID
+                })
         } catch {
             throw APIError.fetchingError(error)
         }
