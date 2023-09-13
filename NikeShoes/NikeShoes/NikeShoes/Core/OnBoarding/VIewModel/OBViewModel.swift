@@ -21,30 +21,32 @@ final class OBViewModel: ObservableObject {
         guard let user_uid = Auth.auth().currentUser?.uid else { return }
         do {
             try await service.update(collection: .user, document: user_uid, fields: ["size": sizes])
+            Log.debug(" 💡---updateInterest---: \(sizes)---💡")
         } catch {
-            print("updateLocation : \(error)")
+            Log.debug(" ❌--updateInterest---\(error)---❌")
         }
     }
     
     func updateInterest(interest: [Following]) async {
         guard let user_uid = Auth.auth().currentUser?.uid else { return }
         
-        let interestDTO = interest.map { FollowingDTO(title: $0.title, imageURL: $0.imageURL) }
+        _ = interest.map { FollowingDTO(title: $0.title, imageURL: $0.imageURL) }
         
         do {
             for dto in interest {
-                let result = try await service.create(send: dto,
-                                                      collection: .user,
-                                                      document: user_uid,
-                                                      collection2: .user_following)
+                _ = try await service.create(send: dto,
+                                             collection: .user,
+                                             document: user_uid,
+                                             collection2: .user_following)
             }
+            Log.debug(" 💡---updateInterest---: \(interest)---💡")
         } catch {
-            
+            Log.debug(" ❌--updateInterest---\(error)---❌")
         }
     }
     
     func updateLocation() async {
-        // 위치
+        // 윛
     }
     
     func updateLanguage() async {
