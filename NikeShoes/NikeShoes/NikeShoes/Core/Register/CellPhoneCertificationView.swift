@@ -60,6 +60,7 @@ struct CellPhoneCertificationView: View {
                     } else {
                         authViewModel.userInfo.phoneNumber = cellPhoneNumber
                         authViewModel.register()
+                        authViewModel.isLogin = false
                         screen = .loginCompleted
                     }
                 }

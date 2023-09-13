@@ -62,10 +62,8 @@ struct LoginRegisterView: View {
                 } else {
                     Task {
                         if try await authViewModel.isAlreadySignUp(email) {
-                            authViewModel.isLogin = true
                             screen = .checkPassword
                         } else {
-                            authViewModel.isLogin = false
                             screen = .termsOfService
                         }
                         authViewModel.userInfo.email = email
