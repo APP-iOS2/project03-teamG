@@ -32,9 +32,6 @@ struct ProfileView: View {
                 imageLoadToFileManager()
                 do {
                     try await userProfileEditViewModel.fetchUserData()
-//                    if let userData = userProfileEditViewModel.userData {
-//                        userDTO = userData
-//                    }
                 } catch {
                     print(error)
                 }
