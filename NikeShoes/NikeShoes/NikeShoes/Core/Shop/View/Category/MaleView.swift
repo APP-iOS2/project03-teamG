@@ -12,9 +12,9 @@ struct MaleView: View {
         ("신제품", "MaleCategory1"),
         ("전체보기", "MaleCategory2"),
         ("조던", "MaleCategory3"),
-        ("에어", "MaleCategory4"),
+        ("에어 포스", "MaleCategory4"),
         ("덩크", "MaleCategory5"),
-        ("코르", "MaleCategory6")
+        ("코르테즈", "MaleCategory6")
     ]
     
     var body: some View {

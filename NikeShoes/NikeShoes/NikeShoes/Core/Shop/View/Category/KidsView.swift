@@ -12,9 +12,9 @@ struct KidsView: View {
         ("신제품", "KidsCategory1"),
         ("전체보기", "KidsCategory2"),
         ("조던", "KidsCategory3"),
-        ("에어", "KidsCategory4"),
+        ("에어 포스", "KidsCategory4"),
         ("덩크", "KidsCategory5"),
-        ("코르", "KidsCategory6")
+        ("코르테즈", "KidsCategory6")
     ]
     
     var body: some View {
@@ -27,7 +27,6 @@ struct KidsView: View {
                         
                         Image(imageName)
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
 //                            .scaledToFill()
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                             .clipped()

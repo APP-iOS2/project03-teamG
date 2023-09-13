@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct SizeView: View {
     @State private var isButtonTapped = false
+    @State private var selectedSizeIndex = 0
     @Environment(\.dismiss) private var dismiss
+    var shoesData: ShoesDTO
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,14 +34,23 @@ struct SizeView: View {
                     }
                 }
                 
-                ForEach(ShoesSampleData[1].size, id: \.self) { size in
-                    Button {
-                        isButtonTapped = true
-                        print(size)
-                    } label: {
-                        Text("\(size)")
+                ForEach(0..<shoesData.size.count, id: \.self) { index in
+                    HStack {
+                        Text("\(shoesData.size[index])")
                             .font(.system(size: 17))
                             .padding(.vertical, 15)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "checkmark")
+                            .foregroundColor(index == selectedSizeIndex ? .black : .white)
+                    }
+                    .background(.white)
+                    .onTapGesture {
+                        // 이미지를 탭하면 선택된 이미지를 업데이트
+                        selectedSizeIndex = index
+                        isButtonTapped = true
+                        print(shoesData.size[selectedSizeIndex])
                     }
                 }
             }
@@ -50,6 +62,6 @@ struct SizeView: View {
 
 struct SizeView_Previews: PreviewProvider {
     static var previews: some View {
-        SizeView()
+        SizeView(shoesData: detailSample)
     }
 }

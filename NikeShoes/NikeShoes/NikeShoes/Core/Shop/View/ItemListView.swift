@@ -37,11 +37,11 @@ struct ItemListView: View {
                     ForEach(itemListViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: data)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
-                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                    AsyncImage(url: URL(string: "\(data.imageURLString[0])")) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
