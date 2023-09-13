@@ -41,25 +41,27 @@ struct OBShoesSizeSelectView: View {
     
     var body: some View {
         VStack(alignment: .leading ) {
-            Spacer()
             
             HStack {
                 Text("\(description)")
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
+                    .padding(.vertical, 20)
                     .padding(.horizontal, 24)
             }
             
             BoxView(sizes: sizes, isSelected: $isSelected)
             
-            Spacer(minLength: 300)
+            Spacer(minLength: 200)
             HStack {
                 Spacer()
                 TempButton(title: OBScreen.sizeSelection.title) {
                     Task {
                         await obViewModel.updateMyShoesSize(sizes: selectedSizes)
-                        index += 1
+                        withAnimation {
+                            index += 1
+                        }
                     }
                 }.padding(20)
                 Spacer()

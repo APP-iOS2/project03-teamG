@@ -24,7 +24,7 @@ struct OBStartView: View {
             Spacer(minLength: 500)
             
             TempButton(title: OBScreen.getStated.title) {
-                Task {
+                withAnimation {
                     index += 1
                 }
             }.padding(20)
