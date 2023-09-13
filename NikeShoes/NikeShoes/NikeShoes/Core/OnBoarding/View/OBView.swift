@@ -43,10 +43,8 @@ struct OBContainerView: View {
                    isImageAppearView {
                     progressView
                 }
-                
                 // index가 OnBoarding의 끝나는 지점에 transitionView -> MainTabView 로 변경
                 transitionView
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
             }
         }
     }
@@ -66,14 +64,38 @@ struct OBContainerView: View {
     @ViewBuilder
     private var transitionView: some View {
         switch OBScreen(rawValue: index) {
-        case .locationDescription: OBLocationDescriptionView(index: $index)
-        case .languageSelection:  OBLanguageSelectionView(index: $index)
-        case .getStated:  OBStartView(index: $index)
-        case .interest:  OBInterestSelectView(index: $index)
-        case .sizeSelection:  OBShoesSizeSelectView(index: $index)
-        case .alarmSelection:  OBAlarmView(index: $index)
-        case .location:  OBLocationView(index: $index)
-        case .mainTab:  MainTabView()
+            
+        case .locationDescription:
+            OBLocationDescriptionView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .languageSelection:
+            OBLanguageSelectionView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0)))
+            
+        case .getStated:
+            OBStartView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .interest:
+            OBInterestSelectView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .sizeSelection:
+            OBShoesSizeSelectView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .alarmSelection:
+            OBAlarmView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .location:
+            OBLocationView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .mainTab:
+            MainTabView()
+            
         case .none:
             fatalError("this is invalid index")
         }

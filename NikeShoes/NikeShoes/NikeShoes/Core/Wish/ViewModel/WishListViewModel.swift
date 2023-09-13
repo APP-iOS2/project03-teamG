@@ -26,6 +26,8 @@ extension ShoesDTO {
 class WishListViewModel: ObservableObject {
     @Published var shoesInfo: [Shoes] = Dummy.dummy
     
+    private var shoesIds: [String: DocumentRefID] = [:]
+    
     private var service: FirestoreService
     
     init(service: FirestoreService) {
@@ -57,8 +59,8 @@ class WishListViewModel: ObservableObject {
                 Log.debug("💡---fetchLikeShoes---: \(shoes)---💡")
                 shoesDTO.append(shoes)
             }
-            
             self.shoesInfo = shoesDTO.map { $0.toLike() }
+            self.shoesIds = try await service.fetch(collection: .user, document: userID, collection: .user_like)
             Log.debug(" 💡---fetchLikeShoes---: \(shoesDTO)---💡")
         } catch {
             Log.debug(" ❌--fetchLikeShoes---\(error)---❌")
@@ -115,7 +117,8 @@ class WishListViewModel: ObservableObject {
     func unLikeShoes(shoes: Shoes) async throws {
         guard
             let userID = Auth.auth().currentUser?.uid,
-            let shoesID = shoes.id
+            let shoesID = shoes.id,
+            let documentID = shoesIds[shoesID]
         else {
             try await Task.sleep(for: .milliseconds(1000)); throw APIError.didNotFoundID
         }
@@ -123,7 +126,7 @@ class WishListViewModel: ObservableObject {
         toggle(shoes) // heart 바꿔주기
         
         do {
-            try await service.delete(collection: .user, document: userID, collection: .user_like, document: shoesID)
+            try await service.delete(collection: .user, document: userID, collection: .user_like, document: documentID)
             Log.debug("💡---unLikeShoes---: \(shoes) deleted success---💡")
         } catch {
             
@@ -136,13 +139,12 @@ class WishListViewModel: ObservableObject {
 }
 
 struct Log {
-    static func `debug`(_ message: String){
+    static func `debug`(_ message: String) {
 #if DEBUG
         print(message)
 #endif
     }
 }
-
 
 struct Dummy {
     static var dummy = [
