@@ -67,7 +67,7 @@ struct ItemListViewWithProgressbar: View {
                                     }
                                     .padding(0.3)
                                     
-                                    // 빈 뷰를 추가하여 높이를 일정하게 유지
+                                    // 빈 뷰를 추가하여 상품간 높이 일정하게 유지
                                     Spacer()
                                 }
                                 
@@ -86,7 +86,7 @@ struct ItemListViewWithProgressbar: View {
                                 .offset(x: 60, y: -124)
                             }
                         }
-                        .frame(height: 300) // 여기서 높이를 조절할 수 있습니다.
+                        .frame(height: 300) // 상품간 높이를 조절
                     }
                 }
                 .padding()
