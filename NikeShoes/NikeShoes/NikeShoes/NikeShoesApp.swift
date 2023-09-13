@@ -11,6 +11,7 @@ import FirebaseFirestore
 import NikeShoesCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         
@@ -18,22 +19,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    func serviceLocator() -> FirestoreService {
-        return DefaultFireStoreService()
-    }
 }
 
 @main
 struct NikeShoesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var viewModel = AuthViewModel()
-    private var followingViewModel: FollowingViewModel = FollowingViewModel()
+    @StateObject var viewModel = AuthViewModel(service: ViewModelFactory.shared.makeService())
+    @StateObject var obViewModel: OBViewModel = OBViewModel(service: ViewModelFactory.shared.makeService())
+    
+    @StateObject var followingViewModel: FollowingViewModel = FollowingViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
                 .environmentObject(followingViewModel)
+                .environmentObject(obViewModel)
         }
     }
 }
