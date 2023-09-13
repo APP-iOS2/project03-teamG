@@ -7,15 +7,14 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseFirestore
+import NikeShoesCore
 
-//import FirebaseFirestore
-//import NikeShoesCore
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         return true
     }
@@ -23,12 +22,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
 //    func serviceLocator() -> FirestoreService {
-//        return DefaultFireStoreService()
+//        return DefaultFireStroeService()
 //    }
 }
 
 @main
-struct NikeShoesAdminApp: App  {
+struct NikeShoesAdminApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
 

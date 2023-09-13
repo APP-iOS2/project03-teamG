@@ -1,3 +1,10 @@
+//
+//  GenderTabView.swift
+//  NikeShoes
+//
+//  Created by 박찬호 on 2023/09/11.
+//
+
 import SwiftUI
 
 // MARK: - 문자열 확장

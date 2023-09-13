@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Foundation
+import NikeShoesCore
 
 // 상품 목록을 표시하는 뷰
 struct ItemListView: View {
@@ -20,36 +20,28 @@ struct ItemListView: View {
     // 좋아요 버튼의 상태를 관리하는 변수
     @State var isLiked: Bool = false
     
-    // 현재 선택된 탭을 저장하는 변수
-    @State private var selectedTab: String = "전체"
+    // MARK: 파이어베이스에서 받아온 내용이 반영되어야 하는 변수
+    // 네비게이션 타이틀 변수 (현재는 보류)
     
-    // 프로그레스 바의 위치와 넓이를 저장하는 변수
-    @State private var progressBarOffset: CGFloat = 0
-    @State private var progressBarWidth: CGFloat = 0
-    
-    // 사용할 탭의 목록
-    var tabs: [String] = ["전체", "조던", "덩크"]
+    // 신발 리스트
+    var itemListViewModel: ItemListViewModel = ItemListViewModel()
     
     // 뷰 본문
     var body: some View {
         NavigationStack {
             ScrollView {
                 
-                // 탭바 추가
-                TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
-                    .padding(.bottom, -23)
-                
                 // 상품 목록을 그리드로 표시
                 LazyVGrid(columns: columns) {
                     // 선택된 탭에 따라 상품을 필터링
-                    ForEach(ShoesSampleData.filter { selectedTab == "전체" ? true : $0.modelName.rawValue == selectedTab }) { data in
+                    ForEach(itemListViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: data)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
-                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                    AsyncImage(url: URL(string: "\(data.imageURLString[0])")) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -68,7 +60,7 @@ struct ItemListView: View {
                                         Text("\(data.name)")
                                             .foregroundColor(Color.black)
                                             .bold()
-                                        Text("\(data.category.rawValue)")
+                                        Text("\(data.category)")
                                             .foregroundColor(Color.textGray)
                                         Text("₩\(data.price)")
                                             .foregroundColor(Color.black)

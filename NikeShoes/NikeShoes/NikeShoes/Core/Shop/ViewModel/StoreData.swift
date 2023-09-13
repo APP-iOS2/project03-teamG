@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreData: Identifiable, ImageURL {
+struct StoreData: Identifiable, ImageURL, Equatable {
     var id = UUID().uuidString
     var name: String
     // 서울특별시, 경기도, ...
@@ -47,7 +47,16 @@ class StoreModel: ObservableObject {
         StoreData(name: "나이키 수원 망포", district: "경기도", city: "수원시", detailAddress: "영통구 덕영대로 1556번지 16 (영통동)", locationCoordinates: [37.24511, 127.05930], storePhoneNumber: "+82 31-203-1166", openingTime: "오전 10:30", terminatedTime: "오후 09:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
         StoreData(name: "나이키 송탄", district: "경기도", city: "평택시", detailAddress: "쇼핑로 23-2", locationCoordinates: [37.08114, 127.05209], storePhoneNumber: "+82 31-662-2376", openingTime: "오전 10:00", terminatedTime: "오후 10:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
         StoreData(name: "나이키 영통", district: "경기도", city: "용인시", detailAddress: "기흥구 중부대로 64 용인프리미엄 C동 1층", locationCoordinates: [37.26676, 127.07621], storePhoneNumber: "+82 31-204-3456", openingTime: "오전 10:00", terminatedTime: "오후 09:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
-        
+        StoreData(name: "나이키 AK 기흥", district: "경기도", city: "용인시", detailAddress: "기흥구 구갈동 234번지 AK기흥 1층 나이키", locationCoordinates: [37.27485, 127.11660], storePhoneNumber: "+82 31-5186-6577", openingTime: "오전 10:30", terminatedTime: "오후 10:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 갤러리아 광교", district: "경기도", city: "수원시", detailAddress: "영통구 광교호수공원로 320", locationCoordinates: [37.28530, 127.05727], storePhoneNumber: "+82 31-5174-7706", openingTime: "오전 10:30", terminatedTime: "오후 08:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 롯데 광교", district: "경기도", city: "수원시", detailAddress: "영통구 도청로 10 광교센트럴푸르지오시티 1층", locationCoordinates: [37.28658, 127.05553], storePhoneNumber: "+82 31-8064-2245", openingTime: "오전 11:00", terminatedTime: "오후 09:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 롯데 수원", district: "경기도", city: "수원시", detailAddress: "권선구 세화로 134 롯데백화점수원점 5층", locationCoordinates: [37.26457, 126.99828], storePhoneNumber: "+82 31-8066-0532", openingTime: "오전 10:30", terminatedTime: "오후 08:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 AK 수원", district: "경기도", city: "수원시", detailAddress: "팔달구 덕영대로 924 AK플라자 수원점 4층", locationCoordinates: [37.26633, 127.00029], storePhoneNumber: "+82 31-240-1483", openingTime: "오전 10:30", terminatedTime: "오후 10:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 봉담", district: "경기도", city: "화성시", detailAddress: "봉담읍 삼천병마로 1047-6", locationCoordinates: [37.20043, 126.94081], storePhoneNumber: "+82 31-298-1131", openingTime: "오전 11:00", terminatedTime: "오후 10:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 PPO 평택", district: "경기도", city: "평택시", detailAddress: "경기대로 945 상가 2층", locationCoordinates: [37.03181, 127.06794], storePhoneNumber: "+82 31-612-9101", openingTime: "오전 10:30", terminatedTime: "오후 08:30", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 롯데 수지", district: "경기도", city: "용인시", detailAddress: "수지구 성복2로 38 롯데몰 수지점 2층", locationCoordinates: [37.31339, 127.08082], storePhoneNumber: "+82 31-5174-4200", openingTime: "오전 10:30", terminatedTime: "오후 10:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 신세계 경기", district: "경기도", city: "용인시", detailAddress: "수지구 포은대로 536 신세계백화점 경기점 8층", locationCoordinates: [37.32505, 127.10759], storePhoneNumber: "+82 31-695-1899", openingTime: "오전 10:30", terminatedTime: "오후 08:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
+        StoreData(name: "나이키 수원 천천", district: "경기도", city: "수원시", detailAddress: "장안구 만석로5번길 6 세화프라자", locationCoordinates: [37.29525, 127.98282], storePhoneNumber: "+82 31-269-5384", openingTime: "오전 10:00", terminatedTime: "오후 09:00", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()),
     ]
     
     @Published var shoesInfo: [Shoes] = [
@@ -95,7 +104,7 @@ class StoreModel: ObservableObject {
             }
         }
     }
-
+    
     func setToggle() { // like는 토글용이다.
         
     }

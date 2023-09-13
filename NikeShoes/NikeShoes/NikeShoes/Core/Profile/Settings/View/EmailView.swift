@@ -9,9 +9,9 @@ import SwiftUI
 
 struct EmailView: View {
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var userInfoEdit = UserInfoEditViewModel()
     
     let title: String
-    
     @State private var newEmail: String = ""
     @State private var confirmEmail: String = ""
     
@@ -27,7 +27,7 @@ struct EmailView: View {
                 .foregroundColor(.gray)
                 .padding(.top)
             
-            Text("lhchan4010\("@")gmail.com")
+            Text(userInfoEdit.email)
                 .padding(1)
             
             VStack {
@@ -52,8 +52,10 @@ struct EmailView: View {
                 foregroundColor: canEditEmail ? Color.white : Color.black.opacity(0.5),
                 title: "Done"
             ) {
-                // email update logic
-                self.presentationMode.wrappedValue.dismiss()
+                Task {
+                    await userInfoEdit.updateEmail(newEmail: newEmail)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
             .disabled(!canEditEmail)
             
@@ -61,6 +63,11 @@ struct EmailView: View {
             
         }
         .modifier(NavigationNikeSetting(title: title))
+        .onAppear {
+            Task {
+                userInfoEdit.fetchEmail()
+            }
+        }
     }
     
     func isConfirm(new: String, confirm: String) {

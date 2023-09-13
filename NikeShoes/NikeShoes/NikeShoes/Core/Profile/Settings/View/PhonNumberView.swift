@@ -9,9 +9,10 @@ import SwiftUI
 
 struct PhonNumberView: View {
     @Environment(\.presentationMode) var presentationMode
+    let userInfoEdit = UserInfoEditViewModel()
     let title: String
 
-    @State private var nationCode: String = ""
+    @State private var nationCode: String = "+82"
     @State private var phoneNumber: String = ""
     @State private var isChecked: Bool = false
     @State private var canSendCode: Bool = false
@@ -105,10 +106,13 @@ struct PhonNumberView: View {
                     foregroundColor: canSendCode ? Color.white : Color.black.opacity(0.5),
                     title: "코드전송"
                 ) {
-                    self.presentationMode.wrappedValue.dismiss()
+                    Task {
+                        await userInfoEdit.updatePhoneNumber(newPhoneNumber: phoneNumber)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
                 }
                 .padding()
-                .disabled(canSendCode)
+                .disabled(!canSendCode)
 
                 Spacer()
             }
@@ -161,8 +165,7 @@ struct PhonNumberView: View {
     }
 
     func validator(nationCode: String, phoneNumber: String) {
-        if !nationCode.isEmpty && !phoneNumber.isEmpty {
-            print(nationCode, phoneNumber)
+        if !phoneNumber.isEmpty {
             canSendCode = isChecked
             return
         }

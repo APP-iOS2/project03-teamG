@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginCompletedView: View {
-    @Binding var index: Int
     @Binding var isShowingSignInSheet: Bool
     
     var body: some View {
@@ -26,6 +25,6 @@ struct LoginCompletedView: View {
 
 struct LoginCompletedView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginCompletedView(index: .constant(4), isShowingSignInSheet: .constant(false))
+        LoginCompletedView(isShowingSignInSheet: .constant(false))
     }
 }

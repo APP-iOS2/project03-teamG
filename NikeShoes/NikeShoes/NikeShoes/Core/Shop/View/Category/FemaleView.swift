@@ -12,9 +12,9 @@ struct FemaleView: View {
         ("신제품", "FemaleCategory1"),
         ("전체보기", "FemaleCategory2"),
         ("조던", "FemaleCategory3"),
-        ("에어", "FemaleCategory4"),
+        ("에어 포스", "FemaleCategory4"),
         ("덩크", "FemaleCategory5"),
-        ("코르", "FemaleCategory6")
+        ("코르테즈", "FemaleCategory6")
     ]
     
     var body: some View {

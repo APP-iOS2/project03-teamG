@@ -10,7 +10,7 @@ import SwiftUI
 struct InputUserInfoView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    @Binding var index: Int
+    @Binding var screen: LoginRegisterScreen
     
     @State private var firstName: String = ""
     @State private var lastName: String = ""
@@ -67,11 +67,12 @@ struct InputUserInfoView: View {
                 ButtonView(buttonText: "계속", foreground: .white, background: .black) {
                     if !firstName.isEmpty && !lastName.isEmpty && isValidPassword(password) && isCheckAgreePrivacyPolicyandTerms() {
                         
-                        authViewModel.userInfoBirth = birthFormat
-                        authViewModel.userInfoName = name
+                        authViewModel.userInfo.dateOfBirth = birthFormat
+                        authViewModel.userInfo.firstName = firstName
+                        authViewModel.userInfo.lastName = lastName
                         authViewModel.userInfoPassword = password
                         
-                        index += 1
+                        screen = .cellPhoneCertification
                         
                     } else {
                         isCheckFirstName()
@@ -96,7 +97,7 @@ struct InputUserInfoView: View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading) {
                 TextField("이름", text: $firstName)
-                    .modifier(SignInTextFieldStyle(isTextFieldValid: $isFirstNameValid))
+                    .signInTextFieldStyle(isTextFieldValid: $isFirstNameValid)
                     .onChange(of: firstName) { newValue in
                         isCheckFirstName()
                         firstName = newValue.trimmingCharacters(in: .whitespaces)
@@ -107,7 +108,7 @@ struct InputUserInfoView: View {
             
             VStack(alignment: .leading) {
                 TextField("성", text: $lastName)
-                    .modifier(SignInTextFieldStyle(isTextFieldValid: $isLastNameValid))
+                    .signInTextFieldStyle(isTextFieldValid: $isLastNameValid)
                     .onChange(of: lastName) { newValue in
                         isCheckLastName()
                         lastName = newValue.trimmingCharacters(in: .whitespaces)
@@ -140,7 +141,7 @@ struct InputUserInfoView: View {
                     }
                 }
             }
-            .modifier(SignInTextFieldStyle(isTextFieldValid: $isPasswordValid))
+            .signInTextFieldStyle(isTextFieldValid: $isPasswordValid)
             
             Text(cautionPassword)
                 .foregroundColor(.red)
@@ -183,7 +184,7 @@ struct InputUserInfoView: View {
                             })
                     }
             }
-            .modifier(SignInTextFieldStyle(isTextFieldValid: $isBirthValid))
+            .signInTextFieldStyle(isTextFieldValid: $isBirthValid)
             
             Text(cautionBirth)
                 .foregroundColor(.red)
@@ -301,6 +302,6 @@ struct InputUserInfoView: View {
 
 struct InputUserInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InputUserInfoView(index: .constant(2))
+        InputUserInfoView(screen: .constant(.inputUserInfo))
     }
 }
