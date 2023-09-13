@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct CellPhoneCertificationView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -141,6 +142,6 @@ struct CellPhoneCertificationView: View {
 struct CellPhoneCertificationView_Previews: PreviewProvider {
     static var previews: some View {
         CellPhoneCertificationView(screen: .constant(.cellPhoneCertification))
-            .environmentObject(AuthViewModel())
+            .environmentObject(AuthViewModel(service: DefaultFireStoreService()))
     }
 }

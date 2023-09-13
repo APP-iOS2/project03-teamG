@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OBLocationView: View {
     
+    @EnvironmentObject var obViewModel: OBViewModel
+    @Binding var index: Int
     var description: String = "위치 서비스를 사용해 보세요. 가까운 나이키 매장 및 해당 매장에서 이용 가능한 서비스를 확인 할 수 있습니다."
     
     var body: some View {
@@ -19,7 +21,15 @@ struct OBLocationView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal, 20)
                 .padding(.top, 30)
+            
             Spacer(minLength: 500)
+            
+            TempButton(title: OBScreen.location.title) {
+                Task {
+                    await obViewModel.updateLocation()
+                    index += 1
+                }
+            }.padding(20)
         }
     }
 }
@@ -29,7 +39,7 @@ struct OBLocationView_Previews: PreviewProvider {
         ZStack {
             Color.black
             Blur(style: .light)
-            OBLocationView()
+            OBLocationView(index: .constant(3))
         }.ignoresSafeArea()
     }
 }
