@@ -68,6 +68,7 @@ struct MainTabView: View {
                         Label("프로필", systemImage: "person")
                             .environment(\.symbolVariants, .none)
                     }.tag(4)
+                    .environmentObject(FollowingViewModel())
             }
             .toolbarBackground( .white, for: .tabBar)
         }

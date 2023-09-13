@@ -19,4 +19,17 @@ public struct AddressDTO: Hashable, Codable {
     public var phoneNumber: String
     public var country: String
     public var isDefault: Bool
+    
+    public init(id: String? = nil, name: String, city: String, district: String, town: String, fullAddress: String, postalCode: String, phoneNumber: String, country: String, isDefault: Bool) {
+        self.id = id
+        self.name = name
+        self.city = city
+        self.district = district
+        self.town = town
+        self.fullAddress = fullAddress
+        self.postalCode = postalCode
+        self.phoneNumber = phoneNumber
+        self.country = country
+        self.isDefault = isDefault
+    }
 }
