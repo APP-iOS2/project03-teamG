@@ -27,7 +27,7 @@ struct ItemListViewWithProgressbar: View {
     @State private var progressBarWidth: CGFloat = 0
     
     // 탭 목록
-    var tabs: [String] = ["전체", "조던", "덩크"]
+    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel을 관찰 (ObservedObject)
     @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
