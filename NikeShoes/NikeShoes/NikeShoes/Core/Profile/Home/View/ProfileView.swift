@@ -53,7 +53,9 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 extension ProfileView {
-    
+    var getUserName: String {
+            return "\((userProfileEditViewModel.userData?.firstName ?? "성") + (userProfileEditViewModel.userData?.lastName ?? "이름"))"
+    }
     var headerView: some View {
         VStack {
             // 프로필 이미지
@@ -65,8 +67,8 @@ extension ProfileView {
                 .padding(.top, 50)
             
             // 이름
-            Text("\((userProfileEditViewModel.userData?.firstName ?? "") + (userProfileEditViewModel.userData?.lastName ?? ""))")
-                .font(.headline)
+            Text("getUserName")
+                .font(.mediumBold24)
                 .padding(.top, 7)
                 .padding(.bottom, 1)
             
@@ -107,7 +109,7 @@ extension ProfileView {
                             .font(.subheadline)
                             .foregroundColor(.black)
                     }
-                    .padding()
+                    .padding(20)
                 }
                 Divider()
                     .frame(height: 30)
