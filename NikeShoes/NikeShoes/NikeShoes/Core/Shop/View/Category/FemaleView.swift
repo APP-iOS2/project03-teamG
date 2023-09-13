@@ -6,37 +6,30 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct FemaleView: View {
-    let categories = [
-        ("신제품", "FemaleCategory1"),
-        ("전체보기", "FemaleCategory2"),
-        ("조던", "FemaleCategory3"),
-        ("에어 포스", "FemaleCategory4"),
-        ("덩크", "FemaleCategory5"),
-        ("코르테즈", "FemaleCategory6")
+    let categories: [CategoryInfo] = [
+        CategoryInfo(name: "신제품", imageName: "FemaleCategory1", speciality: .newProduct, modelName: nil),
+        CategoryInfo(name: "전체보기", imageName: "FemaleCategory2", speciality: .allProducts, modelName: nil),
+        CategoryInfo(name: "조던", imageName: "FemaleCategory3", speciality: nil, modelName: .jordan),
+        CategoryInfo(name: "에어 포스 1", imageName: "FemaleCategory4", speciality: nil, modelName: .airForce),
+        CategoryInfo(name: "덩크", imageName: "FemaleCategory5", speciality: nil, modelName: .dunk),
+        CategoryInfo(name: "코르테즈", imageName: "FemaleCategory6", speciality: nil, modelName: .cortez)
     ]
     
     var body: some View {
-        VStack(spacing: 3) {  // 간격을 3으로 설정
-            ForEach(categories, id: \.0) { category, imageName in
-                NavigationLink(destination: ItemListView()) {
-                    ZStack(alignment: .leading) {  // 왼쪽 정렬
-                        Rectangle()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                        
-                        Image(imageName)
-                            .resizable()
-//                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                            .clipped()
-                        
-                        Text(category)
-                            .font(.system(size: 20))
-                            .bold()  // 볼드 처리
-                            .foregroundColor(Color.white)
-                            .padding(.leading, 50)  // 왼쪽으로부터 50만큼 떨어지게 배치
-                    }
+        VStack(spacing: 3) {
+            ForEach(categories, id: \.name) { categoryInfo in
+                NavigationLink(
+                    destination: ItemListViewWithProgressbar(
+                        speciality: categoryInfo.speciality,
+                        modelName: categoryInfo.modelName,
+                        navigationTitle: categoryInfo.name,
+                        currentGender: "여성"
+                    )
+                ) {
+                    CategoryItem(category: categoryInfo.name, imageName: categoryInfo.imageName)
                 }
             }
         }
