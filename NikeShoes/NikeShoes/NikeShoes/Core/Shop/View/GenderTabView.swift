@@ -36,6 +36,7 @@ struct GenderTabBarView: View {
     @State private var selectedTab: String
     @State private var progressBarOffset: CGFloat = 0
     @State private var progressBarWidth: CGFloat = 0
+    @State private var isShowingSearchSheet: Bool = false
     
     var tabs: [String]
     
@@ -53,7 +54,18 @@ struct GenderTabBarView: View {
             }
         }
         .navigationBarTitle("구매하기", displayMode: .automatic)
-        .toolbar { SearchView() }
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    isShowingSearchSheet = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $isShowingSearchSheet) {
+            SearchItemView()
+        }
     }
 }
 
