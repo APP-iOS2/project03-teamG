@@ -53,7 +53,7 @@ struct ItemListViewWithProgressbar: View {
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.shoes.filter { speciality == nil ? true : $0.speciality.contains(self.speciality!) }) { data in
                         if selectedTab == "전체" || data.modelName == selectedTab {
-                            NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
+                            NavigationLink(destination: ProductDetailView(shoesData: data)) {
                                 // 상품 카드 뷰
                                 ZStack {
                                     VStack(alignment: .leading) {
