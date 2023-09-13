@@ -26,7 +26,11 @@ struct SearchResultView: View {
     // 네비게이션 타이틀 변수 (현재는 보류)
     
     // 신발 리스트
-    var searchResultViewModel: SearchResultViewModel = SearchResultViewModel(searchKeyword: "조던")
+    @StateObject var searchResultViewModel: SearchResultViewModel
+    init(search: String) {
+        self.search = search
+        self._searchResultViewModel = StateObject(wrappedValue: SearchResultViewModel(searchKeyword: search))
+    }
     
     // 뷰 본문
     var body: some View {
@@ -113,6 +117,6 @@ struct SearchResultView: View {
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(search: "덩크")
+        SearchResultView(search: "onlyApp")
     }
 }
