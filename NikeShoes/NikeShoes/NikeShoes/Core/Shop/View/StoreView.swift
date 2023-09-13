@@ -11,7 +11,7 @@ struct StoreView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var storeModel = StoreModel()
+    @ObservedObject private var storeModel = StoreModel()
     
     @State private var isShowingMapSheet: Bool = false
     @State private var isShowingSearchSheet: Bool = false
@@ -50,6 +50,7 @@ struct StoreView: View {
                         Image(systemName: "chevron.backward")
                     }
                 }
+                // map버튼
                 ToolbarItem {
                     Button {
                         isShowingMapSheet = true
@@ -57,6 +58,7 @@ struct StoreView: View {
                         Image(systemName: "map")
                     }
                 }
+                // 검색 버튼
                 ToolbarItem {
                     Button {
                         isShowingSearchSheet = true
