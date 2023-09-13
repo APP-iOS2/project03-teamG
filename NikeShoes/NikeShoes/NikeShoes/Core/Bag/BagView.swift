@@ -22,6 +22,7 @@ struct BagView: View {
     @State var isShowingSheet: Bool = false
     
     @State private var sheetHeight: CGFloat = .zero
+    @State private var size: CGSize = .zero
     
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
@@ -228,6 +229,17 @@ struct BagView: View {
             .padding()
             .sheet(isPresented: $isShowingSheet) {
                 PaymentView(selectedQty: selectedQty, finalPrice: finalPrice)
+                    .overlay {
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+                        }
+                    }
+                    .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
+                        
+                            sheetHeight = newHeight
+                        
+                    }
+                    .presentationDetents([.height(sheetHeight)])
 //                    .presentationDetents([.medium])
                 
             }
@@ -276,5 +288,12 @@ struct BagView_Previews: PreviewProvider {
                                  imageURLString: "",
                                  like: false))
         }
+    }
+}
+
+struct InnerHeightPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
