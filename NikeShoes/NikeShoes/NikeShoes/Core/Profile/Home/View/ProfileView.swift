@@ -64,7 +64,8 @@ extension ProfileView {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
-                .frame(width: 150, height: 150)
+                .frame(width: 100, height: 100)
+                .padding(.top, 50)
             
             // 이름
             Text("\((userProfileEditViewModel.userData?.firstName ?? "") + (userProfileEditViewModel.userData?.lastName ?? ""))")
