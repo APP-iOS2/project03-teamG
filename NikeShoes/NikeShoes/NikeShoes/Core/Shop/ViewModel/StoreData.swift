@@ -96,6 +96,7 @@ class StoreModel: ObservableObject {
               imageURLString: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/25ce0133-30c9-448d-9ca9-600f4175fb7c/%EC%BD%94%EB%A5%B4%ED%85%8C%EC%A6%88-se-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-NrNRnFf1.png",
               like: true),
     ]
+    
     func toggle(_ data: Shoes) { //좋아요를 토글해서 이미지로 반영되게 하는 방식
         for index in 0..<shoesInfo.count {
             if data.id == shoesInfo[index].id {
