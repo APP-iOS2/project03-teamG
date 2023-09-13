@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignOutView: View {
-    
+    @EnvironmentObject var authViewModel: AuthViewModel
     var title: String
     
     @State private var isCheckedBox: Bool = false
@@ -78,7 +78,8 @@ struct SignOutView: View {
                     }
                     
                     CustomButton(background: .clear, foregroundColor: .black, title: "취소") {
-                        //
+                        authViewModel.signOut()
+                        authViewModel.deleteAccount()
                     }
                     
                 }

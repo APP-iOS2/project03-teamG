@@ -25,23 +25,26 @@ public struct OrderDTO: Codable, Identifiable {
     public var address: String
     public var deliveryStatus: DeliveryStatus
     public let orderDate: Date
+    public var shoesSize: Int
     
     public init(id: String?,
                 shoesID: String,
                 userID: String,
                 address: String,
                 deliveryStatus: DeliveryStatus,
-                orderDate: Date) {
+                orderDate: Date,
+                shoesSize: Int) {
         self.id = id
         self.shoesID = shoesID
         self.userID = userID
         self.address = address
         self.deliveryStatus = deliveryStatus
         self.orderDate = orderDate
+        self.shoesSize = shoesSize
     }
 }
 
-public enum DeliveryStatus: String, Codable, CaseIterable {
+public enum DeliveryStatus: String, Codable {
     case orderComplete = "주문 완료"
     case paymentComfirm = "입금 확인"
     case shipping = "배송 중"

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct ItemListViewWithProgressbar: View {
     
@@ -26,7 +27,7 @@ struct ItemListViewWithProgressbar: View {
     @State private var progressBarWidth: CGFloat = 0
     
     // 탭 목록
-    var tabs: [String] = ["전체", "조던", "덩크"]
+    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel을 관찰 (ObservedObject)
     @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
@@ -38,10 +39,8 @@ struct ItemListViewWithProgressbar: View {
                     .padding(.bottom, -23)
                 
                 LazyVGrid(columns: columns) {
-                    // 선택된 탭에 따라 상품을 필터링
                     ForEach(viewModel.shoes.filter { selectedTab == "전체" ? true : $0.modelName == selectedTab }) { data in
-                        // 상세 화면으로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     AsyncImage(url: URL(string: data.imageURLString.first ?? "")) { image in
@@ -68,6 +67,9 @@ struct ItemListViewWithProgressbar: View {
                                             .foregroundColor(Color.black)
                                     }
                                     .padding(0.3)
+                                    
+                                    // 빈 뷰를 추가하여 상품간 높이 일정하게 유지
+                                    Spacer()
                                 }
                                 
                                 // 좋아요 버튼
@@ -82,9 +84,10 @@ struct ItemListViewWithProgressbar: View {
                                                 .foregroundColor(isLiked ? .red : .gray)
                                         )
                                 }
-                                .offset(x: 65, y: -110)
+                                .offset(x: 60, y: -124)
                             }
                         }
+                        .frame(height: 300) // 상품간 높이를 조절
                     }
                 }
                 .padding()
