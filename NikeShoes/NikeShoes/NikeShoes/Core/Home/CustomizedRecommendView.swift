@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct CustomizedRecommendView: View {
     var body: some View {
@@ -32,7 +33,7 @@ struct CustomizedRecommendView: View {
                 LazyHStack {
                     
                     ForEach(ShoesSampleData, id: \.self) { item in
-                        NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
                             
                             VStack(alignment: .leading) {
                                 // 상품 이미지

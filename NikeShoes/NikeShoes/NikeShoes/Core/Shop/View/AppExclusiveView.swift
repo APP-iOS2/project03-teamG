@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct AppExclusiveView: View {
     
@@ -32,7 +33,7 @@ struct AppExclusiveView: View {
 
                     ForEach(sampleAppExclusives, id: \.self) { item in
                         
-                        NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
                             
                             VStack(alignment: .leading) {
                                 

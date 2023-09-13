@@ -1,79 +1,90 @@
+//
+//  AddressViewModel.swift
+//  NikeShoes
+//
+//  Created by 이희찬 on 2023/09/07.
+//
+
 import Foundation
 import Firebase
 import NikeShoesCore
 
 class AddressViewModel: ObservableObject {
-    
-    private let firestoreService = DefaultFireStoreService()
-    
     @Published var addresses: [AddressDTO] = [sample]
     
-    func addAddress(address: AddressDTO) async {
+    private var db = Firestore.firestore()
+    
+    init() {
+        fetchData()
+    }
+    
+    func addAddress(address: AddressDTO) {
         do {
-            guard let userID = Auth.auth().currentUser?.uid else {
-                print("No user ID available")
-                return
+            if address.isDefault {
+                if let currentDefault = addresses.first(where: { $0.isDefault }) {
+                    var updatedAddress = currentDefault
+                    updatedAddress.isDefault = false
+                    try db.collection("addresses").document(currentDefault.id ?? "").setData(from: updatedAddress)
+                }
             }
-
-            addresses.append(address)
-            try await firestoreService.update(collection: .user, document: userID, fields: ["addresses": addresses])
-            print("Successfully added address")
+            let _ = try db.collection("user").document(Auth.auth().currentUser!.uid) .collection("addresses").addDocument(from: address)
         } catch {
-            print("Failed to add address: \(error)")
+            print(error.localizedDescription)
         }
     }
     
-    func fetchAddresses() async {
-        do {
-            guard let userID = Auth.auth().currentUser?.uid else {
-                print("No user ID available")
+    func fetchData() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        
+        db.collection("user").document(userID).collection("addresses").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
                 return
             }
-
-            let user: [UserDTO] = try await firestoreService.fetchAll(collection: .user, query: .equal("id", userID))
-            addresses = user[0].address
-            print(addresses)
-        } catch {
-            print("Failed to fetch addresses: \(error)")
+            
+            self.addresses = documents.compactMap { queryDocumentSnapshot in
+                try? queryDocumentSnapshot.data(as: AddressDTO.self)
+            }
         }
     }
     
-    func updateAddress(address: AddressDTO) async {
-        do {
-            guard let userID = Auth.auth().currentUser?.uid else {
-                print("No user ID available")
-                return
-            }
+    func updateAddress(address: AddressDTO) {
+        guard let addressID = address.id else {
+            print("No address ID available")
+            return
+        }
 
-            if let index = addresses.firstIndex(where: { $0.id == address.id }) {
-                addresses[index] = address
-                try await firestoreService.update(collection: .user, document: userID, fields: ["addresses": addresses])
-                print("Successfully updated address")
-            }
-        } catch {
-            print("Failed to update address: \(error)")
+        do {
+            try db.collection("user").document(Auth.auth().currentUser!.uid)
+                .collection("addresses").document(addressID)
+                .setData(from: address)
+        } catch let error {
+            print("Error updating address: \(error)")
         }
     }
     
-    func deleteAddress(address: AddressDTO) async {
-        do {
-            guard let userID = Auth.auth().currentUser?.uid else {
-                print("No user ID available")
-                return
+    func setAsDefault(index: Int) {
+        if addresses[index].isDefault {
+            // 기존 기본 배송지 해제
+            if let currentDefault = addresses.first(where: { $0.isDefault }) {
+                var updatedAddress = currentDefault
+                updatedAddress.isDefault = false
+                updateAddress(address: updatedAddress)
             }
-
-            addresses.removeAll { $0.id == address.id }
-            try await firestoreService.update(collection: .user, document: userID, fields: ["addresses": addresses])
-            print("Successfully deleted address")
-        } catch {
-            print("Failed to delete address: \(error)")
         }
+        
+        // 새로운 기본 배송지 설정
+        updateAddress(address: addresses[index])
     }
+    
 }
 
 let sample = AddressDTO(
     id: "12345",
-    name: "희찬",
+    name: "나이키",
     city: "서울",
     district: "강남구",
     town: "삼성동",
