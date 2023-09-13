@@ -14,7 +14,7 @@ struct MaleView: View {
         ("조던", "MaleCategory3"),
         ("에어", "MaleCategory4"),
         ("덩크", "MaleCategory5"),
-        ("코르", "MaleCategory6")
+        ("코르테즈", "MaleCategory6")
     ]
     
     var body: some View {
