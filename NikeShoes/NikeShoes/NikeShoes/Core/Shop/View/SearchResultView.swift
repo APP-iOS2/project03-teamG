@@ -42,7 +42,7 @@ struct SearchResultView: View {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
-                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                    AsyncImage(url: URL(string: "\(data.imageURLString[0])")) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
