@@ -96,7 +96,7 @@ struct SearchItemView: View {
                     ScrollView {
                         ForEach(top10, id: \.self) { item in
                             HStack {
-                                NavigationLink(destination: Text("범인 아님") /*SearchResultView(search: item)*/) {
+                                NavigationLink(destination: SearchResultView(search: item)) {
                                     Text(item)
                                 }
                                 .padding(.leading, 30)
@@ -127,24 +127,30 @@ struct SearchItemView: View {
                     ScrollView {
                         ForEach(searchHistory, id: \.self) { item in
                             HStack {
-                                Button {
-                                    //검색 순서
-                                    searchHistory.insert(item, at: 0)
-                                    for index in 1..<searchHistory.count {
-                                        if searchHistory[index] == item {// 기존에 존재한 검색인 경우
-                                            searchHistory.remove(at: index)
-                                            break
-                                        }
-                                    }
-                                    // 2. 검색어를 들고 해당 뷰로 넘어가야 함
-                                    
-                                } label: {
+                                NavigationLink(destination: SearchResultView(search: item)) {
                                     Text(item)
                                 }
-                                .tint(.black)
                                 .padding(.leading, 30)
                                 .padding(.top, 10)
                                 Spacer()
+//                                Button {
+//                                    //검색 순서
+//                                    searchHistory.insert(item, at: 0)
+//                                    for index in 1..<searchHistory.count {
+//                                        if searchHistory[index] == item {// 기존에 존재한 검색인 경우
+//                                            searchHistory.remove(at: index)
+//                                            break
+//                                        }
+//                                    }
+//                                    // 2. 검색어를 들고 해당 뷰로 넘어가야 함
+//
+//                                } label: {
+//                                    Text(item)
+//                                }
+//                                .tint(.black)
+//                                .padding(.leading, 30)
+//                                .padding(.top, 10)
+//                                Spacer()
                             }
                         }
                     }
@@ -162,6 +168,8 @@ struct SearchItemView: View {
 
 struct SearchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchItemView()
+        NavigationStack {
+            SearchItemView()
+        }
     }
 }
