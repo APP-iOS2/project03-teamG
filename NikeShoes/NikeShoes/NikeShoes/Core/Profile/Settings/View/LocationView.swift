@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var filteredCountries: [String] = countries
+    @ObservedObject var userInfo = UserInfoEditViewModel()
     
     let title: String
     
@@ -34,13 +35,32 @@ struct LocationView: View {
                 .padding()
             List {
                 ForEach(filteredCountries, id: \.self) { item in
-                    Text(item)
-                        .font(.subheadline)
+                    HStack{
+                        Text(item)
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        if item == userInfo.country {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                    .onTapGesture {
+                        Task{
+                            userInfo.country = item
+                            await userInfo.updateCountry()
+                        }
+                    }
                 }
             }
             .listStyle(.plain)
         }
         .modifier(NavigationNikeSetting(title: title))
+        .onAppear {
+            Task {
+                userInfo.fetchCountry()
+            }
+        }
     }
 }
 
@@ -74,6 +94,7 @@ let countries = [
     "뉴질랜드",
     "니카라과",
     "대만",
+    "대한민국",
     "덴마크",
     "도미니카",
     "도미니카공화국",

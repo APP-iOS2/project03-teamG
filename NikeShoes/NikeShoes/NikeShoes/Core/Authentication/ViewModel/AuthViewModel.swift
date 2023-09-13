@@ -15,6 +15,7 @@ class AuthViewModel: ObservableObject {
     @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
+    @Published var isLogin: Bool = false
     
     init(service: FirestoreService) {
         userSession = Auth.auth().currentUser 
@@ -127,7 +128,23 @@ class AuthViewModel: ObservableObject {
             throw error
         }
     }
-
+    func resetPassword(forEmail email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                // 비밀번호 재설정 이메일 전송 중 오류가 발생한 경우
+                completion(error)
+            } else {
+                // 비밀번호 재설정 이메일이 성공적으로 전송된 경우
+                completion(nil)
+            }
+        }
+    }
+    
+    func signOut() {
+        userSession = nil
+        try? Auth.auth().signOut()
+    }
+    
     func deleteAccount() {
         guard let user = Auth.auth().currentUser else {
             print("DEBUG: No user is logged in")

@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct SizeButtonView: View {
     @State private var isShowingSizeSheet = false
+    var shoesData: ShoesDTO
     
     var body: some View {
         Button {
@@ -27,7 +29,7 @@ struct SizeButtonView: View {
             }
         }
         .sheet(isPresented: $isShowingSizeSheet) {
-            SizeView()
+            SizeView(shoesData: shoesData)
                 .presentationDetents([.medium, .medium])
         }
     }
@@ -35,6 +37,6 @@ struct SizeButtonView: View {
 
 struct SizeButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        SizeButtonView()
+        SizeButtonView(shoesData: detailSample)
     }
 }
