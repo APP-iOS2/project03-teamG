@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import NikeShoesCore
+import Firebase
+import FirebaseAuth
 
 struct PaymentView: View {
     @State var selectedQty: Int
@@ -30,6 +33,11 @@ struct PaymentView: View {
     @State private var paymentMethod: String = ""
     @State private var isPaymentTapped: Bool = true
     @State private var isArgreeTapped: Bool = true
+    @State var bagItemList: [ShoesDTO]
+    
+    @EnvironmentObject var orderViewModel: OrderViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     
     var body: some View {
         
@@ -231,9 +239,9 @@ struct PaymentView: View {
                             
                             HStack {
                                 Button {
-                                    isPaymentTapped.toggle()
+                                    isArgreeTapped.toggle()
                                 } label: {
-                                    if isPaymentTapped {
+                                    if isArgreeTapped {
                                         Image(systemName: "circlebadge")
                                             .padding()
                                     } else {
@@ -340,7 +348,6 @@ struct PaymentView: View {
                                     }
                                     .foregroundColor(.black)
                                     
-                                    
                                     Text("'결제하기'을(를) 누르면 이용약관에 동의하게 됩니다.")
                                         .font(.caption)
                                     
@@ -348,9 +355,22 @@ struct PaymentView: View {
                                 }
                                 
                                 Button {
-                                    withAnimation {
-                                        isPaymentTapped.toggle()
+//                                        isArgreeTapped.toggle()
+                                    authViewModel.fetchUser()
+                                    let orderList: [OrderDTO] = [
+                                        OrderDTO(shoesID: "\(bagItemList[0].id)" ,
+                                                 userID: "\(authViewModel.userInfo.id)",
+                                                 address: "주소주소테스트",
+                                                 deliveryStatus: .orderComplete,
+                                                 orderDate: Date())
+                                    ]
+                                    
+                                    for dto in orderList {
+                                    Task { try await
+                                            orderViewModel.createOrder(orderDTO: dto)
+                                        }
                                     }
+                                    
                                 } label: {
                                     Text("결제하기")
                                         .font(.title3)
@@ -369,8 +389,6 @@ struct PaymentView: View {
                 .padding()
             }
                 
-                
-            
             Spacer()
         }
         //        .navigationTitle("주문하기")
@@ -381,7 +399,7 @@ struct PaymentView: View {
 struct PaymentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            PaymentView(selectedQty: 3, finalPrice: "300000")
+            PaymentView(selectedQty: 3, finalPrice: "300000", bagItemList: [detailSample])
         }
     }
 }
