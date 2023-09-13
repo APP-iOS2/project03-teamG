@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct SearchResultView: View {
     
@@ -25,7 +26,11 @@ struct SearchResultView: View {
     // 네비게이션 타이틀 변수 (현재는 보류)
     
     // 신발 리스트
-    var searchResultViewModel: SearchResultViewModel = SearchResultViewModel(searchKeyword: "조던")
+    @StateObject var searchResultViewModel: SearchResultViewModel
+    init(search: String) {
+        self.search = search
+        self._searchResultViewModel = StateObject(wrappedValue: SearchResultViewModel(searchKeyword: search))
+    }
     
     // 뷰 본문
     var body: some View {
@@ -38,11 +43,11 @@ struct SearchResultView: View {
                     ForEach(searchResultViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView()) {
+                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
-                                    AsyncImage(url: URL(string: "\(data.imageURLString)")) { image in
+                                    AsyncImage(url: URL(string: "\(data.imageURLString[0])")) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -112,6 +117,6 @@ struct SearchResultView: View {
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(search: "덩크")
+        SearchResultView(search: "onlyApp")
     }
 }
