@@ -40,7 +40,7 @@ struct ItemListViewWithProgressbar: View {
     var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel
-    @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
+    @EnvironmentObject var viewModel: ItemListViewModel
     
     var body: some View {
         NavigationStack {
@@ -121,10 +121,6 @@ struct ItemListViewWithProgressbar: View {
                             .foregroundColor(.black)
                     }
                 )
-            }
-            // 데이터 로딩
-            .onAppear {
-                viewModel.action()
             }
         }
     }
