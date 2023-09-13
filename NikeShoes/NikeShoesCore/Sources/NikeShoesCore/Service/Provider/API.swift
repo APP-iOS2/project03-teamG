@@ -17,6 +17,7 @@ public struct API {
         case user
         case user_address
         case user_following
+        case user_like
         case promotion
         case shoes
         case orderlist
