@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ManageAddress: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: AddressViewModel = AddressViewModel()
+    @ObservedObject var addressviewModel: AddressViewModel = AddressViewModel()
     
     @State private var navigateToEmptyView: Bool = false
     
@@ -17,13 +17,13 @@ struct ManageAddress: View {
     
     var body: some View {
         VStack {
-            ForEach(viewModel.addresses.indices, id: \.self) { index in
-                AddressRow(viewModel: viewModel, index: index)
+            ForEach(addressviewModel.addresses.indices, id: \.self) { index in
+                AddressRow(viewModel: addressviewModel, index: index)
             }
             
             Spacer()
             
-            NavigationLink(destination: AddAddressView(viewModel: viewModel)) {
+            NavigationLink(destination: AddAddressView(addressViewModel: addressviewModel)) {
                 Text("배송지 추가")
                     .font(.system(size: 18))
                     .frame(width: 351, height: 63)
@@ -34,6 +34,10 @@ struct ManageAddress: View {
             
         }
         .modifier(NavigationNikeSetting(title: title))
+        .task {
+            await addressviewModel.fetchAddresses()
+        }
+        
     }
 }
 
@@ -51,9 +55,8 @@ struct AddressRow: View {
     
     var body: some View {
         HStack {
-            // 기본 배송지 여부
             Button {
-                viewModel.addresses[index].isDefault.toggle()
+                // 기본 배송지 변경
             } label: {
                 HStack {
                     Image(systemName: viewModel.addresses[index].isDefault ? "checkmark.square" : "square")

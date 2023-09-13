@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmailView: View {
     @Environment(\.presentationMode) var presentationMode
+    let userInfoEdit = UserInfoEditViewModel()
     
     let title: String
     
@@ -52,8 +53,10 @@ struct EmailView: View {
                 foregroundColor: canEditEmail ? Color.white : Color.black.opacity(0.5),
                 title: "Done"
             ) {
-                // email update logic
-                self.presentationMode.wrappedValue.dismiss()
+                Task {
+                    await userInfoEdit.updateEmail(newEmail: newEmail)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
             .disabled(!canEditEmail)
             

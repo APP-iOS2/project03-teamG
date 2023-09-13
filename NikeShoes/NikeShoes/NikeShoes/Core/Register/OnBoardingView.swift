@@ -12,26 +12,18 @@ struct OnBoardingView: View {
     
     var body: some View {
         VStack {
-            RegisterContainerView(isContinueButtonClicked: false, isPreviousButtonClicked: false, index: 0)
+            RegisterContainerView(screen: .loginRegister)
                 .navigationBarBackButtonHidden(true)
         }
     }
 }
 
 struct RegisterContainerView: View {
-    @State private var isPressedRegisterButton: Bool = false
-    @State private var isPressedLoginButton: Bool = false
-    
     @State private var isShowingSignInSheet: Bool = false
+    @State private var screen: LoginRegisterScreen = .loginRegister
     
-    @State private var isContinueButtonClicked: Bool = false
-    @State private var isPreviousButtonClicked: Bool = false
-    @State private var index: Int = 0
-    
-    init(isContinueButtonClicked: Bool, isPreviousButtonClicked: Bool, index: Int) {
-        self.isContinueButtonClicked = isContinueButtonClicked
-        self.isPreviousButtonClicked = isPreviousButtonClicked
-        self.index = index
+    init(screen: LoginRegisterScreen) {
+        self.screen = screen
     }
     
     @State private var imageIndex: Int = 0
@@ -45,7 +37,9 @@ struct RegisterContainerView: View {
     
     var body: some View {
         ZStack {
-            if index < 4 {
+            if screen == .loginCompleted {
+                OBView()
+            } else {
                 VStack(alignment: .leading) {
                     Spacer()
                     
@@ -72,8 +66,6 @@ struct RegisterContainerView: View {
                 .padding(.leading, 20)
                 .padding(.bottom, 70)
                 .background(imageBackground)
-            } else {
-                OBView()
             }
         }
         .sheet(isPresented: $isShowingSignInSheet) {
@@ -90,29 +82,28 @@ struct RegisterContainerView: View {
                     .frame(width: 120)
                     .padding([.leading, .bottom])
                 
-                switch index {
-                case 0:
-                    LoginRegisterView(index: $index)
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                case 1:
-                    if isPressedRegisterButton {
-                        TermsOfServiceView(index: $index)
-                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                    } else if isPressedLoginButton {
-                        CheckPasswordView(index: $index)
-                            .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                    }
-                case 2:
-                    InputUserInfoView(index: $index)
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                case 3:
-                    CellPhoneCertificationView(index: $index)
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                case 4:
-                    LoginCompletedView(index: $index, isShowingSignInSheet: $isShowingSignInSheet)
-                        .modifier(SignInToolbarStyle(isPressedRegisterButton: $isPressedRegisterButton, isPressedLoginButton: $isPressedLoginButton, isShowingSignInSheet: $isShowingSignInSheet, index: $index))
-                default:
-                    EmptyView()
+                switch screen {
+                case .loginRegister:
+                    LoginRegisterView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .termsOfService:
+                    TermsOfServiceView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .checkPassword:
+                    CheckPasswordView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .findPassword:
+                    FindPasswordView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .inputUserInfo:
+                    InputUserInfoView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .cellPhoneCertification:
+                    CellPhoneCertificationView(screen: $screen)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
+                case .loginCompleted:
+                    LoginCompletedView(isShowingSignInSheet: $isShowingSignInSheet)
+                        .modifier(SignInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet))
                 }
             }
             Spacer()
@@ -121,7 +112,6 @@ struct RegisterContainerView: View {
     
     private var SignUpButton: some View {
         Button {
-            isPressedRegisterButton.toggle()
             isShowingSignInSheet.toggle()
         } label: {
             Text("가입하기")
@@ -138,7 +128,6 @@ struct RegisterContainerView: View {
     
     private var SignInButton: some View {
         Button {
-            isPressedLoginButton.toggle()
             isShowingSignInSheet.toggle()
         } label: {
             Text("로그인")
@@ -193,27 +182,33 @@ struct RegisterContainerView: View {
 }
 
 struct SignInToolbarStyle: ViewModifier {
-    @Binding var isPressedRegisterButton: Bool
-    @Binding var isPressedLoginButton: Bool
+    @Binding var screen: LoginRegisterScreen
     @Binding var isShowingSignInSheet: Bool
-    @Binding var index: Int
     
     func body(content: Content) -> some View {
         content
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        isPressedRegisterButton = false
-                        isPressedLoginButton = false
+                        screen = .loginRegister
                         isShowingSignInSheet = false
-                        index = 0
                     } label: {
                         Text("취소")
                     }
-                    
+
                 }
             }
     }
+}
+
+enum LoginRegisterScreen: CaseIterable {
+    case loginRegister
+    case termsOfService
+    case checkPassword
+    case findPassword
+    case inputUserInfo
+    case cellPhoneCertification
+    case loginCompleted
 }
 
 struct OnBoardingView_Previews: PreviewProvider {

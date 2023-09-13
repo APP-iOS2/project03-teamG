@@ -10,9 +10,9 @@ enum ProfileViewModel: Int, CaseIterable {
     var title: String {
         switch self {
         case .orders: return "주문내역"
-        case .pass: return "pass"
-        case .events: return "events"
-        case .settings: return "settings"
+        case .pass: return "패스"
+        case .events: return "이벤트"
+        case .settings: return "셋팅"
         }
     }
     

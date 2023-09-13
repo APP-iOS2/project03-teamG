@@ -49,18 +49,19 @@ struct StoreSearchView: View {
                     }
                 }
             }
-        }
-        .searchable(text: $searchText, prompt: "찾고싶은 매장 위치를 검색하세요.")
-        .listStyle(.plain)
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    isShowingSearchSheet = false
-                } label: {
-                    Text("닫기")
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        isShowingSearchSheet = false
+                    } label: {
+                        Text("닫기")
+                    }
                 }
             }
         }
+        .searchable(text: $searchText, prompt: "찾고싶은 매장 위치를 검색하세요.")
+        .listStyle(.plain)
+        
     }
 }
 
