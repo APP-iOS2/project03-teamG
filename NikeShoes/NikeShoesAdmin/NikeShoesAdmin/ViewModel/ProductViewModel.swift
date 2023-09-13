@@ -30,23 +30,22 @@ public class ProductViewModel: ObservableObject {
     //CRUD
     func addShoes(_ shoesDTO: ShoesDTO) async throws {
         do {
-            let _: String = try await service.create(send: shoesDTO, collection: .shoes)
+            let _: String = try await service.create(send: shoesDTO, collection: .shoes, document: nil, collection2: nil)
             self.shoes = try await fetchShoes()
         } catch {
             throw error
         }
     }
     
-    func deleteShoes(_ index: IndexSet) async throws -> String {
+    func deleteShoes(_ index: IndexSet) async throws {
         let deleteItemId = index.map { self.shoes[$0].id ?? "" }.first
         #if DEBUG
         print("\(deleteItemId)")
         #endif
         if let id = deleteItemId {
-            let delete: String = try await service.delete(collection: .shoes, document: id)
+            try await service.delete(collection: .shoes, document: id)
             shoes.remove(atOffsets: index)
         }
-        return ""
     }
     
     func fetchShoes() async throws -> [ShoesDTO] {
@@ -54,6 +53,7 @@ public class ProductViewModel: ObservableObject {
         return values
     }
     
+    @MainActor
     func updateShoes(id: String, shoesUpdateField: [String: Any]) async throws {
         do {
             try await service.update(collection: .shoes,

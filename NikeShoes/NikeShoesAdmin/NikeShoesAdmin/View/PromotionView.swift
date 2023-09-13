@@ -35,7 +35,7 @@ struct PromotionView: View {
                         Task {
                             let new = PromotionDTO(code: promotionCode, discountRate: Double(promotionPercent) ?? 0, restrict: 0, promotionExpireDate: promotionExpireDate)
                             
-                            let newPromotion = try await promotionStore.service.create(send: new, collection: .promotion)
+                            let newPromotion = try await promotionStore.service.create(send: new, collection: .promotion, document: nil, collection2: nil)
                             
                             let newFetch = try await promotionStore.fetchPromotion()
                             promotionStore.memberReward = newFetch

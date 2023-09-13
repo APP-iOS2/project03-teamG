@@ -335,8 +335,8 @@ struct ProductAddView: View {
         
         let shoes = ShoesDTO(id: UUID().uuidString,
                              name: name,
-                             category: selectedGender,
-                             modelName: selectedModel,
+                             category: selectedGender.rawValue,
+                             modelName: selectedModel.rawValue,
                              description: description,
                              price: Int(price) ?? 0,
                              size: sizes,
