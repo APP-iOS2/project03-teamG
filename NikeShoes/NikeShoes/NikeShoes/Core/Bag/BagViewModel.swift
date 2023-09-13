@@ -19,4 +19,3 @@ class BagViewModel: ObservableObject {
         bagArray.append(shoesData)
     }
 }
-

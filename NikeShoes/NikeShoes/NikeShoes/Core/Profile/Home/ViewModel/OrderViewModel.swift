@@ -67,6 +67,16 @@ class OrderViewModel: ObservableObject {
             }
         }
     
+    func createOrder(orderDTO: OrderDTO) async throws {
+        do {
+            let _: String = try await
+            service.create(send: orderDTO, collection: .orderlist, document: nil, collection2: nil)
+        } catch {
+            throw error
+        }
+        
+    }
+    
     func fetchData() async throws {
         try await fetchUserData()
         try await fetchOrderData()

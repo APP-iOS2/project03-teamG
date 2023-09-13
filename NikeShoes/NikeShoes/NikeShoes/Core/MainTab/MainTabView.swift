@@ -11,8 +11,7 @@ import NikeShoesCore
 struct MainTabView: View {
     @State private var selectedIndex = 0
     @State var userPromCode = ""
-    var shoesData: ShoesDTO = ShoesDTO(name: "", category: "", modelName: "", description: "", price: 0, size: [1], colors: [ProductColor.black], imageURLString: [""], speciality: [Speciality.hot], stylingImage: [""])
-    
+    @EnvironmentObject var bagViewModel: BagViewModel 
     
     var body: some View {
         TabView(selection: $selectedIndex) {
@@ -50,7 +49,8 @@ struct MainTabView: View {
                 }.tag(2)
 
                 NavigationStack {
-                    BagView(userPromCode: $userPromCode, shoesData: ShoesDTO(name: shoesData.name, category: shoesData.category, modelName: shoesData.modelName, description: shoesData.description, price: shoesData.price, size: shoesData.size, colors: shoesData.colors, imageURLString: shoesData.imageURLString, speciality: shoesData.speciality, stylingImage: shoesData.stylingImage))
+                    BagView(userPromCode: $userPromCode)
+                        .environmentObject(bagViewModel)
                 }
                 .onTapGesture {
                     self.selectedIndex = 3
@@ -78,6 +78,6 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView(shoesData: ShoesDTO(name: "", category: "", modelName: "", description: "", price: 0, size: [1], colors: [ProductColor.black], imageURLString: [""], speciality: [Speciality.hot], stylingImage: [""]))
+        MainTabView()
     }
 }
