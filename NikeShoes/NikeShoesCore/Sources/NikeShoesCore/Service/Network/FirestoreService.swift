@@ -68,6 +68,10 @@ public protocol FirestoreService {
     func update(collection path: Path,
                 document id: DocumentRefID,
                 fields: [String: Any]) async throws
+    
+    @available(iOS 13.0.0, *)
+    func fetchAllDocumet<T: Decodable>(collection path: Path,
+                                       documentid docId: String ) async throws -> T
 }
 
 @available(iOS 13.0, *)
@@ -188,4 +192,17 @@ public class DefaultFireStoreService: FirestoreService {
             }
     }
     
+    
+    public func fetchAllDocumet<T: Decodable>(collection path: Path,
+                                              documentid id: String ) async throws -> T {
+            do {
+                let data =  try await firestore
+                    .collection(path)
+                    .document(id)
+                    .getDocument()
+                return try data.data(as: T.self)
+            } catch {
+                throw APIError.fetchingError(error)
+            }
+        }
 }
