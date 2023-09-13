@@ -10,6 +10,8 @@ import NikeShoesCore
 
 struct ProductDetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var bagViewModel: BagViewModel
+    
     @State private var selectedImageIndex = 0
     var shoesData: ShoesDTO
     
@@ -99,16 +101,14 @@ struct ProductDetailView: View {
                         }
                         .padding(.bottom, 35)
                         
-                        Group {
                             SizeButtonView(shoesData: shoesData)
                                 .padding(.bottom, 8)
                             
-                            CartButtonView()
+                        CartButtonView(bagViewModel: bagViewModel, shoesData: shoesData)
                                 .padding(.bottom, 8)
                             
                             BuyWishlistButtonView(data: shoesData)
                                 .padding(.bottom, 35)
-                        }
                         
                         Group {
                             DeliveryReturnInfoView()
