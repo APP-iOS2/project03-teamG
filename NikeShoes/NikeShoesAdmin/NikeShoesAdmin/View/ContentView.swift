@@ -63,13 +63,9 @@ struct NavigationItem: Identifiable, Hashable {
 struct AdminModel {
 
     let topMenuItems = [
-        NavigationItem(name: "제품관리", subMenuItems: [
-            NavigationItem(name: "제품목록")
-        ]),
-        
-        NavigationItem(name: "주문관리", subMenuItems: [
-            NavigationItem(name: "주문내역")
-        ])
+        NavigationItem(name: "제품관리"),
+        NavigationItem(name: "주문관리"),
+        NavigationItem(name: "프로모션관리")
     ]
     
     func subMenuItems(for id: NavigationItem.ID) -> [NavigationItem]? {
@@ -85,6 +81,8 @@ struct AdminModel {
             return AnyView(ProductListView())
         case "주문내역":
             return AnyView(OrderView())
+        case "프로모션관리":
+            return AnyView(PromotionView())
         default:
             return AnyView(EmptyView())
         }
