@@ -66,7 +66,7 @@ extension ProfileView {
                 .padding(.top, 50)
             
             // 이름
-            Text("getUserName")
+            Text(getUserName)
                 .font(.mediumBold24)
                 .padding(.top, 7)
                 .padding(.bottom, 1)
