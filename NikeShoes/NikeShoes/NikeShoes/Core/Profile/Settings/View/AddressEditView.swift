@@ -1,4 +1,5 @@
 import SwiftUI
+import NikeShoesCore
 
 struct AddressEditView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -19,6 +20,9 @@ struct AddressEditView: View {
     @State private var isDefault: Bool
     
     init(title: String, viewModel: AddressViewModel, index: Int) {
+        if viewModel.addresses.isEmpty {
+            viewModel.addresses.append(sample)
+        }
         let address = viewModel.addresses[index]
         self.title = title
         self.viewModel = viewModel
@@ -67,7 +71,8 @@ struct AddressEditView: View {
     }
     
     func updateAddress() {
-        let updatedAddress = Address(
+        let updatedAddress = AddressDTO(
+            id: viewModel.addresses[index].id,
             name: name,
             city: city,
             district: district,
@@ -80,6 +85,7 @@ struct AddressEditView: View {
         )
         
         viewModel.addresses[index] = updatedAddress
+        viewModel.setAsDefault(index: index)
         presentationMode.wrappedValue.dismiss()
     }
     

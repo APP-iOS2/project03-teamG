@@ -10,7 +10,7 @@ import SwiftUI
 struct CellPhoneCertificationView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    @Binding var index: Int
+    @Binding var screen: LoginRegisterScreen
     
     @State private var cellPhoneNumber: String = ""
     @State private var certificationCode: String = ""
@@ -32,7 +32,7 @@ struct CellPhoneCertificationView: View {
                 Text("안전한 구매와 추가 보안 조치를 위해, 일회성 인증코드를 전송합니다.")
                     .padding(.bottom, 12)
                 
-                Text(authViewModel.userInfoEmail)
+                Text(authViewModel.userInfo.email)
                     .accentColor(.black)
                     .padding(.bottom, 20)
                 
@@ -57,9 +57,9 @@ struct CellPhoneCertificationView: View {
                         isCheckCellPhoneNumber()
                         isCheckCertificationCode()
                     } else {
-                        authViewModel.userInfoPhoneNumber = cellPhoneNumber
+                        authViewModel.userInfo.phoneNumber = cellPhoneNumber
                         authViewModel.register()
-                        index += 1
+                        screen = .loginCompleted
                     }
                 }
             }
@@ -85,7 +85,7 @@ struct CellPhoneCertificationView: View {
                         .foregroundColor(.primary)
                 }
             }
-            .modifier(SignInTextFieldStyle(isTextFieldValid: $isCellPhoneNumberValid))
+            .signInTextFieldStyle(isTextFieldValid: $isCellPhoneNumberValid)
             
             Text(cautionCellPhoneNumber)
                 .foregroundColor(.red)
@@ -95,7 +95,7 @@ struct CellPhoneCertificationView: View {
     var CertificationCodeTextField: some View {
         VStack(alignment: .leading) {
             TextField("코드", text: $certificationCode)
-                .modifier(SignInTextFieldStyle(isTextFieldValid: $isCertificationCodeValid))
+                .signInTextFieldStyle(isTextFieldValid: $isCertificationCodeValid)
                 .onChange(of: certificationCode) { newValue in
                     isCheckCertificationCode()
                     certificationCode = newValue.trimmingCharacters(in: .whitespaces)
@@ -135,5 +135,12 @@ struct CellPhoneCertificationView: View {
             cautionCertificationCode = "잘못된 인증입니다"
             isCertificationCodeValid = false
         }
+    }
+}
+
+struct CellPhoneCertificationView_Previews: PreviewProvider {
+    static var previews: some View {
+        CellPhoneCertificationView(screen: .constant(.cellPhoneCertification))
+            .environmentObject(AuthViewModel())
     }
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct Following: Identifiable{
-    public let id: UUID = UUID()
+public struct Following: Identifiable, Codable {
+    public var id: UUID = UUID()
     public let title: String
     public let imageURL: String
     public var isChecked: Bool

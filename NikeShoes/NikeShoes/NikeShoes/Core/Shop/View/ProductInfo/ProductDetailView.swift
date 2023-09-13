@@ -6,60 +6,79 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct ProductDetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var selectedImageIndex = 0
+    var shoesData: ShoesDTO
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
+                // 현재 선택된 이미지 표시
+                ZStack {
+                    Color.lightGray
+                        .frame(height: 500)
+                    
+                    TabView(selection: $selectedImageIndex) {
+                        ForEach(0..<shoesData.imageURLString.count, id: \.self) { index in
+                            AsyncImage(url: URL(string: shoesData.imageURLString[index])) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .tag(index)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                    .frame(height: 500)
                 }
                 
                 VStack(alignment: .leading) {
-                    HStack {
-                        AsyncImage(url: URL(string: ShoesSampleData[1].imageURLString)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 200, height: 200)
-                        } placeholder: {
-                            ProgressView()
+                    // 이미지 슬라이더
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(0..<shoesData.imageURLString.count, id: \.self) { index in
+                                ZStack {
+                                    AsyncImage(url: URL(string: shoesData.imageURLString[index])) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 200, height: 200)
+                                            .clipped()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .onTapGesture {
+                                        // 이미지를 탭하면 선택된 이미지를 업데이트
+                                        selectedImageIndex = index
+                                    }
+                                    
+                                    Rectangle()
+                                        .fill(Color.black.opacity(index == selectedImageIndex ? 0.2 : 0))
+                                }
+                            }
                         }
-                        .padding(.horizontal, -10)
-                        AsyncImage(url: URL(string: ShoesSampleData[2].imageURLString)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 200, height: 200)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .padding(.horizontal, -10)
                     }
-                    
-                    .padding(.bottom)
                     
                     VStack(alignment: .leading) {
                         Group {
-                            Text("\(ShoesSampleData[1].category.rawValue) 신발")
+                            Text("\(shoesData.category) 신발")
                                 .padding(.bottom, 5)
                             
-                            Text(ShoesSampleData[1].name)
+                            Text(shoesData.name)
                                 .font(.mediumBold24)
                                 .padding(.bottom, 25)
                             
-                            Text("₩\(ShoesSampleData[1].price)")
+                            Text("₩\(shoesData.price)")
                                 .padding(.bottom, 25)
                             
-                            Text(ShoesSampleData[1].description)
+                            Text(shoesData.description)
                                 .font(.system(size: 16))
-                                .lineSpacing(11)
+                                .lineSpacing(5)
                                 .padding(.bottom, 28)
                             
                             Text("""
@@ -68,12 +87,12 @@ struct ProductDetailView: View {
                             • 제조 국가/지역: 중국, 인도, 베트남
                             """)
                             .font(.system(size: 16))
-                            .lineSpacing(20)
+                            .lineSpacing(10)
                             .padding(.bottom, 32)
                         }
-
+                        
                         NavigationLink {
-                            ProductDetailInfoView()
+                            ProductDetailInfoView(shoesData: shoesData)
                         } label: {
                             Text("상품 상세 정보 보기")
                                 .foregroundColor(.textGray)
@@ -81,7 +100,7 @@ struct ProductDetailView: View {
                         .padding(.bottom, 35)
                         
                         Group {
-                            SizeButtonView()
+                            SizeButtonView(shoesData: shoesData)
                                 .padding(.bottom, 8)
                             
                             CartButtonView()
@@ -100,7 +119,7 @@ struct ProductDetailView: View {
                             
                             Divider()
                             
-                            ReviewButton()
+                            ReviewButtonView()
                             
                             Divider()
                             
@@ -114,9 +133,14 @@ struct ProductDetailView: View {
                         }
                     }
                     .padding()
+                    .padding(.bottom, 25)
+                    
+                    ProductPhotoView(shoesData: shoesData)
+                    
+                    StylingView()
                 }
             }
-            .navigationTitle(ShoesSampleData[1].name)
+            .navigationTitle(shoesData.name)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -127,9 +151,7 @@ struct ProductDetailView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
-                    
                 }
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
@@ -137,7 +159,6 @@ struct ProductDetailView: View {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(.black)
                     }
-                    
                 }
             }
         }
@@ -146,6 +167,6 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView()
+        ProductDetailView(shoesData: detailSample)
     }
 }

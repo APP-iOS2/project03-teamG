@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct AddAddressView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -69,7 +70,7 @@ struct AddAddressView: View {
                 return
             }
 
-            let newAddress = Address(
+            let newAddress = AddressDTO(
                 name: name,
                 city: city,
                 district: district,

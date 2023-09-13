@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 struct ProductAddView: View {
     
     @ObservedObject var viewModel: ProductViewModel
-    @Environment (\.dismiss) var dismiss
     
     @State private var name: String = ""
     @State private var price: String = ""
@@ -94,7 +93,7 @@ struct ProductAddView: View {
                         }
                         .padding(.trailing, 20)
                         
-                        
+                  
                         VStack(alignment: .leading) {
                             Text("가격(Int)")
                             TextField("ex)00000", text: $price)
@@ -320,7 +319,6 @@ struct ProductAddView: View {
                     Button {
                         Task {
                             await addShoesDTO()
-                            dismiss()
                         }
                     } label: {
                         Text("추가")
@@ -365,14 +363,15 @@ struct ProductAddView: View {
     }
     
     private func makeURLStrings(inputString: String) -> [String] {
-        let separator: String = "https://"
-        let components = inputString.split(separator: separator)
-        if components.count > 0 {
-            let resultArray = components.map { "https://" + $0 }
-            return resultArray
-        } else {
-            return []
+        var result = [String]()
+        
+        let components = inputString.components(separatedBy: ",")
+        
+        
+        for component in components {
+            result.append(component)
         }
+        return result
     }
 }
 
