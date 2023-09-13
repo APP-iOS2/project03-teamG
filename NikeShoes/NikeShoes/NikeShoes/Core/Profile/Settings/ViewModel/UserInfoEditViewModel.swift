@@ -11,6 +11,7 @@ import Firebase
 
 class UserInfoEditViewModel: ObservableObject {
     @Published var email = ""
+    @Published var country = ""
     private let firestoreService = DefaultFireStoreService()
     private var db = Firestore.firestore()
     
@@ -55,6 +56,36 @@ class UserInfoEditViewModel: ObservableObject {
                 print(userID)
                 print("User not found: \(String(describing: error?.localizedDescription))")
             }
+        }
+    }
+    
+    func fetchCountry() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        
+        db.collection("user").document(userID).getDocument { (document, error) in
+            if let country = try? document?.data()?["country"] as? String {
+                self.country = country
+            } else {
+                print(userID)
+                print("User not found: \(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
+    
+    func updateCountry() async {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        print(userID)
+        do {
+            try await firestoreService.update(collection: .user, document: userID, fields: ["country": self.country])
+            print("Successfully updated phone number")
+        } catch {
+            print("Failed to update phone number: \(error)")
         }
     }
     
