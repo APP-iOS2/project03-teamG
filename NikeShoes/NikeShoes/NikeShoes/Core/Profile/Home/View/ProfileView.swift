@@ -2,8 +2,13 @@ import SwiftUI
 import NikeShoesCore
 
 struct ProfileView: View {
-    @State private var isProfileEditClicked = false
-    var imageUrl: URL = URL(string: "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png")!
+    @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel = UserProfileEditViewModel()
+    @State private var userDTO: UserDTO = UserProfileEditViewModel.sampleData
+    @State private var isProfileEditClicked = true
+    @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
+    @State private var firstName: String = "성"
+    @State private var lastName: String = "이름"
+    @State private var activityArea: String = "거주지/도시"
     
     var body: some View {
         NavigationStack {
@@ -15,20 +20,29 @@ struct ProfileView: View {
             }
             // MARK: CONTENT
             VStack {
-                List {
-                    ProfileContentLabel(title: "수신함", subTitle: "메세지 보기", profileContentViewType: .inBoxView)
-                    ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .memberReward)
-                        .transition(.opacity)
-                    FollowingView(followingCount: 1)
-                }
-                .listStyle(.plain)
+                contentView
                 Spacer()
             }
             .fullScreenCover(isPresented: $isProfileEditClicked) {
-                ProfileEditView(isProfileEditClicked: $isProfileEditClicked)
+                ProfileEditView(userProfileEditViewModel: userProfileEditViewModel, isProfileEditClicked: $isProfileEditClicked)
             }
         }
-       
+        .onChange(of: isProfileEditClicked, perform: { _ in
+            Task {
+                imageLoadToFileManager()
+                do {
+                    try await userProfileEditViewModel.fetchUserData()
+                    if let userData = userProfileEditViewModel.userData {
+                        userDTO = userData
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        })
+        .onAppear {
+            isProfileEditClicked = false
+        }
     }
 }
 
@@ -40,35 +54,24 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 extension ProfileView {
+  
     var headerView: some View {
         VStack {
             // 프로필 이미지
-            AsyncImage(url: imageUrl) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 72, height: 72)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 1.5))
-                case .failure:
-                    Text("Failed to load image.")
-                @unknown default:
-                    EmptyView()
-                }
-            }
+            selectedImage
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle())
+                .frame(width: 150, height: 150)
             
             // 이름
-            Text("파이리")
+            Text("\(userDTO.firstName)")
                 .font(.headline)
                 .padding(.top, 7)
                 .padding(.bottom, 1)
             
             // 지역
-            Text("태초마을")
+            Text("\(userDTO.activityArea)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.bottom, 30)
@@ -111,7 +114,23 @@ extension ProfileView {
             }
         }
     }
-    var profileContentView: some View {
-        ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .inBoxView)
+    
+    var contentView: some View {
+        List {
+            ProfileContentLabel(title: "수신함", subTitle: "메세지 보기", profileContentViewType: .inBoxView)
+            ProfileContentLabel(title: "멤버 리워드", subTitle: "1개 사용 가능", profileContentViewType: .memberReward)
+                .transition(.opacity)
+            FollowingView(followingCount: 1)
+        }
+        .listStyle(.plain)
+    }
+    
+    func imageLoadToFileManager() {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsDirectory.appendingPathComponent("selected_image.jpg")
+        if let loadedImageData = try? Data(contentsOf: fileURL),
+           let loadedUIImage = UIImage(data: loadedImageData) {
+            selectedImage = Image(uiImage: loadedUIImage)
+        }
     }
 }
