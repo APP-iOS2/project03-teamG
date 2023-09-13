@@ -51,7 +51,8 @@ struct AdminModel {
 
     let topMenuItems = [
         NavigationItem(name: "제품관리"),
-        NavigationItem(name: "주문관리")
+        NavigationItem(name: "주문관리"),
+        NavigationItem(name: "프로모션관리")
     ]
     
     func menuItems(for id: NavigationItem.ID) -> NavigationItem? {
@@ -67,6 +68,8 @@ struct AdminModel {
             return AnyView(ProductListView())
         case "주문관리":
             return AnyView(OrderView())
+        case "프로모션관리":
+            return AnyView(PromotionView())
         default:
             return AnyView(EmptyView())
         }
