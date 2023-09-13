@@ -142,17 +142,18 @@ struct SelectedContentView: View {
     var body: some View {
         switch selectedTab {
         case "남성":
-            ShopView(categoryView: MaleView())
+            ShopView(categoryView: MaleView(), currentGender: "남성")  // 수정된 부분
         case "여성":
-            ShopView(categoryView: FemaleView())
+            ShopView(categoryView: FemaleView(), currentGender: "여성")  // 수정된 부분
         case "키즈":
-            ShopView(categoryView: KidsView())
+            ShopView(categoryView: KidsView(), currentGender: "키즈")  // 수정된 부분
         default:
             Text("\(selectedTab) 탭 컨텐츠")
                 .padding()
         }
     }
 }
+
 
 // MARK: - SearchView
 struct SearchView: View {
