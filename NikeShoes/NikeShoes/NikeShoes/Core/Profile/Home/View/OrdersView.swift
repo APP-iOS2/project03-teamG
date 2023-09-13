@@ -9,24 +9,33 @@ import SwiftUI
 
 struct OrdersView: View {
     
+    // Single source of truth: 객체 하나만 생성하도록 보장 (고정시킴 @StateObject) -> 다른거 없데이트해도 이건 남아있음
+    @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
+    
     var title: String
-    @State var purchaseID: String? = ""
     
     var body: some View {
         NavigationStack {
-            if purchaseID == nil {
+            if orderViewModel.orderData == nil {
                 OrdersEmptyView()
             } else {
-                
                 ScrollView {
-//                    ForEach
-                    OrderListView(purchaseID: $purchaseID)
+                    ForEach(orderViewModel.orderData ?? []) { orderList in
+                        OrderListView(dto: orderList)
+                            .environmentObject(orderViewModel)
+                    }
                 }
             }
         }
         .navigationTitle("주문내역")
         .navigationBarTitleDisplayMode(.inline)
         .modifier(NavigationNikeSetting(title: title))
+        
+        .onAppear {
+            Task {
+                try await orderViewModel.fetchData()
+            }
+        }
     }
 }
 
@@ -56,7 +65,7 @@ struct OrdersEmptyView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(title: "주문내역", purchaseID: "")
+        OrdersView(title: "주문내역")
         //        OrdersEmptyView()
     }
 }
