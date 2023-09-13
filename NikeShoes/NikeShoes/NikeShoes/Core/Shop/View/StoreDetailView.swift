@@ -13,8 +13,8 @@ struct StoreDetailView: View {
     
     var store: StoreData
     
-    @State var isShowingMap = false
-    @State var callingStore = false
+    @State private var isShowingMap = false
+    @State private var callingStore = false
     
     var body: some View {
         ScrollView {
@@ -24,9 +24,10 @@ struct StoreDetailView: View {
             } placeholder: {
                 ProgressView()
             }
+            
             VStack(alignment: .leading) {
                 Text(store.name)
-                    .font(Font.medium20) // 글씨체 좀 더 키워야하나?
+                    .font(Font.medium20)
                     .bold()
                 Divider()
                 
@@ -47,10 +48,11 @@ struct StoreDetailView: View {
                     }
                 }
                 
+                // 전화 연결
                 Button {
                     callingStore = true
                 } label: {
-                    Text(store.storePhoneNumber) // 전화 연결
+                    Text(store.storePhoneNumber)
                         .padding(.top)
                 }
                 
@@ -116,12 +118,7 @@ struct StoreDetailView: View {
         let url = "tel://\(phoneNumber)"
         
         if let openApp = URL(string: url), UIApplication.shared.canOpenURL(openApp) {
-            // 버전별 처리
-            if #available(iOS 10.0, *) {
                 UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(openApp)
-            }
         }
         
         //외부앱 실행이 불가능한 경우
@@ -144,7 +141,16 @@ struct StoreDetailView: View {
 struct ShopDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄", district: "경기도", city: "화성시", detailAddress: "동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date()))
+            StoreDetailView(store: StoreData(name: "나이키 롯데 동탄",
+                                             district: "경기도",
+                                             city: "화성시",
+                                             detailAddress: "동탄역로 160 롯데백화점 동탄점 5층",
+                                             locationCoordinates: [37.20074, 127.09805],
+                                             storePhoneNumber: "+82 31 8036 3871",
+                                             openingTime: "오전 10시 30분",
+                                             terminatedTime: "오후 8시",
+                                             imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg",
+                                             now: Date()))
         }
     }
 }
