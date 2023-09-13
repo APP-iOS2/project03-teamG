@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct InterestItemView: View {
     
@@ -38,7 +39,7 @@ struct InterestItemView: View {
                         
                         ForEach(sampleInterestItems, id: \.self) { item in
                             
-                            NavigationLink(destination: ProductDetailView()) { // ItemListView로 이동
+                            NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
                                 
                                 ZStack(alignment: .center) {
                                     

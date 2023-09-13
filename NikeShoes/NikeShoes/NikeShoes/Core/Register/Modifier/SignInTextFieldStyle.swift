@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+extension View {
+    func signInTextFieldStyle(isTextFieldValid: Binding<Bool>) -> some View {
+        return modifier(
+            SignInTextFieldStyle(isTextFieldValid: isTextFieldValid)
+        )
+    }
+}
+
 struct SignInTextFieldStyle: ViewModifier {
     @Binding var isTextFieldValid: Bool
     
