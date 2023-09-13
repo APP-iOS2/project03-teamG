@@ -9,10 +9,9 @@ import SwiftUI
 
 struct EmailView: View {
     @Environment(\.presentationMode) var presentationMode
-    let userInfoEdit = UserInfoEditViewModel()
+    @ObservedObject var userInfoEdit = UserInfoEditViewModel()
     
     let title: String
-    
     @State private var newEmail: String = ""
     @State private var confirmEmail: String = ""
     
@@ -28,7 +27,7 @@ struct EmailView: View {
                 .foregroundColor(.gray)
                 .padding(.top)
             
-            Text("lhchan4010\("@")gmail.com")
+            Text(userInfoEdit.email)
                 .padding(1)
             
             VStack {
@@ -64,6 +63,11 @@ struct EmailView: View {
             
         }
         .modifier(NavigationNikeSetting(title: title))
+        .onAppear {
+            Task {
+                userInfoEdit.fetchEmail()
+            }
+        }
     }
     
     func isConfirm(new: String, confirm: String) {
