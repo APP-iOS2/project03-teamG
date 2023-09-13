@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct CellPhoneCertificationView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -85,7 +86,7 @@ struct CellPhoneCertificationView: View {
                         .foregroundColor(.primary)
                 }
             }
-            .modifier(SignInTextFieldStyle(isTextFieldValid: $isCellPhoneNumberValid))
+            .signInTextFieldStyle(isTextFieldValid: $isCellPhoneNumberValid)
             
             Text(cautionCellPhoneNumber)
                 .foregroundColor(.red)
@@ -95,7 +96,7 @@ struct CellPhoneCertificationView: View {
     var CertificationCodeTextField: some View {
         VStack(alignment: .leading) {
             TextField("코드", text: $certificationCode)
-                .modifier(SignInTextFieldStyle(isTextFieldValid: $isCertificationCodeValid))
+                .signInTextFieldStyle(isTextFieldValid: $isCertificationCodeValid)
                 .onChange(of: certificationCode) { newValue in
                     isCheckCertificationCode()
                     certificationCode = newValue.trimmingCharacters(in: .whitespaces)
@@ -141,6 +142,6 @@ struct CellPhoneCertificationView: View {
 struct CellPhoneCertificationView_Previews: PreviewProvider {
     static var previews: some View {
         CellPhoneCertificationView(screen: .constant(.cellPhoneCertification))
-            .environmentObject(AuthViewModel())
+            .environmentObject(AuthViewModel(service: DefaultFireStoreService()))
     }
 }
