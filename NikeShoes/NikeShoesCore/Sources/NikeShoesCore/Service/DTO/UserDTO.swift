@@ -15,13 +15,13 @@ public struct UserDTO: Codable {
     public var email: String
     public var phoneNumber: String
     public var dateOfBirth: String
-    public var memberReward: String // 유저한테 주는 프로모션
-    public var address: [AddressDTO]
+    public var memberReward: String? // 유저한테 주는 프로모션
+    public var address: [AddressDTO]?
     public var country: String
-    public var following: [Following] // 관심사
-    public var size: [Int]
-    public var activityArea : String //활동 지역(프로필 수정 뷰)
-    public var introContent: String //자기소개(프로필 수정 뷰)
+    public var following: [Following]? // 관심사
+    public var size: [Int]?
+    public var activityArea : String? //활동 지역(프로필 수정 뷰)
+    public var introContent: String? //자기소개(프로필 수정 뷰)
     
 
     public init(id: String? = nil,
