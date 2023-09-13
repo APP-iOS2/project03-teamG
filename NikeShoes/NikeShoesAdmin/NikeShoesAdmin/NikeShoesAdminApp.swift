@@ -34,9 +34,7 @@ struct NikeShoesAdminApp: App  {
 
     var body: some Scene {
         WindowGroup {
-//            PromotionView()
-            ContentView()
-            
+            AdminLoginView()
         }
     }
 }
