@@ -36,17 +36,20 @@ struct UserMapView: View {
                     MapAnnotation(coordinate: CLLocationCoordinate2D(
                         latitude: store.locationCoordinates[0],
                         longitude: store.locationCoordinates[1])) {
-                        Image("marker").resizable()
-                            .frame(width: 40, height: 40)
-                            .scaleEffect(selectedStore == store ? 1.8 : 1.0)
-                            .onTapGesture {
-                                selectedStore = store
-                                viewModel.region.center = CLLocationCoordinate2D(
-                                    latitude: selectedStore.locationCoordinates[0],
-                                    longitude: selectedStore.locationCoordinates[1])
-                                isShowingDetailSheet.toggle()
-                            }
-                    }
+                            Image("marker").resizable()
+                                .frame(width: 40, height: 40)
+                                .scaleEffect(selectedStore == store ? 1.8 : 1.0)
+                                .onTapGesture {
+                                    // 지도에서 자연스럽게 이동하기
+                                    withAnimation {
+                                        selectedStore = store
+                                        viewModel.region.center = CLLocationCoordinate2D(
+                                            latitude: selectedStore.locationCoordinates[0],
+                                            longitude: selectedStore.locationCoordinates[1])
+                                        isShowingDetailSheet.toggle()
+                                    }
+                                }
+                        }
                 }
                 .onAppear {
                     viewModel.region.center = CLLocationCoordinate2D(latitude: stores.first?.locationCoordinates[0] ?? 0, longitude: stores.first?.locationCoordinates[1] ?? 0)
