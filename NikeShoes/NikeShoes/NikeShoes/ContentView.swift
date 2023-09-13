@@ -18,7 +18,7 @@ struct ContentView: View {
 
     var body: some View {
 //        if authViewModel.userSession != nil {
-//            MainTabView()
+            MainTabView()
 //        } else {
             OnBoardingView()
 //        }
@@ -27,10 +27,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-
         ContentView()
-            .environmentObject(AuthViewModel())
-            
-//        ContentView(viewModel: SampleViewModel())
+            .environmentObject(AuthViewModel(service: ViewModelFactory.shared.makeService()))
     }
 }

@@ -60,8 +60,8 @@ class SampleViewModel {
     
     // MARK: 정상 작동 완료
     func nike상품삭제() async throws -> String {
-        let delete: String = try await service.delete(collection: .shoes, document: "9JUAiEuwVy5SghynkTkr")
-        return delete
+        try await service.delete(collection: .shoes, document: "9JUAiEuwVy5SghynkTkr")
+        return ""
     }
     
     // MARK: 정상 작동 완료
