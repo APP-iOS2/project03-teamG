@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct CartButtonView: View {
+    @ObservedObject var bagViewModel: BagViewModel
+    var shoesData: ShoesDTO
+    
     var body: some View {
         Button {
             print("장바구니에 추가")
+            bagViewModel.addToBag(shoesData: shoesData)
+            print("\(bagViewModel.bagArray)")
         } label: {
             ZStack {
                 Rectangle()
@@ -30,6 +36,6 @@ struct CartButtonView: View {
 
 struct CartButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        CartButtonView()
+        CartButtonView(bagViewModel: BagViewModel(), shoesData: detailSample)
     }
 }

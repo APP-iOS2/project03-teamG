@@ -26,14 +26,13 @@ public struct OrderDTO: Codable, Identifiable {
     public var deliveryStatus: DeliveryStatus
     public let orderDate: Date
     
-    public init(id: String?,
+    public init(id: String? = nil,
                 shoesID: String,
                 userID: String,
                 address: String,
                 deliveryStatus: DeliveryStatus,
                 orderDate: Date) {
 
-        self.id = id
         self.shoesID = shoesID
         self.userID = userID
         self.address = address
