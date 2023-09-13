@@ -67,6 +67,7 @@
 		64CD998A2AA7183C008D3094 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD99892AA7183C008D3094 /* LocationView.swift */; };
 		64CD99902AA81234008D3094 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD998F2AA81234008D3094 /* LanguageView.swift */; };
 		841893902AAFF8C300798BA4 /* StoreSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */; };
+		8419CC352AB176520041444C /* MapDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8419CC342AB176520041444C /* MapDetailSheetView.swift */; };
 		84F690E12AA6CBB70058DDEF /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E02AA6CBB70058DDEF /* StoreView.swift */; };
 		84F690E32AA6CC190058DDEF /* StoreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E22AA6CC190058DDEF /* StoreItemView.swift */; };
 		84F690E72AA6CE9E0058DDEF /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */; };
@@ -139,7 +140,7 @@
 		DC01B5A22AA83CE7003B6E77 /* LoginCompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A02AA83CE7003B6E77 /* LoginCompletedView.swift */; };
 		DC01B5A32AA83CE7003B6E77 /* CellPhoneCertificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A12AA83CE7003B6E77 /* CellPhoneCertificationView.swift */; };
 		DC01B5A72AA83D6D003B6E77 /* CheckPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */; };
-		DC01B5A82AA83D6D003B6E77 /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */; };
+		DC2C8ACF2AB0A2C600152A5A /* SignInToolbarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2C8ACE2AB0A2C600152A5A /* SignInToolbarStyle.swift */; };
 		DCBB8B852AA6CAAE00F17A82 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8B842AA6CAAE00F17A82 /* LoginRegisterView.swift */; };
 		DCC8D16D2AA6BAF000215E65 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */; };
 /* End PBXBuildFile section */
@@ -196,6 +197,7 @@
 		64CD99892AA7183C008D3094 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		64CD998F2AA81234008D3094 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchView.swift; sourceTree = "<group>"; };
+		8419CC342AB176520041444C /* MapDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailSheetView.swift; sourceTree = "<group>"; };
 		84F690E02AA6CBB70058DDEF /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		84F690E22AA6CC190058DDEF /* StoreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemView.swift; sourceTree = "<group>"; };
 		84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
@@ -272,7 +274,7 @@
 		DC01B5A02AA83CE7003B6E77 /* LoginCompletedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCompletedView.swift; sourceTree = "<group>"; };
 		DC01B5A12AA83CE7003B6E77 /* CellPhoneCertificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPhoneCertificationView.swift; sourceTree = "<group>"; };
 		DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckPasswordView.swift; sourceTree = "<group>"; };
-		DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
+		DC2C8ACE2AB0A2C600152A5A /* SignInToolbarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInToolbarStyle.swift; sourceTree = "<group>"; };
 		DCBB8B842AA6CAAE00F17A82 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
 		DCC8D16C2AA6BAF000215E65 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -594,6 +596,7 @@
 				84F690E22AA6CC190058DDEF /* StoreItemView.swift */,
 				84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */,
 				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
+				8419CC342AB176520041444C /* MapDetailSheetView.swift */,
 				9E92D7EC2AADF6D40079BFC5 /* ProductInfo */,
 				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
 				63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */,
@@ -722,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				DC01B5552AA704F1003B6E77 /* SignInTextFieldStyle.swift */,
+				DC2C8ACE2AB0A2C600152A5A /* SignInToolbarStyle.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -730,7 +734,6 @@
 			isa = PBXGroup;
 			children = (
 				DC01B5A52AA83D6D003B6E77 /* CheckPasswordView.swift */,
-				DC01B5A62AA83D6D003B6E77 /* FindPasswordView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				B02077022AA6BF3800DD014C /* MessageView.swift in Sources */,
 				B02077042AA6BF8A00DD014C /* InboxView.swift in Sources */,
 				219D7D8E2AA83B2A0062A38F /* CategoryItem.swift in Sources */,
+				8419CC352AB176520041444C /* MapDetailSheetView.swift in Sources */,
 				219D7D562AA6F8630062A38F /* Font.swift in Sources */,
 				9EB2601B2AA9C0990063F0A8 /* MoreInfoView.swift in Sources */,
 				9E8EB8882AB0419800CF56BC /* SelectItemVIew.swift in Sources */,
@@ -962,11 +966,11 @@
 				A074C4532AA6EDE80081DB7F /* NotificationView.swift in Sources */,
 				961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */,
 				961798F32AA6BA9C009FC991 /* OBView.swift in Sources */,
-				DC01B5A82AA83D6D003B6E77 /* FindPasswordView.swift in Sources */,
 				DC01B5562AA704F1003B6E77 /* SignInTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
 				2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */,
 				9E3A8C1C2AAF023C0070362A /* ProductPhotoView.swift in Sources */,
+				DC2C8ACF2AB0A2C600152A5A /* SignInToolbarStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
