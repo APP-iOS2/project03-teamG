@@ -92,9 +92,6 @@ struct RegisterContainerView: View {
                 case .checkPassword:
                     CheckPasswordView(screen: $screen)
                         .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
-                case .findPassword:
-                    FindPasswordView(screen: $screen)
-                        .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
                 case .inputUserInfo:
                     InputUserInfoView(screen: $screen)
                         .signInToolbarStyle(screen: $screen, isShowingSignInSheet: $isShowingSignInSheet)
@@ -181,31 +178,10 @@ struct RegisterContainerView: View {
     }
 }
 
-//struct SignInToolbarStyle: ViewModifier {
-//    @Binding var screen: LoginRegisterScreen
-//    @Binding var isShowingSignInSheet: Bool
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        screen = .loginRegister
-//                        isShowingSignInSheet = false
-//                    } label: {
-//                        Text("취소")
-//                    }
-//
-//                }
-//            }
-//    }
-//}
-
 enum LoginRegisterScreen: CaseIterable {
     case loginRegister
     case termsOfService
     case checkPassword
-    case findPassword
     case inputUserInfo
     case cellPhoneCertification
     case loginCompleted
