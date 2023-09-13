@@ -31,14 +31,22 @@ public class ProductViewModel: ObservableObject {
     func addShoes(_ shoesDTO: ShoesDTO) async throws {
         do {
             let _: String = try await service.create(send: shoesDTO, collection: .shoes)
+            self.shoes = try await fetchShoes()
         } catch {
             throw error
         }
     }
     
-    func deleteShoes(_ shoesDTO: ShoesDTO) async throws -> String {
-        let delete: String = try await service.delete(collection: .shoes, document: "9JUAiEuwVy5SghynkTkr")
-        return delete
+    func deleteShoes(_ index: IndexSet) async throws -> String {
+        let deleteItemId = index.map { self.shoes[$0].id ?? "" }.first
+        #if DEBUG
+        print("\(deleteItemId)")
+        #endif
+        if let id = deleteItemId {
+            let delete: String = try await service.delete(collection: .shoes, document: id)
+            shoes.remove(atOffsets: index)
+        }
+        return ""
     }
     
     func fetchShoes() async throws -> [ShoesDTO] {
@@ -46,9 +54,17 @@ public class ProductViewModel: ObservableObject {
         return values
     }
     
-//    func updateShoes() async throws {
-//
-//    }
+    func updateShoes(id: String, shoesUpdateField: [String: Any]) async throws {
+        do {
+            try await service.update(collection: .shoes,
+                                                     document: id,
+                                                     fields: shoesUpdateField)
+            
+            self.shoes = try await fetchShoes()
+        } catch {
+            
+        }
+    }
     
 }
 
