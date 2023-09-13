@@ -25,7 +25,10 @@ struct SizeView: View {
                     Spacer()
                     
                     Button {
+                        
+                        selectedSize = shoesData.size[selectedSizeIndex]
                         dismiss()
+                        
                     } label: {
                         Text("\(Image(systemName: "xmark"))")
                             .font(.system(size: 13))
