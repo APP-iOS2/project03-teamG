@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct OrderListView: View {
     @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
@@ -57,7 +58,7 @@ struct OrderListView: View {
             }
             .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
             
-            if orderState == "주문 취소" {
+            if orderViewModel.orderData?.first?.deliveryStatus == .orderCancel {
                 NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
                     ButtonStyle(buttonText: "재주문 하기", action: {self.tag = 1})
                 }
