@@ -14,7 +14,6 @@ struct SizeView: View {
     @Binding var isSizeSelected: Bool
     @Binding var selectedSize: Int
     var shoesData: ShoesDTO
-    @State var selectedSize = 250
     
     var body: some View {
         VStack(alignment: .leading) {
