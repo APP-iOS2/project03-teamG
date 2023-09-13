@@ -9,13 +9,12 @@ import SwiftUI
 
 struct MemberRewardView: View {
     var imageUrl: URL = URL(string: "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/78d4df4d-f803-40c6-8b41-2cface972373/image.jpg") ?? URL(string: "")!
-    
+    @State var appeared: Double = 0.0
     var body: some View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.gray)
-                    .edgesIgnoringSafeArea(.top)
-                    .edgesIgnoringSafeArea(.horizontal)
+                    .edgesIgnoringSafeArea(.all)
                     .blur(radius: 1)
                     
                 NavigationLink {
@@ -50,10 +49,12 @@ struct MemberRewardView: View {
                     }
                 }
             }
+            .memberRewardViewAnimation(appeared: $appeared)
             .preferredColorScheme(.light)
-            .modifier(NavigationNikeSetting(title: "팔로잉"))
+            .modifier(NavigationNikeSetting(title: "멤버 리워드"))
             .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
     }
 }
 
@@ -62,5 +63,25 @@ struct MemberRewardView_Previews: PreviewProvider {
         NavigationStack {
             MemberRewardView()
         }
+    }
+}
+
+extension View {
+    func memberRewardViewAnimation(appeared: Binding<Double>) -> some View {
+        return modifier(
+            MemberRewardViewModifier(appeared: appeared)
+        )
+    }
+}
+
+struct MemberRewardViewModifier: ViewModifier {
+    @Binding var appeared: Double
+    
+    func body(content: Content) -> some View {
+        content
+            .opacity(appeared)
+            .animation(Animation.easeInOut(duration: 1), value: appeared)
+            .onAppear { self.appeared = 1.0 }
+            .onDisappear { self.appeared = 0.0 }
     }
 }
