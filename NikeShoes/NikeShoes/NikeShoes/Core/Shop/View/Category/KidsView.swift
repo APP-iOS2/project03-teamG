@@ -14,7 +14,7 @@ struct KidsView: View {
         ("조던", "KidsCategory3"),
         ("에어", "KidsCategory4"),
         ("덩크", "KidsCategory5"),
-        ("코르", "KidsCategory6")
+        ("코르테즈", "KidsCategory6")
     ]
     
     var body: some View {
