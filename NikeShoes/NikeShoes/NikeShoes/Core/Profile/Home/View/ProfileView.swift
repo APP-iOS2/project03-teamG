@@ -3,7 +3,7 @@ import NikeShoesCore
 
 struct ProfileView: View {
     @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel = UserProfileEditViewModel()
-    @State private var userDTO: UserDTO = UserProfileEditViewModel.sampleData
+//    @State private var userDTO: UserDTO = UserProfileEditViewModel.sampleData
     @State private var isProfileEditClicked = true
     @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
     @State private var firstName: String = "성"
@@ -32,9 +32,9 @@ struct ProfileView: View {
                 imageLoadToFileManager()
                 do {
                     try await userProfileEditViewModel.fetchUserData()
-                    if let userData = userProfileEditViewModel.userData {
-                        userDTO = userData
-                    }
+//                    if let userData = userProfileEditViewModel.userData {
+//                        userDTO = userData
+//                    }
                 } catch {
                     print(error)
                 }
@@ -56,7 +56,7 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 extension ProfileView {
-  
+    
     var headerView: some View {
         VStack {
             // 프로필 이미지
@@ -67,13 +67,13 @@ extension ProfileView {
                 .frame(width: 150, height: 150)
             
             // 이름
-            Text("\(userDTO.firstName)")
+            Text("\((userProfileEditViewModel.userData?.firstName ?? "") + (userProfileEditViewModel.userData?.lastName ?? ""))")
                 .font(.headline)
                 .padding(.top, 7)
                 .padding(.bottom, 1)
             
             // 지역
-            Text("\(userDTO.activityArea)")
+            Text("\(userProfileEditViewModel.userData?.activityArea ?? "")")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.bottom, 30)
