@@ -17,10 +17,6 @@ final class OBViewModel: ObservableObject {
         self.service = service
     }
     
-    func updateLocation() async {
-        
-    }
-    
     func updateMyShoesSize(sizes: [Int]) async {
         guard let user_uid = Auth.auth().currentUser?.uid else { return }
         do {
@@ -47,13 +43,12 @@ final class OBViewModel: ObservableObject {
         }
     }
     
+    func updateLocation() async {
+        // 위치
+    }
+    
     func updateLanguage() async {
-//        guard let user_uid = Auth.auth().currentUser?.uid else { return }
-//        do {
-//            try await service.update(collection: .user, document: user_uid, fields: ["country": "한국"])
-//        } catch {
-//            print("updateLocation : \(error)")
-//        }
+        // 언어선택 한국어만 할거라서 필요없어 보임..
     }
     
 }
