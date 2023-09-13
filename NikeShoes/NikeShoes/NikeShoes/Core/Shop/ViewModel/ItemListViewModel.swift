@@ -27,6 +27,7 @@ class ItemListViewModel: ObservableObject {
     init(service: FirestoreService = DefaultFireStoreService()) {
         self.service = service
         action()
+        
     }
     
     // 액션 실행
@@ -35,6 +36,7 @@ class ItemListViewModel: ObservableObject {
         Task {
             let shoes = try await fetchItems()
             self.shoes = shoes
+            print("shoes : \(shoes)")
         }
     }
     
