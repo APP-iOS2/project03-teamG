@@ -152,7 +152,7 @@ struct CheckPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             CheckPasswordView(screen: .constant(.checkPassword))
-                .environmentObject(AuthViewModel())
+                .environmentObject(AuthViewModel(service: ViewModelFactory.shared.makeService()))
         }
     }
 }

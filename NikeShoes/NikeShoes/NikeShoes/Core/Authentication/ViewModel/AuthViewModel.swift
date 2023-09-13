@@ -82,11 +82,6 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    private func signOut() {
-        userSession = nil
-        try? Auth.auth().signOut()
-    }
-    
     func register() {
         Auth.auth().createUser(withEmail: userInfo.email, password: userInfoPassword) { result, error in
             if let error = error {
