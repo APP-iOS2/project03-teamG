@@ -848,7 +848,6 @@
 				21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */,
 				214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */,
 				21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */,
-				84F690E92AA6E7760058DDEF /* StoreMapView.swift in Sources */,
 				3B42BECC2AAEF8D500548F45 /* UserProfileEditViewModel.swift in Sources */,
 				219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */,
 				9E92D7F22AADF9820079BFC5 /* CartButtonView.swift in Sources */,
