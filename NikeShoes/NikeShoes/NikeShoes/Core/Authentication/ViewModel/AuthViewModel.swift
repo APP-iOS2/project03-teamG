@@ -16,7 +16,7 @@ class AuthViewModel: ObservableObject {
     @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
-    @Published var isLogin: Bool = false
+    @Published var isLogin: Bool = true
     
     private var db = Firestore.firestore()
     
