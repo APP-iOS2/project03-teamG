@@ -13,6 +13,7 @@ struct MainTabView: View {
     @State var userPromCode = ""
     var shoesData: ShoesDTO = ShoesDTO(name: "", category: "", modelName: "", description: "", price: 0, size: [1], colors: [ProductColor.black], imageURLString: [""], speciality: [Speciality.hot], stylingImage: [""])
     
+    
     var body: some View {
         TabView(selection: $selectedIndex) {
 //            Group {

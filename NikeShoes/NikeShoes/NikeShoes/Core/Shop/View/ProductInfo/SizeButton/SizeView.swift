@@ -13,6 +13,7 @@ struct SizeView: View {
     @State private var selectedSizeIndex = 0
     @Environment(\.dismiss) private var dismiss
     var shoesData: ShoesDTO
+    @State var selectedSize = 250
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,7 +25,10 @@ struct SizeView: View {
                     Spacer()
                     
                     Button {
+                        
+                        selectedSize = shoesData.size[selectedSizeIndex]
                         dismiss()
+                        
                     } label: {
                         Text("\(Image(systemName: "xmark"))")
                             .font(.system(size: 13))

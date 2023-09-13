@@ -25,9 +25,13 @@ struct BagView: View {
     @State private var sheetHeight: CGFloat = .zero
     @State private var size: CGSize = .zero
     
+//    @State var selectedSize: [Int]
+    
     var animation: Animation = .spring()
     var quantities = [1, 2, 3]
-    var productCount: Int = 1
+    // MARK: 0으로 바꾸기
+    var productCount: Int = 0
+//    var products:
     
     var promotionCode: PromotionDTO = PromotionDTO(id: "", code: "", discountRate: 0.0, restrict: 1, promotionExpireDate: Date())
 //    var shoes: Shoes
@@ -52,7 +56,6 @@ struct BagView: View {
                             .frame(width: 200, height: 200)
                         }
                     
-                          
                     VStack(alignment: .leading) {
                         Text("\(shoesData.name)")
                             .bold()
@@ -71,6 +74,7 @@ struct BagView: View {
                             Text("\(size)")
                                 .font(.caption)
                         }
+//                        Text("\(selectedSize)")
                     }
                     
                     Spacer()
@@ -283,6 +287,10 @@ struct BagView: View {
         }
         showAlert = true
     }
+    
+//    func removeItem(at offsets: IndexSet) {
+//        productCount.remove(atOffsets: offsets)
+//    }
 }
 
 struct BagView_Previews: PreviewProvider {

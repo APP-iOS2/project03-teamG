@@ -13,6 +13,8 @@ struct ProductDetailView: View {
     @State private var selectedImageIndex = 0
     var shoesData: ShoesDTO
     
+    @ObservedObject var bagViewModel: BagViewModel = BagViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -99,16 +101,14 @@ struct ProductDetailView: View {
                         }
                         .padding(.bottom, 35)
                         
-                        Group {
                             SizeButtonView(shoesData: shoesData)
                                 .padding(.bottom, 8)
                             
-                            CartButtonView()
+                        CartButtonView(bagViewModel: bagViewModel, shoesData: shoesData)
                                 .padding(.bottom, 8)
                             
                             BuyWishlistButtonView(data: shoesData)
                                 .padding(.bottom, 35)
-                        }
                         
                         Group {
                             DeliveryReturnInfoView()
