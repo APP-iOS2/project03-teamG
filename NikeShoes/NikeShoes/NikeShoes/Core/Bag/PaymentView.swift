@@ -356,7 +356,7 @@ struct PaymentView: View {
                                 
                                 Button {
 //                                        isArgreeTapped.toggle()
-                                    authViewModel.fetchUser()
+//                                    authViewModel.fetchUser()
                                     let orderList: [OrderDTO] = [
                                         OrderDTO(shoesID: "\(bagItemList[0].id)" ,
                                                  userID: "\(authViewModel.userInfo.id)",
@@ -366,8 +366,9 @@ struct PaymentView: View {
                                     ]
                                     
                                     for dto in orderList {
-                                    Task { try await
-                                            orderViewModel.createOrder(orderDTO: dto)
+                                    Task {
+//                                        try await
+//                                            orderViewModel.createOrder(orderDTO: dto)
                                         }
                                     }
                                     
