@@ -11,12 +11,21 @@ struct FollowingView: View {
     @EnvironmentObject var followingViewModle: FollowingViewModel
     @State private var action: Int? = 0
     let followingCount: Int
+    var checkFollowingCount: Int {
+        var check: Int = 0
+        followingViewModle.followingData.map { data in
+            if data.isChecked {
+                check += 1
+            }
+        }
+        return check
+    }
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         VStack {
             HStack {
-                Text("팔로잉(\(followingCount))")
+                Text("팔로잉(\(checkFollowingCount))")
                     .font(.medium12)
                     .bold()
                 Spacer()
