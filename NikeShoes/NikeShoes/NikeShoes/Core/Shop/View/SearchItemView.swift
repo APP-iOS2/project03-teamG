@@ -61,7 +61,6 @@ struct SearchItemView: View {
                                 self.focused = true // 키보드가 계속 올라와 있게 유지
                             }
                         }
-                    NavigationLink
 
                     // Button(delete text)
                     if searchText.isEmpty {
