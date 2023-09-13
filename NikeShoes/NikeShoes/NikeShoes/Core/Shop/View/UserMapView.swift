@@ -17,14 +17,25 @@ struct UserMapView: View {
     
     @State private var isShowingDetailSheet: Bool = false
     @State private var trackingMode = MapUserTrackingMode.follow
-    @State var selectedStore = StoreData(name: "나이키 롯데 동탄", district: "경기도", city: "화성시", detailAddress: "동탄역로 160 롯데백화점 동탄점 5층", locationCoordinates: [37.20074, 127.09805], storePhoneNumber: "+82 31 8036 3871", openingTime: "오전 10시 30분", terminatedTime: "오후 8시", imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg", now: Date())
+    @State var selectedStore = StoreData(name: "나이키 롯데 동탄",
+                                         district: "경기도",
+                                         city: "화성시",
+                                         detailAddress: "동탄역로 160 롯데백화점 동탄점 5층",
+                                         locationCoordinates: [37.20074, 127.09805],
+                                         storePhoneNumber: "+82 31 8036 3871",
+                                         openingTime: "오전 10시 30분",
+                                         terminatedTime: "오후 8시",
+                                         imageURLString: "https://static.nike.com/a/images/t_default/2e8d9338-b43d-4ef5-96e1-7fdcfd838f8e/image.jpg",
+                                         now: Date())
     
     var body: some View {
         NavigationStack {
             VStack {
                 let stores = storeModel.stores
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: stores) { store in
-                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: store.locationCoordinates[0], longitude: store.locationCoordinates[1])) {
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(
+                        latitude: store.locationCoordinates[0],
+                        longitude: store.locationCoordinates[1])) {
                         Image("marker").resizable()
                             .frame(width: 40, height: 40)
                             .scaleEffect(selectedStore == store ? 1.8 : 1.0)
@@ -39,7 +50,8 @@ struct UserMapView: View {
                 }
                 .onAppear {
                     viewModel.region.center = CLLocationCoordinate2D(latitude: stores.first?.locationCoordinates[0] ?? 0, longitude: stores.first?.locationCoordinates[1] ?? 0)
-                    //viewModel.checkLocationServicesIsEnabled()
+                    // 실기기에서는 위에 코드 주석하고 아래 코드 살리기!!
+                    // viewModel.checkLocationServicesIsEnabled()
                 }
             }
             .navigationTitle("근처매장")
@@ -66,47 +78,6 @@ struct UserMapView: View {
             }
         }
         
-    }
-}
-
-class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.20074, longitude: 127.09805),
-                                               span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-    
-    var locationManager: CLLocationManager?
-    
-    func checkLocationServicesIsEnabled() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager = CLLocationManager()
-            locationManager!.delegate = self // 강제언포싱 바꾸기
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            checkLocationAutorization()
-        } else {
-            print("Show an alert letting them know this is off and to go turn it on")
-        }
-    }
-    
-    private func checkLocationAutorization() {
-        guard let locationManager = locationManager else { return }
-        
-        switch locationManager.authorizationStatus {
-            
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            print("Your location is restricted likely due to parental controls.")
-        case .denied:
-            print("You have denied this app location permission. Go into settings to change it.")
-        case .authorizedAlways, .authorizedWhenInUse:
-            region = MKCoordinateRegion(center: locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 37.5718, longitude: 126.9769), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        @unknown default:
-            break
-        }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAutorization()
     }
 }
 
