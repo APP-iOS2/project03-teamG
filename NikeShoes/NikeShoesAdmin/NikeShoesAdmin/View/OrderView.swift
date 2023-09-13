@@ -23,7 +23,7 @@ struct OrderView: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Spacer()
-                
+                    
                     Menu {
                         //
                         Button(DeliveryStatus.orderComplete.rawValue) {
@@ -49,8 +49,11 @@ struct OrderView: View {
                     } label: {
                         Text("\(order.deliveryStatus.rawValue)")
                             .fontWeight(.semibold)
+                        
                     }
                     .buttonStyle(.borderedProminent)
+                    .tint(.blue)
+                    
                     
                     
                     
@@ -66,11 +69,10 @@ struct OrderView: View {
                         }
                         .padding(.bottom, 1)
                     }
-            
+                    
                 }
             }
         }
-        // TODO: 이거 적용 안되는듯
         .refreshable {
             Task { try await orderViewModel.fetchOrder()
             }

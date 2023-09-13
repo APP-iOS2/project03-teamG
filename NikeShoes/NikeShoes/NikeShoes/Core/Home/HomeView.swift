@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var userName: String = "최소정"
     // 시간 별 인사
     var date: String {
@@ -27,20 +29,20 @@ struct HomeView: View {
                 HStack {
                     // 시간대별로 다르게 보이는거 구현해 주기
                     if date < "06:00" {
-                        Text("\(userName)님, 꿀잠자고 계시는지~")
+                        Text("\(authViewModel.userInfo.lastName)\(authViewModel.userInfo.firstName)님, 꿀잠자고 계시는지~")
                             .font(.mediumBold24)
                     } else if date < "12:00" {
-                        Text("\(userName)님, 좋은 아침이에요!")
+                        Text("\(authViewModel.userInfo.lastName)\(authViewModel.userInfo.firstName)님, 좋은 아침이에요!")
                             .font(.mediumBold24)
                     } else if date < "18:00" {
-                        Text("\(userName)님, 활기찬 오후 보내세요!")
+                        Text("\(authViewModel.userInfo.lastName)\(authViewModel.userInfo.firstName)님, 활기찬 오후 보내세요!")
                             .font(.mediumBold24)
                         
                     } else if date < "22:00" {
-                        Text("\(userName)님, 즐거운 저녁 보내고 계신가요?")
+                        Text("\(authViewModel.userInfo.lastName)\(authViewModel.userInfo.firstName)님, 즐거운 저녁 보내고 계신가요?")
                             .font(.mediumBold24)
                     } else {
-                        Text("\(userName)님, 굿냣")
+                        Text("\(authViewModel.userInfo.lastName)\(authViewModel.userInfo.firstName)님, 굿냣")
                             .font(.mediumBold24)
                     }
                     Spacer()
