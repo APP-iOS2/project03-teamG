@@ -24,8 +24,13 @@ public extension Firestore {
 }
 
 public extension CollectionReference {
-    func documentBuild(_ document: DocumentRefID) -> DocumentReference {
-        self.document(document)
+    
+    func documentBuild(_ document: DocumentRefID?, collection: Path?) -> CollectionReference {
+        if let document, let collection {
+            return self.document(document).collection(collection.path)
+        } else {
+            return self
+        }
     }
 }
 
