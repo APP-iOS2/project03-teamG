@@ -28,7 +28,6 @@ struct WishView: View {
                                         .frame(height: 180)
                                         .clipped()
                                 } placeholder: {
-                                    
                                     Image("progress")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
