@@ -19,7 +19,7 @@ struct OBLocationView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.white)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 10)
                 .padding(.top, 30)
             
             Spacer(minLength: 500)
@@ -27,7 +27,9 @@ struct OBLocationView: View {
             TempButton(title: OBScreen.location.title) {
                 Task {
                     await obViewModel.updateLocation()
-                    index += 1
+                    withAnimation {
+                        index += 1
+                    }
                 }
                 authViewModel.isLogin = true
                 print("isLogin: \(authViewModel.isLogin)")

@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct OrdersView: View {
-    
+  
     @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
     
     var title: String
+    @State var purchaseID: String? = ""
     
     var body: some View {
         NavigationStack {
-            if orderViewModel.orderData == nil {
+            if purchaseID == nil {
                 OrdersEmptyView()
             } else {
+                
                 ScrollView {
-                    ForEach(orderViewModel.orderData ?? []) { orderList in
-                        OrderListView(dto: orderList)
-                            .environmentObject(orderViewModel)
-                    }
+//                    ForEach
+                    OrderListView(purchaseID: $purchaseID)
                 }
             }
         }
@@ -68,7 +68,7 @@ struct OrdersEmptyView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(title: "주문내역")
+        OrdersView(title: "주문내역", purchaseID: "")
         //        OrdersEmptyView()
     }
 }

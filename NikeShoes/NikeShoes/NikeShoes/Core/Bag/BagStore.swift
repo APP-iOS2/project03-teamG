@@ -5,34 +5,19 @@
 //  Created by Chloe Chung on 2023/09/05.
 //
 
-import Foundation
+import SwiftUI
+import FirebaseAuth
+import NikeShoesCore
 
-struct ProductInfo {
-    var name: String
-    var category: String
-    var option: String
-    var size: String
-    var price: Int
-//    var imageURL: String
-}
+// 사용할 곳 - ProductDetailView, 장바구니 버튼뷰, 사이즈 버튼뷰
+// 구조체를 만들어야 하나...
 
-struct PromotionCode {
-    var code: String
-    var discountRate: Double
-}
+//struct
 
-var productInfo: [ProductInfo] = [
-    ProductInfo(name: "에어 조던 1 로우", category: "여성 신발", option: "화이트/알루미늄/울프 그레이", size: "250 사이즈", price: 139000)
-]
+
+
 
 var defaultText: String = """
      장바구니가 비어있습니다.
 제품을 추가하면 여기에 표시됩니다.
 """
-
-var promotionCodes: [PromotionCode] = [
-    PromotionCode(code: "할인50", discountRate: 0.5),
-    PromotionCode(code: "할인40", discountRate: 0.4),
-    PromotionCode(code: "할인30", discountRate: 0.3),
-    PromotionCode(code: "할인20", discountRate: 0.2),
-]
