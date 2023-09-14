@@ -26,12 +26,12 @@ class OrderViewModel: ObservableObject {
     // gudghksss@sksjdkdk.cic로 테스트
     @MainActor
         func fetchUserData() async throws {
-//            guard let userID = Auth.auth().currentUser?.email else {
-//                        print("No user ID available")
-//                        return
-//                    }
+            guard let userID = Auth.auth().currentUser?.email else {
+                        print("No user ID available")
+                        return
+                    }
             do {
-                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", "gudghksss@sksjdkdk.cic"))
+                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", userID))
                 print("===========debug===========")
                 print(values)
                 self.userData = values.first
@@ -82,8 +82,6 @@ class OrderViewModel: ObservableObject {
             }
         }
     
-    // 행동 자체가 언래핑 , 바인딩은 방법(if let, guard let) / 옵셔널 체이닝 / 강제
-    
     @MainActor
     func updateOrderCancel() async throws {
         do {
@@ -117,8 +115,6 @@ class OrderViewModel: ObservableObject {
             return dto
         }
     }
-    
-    // 지금은 다큐먼트 아이디 다 들어가있어서 패치해서 아이디를 받아오니까 뷰의 아이디값이 있다 무조건은 아님.......
     
     func fetchData() async throws {
         try await fetchUserData()
