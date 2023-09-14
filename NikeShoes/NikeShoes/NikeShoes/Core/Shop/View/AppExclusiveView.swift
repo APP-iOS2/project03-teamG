@@ -36,9 +36,10 @@ struct AppExclusiveView: View {
             // 가로 카테고리
             ScrollView(.horizontal) {
                 LazyHStack {
-                    
+
                     ForEach(shoesArray) { item in
                         NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
+
                             VStack(alignment: .leading) {
                                 AsyncImage(url: URL(string:item.imageURLString.first!)) { image in
                                     

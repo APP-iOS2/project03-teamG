@@ -28,6 +28,7 @@ public class ProductViewModel: ObservableObject {
     }
     
     //CRUD
+    @MainActor
     func addShoes(_ shoesDTO: ShoesDTO) async throws {
         do {
             let _: String = try await service.create(send: shoesDTO, collection: .shoes, document: nil, collection2: nil)
@@ -37,6 +38,7 @@ public class ProductViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func deleteShoes(_ index: IndexSet) async throws {
         let deleteItemId = index.map { self.shoes[$0].id ?? "" }.first
         #if DEBUG
@@ -48,6 +50,7 @@ public class ProductViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchShoes() async throws -> [ShoesDTO] {
         let values: [ShoesDTO] = try await service.fetchAll(collection: .shoes, query: nil)
         return values

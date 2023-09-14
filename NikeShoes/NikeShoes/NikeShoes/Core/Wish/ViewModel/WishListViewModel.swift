@@ -24,14 +24,18 @@ extension ShoesDTO {
 }
 
 class WishListViewModel: ObservableObject {
-    @Published var shoesInfo: [Shoes] = Dummy.dummy
+    @Published var shoesInfo: [Shoes] = []
     
-    private var shoesIds: [String: DocumentRefID] = [:]
+    var shoesIds: [String: DocumentRefID] = [:]
     
     private var service: FirestoreService
     
     init(service: FirestoreService) {
         self.service = service
+        
+        Task {
+            await fetchShoesLikeID()
+        }
     }
     
     private func toggle(_ data: Shoes) { //좋아요를 토글해서 이미지로 반영되게 하는 방식
@@ -56,14 +60,23 @@ class WishListViewModel: ObservableObject {
             
             for likeDto in value {
                 let shoes: ShoesDTO = try await service.fetchDocument(collection: .shoes, document: likeDto.shoesID, query: nil)
-                Log.debug("💡---fetchLikeShoes---: \(shoes)---💡")
                 shoesDTO.append(shoes)
             }
             self.shoesInfo = shoesDTO.map { $0.toLike() }
-            self.shoesIds = try await service.fetch(collection: .user, document: userID, collection: .user_like)
-            Log.debug(" 💡---fetchLikeShoes---: \(shoesDTO)---💡")
+            await fetchShoesLikeID()
+            Log.debug(" 💡---fetchLikeShoes---: \(shoesDTO.last)---💡")
         } catch {
             Log.debug(" ❌--fetchLikeShoes---\(error)---❌")
+        }
+    }
+
+    @MainActor
+    func fetchShoesLikeID() async {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        do {
+            self.shoesIds = try await service.fetch(collection: .user, document: userID, collection: .user_like)
+        } catch {
+            Log.debug(" ❌--fetchShoesLikeID---\(error)---❌")
         }
     }
     
@@ -124,7 +137,7 @@ class WishListViewModel: ObservableObject {
         }
         
         toggle(shoes) // heart 바꿔주기
-        
+        let value = shoesIds.removeValue(forKey: shoesID)
         do {
             try await service.delete(collection: .user, document: userID, collection: .user_like, document: documentID)
             Log.debug("💡---unLikeShoes---: \(shoes) deleted success---💡")
@@ -133,6 +146,7 @@ class WishListViewModel: ObservableObject {
             Log.debug("❌--unLikeShoes---\(error)---❌")
             // 서버에 전송 실패시 다시 원래대로 return
             toggle(shoes)
+            shoesIds[shoesID] = value
             throw error
         }
     }

@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 struct ProductAddView: View {
     
     @ObservedObject var viewModel: ProductViewModel
+    @Environment (\.dismiss) var dismiss
     
     @State private var name: String = ""
     @State private var price: String = ""
@@ -319,6 +320,7 @@ struct ProductAddView: View {
                     Button {
                         Task {
                             await addShoesDTO()
+                            dismiss()
                         }
                     } label: {
                         Text("추가")
