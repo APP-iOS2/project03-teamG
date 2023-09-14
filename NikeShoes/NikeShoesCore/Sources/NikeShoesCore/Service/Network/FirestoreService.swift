@@ -7,35 +7,81 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-enum APIError: Error {
+public enum APIError: Error {
     case createError(Error)
+    case createDocumentError(Error)
     case decodingError(Error)
     case fetchingError(Error)
     case deleteError(Error)
     case updateFailed(Error)
+    case didNotFoundID
 }
 
 public protocol FirestoreService {
-    
     
     /// DB에 데이터를 Create하는 함수
     /// - Parameters:
     ///   - model: DB에 저장할 모델, 반드시 Encodable protocol 을 implement 해야한다.
     ///   - path: API.path의 경로, 모델이 저장될 collection 경로
     /// - Returns: 결과 확인용 문자열
-    @available(iOS 13.0.0, *)
     func create<T: Encodable>(send model: T,
                               collection path: Path) async throws -> String
+    
+    /// DB에 데이터를 Create하는 함수
+    /// - Parameters:
+    ///   - model: DB에 저장할 모델, 반드시 Encodable protocol 을 implement 해야한다.
+    ///   - path: API.path의 경로, 모델이 저장될 collection 경로
+    /// - Returns: 결과 확인용 문자열
+    func create<T: Encodable>(send model: T,
+                              collection path: Path,
+                              document id: DocumentRefID?,
+                              collection2 path2: Path?) async throws -> String
+    
+    
+    /// DB 에 특정 document ID로 document 생성하는 함수 입니다.
+    /// - Parameters:
+    ///   - model: 
+    ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
+    ///   - id: 저장할 Doucmnet의 id를 지정해준다. ex) 파이어베이스 유저에 있는 uid : User.uid
+    func createDocument<T: Encodable>(send model: T,
+                                      collection path: Path,
+                                      document id: String) async throws -> Bool
     
     /// 전체 데이터를 가져오는 함수
     /// - Parameters:
     ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - type:  API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
     /// - Returns: 결과 데이터 배열
-    @available(iOS 13.0.0, *)
     func fetchAll<T: Decodable>(collection path: Path,
                                 query type: APIQuery<Any>? ) async throws -> [T]
+    
+    /// 전체 데이터를 가져오는 특정 콜렉션의 Document의 콜렉션을 가져온다. collection - Document - collection - Document !!
+    /// - Parameters:
+    ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
+    ///   - type:  API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
+    /// - Returns: 결과 데이터 배열
+    func fetchAll<T: Decodable>(collection path: Path,
+                                document id: DocumentRefID,
+                                collection path2: Path,
+                                query type: APIQuery<Any>? ) async throws -> [T]
+    
+    
+    /// wishlist 전용
+    func fetch(collection path: Path,
+               document id: DocumentRefID,
+               collection path2: Path) async throws -> [String : DocumentRefID]
+    
+    /// 특정 document의 데이터를  documentID를 인자로 주어서 document를 가지고 오는 함수 입니다.
+    /// - Parameters:
+    ///   - path: 가져올 데이터의 PATH, API.Path에 정의 되어있다.
+    ///   - type:  API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
+    /// - Returns: 결과 데이터
+    func fetchDocument<T: Decodable>(collection path: Path,
+                                     document id: DocumentRefID,
+                                     query type: APIQuery<Any>? ) async throws -> T
+    
     
     /// 페이지 네이션 호출을 위한 함수
     /// - Parameters:
@@ -44,7 +90,6 @@ public protocol FirestoreService {
     ///   - snapShot: 가져온 데이터의 마지막 페이지, 옵셔널 값으로 되어있고, nil 일경우 ex) 1~10,  nil 이 아니고 10번째의 snapShot을 보내준경우 ex) 11~20
     ///   - type: API.APIQuery에 정의된 쿼리의 제약조건, ex) equal, not, in etc.... ,
     /// - Returns: (데이터 배열과, 마지막 DocumentSnapshot) ... 마지막 documentSnapshot은 다음번 페이지 네이션 요청에 인자로 넣어준다.
-    @available(iOS 13.0.0, *)
     func fetchPagination<T: Decodable>(collection path: Path,
                                        limit count: Int,
                                        lastPage snapShot: DocumentSnapshot?,
@@ -55,22 +100,34 @@ public protocol FirestoreService {
     ///   - path: 삭제할 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - id: 삭제할 모델의 DocumentID, DTO 모델의 ID를 인자로 넣어주면 된다.
     /// - Returns: 결과 확인용 문자열
-    @available(iOS 13.0.0, *)
     func delete(collection path: Path,
-                document id: DocumentRefID) async throws -> String
+                document id: DocumentRefID) async throws
+    
+    
+    /// 특정 documentID를 삭제 하는 함수
+    /// - Parameters:
+    ///   - path: 삭제할 데이터의 PATH, API.Path에 정의 되어있다.
+    ///   - id: 삭제할 모델의 DocumentID, DTO 모델의 ID를 인자로 넣어주면 된다.
+    /// - Returns: 결과 확인용 문자열
+    func delete(collection path: Path,
+                document id: DocumentRefID,
+                collection path2: Path,
+                document id2: DocumentRefID) async throws
     
     /// 특정 documentID의 fields를 업데이트 하는 함수
     /// - Parameters:
     ///   - path: 업데이트할 데이터의 PATH, API.Path에 정의 되어있다.
     ///   - id: 업데이트할 모델의 DocumentID, DTO 모델의 ID를 인자로 넣어주면 된다.
     ///   - fields: 업데이트를 하고싶은 fields를 인자로 넘긴다.
-    @available(iOS 13.0.0, *)
     func update(collection path: Path,
                 document id: DocumentRefID,
                 fields: [String: Any]) async throws
+    
+    @available(iOS 13.0.0, *)
+    func fetchAllDocumet<T: Decodable>(collection path: Path,
+                                       documentid docId: String ) async throws -> T
 }
 
-@available(iOS 13.0, *)
 public class DefaultFireStoreService: FirestoreService {
     
     // TODO: Sigle 톤으로 호출해서 사용할 것이냐, 주입해서 사용할 것이냐...
@@ -82,7 +139,10 @@ public class DefaultFireStoreService: FirestoreService {
     public func create<T: Encodable>(send model: T,
                                      collection path: Path) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
-            create(send: model, collection: path) { result in
+            create(send: model,
+                   collection: path,
+                   document: nil,
+                   collection2: nil) { result in
                 switch result {
                 case .success(let value):
                     continuation.resume(returning: "Success Create \(value)")
@@ -91,6 +151,41 @@ public class DefaultFireStoreService: FirestoreService {
                     continuation.resume(throwing: failure)
                 }
             }
+        }
+    }
+    
+    public func create<T: Encodable>(send model: T,
+                                     collection path: Path,
+                                     document id: DocumentRefID? = nil,
+                                     collection2 path2: Path? = nil) async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            create(send: model,
+                   collection: path,
+                   document: id,
+                   collection2: path2) { result in
+                switch result {
+                case .success(let value):
+                    continuation.resume(returning: "Success Create \(value)")
+                    
+                case .failure(let failure):
+                    continuation.resume(throwing: failure)
+                }
+            }
+        }
+    }
+    
+    public func createDocument<T: Encodable>(send model: T,
+                                             collection path: Path,
+                                             document id: String) async throws -> Bool {
+        do {
+            try await firestore
+                .collection(path)
+                .document(id)
+                .setData(model.toDictionaryNotNil(), merge: true)
+            
+            return true
+        } catch {
+            throw APIError.createDocumentError(error)
         }
     }
     
@@ -115,6 +210,26 @@ public class DefaultFireStoreService: FirestoreService {
         }
     }
     
+    public func fetch(collection path: Path,
+                      document id: DocumentRefID,
+                      collection path2: Path) async throws -> [String : DocumentRefID] {
+        
+        do {
+            return try await firestore
+                .collection(path)
+                .documentBuild(id, collection: path2)
+                .getDocuments()
+                .documents
+                .reduce(into: [:], { dic , value in
+                    guard let id = value.data()["shoesID"] as? String else { return }
+                    let docID = value.documentID
+                    dic[id] = docID
+                })
+        } catch {
+            throw APIError.fetchingError(error)
+        }
+    }
+    
     public func fetchAll<T: Decodable>(collection path: Path,
                                        query type: APIQuery<Any>? ) async throws -> [T] {
         do {
@@ -129,17 +244,63 @@ public class DefaultFireStoreService: FirestoreService {
         }
     }
     
+    public func fetchAll<T: Decodable>(collection path: Path,
+                                       document id: DocumentRefID,
+                                       collection path2: Path,
+                                       query type: APIQuery<Any>? ) async throws -> [T] {
+        do {
+            return try await firestore
+                .collection(path)
+                .documentBuild(id, collection: path2)
+                .queryBuild(query: type)
+                .getDocuments()
+                .documents
+                .compactMap { try? $0.data(as: T.self) } as! [T]
+        } catch {
+            throw APIError.fetchingError(error)
+        }
+    }
+    
+    public func fetchDocument<T: Decodable>(collection path: Path,
+                                            document id: DocumentRefID,
+                                            query type: APIQuery<Any>? ) async throws -> T {
+        do {
+            return try await firestore
+                .collection(path)
+                .document(id)
+                .getDocument()
+                .data(as: T.self)
+        } catch {
+            throw APIError.decodingError(error)
+        }
+    }
+    
     public func delete(collection path: Path,
-                       document id: DocumentRefID) async throws -> String {
+                       document id: DocumentRefID) async throws {
         try await withCheckedThrowingContinuation { continuation in
             delete(collection: path, document: id) { result in
                 switch result {
                 case .success(_):
-                    continuation.resume(returning: "Success Delete")
+                    continuation.resume(returning: ())
                 case .failure(let failure):
                     continuation.resume(throwing: failure)
                 }
             }
+        }
+    }
+    
+    public func delete(collection path: Path,
+                       document id: DocumentRefID,
+                       collection path2: Path,
+                       document id2: DocumentRefID) async throws {
+        do {
+            try await firestore
+                .collection(path)
+                .documentBuild(id, collection: path2)
+                .document(id2)
+                .delete()
+        } catch {
+            throw APIError.deleteError(error)
         }
     }
     
@@ -156,12 +317,17 @@ public class DefaultFireStoreService: FirestoreService {
         }
     }
     
+    
     private func create<T: Encodable>(send model: T,
                                       collection path: Path,
+                                      document id: DocumentRefID? = nil,
+                                      collection2 path2: Path? = nil,
                                       _ completion: @escaping (Result<Void, Error>) -> Void) {
+        
         do {
             try firestore
                 .collection(path)  // self.collection(collection.path)
+                .documentBuild(id, collection: path2)
                 .addDocument(from: model) { error in
                     if let error {
                         completion(.failure(error))
@@ -188,4 +354,17 @@ public class DefaultFireStoreService: FirestoreService {
             }
     }
     
+    
+    public func fetchAllDocumet<T: Decodable>(collection path: Path,
+                                              documentid id: String ) async throws -> T {
+            do {
+                let data =  try await firestore
+                    .collection(path)
+                    .document(id)
+                    .getDocument()
+                return try data.data(as: T.self)
+            } catch {
+                throw APIError.fetchingError(error)
+            }
+        }
 }

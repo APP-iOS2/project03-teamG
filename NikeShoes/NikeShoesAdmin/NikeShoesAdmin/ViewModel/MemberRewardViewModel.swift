@@ -30,15 +30,14 @@ public class MemberRewardViewModel: ObservableObject {
     
     func addPromotion(_ promotionDTO: PromotionDTO) async throws {
         do {
-            let _: String = try await service.create(send: promotionDTO, collection: .promotion)
+            let _: String = try await service.create(send: promotionDTO, collection: .promotion, document: nil, collection2: nil)
         } catch {
             throw error
         }
     }
     
-    func deletePromotion(_ promotionDTO: PromotionDTO, id: String) async throws -> String {
-        let delete: String = try await service.delete(collection: .promotion, document: id)
-        return delete
+    func deletePromotion(_ promotionDTO: PromotionDTO, id: String) async throws {
+        try await service.delete(collection: .promotion, document: id)
     }
     
     func fetchPromotion() async throws -> [PromotionDTO] {

@@ -37,12 +37,15 @@ struct AdminLoginView: View {
     @State private var cautionFirstName: String = ""
     @State private var cautionLastName: String = ""
     @State private var cautionPassword: String = ""
+    
+    var adminNickname: String = "test22"
+    var adminPassword: String = "test33"
 
     var body: some View {
         NavigationStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.clear)
-                .frame(width: 500, height: .infinity)
+                .frame(width: 500)
                 .padding(.vertical)
             //                .fill(.white)
             
@@ -61,7 +64,10 @@ struct AdminLoginView: View {
                             Spacer()
                             
                             ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                                forNextView = true
+                                if firstName == adminNickname,
+                                   password == adminPassword {
+                                    forNextView = true
+                                }
                             }
                             Spacer()
                         }

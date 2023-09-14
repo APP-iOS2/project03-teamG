@@ -15,6 +15,9 @@ public struct API {
     
     public enum Path: String {
         case user
+        case user_address
+        case user_following
+        case user_like
         case promotion
         case shoes
         case orderlist
@@ -33,6 +36,8 @@ public struct API {
                 return "신발"
             case .orderlist:
                 return "주문내역"
+            default:
+                return "something else"
             }
         }
     }

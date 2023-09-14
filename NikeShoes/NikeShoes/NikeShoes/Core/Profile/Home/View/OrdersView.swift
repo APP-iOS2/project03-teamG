@@ -11,7 +11,6 @@ struct OrdersView: View {
     
     var title: String
     @State var purchaseID: String? = ""
-//    @State private var tag: Int? = 0
     
     var body: some View {
         NavigationStack {
@@ -23,25 +22,6 @@ struct OrdersView: View {
 //                    ForEach
                     OrderListView(purchaseID: $purchaseID)
                 }
-                /*
-                .listStyle(.plain)
-                .frame(height: 170)
-                 
-                 ZStack {
-                     NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
-                         ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
-                     }
-                     Button(action: {
-                         self.tag = 1
-                     }) {
-                         EmptyView()
-                     }
-                 }
-                
-                NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
-                    ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
-                }
-                 */
             }
         }
         .navigationTitle("주문내역")

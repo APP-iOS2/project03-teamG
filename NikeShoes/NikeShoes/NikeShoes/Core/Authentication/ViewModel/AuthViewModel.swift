@@ -9,16 +9,18 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import NikeShoesCore
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var userInfo: UserDTO
     @Published var userInfoCountry: String = ""
     @Published var userInfoPassword: String = ""
+    @Published var isLogin: Bool = true
     
-    @Published var isLogin: Bool = false
+    private var db = Firestore.firestore()
     
-    init() {
+    init(service: FirestoreService) {
         userSession = Auth.auth().currentUser 
         userInfo = UserDTO(
             firstName: "",
@@ -29,11 +31,28 @@ class AuthViewModel: ObservableObject {
             memberReward: "",
             address: [],
             following: [],
-            size: [],
-            activityArea: "",
-            introContent: ""
+            size: []
         )
-        print("DEBUG: User session: \(String(describing: userSession))")
+        self.service = service
+//        print("DEBUG: User session: \(String(describing: userSession))")
+    }
+    
+    private let service: FirestoreService
+    
+    func fetchUser() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("No user ID available")
+            return
+        }
+        
+        db.collection("user").document(userID).getDocument { (document, error) in
+            if let user = try? document?.data(as: UserDTO.self ){
+                self.userInfo = user
+            } else {
+                print(userID)
+                print("User not found: \(String(describing: error?.localizedDescription))")
+            }
+        }
     }
     
     func signIn(_ email: String, _ password: String, completion: @escaping (Bool) -> Void) {
@@ -52,6 +71,32 @@ class AuthViewModel: ObservableObject {
             self.userSession = user
             print("DEBUG: signIn User successfully")
             completion(true) // 로그인 성공 시 true 반환
+        }
+    }
+    
+    @MainActor
+    func registerUser() async -> Bool {
+        do {
+            let result = try await Auth.auth().createUser(withEmail: userInfo.email, password: userInfoPassword)
+            self.userSession = result.user
+            let debugResult = try await service.createDocument(send: userInfo, collection: .user, document: result.user.uid)
+            return true
+        } catch {
+            print("registerUser : \(error)")
+        }
+        return false
+    }
+    
+    @MainActor
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        do {
+            try await service.delete(collection: .user, document: user.uid)
+            try await user.delete()
+            self.signOut()
+        } catch {
+            print("deleteAccount error: \(error)")
+            throw error
         }
     }
     
@@ -82,18 +127,23 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func isAlreadySignUp(_ email: String) async throws -> Bool {
-        do {
-            let datas = try await Firestore.firestore().collection("user").getDocuments()
-            for document in datas.documents {
-                let data = document.data()
-                if let documentEmail = data["email"] as? String, documentEmail == email {
-                    return true
+    func isAlreadySignUp(_ email: String, completion: @escaping (Bool, Error?) -> Void) {
+        Auth.auth().fetchSignInMethods(forEmail: email) { signInMethods, error in
+            if let error = error {
+                let err = error as NSError
+                
+                switch err {
+                case AuthErrorCode.emailAlreadyInUse:
+                    completion(false, err)
+                default:
+                    print("unknown error: \(err.localizedDescription)")
                 }
+            } else {
+                guard let signInMethods = signInMethods else {
+                    return completion(false, nil)
+                }
+                completion(true, nil)
             }
-            return false
-        } catch {
-            throw error
         }
     }
     

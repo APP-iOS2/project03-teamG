@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import NikeShoesCore
 
 struct BuyWishlistButtonView: View {
     @State private var wishlistToggle = false
+    
+    let data: ShoesDTO
+    
+    @EnvironmentObject var wishListViewModel: WishListViewModel
     
     var body: some View {
         HStack {
@@ -32,11 +37,19 @@ struct BuyWishlistButtonView: View {
             
             Button {
                 wishlistToggle.toggle()
-                if wishlistToggle == true {
-                    print("위시리스트에 추가")
-                } else {
-                    print("위시리스트에서 제거")
+                Task {
+                    do {
+                        wishlistToggle
+                        ?
+                        try await wishListViewModel.unLikeShoes(shoes: data.toLike())
+                        :
+                        try await wishListViewModel.likeUpdate(shoes: data.toLike())
+                    } catch {
+                        Log.debug("BuyWishlistButtonView Error ❌")
+                        wishlistToggle.toggle()
+                    }
                 }
+                
             } label: {
                 if wishlistToggle == false {
                     ZStack {
@@ -70,6 +83,15 @@ struct BuyWishlistButtonView: View {
 
 struct BuyWishlistView_Previews: PreviewProvider {
     static var previews: some View {
-        BuyWishlistButtonView()
+        BuyWishlistButtonView(data: .init(name: "",
+                                          category: "",
+                                          modelName: "'",
+                                          description: "",
+                                          price: 0,
+                                          size: [],
+                                          colors: [],
+                                          imageURLString: [],
+                                          speciality: [],
+                                          stylingImage: []))
     }
 }

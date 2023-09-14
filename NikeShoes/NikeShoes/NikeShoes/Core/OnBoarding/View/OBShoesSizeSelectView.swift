@@ -9,28 +9,63 @@ import SwiftUI
 
 struct OBShoesSizeSelectView: View {
     
+    @EnvironmentObject var obViewModel: OBViewModel
+    @Binding var index: Int
+    
+    @State var isSelected: [Bool] = Array(repeating: false, count: 16)
+    
     var description: String = "신발 사이즈를 알려주세요."
     
     var sizes: [Int] = (0..<16).reduce(into: [Int]()) { sizes, _ in
         sizes.isEmpty ? sizes.append(215) : sizes.append(sizes.last! + 5)
     }
     
+    private var selectedSizes: [Int] {
+        let selectedIndex = isSelected.enumerated().compactMap { index, flag in
+            if flag {
+                return index
+            } else {
+                return nil
+            }
+        }
+        
+        return sizes.enumerated()
+            .compactMap { index, value  in
+                if selectedIndex.contains(index) {
+                    return value
+                } else {
+                    return nil
+                }
+            }
+    }
+    
     var body: some View {
         VStack(alignment: .leading ) {
-            Spacer()
             
             HStack {
                 Text("\(description)")
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
+                    .padding(.vertical, 20)
                     .padding(.horizontal, 24)
             }
             
-            BoxView(sizes: sizes, isSelected: sizes.map { _ in false })
+            BoxView(sizes: sizes, isSelected: $isSelected)
             
-            Spacer(minLength: 300)
-          
+            Spacer(minLength: 200)
+            HStack {
+                Spacer()
+                TempButton(title: OBScreen.sizeSelection.title) {
+                    Task {
+                        await obViewModel.updateMyShoesSize(sizes: selectedSizes)
+                        withAnimation {
+                            index += 1
+                        }
+                    }
+                }.padding(20)
+                Spacer()
+            }
         }
     }
 }
@@ -38,7 +73,7 @@ struct OBShoesSizeSelectView: View {
 struct BoxView: View {
     
     let sizes: [Int]
-    @State var isSelected: [Bool]
+    @Binding var isSelected: [Bool]
     
     var body: some View {
         VStack {
@@ -72,7 +107,7 @@ struct OBShoesSizeSelectView_Previews: PreviewProvider {
         ZStack {
             Color.black
             Blur(style: .light)
-            OBShoesSizeSelectView()
+            OBShoesSizeSelectView(index: .constant(1))
         }.ignoresSafeArea()
     }
 }

@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct OBLocationView: View {
+struct OBStartView: View {
     
-    var description: String = "위치 서비스를 사용해 보세요. 가까운 나이키 매장 및 해당 매장에서 이용 가능한 서비스를 확인 할 수 있습니다."
+    @Binding var index: Int
+    
+    var description: String = "맞춤화된 멤버 서비스 제공을 위해 몇 가지 질문에 답해주세요"
     
     var body: some View {
         VStack {
@@ -17,19 +19,26 @@ struct OBLocationView: View {
                 .bold()
                 .font(.title2)
                 .foregroundColor(.white)
-                .padding(.horizontal, 20)
                 .padding(.top, 30)
+            
             Spacer(minLength: 500)
+            
+            TempButton(title: OBScreen.getStated.title) {
+                withAnimation {
+                    index += 1
+                }
+            }.padding(20)
+            
         }
     }
 }
 
-struct OBLocationView_Previews: PreviewProvider {
+struct OBStartView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black
             Blur(style: .light)
-            OBLocationView()
+            OBStartView(index: .constant(3))
         }.ignoresSafeArea()
     }
 }
