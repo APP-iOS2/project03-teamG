@@ -11,12 +11,13 @@ import NikeShoesCore
 struct AppExclusiveView: View {
     
     var sampleAppExclusives: [String] = ["9월 4일", "9월 5일"]
+    var currentGender: String
     
     @EnvironmentObject var shoesDatas: ItemListViewModel
     
-    var shoesDatasCount: Int {
+    var shoesArray: [ShoesDTO] {
         shoesDatas.shoes.filter {
-        $0.speciality.contains(Speciality.onlyApp)}.count
+            $0.speciality.contains(Speciality.onlyApp) && $0.category.contains(currentGender)}
     }
  
     var body: some View {
@@ -38,12 +39,12 @@ struct AppExclusiveView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
 
-                    ForEach(0..<shoesDatasCount + 1) { index in
+                    ForEach(shoesArray, id:\.self) { item in
 
-                        NavigationLink(destination: ProductDetailView(shoesData: shoesDatas.shoes[index])) { // ItemListView로 이동
+                        NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
 
                             VStack(alignment: .leading) {
-                                AsyncImage(url: URL(string:shoesDatas.shoes[index].imageURLString.first!)) { image in
+                                AsyncImage(url: URL(string:item.imageURLString.first!)) { image in
                                     image.resizable()
                                 } placeholder: {
                                     ProgressView()
@@ -52,7 +53,9 @@ struct AppExclusiveView: View {
                                 .frame(width: 150, height: 150)
                                 .clipped()
 
-                                Text("\(shoesDatas.shoes[index].name)")
+                                Text(item.name.prefix(15))
+                                    .allowsTightening(true)
+                                    .truncationMode(.tail)
                                     .foregroundColor(.black)
                                     .font(Font.semiBold12)
                                     .padding([.top, .leading], 10)
@@ -91,12 +94,12 @@ struct AppExclusiveView: View {
     }
 }
 
-struct AppExclusiveView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AppExclusiveView()
-                .frame(height: 350)
- 
-        }
-    }
-}
+//struct AppExclusiveView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            AppExclusiveView()
+//                .frame(height: 350)
+//
+//        }
+//    }
+//}
