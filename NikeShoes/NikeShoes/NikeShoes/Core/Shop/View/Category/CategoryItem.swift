@@ -17,7 +17,7 @@ struct CategoryItem: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
             Image(imageName)
                 .resizable()
-                .scaledToFill()
+//                .scaledToFill()
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                 .clipped()
             Text(category)
