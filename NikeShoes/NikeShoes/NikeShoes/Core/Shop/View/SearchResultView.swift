@@ -46,7 +46,7 @@ struct SearchResultView: View {
                     ForEach(searchResultViewModel.shoes) { data in
                         
                         // 각 상품을 누르면 ProductDetailView로 이동
-                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
+                        NavigationLink(destination: ProductDetailView(shoesData: data)) {
                             ZStack {
                                 VStack(alignment: .leading) {
                                     // 상품 이미지
@@ -96,7 +96,7 @@ struct SearchResultView: View {
                 }
                 .padding()
                 //}
-                .navigationTitle("앱 전용 제품")
+                .navigationTitle("\(search)")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 

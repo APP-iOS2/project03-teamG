@@ -20,61 +20,65 @@ struct LoginRegisterView: View {
     @State private var selectedCountry: String = "대한민국"
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("가입 또는 로그인을 위해 이메일을 입력하세요.")
-                .font(.mediumBold24)
-                .padding(.bottom, 12)
-            
-            HStack(alignment: .top) {
-                Text(selectedCountry)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("가입 또는 로그인을 위해 이메일을 입력하세요.")
+                    .font(.mediumBold24)
+                    .padding(.bottom, 12)
                 
-                Menu("변경") {
-                    Picker("국가 변경", selection: $selectedCountry) {
-                        ForEach(countries, id: \.self) { country in
-                            Text(country)
+                HStack(alignment: .top) {
+                    Text(selectedCountry)
+                    
+                    Menu("변경") {
+                        Picker("국가 변경", selection: $selectedCountry) {
+                            ForEach(countries, id: \.self) { country in
+                                Text(country)
+                            }
+                        }
+                    }
+                    .foregroundColor(.gray)
+                    .underline()
+                }
+                .padding(.bottom, 40)
+                
+                TextField("이메일", text: $email)
+                    .keyboardType(.emailAddress)
+                    .signInTextFieldStyle(isTextFieldValid: $isEmailValid)
+                    .onChange(of: email) { newValue in
+                        isCheckEmail()
+                        email = newValue.trimmingCharacters(in: .whitespaces)
+                    }
+                
+                Text(cautionEmail)
+                    .foregroundColor(.red)
+                
+                Text("계속 진행하면 나이키의 개인정보 처리 방침 및 이용약관에 동의하게 됩니다.")
+                    .foregroundColor(.gray)
+                    .padding(.vertical, 40)
+                
+                ButtonView(buttonText: "계속", foreground: .white, background: .black) {
+                    if !isValidEmail(email) {
+                        cautionEmail = "필수"
+                        isEmailValid = false
+                    } else {
+                        authViewModel.isAlreadySignUp(email) { (isInUse, error) in
+                            if let error = error {
+                                print("\(error.localizedDescription)")
+                            } else {
+                                if isInUse {
+                                    screen = .checkPassword
+                                } else {
+                                    screen = .termsOfService
+                                }
+                                authViewModel.userInfo.email = email
+                                authViewModel.userInfoCountry = selectedCountry
+                            }
                         }
                     }
                 }
-                .foregroundColor(.gray)
-                .underline()
             }
-            .padding(.bottom, 40)
-            
-            TextField("이메일", text: $email)
-                .keyboardType(.emailAddress)
-                .signInTextFieldStyle(isTextFieldValid: $isEmailValid)
-                .onChange(of: email) { newValue in
-                    isCheckEmail()
-                    email = newValue.trimmingCharacters(in: .whitespaces)
-                }
-            
-            Text(cautionEmail)
-                .foregroundColor(.red)
-            
-            Text("계속 진행하면 나이키의 개인정보 처리 방침 및 이용약관에 동의하게 됩니다.")
-                .foregroundColor(.gray)
-                .padding(.vertical, 40)
-            
-            ButtonView(buttonText: "계속", foreground: .white, background: .black) {
-                if !isValidEmail(email) {
-                    cautionEmail = "필수"
-                    isEmailValid = false
-                } else {
-                    Task {
-                        if try await authViewModel.isAlreadySignUp(email) {
-                            authViewModel.isLogin = true
-                            screen = .checkPassword
-                        } else {
-                            authViewModel.isLogin = false
-                            screen = .termsOfService
-                        }
-                        authViewModel.userInfo.email = email
-                        authViewModel.userInfoCountry = selectedCountry
-                    }
-                }
-            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
     
     func isCheckEmail() {
@@ -82,7 +86,7 @@ struct LoginRegisterView: View {
             cautionEmail = ""
             isEmailValid = true
         } else if !isValidEmail(email) && email.count > 0 {
-            cautionEmail = "잘못된 이메일 주소입니다"
+            cautionEmail = "올바르지 않은 이메일 주소입니다"
             isEmailValid = false
         }
     }

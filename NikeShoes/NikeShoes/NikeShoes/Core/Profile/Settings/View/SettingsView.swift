@@ -17,6 +17,16 @@ struct SettingsView: View {
                             .padding(.horizontal, 20)
                     }
                     .listRowBackground(Color.clear)
+                } else if item == .birth {
+                    Button(action: {}) {
+                        Text(item.title)
+                            .font(.medium16)
+                            .padding(.vertical)
+                            .foregroundColor(Color.black)
+                            .padding(.horizontal, 20)
+                        Text(authViewModel.userInfo.dateOfBirth)
+                    }
+                    .listRowBackground(Color.clear)
                 } else {
                     NavigationLink(destination: item.destinationView) {
                         HStack {

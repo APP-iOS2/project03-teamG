@@ -18,4 +18,10 @@ class BagViewModel: ObservableObject {
     func addToBag(shoesData: ShoesDTO) {
         bagArray.append(shoesData)
     }
+    
+//    func removeFromBag(shoesData: ShoesDTO) {
+//        if let index = bagArray.firstIndex(of: shoesData) {
+//            bagArray.remove(at: index)
+//        }
+//    }
 }
