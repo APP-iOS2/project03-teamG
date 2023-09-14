@@ -226,7 +226,7 @@ struct OrderDetailsView: View {
 
 struct OrderDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderDetailsView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .deliveryComplete, orderDate: Date()), title: "주문 상세")
+        OrderDetailsView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .orderComplete, orderDate: Date()), title: "주문 상세")
             .environmentObject(OrderViewModel())
     }
 }

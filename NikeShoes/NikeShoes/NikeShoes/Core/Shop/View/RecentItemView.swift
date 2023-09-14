@@ -14,7 +14,7 @@ struct RecentItemView: View {
     
     private var shoesDataArray: [ShoesDTO] {
         itemListViewModel.shoes.filter { shoes in
-            shoes.speciality.contains(.allProducts)
+            shoes.speciality.contains(.allProducts) 
         }
     }
     var body: some View {
