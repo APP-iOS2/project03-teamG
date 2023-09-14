@@ -8,6 +8,10 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct NikeNewsView: View {
+    
+    @State var isShowingAll: Bool = false
+    @State var isShowingDetail: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             headerSection
@@ -21,7 +25,10 @@ struct NikeNewsView: View {
                 .font(.title)
             Spacer()
             Button("모두 보기") {
-                // 아무 동작 X
+                isShowingAll = true
+            }
+            .sheet(isPresented: $isShowingAll) {
+                SizeGuideView(urlString: "https://www.nike.com/kr/")
             }
             .font(.system(size: 16))
             .foregroundColor(Color.gray)
@@ -59,8 +66,12 @@ struct NikeNewsView: View {
     // 콘텐츠내 버튼
     private var actionButton: some View {
         Button("자세히 보기") {
-            // 아무 동작 X
+            isShowingDetail = true
         }
+        .sheet(isPresented: $isShowingDetail) {
+            SizeGuideView(urlString: "https://www.nike.com/kr/styling/running-styling")
+        }
+
         .foregroundColor(.black)
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
