@@ -89,7 +89,7 @@ struct LanguageView: View {
             .background(Color.white)
             .cornerRadius(20)
             .shadow(radius: 20)
-            .offset(y: showModal ? UIScreen.main.bounds.height / 3 : UIScreen.main.bounds.height)
+            .offset(y: showModal ? UIScreen.main.bounds.height / 3.7 : UIScreen.main.bounds.height)
             .animation(.easeInOut(duration: 1.0), value: showModal)
         }
         .modifier(NavigationNikeSetting(title: title))
