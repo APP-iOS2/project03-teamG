@@ -15,7 +15,7 @@ struct OrdersView: View {
     
     var body: some View {
         NavigationStack {
-            if orderViewModel.orderData != nil {
+            if orderViewModel.orderData?.first?.shoesID != nil {
                 ScrollView {
                     ForEach(orderViewModel.orderData ?? []) { orderList in
                         OrderListView(dto: orderList)
