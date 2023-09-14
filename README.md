@@ -1,7 +1,7 @@
 # Nike Shoes
 
-<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/03e43bdb-cb20-4017-9b00-240205300975" width="300">
-<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/31607296-7cb6-4d10-a8cc-101e571f10b4" width="300">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/03e43bdb-cb20-4017-9b00-240205300975" width="250">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/31607296-7cb6-4d10-a8cc-101e571f10b4" width="250">
 
 ## 프로젝트 소개
 
