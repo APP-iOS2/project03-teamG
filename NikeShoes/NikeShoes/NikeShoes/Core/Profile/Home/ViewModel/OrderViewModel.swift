@@ -24,14 +24,15 @@ class OrderViewModel: ObservableObject {
     }
     
     // gudghksss@sksjdkdk.cic로 테스트
+    // test@icloud.com
     @MainActor
         func fetchUserData() async throws {
-            guard let userID = Auth.auth().currentUser?.email else {
-                        print("No user ID available")
-                        return
-                    }
+//            guard let userID = Auth.auth().currentUser?.email else {
+//                        print("No user ID available")
+//                        return
+//                    }
             do {
-                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", userID))
+                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", "test@icloud.com"))
                 print("===========debug===========")
                 print(values)
                 self.userData = values.first
@@ -61,7 +62,7 @@ class OrderViewModel: ObservableObject {
                     let values: ShoesDTO = try await service.fetchAllDocumet(collection: .shoes, documentid: orderData)
                     print("===========debug===========")
                     print(values)
-                    self.shoesData?.append(values)
+                    self.shoesData = [values]
                 }
             } catch {
                 throw error
@@ -100,6 +101,15 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    @MainActor
+    func updatePaymentCancel() async throws {
+        do {
+            if let id = orderData?.first?.id {
+                try await service.update(collection: .shoes, document: id, fields: ["price": 0])
+            }
+        }
+    }
+    
     func cancelOrderStatus() {
         orderData = orderData?.map { dto in
             var dto = dto
@@ -116,9 +126,18 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    func cancelPaymentStatus() {
+        shoesData = shoesData?.map { dto in
+            var dto = dto
+            dto.price = 0
+            return dto
+        }
+    }
+    
     func fetchData() async throws {
         try await fetchUserData()
         try await fetchOrderData()
+        try await fetchShoesData()
     }
     
     func toString(orderDate: Date) -> String {
