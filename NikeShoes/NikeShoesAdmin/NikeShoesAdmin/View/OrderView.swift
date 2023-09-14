@@ -81,7 +81,7 @@ struct OrderView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    let orderDTO: OrderDTO = OrderDTO(id: "wnans1qjs", shoesID: "AJ4v0y1e9hFgYfUcel9T", userID: "HIKeuU6XTsQehBASib1M49UoWen2", address: "성훈님 개발천재짱짱짱!!!! ", deliveryStatus: .orderComplete, orderDate: Date())
+                    let orderDTO: OrderDTO = OrderDTO(id: "wnans1qjs", shoesID: "3cZZnyUKhKqBQzk4hQ00", userID: "nUxbsZTBp9XeiONcnmOYioiDtfD3", address: "성은이집으로..", deliveryStatus: .orderComplete, orderDate: Date())
                     
                     Task { try await orderViewModel.createOrder(orderDTO: orderDTO)
                     }
