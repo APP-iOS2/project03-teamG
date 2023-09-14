@@ -15,7 +15,7 @@ struct SearchItemView: View {
     @State var searchHistory: [String] = ["조던", "흰색", "덩크"]
     @State var searchText: String = ""
     @FocusState var focused: Bool
-    @State private var selection: Int? = nil
+    @State private var navigate: Bool = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -53,16 +53,18 @@ struct SearchItemView: View {
                                     }
                                     searchHistory.insert(search, at: 0)// 맨 앞에 넣어주면 됨
                                 }
-                                self.selection = 1
                                 // 2. NavigationLink로 넘어가면 이전 화면이 검색화면 이므로 문제가 될 수 있다.
                                 // 2.1 아니면 아예 못돌아오게 Back 버튼을 순기던지
                                 //SearchResultView(search: searchText)
+                                
                             } else {// 빈 텍스트 or 스페이스바 밖에 없어서 빈 텍스트로 변한 것
                                 // 그냥 아무 동작도 안하는게 좋을듯
                                 self.focused = true // 키보드가 계속 올라와 있게 유지
                             }
                         }
-                    NavigationLink(destination: SearchResultView(search: searchText), tag: 1, selection: $selection) { EmptyView() }
+                    if navigate {
+                                        NavigationLink(destination: SearchResultView(search: searchText), label: { })
+                                    }
 
                     // Button(delete text)
                     if searchText.isEmpty {
