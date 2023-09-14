@@ -3,7 +3,7 @@
 //  NikeShoes
 //
 //  Created by 이승준 on 2023/09/12.
-//
+///
 
 import SwiftUI
 import NikeShoesCore
@@ -13,11 +13,17 @@ struct ItemListViewWithProgressbar: View {
     // 컬렉션에 네비게이션 제목과 상품 필터 기능을 위한 변수
     var navigationTitle: String
     var speciality: Speciality?
+    var currentGender: String
+    var modelName: ModelName?
+    var tabs: [String]
     
     // 초기화
-    init(speciality: Speciality?, navigationTitle: String) {
+    init(speciality: Speciality?, modelName: ModelName?, navigationTitle: String, currentGender: String, customTabs: [String]) {
         self.speciality = speciality
+        self.modelName = modelName
         self.navigationTitle = navigationTitle
+        self.currentGender = currentGender
+        self.tabs = customTabs
     }
     
     // 환경 변수 설정
@@ -37,10 +43,10 @@ struct ItemListViewWithProgressbar: View {
     @State private var progressBarWidth: CGFloat = 0
     
     // 탭 목록
-    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
+//    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel
-    @ObservedObject var viewModel: ItemListViewModel = ItemListViewModel()
+    @EnvironmentObject var viewModel: ItemListViewModel
     
     var body: some View {
         NavigationStack {
@@ -51,9 +57,13 @@ struct ItemListViewWithProgressbar: View {
                 
                 // 상품 그리드 뷰
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.shoes.filter { speciality == nil ? true : $0.speciality.contains(self.speciality!) }) { data in
-                        if selectedTab == "전체" || data.modelName == selectedTab {
-                            NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
+                    ForEach(viewModel.shoes.filter {
+                        ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
+                        ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
+                        ($0.category == self.currentGender || self.currentGender == "공용") &&
+                        ($0.modelName == self.selectedTab || self.selectedTab == "전체")
+                    }) { data in
+                            NavigationLink(destination: ProductDetailView(shoesData: data)) {
                                 // 상품 카드 뷰
                                 ZStack {
                                     VStack(alignment: .leading) {
@@ -122,16 +132,12 @@ struct ItemListViewWithProgressbar: View {
                     }
                 )
             }
-            // 데이터 로딩
-            .onAppear {
-                viewModel.action()
-            }
         }
     }
-}
 
 struct ItemListViewWithProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListViewWithProgressbar(speciality: .onlyApp, navigationTitle: "앱 전용 제품")
+        ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성", customTabs: ["전체", "에어맥스", "에어포스"])
+
     }
 }

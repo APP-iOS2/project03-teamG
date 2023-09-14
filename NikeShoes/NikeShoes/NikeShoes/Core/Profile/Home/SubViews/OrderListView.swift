@@ -9,10 +9,9 @@ import SwiftUI
 import NikeShoesCore
 
 struct OrderListView: View {
-    @EnvironmentObject var orderViewModel: OrderViewModel
+    @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
     
-    var dto: OrderDTO
-    
+    @Binding var purchaseID: String?
     var orderListImageURL: String = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/d3123e79-53e5-4a03-aa5b-fbc5c18b9bfd/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-FBbeey7u.png"
     var productName: String = "에어 조던 1 로우 G"
     var productType: String = "골프화"
@@ -32,9 +31,11 @@ struct OrderListView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(dto.deliveryStatus.rawValue)
+                    if let orderData = orderViewModel.orderData?.first?.deliveryStatus {
+                        Text(orderData.rawValue)
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.nikeGreen)
+                    }
                     
                     Text(productName)
                         .font(.system(size: 16, weight: .bold))
@@ -56,30 +57,28 @@ struct OrderListView: View {
             }
             .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
             
-            if dto.deliveryStatus == .orderCancel {
-                NavigationLink(destination: OrderDetailsView(dto: dto, title: "주문 상세").environmentObject(orderViewModel), tag: 1, selection: self.$tag) {
-                    ButtonStyle(buttonText: "재주문 하기", action: {
-                        self.tag = 1
-                        orderViewModel.completeOrderStatus()
-                        Task {
-                            try await orderViewModel.updateOrderComplete()
-                        }
-                    })
+            if orderViewModel.orderData?.first?.deliveryStatus == .orderCancel {
+                NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
+                    ButtonStyle(buttonText: "재주문 하기", action: {self.tag = 1})
                 }
             } else {
-                NavigationLink(destination: OrderDetailsView(dto: dto, title: "주문 상세").environmentObject(orderViewModel), tag: 1, selection: self.$tag) {
+                NavigationLink(destination: OrderDetailsView(title: "주문 상세"), tag: 1, selection: self.$tag) {
                     ButtonStyle(buttonText: "주문 상세 보기", action: {self.tag = 1})
                 }
             }
         }
-        Divider()
-            .padding()
+        .task {
+            do {
+                try await orderViewModel.fetchData()
+            } catch {
+                
+            }
+        }
     }
 }
 
 struct OrderListView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderListView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .deliveryComplete, orderDate: Date()))
-            .environmentObject(OrderViewModel())
+        OrderListView(purchaseID: .constant(nil))
     }
 }

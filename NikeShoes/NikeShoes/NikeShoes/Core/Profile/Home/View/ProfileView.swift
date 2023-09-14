@@ -3,7 +3,6 @@ import NikeShoesCore
 
 struct ProfileView: View {
     @ObservedObject var userProfileEditViewModel: UserProfileEditViewModel = UserProfileEditViewModel()
-    @State private var userDTO: UserDTO = UserProfileEditViewModel.sampleData
     @State private var isProfileEditClicked = true
     @State private var selectedImage: Image = Image(systemName: "camera.circle.fill")
     @State private var firstName: String = "성"
@@ -32,9 +31,6 @@ struct ProfileView: View {
                 imageLoadToFileManager()
                 do {
                     try await userProfileEditViewModel.fetchUserData()
-                    if let userData = userProfileEditViewModel.userData {
-                        userDTO = userData
-                    }
                 } catch {
                     print(error)
                 }
@@ -56,7 +52,9 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 extension ProfileView {
-  
+    var getUserName: String {
+            return "\((userProfileEditViewModel.userData?.firstName ?? "성") + (userProfileEditViewModel.userData?.lastName ?? "이름"))"
+    }
     var headerView: some View {
         VStack {
             // 프로필 이미지
@@ -64,16 +62,17 @@ extension ProfileView {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .clipShape(Circle())
-                .frame(width: 150, height: 150)
+                .frame(width: 100, height: 100)
+                .padding(.top, 50)
             
             // 이름
-            Text("\(userDTO.firstName)")
-                .font(.headline)
+            Text(getUserName)
+                .font(.mediumBold24)
                 .padding(.top, 7)
                 .padding(.bottom, 1)
             
             // 지역
-            Text("\(userDTO.activityArea)")
+            Text("\(userProfileEditViewModel.userData?.activityArea ?? "")")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.bottom, 30)
@@ -90,14 +89,12 @@ extension ProfileView {
             }
             .frame(width: 200, height: 30)
             .border(.gray)
-            
         }
     }
     
     var actionButtonView: some View {
         HStack {
             ForEach(ProfileViewModel.allCases, id: \.rawValue) { item in
-                
                 NavigationLink(destination: item.destinationView) {
                     VStack(alignment: .center) {
                         Image(systemName: item.imageName)
@@ -109,7 +106,7 @@ extension ProfileView {
                             .font(.subheadline)
                             .foregroundColor(.black)
                     }
-                    .padding()
+                    .padding(20)
                 }
                 Divider()
                     .frame(height: 30)
