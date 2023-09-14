@@ -50,6 +50,9 @@ struct HomeView: View {
                 }
             }
             .padding(16)
+            .onAppear {
+                authViewModel.fetchUser()
+            }
             
             CustomizedRecommendView()
             

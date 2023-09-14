@@ -77,6 +77,7 @@ struct OrderView: View {
             Task { try await orderViewModel.fetchOrder()
             }
         }
+        // 테스트용 버튼 추후 삭제
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
