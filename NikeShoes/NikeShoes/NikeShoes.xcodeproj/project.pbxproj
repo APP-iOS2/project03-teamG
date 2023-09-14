@@ -29,6 +29,7 @@
 		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		21C00D392AB20BA100B19A00 /* BagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D382AB20BA100B19A00 /* BagViewModel.swift */; };
+		21C00D3D2AB2D4C400B19A00 /* AccountTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D3C2AB2D4C400B19A00 /* AccountTransferView.swift */; };
 		21FABC412AAEC2DF00546C17 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC3F2AAEC2DF00546C17 /* SizeView.swift */; };
 		21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */; };
 		3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */; };
@@ -174,6 +175,7 @@
 		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		21C00D382AB20BA100B19A00 /* BagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagViewModel.swift; sourceTree = "<group>"; };
+		21C00D3C2AB2D4C400B19A00 /* AccountTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransferView.swift; sourceTree = "<group>"; };
 		21FABC3F2AAEC2DF00546C17 /* SizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
 		21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeButtonView.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 				21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */,
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
 				214B79B42AA9599B00C85EA9 /* PaymentView.swift */,
+				21C00D3C2AB2D4C400B19A00 /* AccountTransferView.swift */,
 				21C00D382AB20BA100B19A00 /* BagViewModel.swift */,
 			);
 			path = Bag;
@@ -1037,6 +1040,7 @@
 				DC01B5A32AA83CE7003B6E77 /* CellPhoneCertificationView.swift in Sources */,
 				A074C4532AA6EDE80081DB7F /* NotificationView.swift in Sources */,
 				961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */,
+				21C00D3D2AB2D4C400B19A00 /* AccountTransferView.swift in Sources */,
 				961798F32AA6BA9C009FC991 /* OBView.swift in Sources */,
 				DC01B5562AA704F1003B6E77 /* SignInTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,
