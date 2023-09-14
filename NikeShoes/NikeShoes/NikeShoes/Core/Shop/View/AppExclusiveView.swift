@@ -38,7 +38,7 @@ struct AppExclusiveView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
 
-                    ForEach(0..<shoesDatasCount + 1) { index in
+                    ForEach(0..<shoesDatasCount) { index in
 
                         NavigationLink(destination: ProductDetailView(shoesData: shoesDatas.shoes[index])) { // ItemListView로 이동
 
