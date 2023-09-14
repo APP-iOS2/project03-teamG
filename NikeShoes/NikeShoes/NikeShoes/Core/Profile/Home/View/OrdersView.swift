@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OrdersView: View {
     
-    // Single source of truth: 객체 하나만 생성하도록 보장 (고정시킴 @StateObject) -> 다른거 없데이트해도 이건 남아있음
     @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
     
     var title: String
@@ -30,7 +29,11 @@ struct OrdersView: View {
         .navigationTitle("주문내역")
         .navigationBarTitleDisplayMode(.inline)
         .modifier(NavigationNikeSetting(title: title))
-        
+        .refreshable {
+            Task {
+                try await orderViewModel.fetchData()
+            }
+        }
         .onAppear {
             Task {
                 try await orderViewModel.fetchData()
