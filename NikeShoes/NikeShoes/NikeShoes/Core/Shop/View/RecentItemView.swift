@@ -17,7 +17,6 @@ struct RecentItemView: View {
             shoes.speciality.contains(.allProducts)
         }
     }
-    
     var body: some View {
         VStack(alignment: .leading) {
             if !shoesDataArray.isEmpty {
@@ -27,16 +26,16 @@ struct RecentItemView: View {
                         .font(Font.medium20)
                     
                     // TODO: 삭제 구현하기
-//                    Spacer()
-//                    Button {
-//                        // sampleRecentItems 삭제
-//                        shoesDataArray.removeAll()
-//                    } label: {
-//                        Text("삭제")
-//                            .font(.system(size: 16))
-//                            .fontWeight(.regular)
-//                            .foregroundColor(.textGray)
-//                    }
+                    //                    Spacer()
+                    //                    Button {
+                    //                        // sampleRecentItems 삭제
+                    //                        shoesDataArray.removeAll()
+                    //                    } label: {
+                    //                        Text("삭제")
+                    //                            .font(.system(size: 16))
+                    //                            .fontWeight(.regular)
+                    //                            .foregroundColor(.textGray)
+                    //                    }
                     
                 }
                 .padding(1)
@@ -46,7 +45,7 @@ struct RecentItemView: View {
                 ScrollView(.horizontal) {
                     LazyHStack {
                         
-                        // 최근 본 제품 개수 제한 
+                        // 최근 본 제품 개수 제한
                         if shoesDataArray.count < 6 {
                             ForEach(shoesDataArray) { item in
                                 
@@ -64,6 +63,7 @@ struct RecentItemView: View {
                                         .clipped()
                                         
                                         Text("\(item.modelName)")
+                                            .truncationMode(.tail)
                                             .foregroundColor(.black)
                                             .font(Font.semiBold12)
                                             .padding([.top, .leading], 10)
@@ -88,6 +88,7 @@ struct RecentItemView: View {
                                         .clipped()
                                         
                                         Text("\(item.name)")
+                                            .truncationMode(.tail)
                                             .foregroundColor(.black)
                                             .font(Font.semiBold12)
                                             .padding([.top, .leading], 10)
