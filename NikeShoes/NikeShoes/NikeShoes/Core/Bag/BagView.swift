@@ -36,40 +36,49 @@ struct BagView: View {
             VStack {
                     if !bagViewModel.bagArray.isEmpty {
                             ForEach(bagViewModel.bagArray) { bagItem in
-                                HStack {
+                                VStack(alignment: .trailing) {
                                     Button {
-                                        //                                ProductDetailView()
+                                        bagViewModel.removeFromBag(shoesData: bagItem)
                                     } label: {
-                                        AsyncImage(url: URL(string: bagItem.imageURLString[0])) { img in
-                                            img
-                                                .resizable()
-                                            
-                                        } placeholder: {
-                                            ProgressView()
+                                        Image(systemName: "trash")
+                                    }
+                                    .padding()
+                                    
+
+                                    HStack {
+                                        Button {
+                                            //                                ProductDetailView()
+                                        } label: {
+                                            AsyncImage(url: URL(string: bagItem.imageURLString[0])) { img in
+                                                img
+                                                    .resizable()
+                                                
+                                            } placeholder: {
+                                                ProgressView()
+                                            }
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 200, height: 200)
                                         }
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 200, height: 200)
+                                        
+                                        VStack(alignment: .leading) {
+                                            
+                                            Text("\(bagItem.name)")
+                                                .bold()
+                                                .font(.caption)
+                                            
+                                            // MARK: shoes 데이터로 변경하기
+                                            Text("\(bagItem.category)")
+                                                .font(.caption)
+                                            
+                                            // MARK: 추후 사이즈 받아와야 함
+                                            //                                Text("\(size)")
+                                            //                                    .font(.caption)
+                                            //                        Text("\(selectedSize)")
+                                        }
+                                        
+                                        Spacer()
                                     }
-                                    
-                                    VStack(alignment: .leading) {
-                                        
-                                        Text("\(bagItem.name)")
-                                            .bold()
-                                            .font(.caption)
-                                        
-                                        // MARK: shoes 데이터로 변경하기
-                                        Text("\(bagItem.category)")
-                                            .font(.caption)
-                                        
-                                        // MARK: 추후 사이즈 받아와야 함
-                                        //                                Text("\(size)")
-                                        //                                    .font(.caption)
-                                        //                        Text("\(selectedSize)")
-                                    }
-                                    
-                                    Spacer()
                                 }
-                                
                                 HStack {
                                     Text("수량")
                                     Picker("Quantity", selection: $selectedQty) {

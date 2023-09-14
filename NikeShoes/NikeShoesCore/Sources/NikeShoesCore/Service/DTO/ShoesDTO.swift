@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-public struct ShoesDTO: Codable, Identifiable {
+public struct ShoesDTO: Codable, Identifiable, Equatable {
     @DocumentID public var id: String?
     public var name: String
     public var category: String   // Gender : 남성, 여성, 키즈 ,(공용)
