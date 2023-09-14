@@ -33,6 +33,8 @@ struct PaymentView: View {
     @State private var paymentMethod: String = ""
     @State private var isPaymentTapped: Bool = true
     @State private var isArgreeTapped: Bool = true
+    @State private var isAgreeTapped: Bool = false
+    @State private var isAccountTransferViewPresented: Bool = false
     @State var bagItemList: [ShoesDTO]
     
     @EnvironmentObject var orderViewModel: OrderViewModel
@@ -374,16 +376,20 @@ struct PaymentView: View {
                                     
                                 } label: {
                                     Text("결제하기")
-                                        .font(.title3)
-                                        .frame(width: 350, height: 70)
-                                        .foregroundColor(.white)
-                                        .background(isArgreeTapped ?
-                                                    Color.gray.opacity(0.3)
-                                                    : Color.black)
-                                        .cornerRadius(40)
+                                        .font(.system(size: 18))
+                                        .frame(maxWidth: .infinity)
                                         .padding()
                                 }
-                            }.padding()
+                                .frame(width: 330, height: 60)
+                                       .background(isAgreeTapped ? Color.gray.opacity(0.3) : Color.black)
+                                       .foregroundColor(.white)
+                                       .cornerRadius(31.5)
+                                       .sheet(isPresented: $isAccountTransferViewPresented) {
+                                           AccountTransferView(finalPrice: finalPrice, isPresented: $isAccountTransferViewPresented)
+                                       }
+
+                            }
+                            .padding()
                         }
                     }
                 }
