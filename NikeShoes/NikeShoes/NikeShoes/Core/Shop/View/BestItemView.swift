@@ -52,6 +52,28 @@ struct BestItemView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
                     
+                    NavigationLink(destination: ItemListView()) {
+                        VStack(alignment: .leading) {
+                            AsyncImage(url: URL(string: "https://cdn-icons-png.flaticon.com/512/5553/5553769.png")) { image in
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 150)
+                            .clipped()
+                            
+                            HStack {
+                                Text("Top10 제품 보러가기")
+                                Image(systemName: "arrow.right.circle")
+                            }
+                            .foregroundColor(.black)
+                            .font(Font.semiBold12)
+                            .padding([.top, .leading], 10)
+                            
+                        }
+                    }
+                    
                     ForEach(shoesDataFilterHot) { item in
                         
                         NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
@@ -74,27 +96,6 @@ struct BestItemView: View {
                                     .padding([.top, .leading], 10)
                                 
                             }
-                        }
-                    }
-                    NavigationLink(destination: ItemListView()) {
-                        VStack(alignment: .leading) {
-                            AsyncImage(url: URL(string: "https://cdn-icons-png.flaticon.com/512/5553/5553769.png")) { image in
-                                image.resizable()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .clipped()
-                            
-                            HStack {
-                                Text("Top10 제품 보러가기")
-                                Image(systemName: "arrow.right.circle")
-                            }
-                            .foregroundColor(.black)
-                            .font(Font.semiBold12)
-                            .padding([.top, .leading], 10)
-                            
                         }
                     }
                 }
