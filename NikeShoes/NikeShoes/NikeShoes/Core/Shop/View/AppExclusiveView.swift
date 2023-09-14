@@ -15,7 +15,7 @@ struct AppExclusiveView: View {
     
     @EnvironmentObject var shoesDatas: ItemListViewModel
     
-    var shoesArray: [ShoesDTO] {
+   private var shoesArray: [ShoesDTO] {
         shoesDatas.shoes.filter {
             $0.speciality.contains(Speciality.onlyApp) && $0.category.contains(currentGender)}
     }
@@ -39,7 +39,7 @@ struct AppExclusiveView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
 
-                    ForEach(shoesArray, id:\.self) { item in
+                    ForEach(shoesArray) { item in
 
                         NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
 
