@@ -11,6 +11,7 @@ import Firebase
 
 struct OrderDetailsView: View {
     @EnvironmentObject var orderViewModel: OrderViewModel
+    @ObservedObject var addressviewModel: AddressViewModel = AddressViewModel()
     var dto: OrderDTO
     
     var title: String
@@ -25,14 +26,14 @@ struct OrderDetailsView: View {
     var productSerialNumber: String = "Style DD9315-104"
     var productColor: String = "화이트/미드나이트 네이비/블랙"
     
-//    var userName: String = "장수지"
+    //    var userName: String = "장수지"
     var streetAddress: String = "00로 00나길 0"
     var building: String = "000호"
     var province: String = "서울특별시"
     var district: String = "00구"
     var postalCode: String = "12345"
-//    var userEmail: String = "ddudi@gmail.com"
-//    var userPhoneNumber: String = "010-0000-0000"
+    //    var userEmail: String = "ddudi@gmail.com"
+    //    var userPhoneNumber: String = "010-0000-0000"
     
     var deliveryFee: Int = 0
     @State private var isModalPresented = false
@@ -43,9 +44,9 @@ struct OrderDetailsView: View {
                 Divider()
                 VStack(alignment: .leading) {
                     Text("온라인 구매 - \(orderViewModel.toString(orderDate: dto.orderDate))")
-                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
+                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 3, trailing: 0))
                     
-                    Text("\(purchaseID) ⏤ ₩\(price)")
+                    Text("\(purchaseID) ⏤ ₩\(orderViewModel.shoesData?.first?.price ?? 0)")
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     Rectangle()
@@ -53,13 +54,13 @@ struct OrderDetailsView: View {
                         .frame(height: 11)
                         .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
                     
-                        Text(dto.deliveryStatus.rawValue)
-                            .font(.bold16)
-                            .foregroundColor(.nikeGreen)
-                            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                    Text(dto.deliveryStatus.rawValue)
+                        .font(.bold16)
+                        .foregroundColor(.nikeGreen)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                     
                     HStack(alignment: .top, spacing: 15) {
-                        AsyncImage(url: URL(string: orderListImageURL)) { image in
+                        AsyncImage(url: URL(string: orderViewModel.shoesData?.first?.imageURLString.first ?? orderListImageURL)) { image in
                             image.resizable()
                                 .frame(width: 130, height: 130)
                         } placeholder: {
@@ -68,20 +69,23 @@ struct OrderDetailsView: View {
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                         
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(productName)
-                                .font(.bold16)
-                                .foregroundColor(.black)
-                            
-                            Text("₩\(price)")
+                            if let orderData = orderViewModel.shoesData?.first {
+                                Text("\(orderData.name)")
+                                    .font(.bold16)
+                                    .foregroundColor(.black)
+                            }
+                            Text("₩\(orderViewModel.shoesData?.first?.price ?? 0)")
                                 .font(.bold16)
                                 .foregroundColor(.black)
                                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                             
                             Group {
-                                Text(productColor)
-                                Text(productType)
-                                Text("\(productSize) 사이즈")
-                                Text(productSerialNumber)
+                                if let orderData = orderViewModel.shoesData?.first {
+                                    Text(orderData.colors.first?.rawValue ?? "")
+                                    Text(orderData.modelName)
+                                    Text("\(orderData.size.first ?? 250) 사이즈")
+                                    Text(productSerialNumber)
+                                }
                             }
                             .font(.medium16)
                             .foregroundColor(.gray)
@@ -119,17 +123,16 @@ struct OrderDetailsView: View {
                         VStack(alignment: .trailing, spacing: 6) {
                             if let orderData = orderViewModel.userData {
                                 Text("\(orderData.lastName)\(orderData.firstName)")
-                                
-                                HStack {
-                                    Text(province)
-                                    Text(district)
-                                }
-                                
-                                Text("\(streetAddress)")
-                                Text(postalCode)
-                                Text("\(orderData.email)")
-                                Text("\(orderData.phoneNumber)")
                             }
+                            /*
+                             Text("\(addressviewModel.addresses.first?.city ?? "") \(addressviewModel.addresses.first?.district ?? "")")
+                             Text(addressviewModel.addresses.first?.town ?? "") // street 없음
+                             */
+                            Text(addressviewModel.addresses.first?.fullAddress ?? "")
+                            Text(addressviewModel.addresses.first?.postalCode ?? "")
+                            Text(orderViewModel.userData?.email ?? "")
+                            Text(orderViewModel.userData?.phoneNumber ?? "")
+                            
                         }
                         .font(.medium16)
                         .foregroundColor(.gray)
@@ -182,7 +185,7 @@ struct OrderDetailsView: View {
                         HStack {
                             Text("총 상품금액")
                             Spacer()
-                            Text("₩\(price)")
+                            Text("₩\(orderViewModel.shoesData?.first?.price ?? 0)")
                         }
                         .font(.medium16)
                         .foregroundColor(.gray)
@@ -198,7 +201,7 @@ struct OrderDetailsView: View {
                         HStack {
                             Text("총 결제금액")
                             Spacer()
-                            Text("₩\(price-deliveryFee)")
+                            Text("₩\((orderViewModel.shoesData?.first?.price ?? 0)-deliveryFee)")
                         }
                         .font(.bold16)
                         .foregroundColor(.black)
@@ -216,6 +219,9 @@ struct OrderDetailsView: View {
         .onAppear {
             Task {
                 try await orderViewModel.fetchData()
+                //                addressviewModel.fetchData()
+                
+//                print(orderViewModel.shoesData)
             }
         }
         .navigationTitle("주문상세")
