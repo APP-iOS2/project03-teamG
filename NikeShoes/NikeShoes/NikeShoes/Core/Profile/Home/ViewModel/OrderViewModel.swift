@@ -25,12 +25,12 @@ class OrderViewModel: ObservableObject {
     // gudghksss@sksjdkdk.cic로 테스트
     @MainActor
         func fetchUserData() async throws {
-//            guard let userID = Auth.auth().currentUser?.email else {
-//                        print("No user ID available")
-//                        return
-//                    }
+            guard let userID = Auth.auth().currentUser?.email else {
+                        print("No user ID available")
+                        return
+                    }
             do {
-                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", "gudghksss@sksjdkdk.cic"))
+                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", userID))
                 print("===========debug===========")
                 print(values)
                 self.userData = values.first // 유저는 1
@@ -67,6 +67,54 @@ class OrderViewModel: ObservableObject {
             }
         }
     
+    @MainActor
+        func fetchAddressData() async throws {
+            do {
+                if let orderData = orderData?.first?.shoesID {
+                    let values: ShoesDTO = try await service.fetchAllDocumet(collection: .shoes, documentid: orderData)
+                    print("===========debug===========")
+                    print(values)
+                    self.shoesData?.append(values)
+                }
+            } catch {
+                throw error
+            }
+        }
+    
+    @MainActor
+    func updateOrderCancel() async throws {
+        do {
+            if let id = orderData?.first?.id {
+                try await service.update(collection: .orderlist, document: id, fields: ["deliveryStatus": "주문 취소"])
+            }
+        }
+    }
+    
+    @MainActor
+    func updateOrderComplete() async throws {
+        do {
+            if let id = orderData?.first?.id {
+                try await service.update(collection: .orderlist, document: id, fields: ["deliveryStatus": "주문 완료"])
+            }
+        }
+    }
+    
+    func cancelOrderStatus() {
+        orderData = orderData?.map { dto in
+            var dto = dto
+            dto.deliveryStatus = .orderCancel
+            return dto
+        }
+    }
+    
+    func completeOrderStatus() {
+        orderData = orderData?.map { dto in
+            var dto = dto
+            dto.deliveryStatus = .orderComplete
+            return dto
+        }
+    }
+  
     func fetchData() async throws {
         try await fetchUserData()
         try await fetchOrderData()
