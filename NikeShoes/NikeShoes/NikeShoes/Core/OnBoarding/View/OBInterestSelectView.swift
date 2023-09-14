@@ -56,7 +56,10 @@ struct OBInterestSelectView: View {
                 Task {
                     let following = following.filter { $0.isChecked == true }
                     await obViewModel.updateInterest(interest: following)
-                    index += 1
+                    
+                    withAnimation {
+                        index += 1
+                    }
                 }
             }.padding(20)
         }

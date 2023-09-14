@@ -49,7 +49,7 @@ struct MemberRewardDetailView: View {
                 
                 Group {
                     NavigationLink {
-                        ShopView(categoryView: MaleView())
+                        ShopView(categoryView: MaleView(), currentGender: "남성")  // 수정된 부분
                     } label: {
                         Text("신제품 바로가기")
                             .font(.system(size: 18))

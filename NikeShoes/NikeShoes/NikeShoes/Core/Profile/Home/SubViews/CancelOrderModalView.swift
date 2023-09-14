@@ -9,11 +9,8 @@ import SwiftUI
 
 struct CancelOrderModalView: View {
     
-    @EnvironmentObject var orderViewModel: OrderViewModel
-    
     @Binding var isModalPresented: Bool
     @State private var isCancelModalPresented = false
-    @Binding var price: Int
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,7 +28,7 @@ struct CancelOrderModalView: View {
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
             .sheet(isPresented: $isCancelModalPresented) {
-                CancelModalView(orderViewModel: orderViewModel, isModalPresented: self.$isModalPresented, price: $price)
+                CancelModalView(isModalPresented: self.$isModalPresented)
                     .presentationDetents([.fraction(0.35), .large])
             }
             
@@ -43,9 +40,7 @@ struct CancelOrderModalView: View {
 
 struct CancelModalView: View {
     
-    @StateObject var orderViewModel: OrderViewModel
     @Binding var isModalPresented: Bool
-    @Binding var price: Int
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -59,32 +54,18 @@ struct CancelModalView: View {
             .foregroundColor(.black)
             
             ButtonView(buttonText: "확인", foreground: .white, background: .black) {
+                self.isModalPresented.toggle()
                 
-                Task {
-                    try await orderViewModel.updateOrderCancel()
-                }
-                self.price = 0
-                orderViewModel.cancelOrderStatus()
-                
-                    self.isModalPresented.toggle()
+                // 주문취소된 화면 보여주기
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
         }
         .padding()
-        
-        .task {
-            do {
-                try await orderViewModel.fetchData()
-            } catch {
-                
-            }
-        }
     }
 }
 
 struct CancelOrderModalView_Previews: PreviewProvider {
     static var previews: some View {
-        CancelOrderModalView(isModalPresented: .constant(true), price: .constant(0))
-            .environmentObject(OrderViewModel())
+        CancelOrderModalView(isModalPresented: .constant(true))
     }
 }
