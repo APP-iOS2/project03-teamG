@@ -24,7 +24,7 @@ struct ShopView<Content: View>: View {
             categoryView
 
             AppExclusiveView()
-            BestItemView()
+            BestItemView(currentGender: currentGender)
             RecentItemView()
             // 관심사 부분 보류
 //            InterestItemView()

@@ -22,14 +22,16 @@ extension Date {
 
 struct BestItemView: View {
     
-    private var today: Date = Date()
+    var currentGender: String
+    
+    var today: Date = Date()
     
     @EnvironmentObject private var shoesData: ItemListViewModel
     
     // ItemListViewModel에 ShoesDTO 배열이 있음. 거기서 filter를 걸어서 hot인 item만 가져오는거!
     private var shoesDataFilterHot: [ShoesDTO] {
         shoesData.shoes.filter { shoes in
-            shoes.speciality.contains(.hot)
+            shoes.speciality.contains(.hot) && shoes.category.contains(currentGender)
         }
     }
     
@@ -106,7 +108,7 @@ struct BestItemView: View {
 struct BestItemView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            BestItemView()
+            BestItemView(currentGender: "")
                 .frame(height: 300)
         }
     }
