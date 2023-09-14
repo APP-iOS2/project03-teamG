@@ -11,8 +11,6 @@ import Firebase
 import FirebaseAuth
 
 struct PaymentView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     @State var selectedQty: Int
     @State var finalPrice: String
     
@@ -40,8 +38,6 @@ struct PaymentView: View {
     @EnvironmentObject var orderViewModel: OrderViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    @State private var isAgreeTapped: Bool = false
-    @State private var isAccountTransferViewPresented: Bool = false
     
     var body: some View {
         
@@ -359,7 +355,7 @@ struct PaymentView: View {
                                 }
                                 
                                 Button {
-                                        isArgreeTapped.toggle()
+//                                        isArgreeTapped.toggle()
                                     authViewModel.fetchUser()
                                     let orderList: [OrderDTO] = [
                                         OrderDTO(shoesID: "\(bagItemList[0].id)" ,
@@ -375,10 +371,6 @@ struct PaymentView: View {
                                         }
                                     }
                                     
-                                    isAccountTransferViewPresented = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
                                 } label: {
                                     Text("결제하기")
                                         .font(.title3)
@@ -390,18 +382,7 @@ struct PaymentView: View {
                                         .cornerRadius(40)
                                         .padding()
                                 }
-                                .frame(width: 330, height: 60)
-                                       .background(isAgreeTapped ? Color.gray.opacity(0.3) : Color.black)
-                                       .foregroundColor(.white)
-                                       .cornerRadius(31.5)
-                                       .sheet(isPresented: $isAccountTransferViewPresented) {
-                                           AccountTransferView(finalPrice: finalPrice, isPresented: $isAccountTransferViewPresented)
-                                       }
-                                
-
-                            }
-                            .padding()
-
+                            }.padding()
                         }
                     }
                 }
