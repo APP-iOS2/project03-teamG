@@ -12,8 +12,6 @@ struct OrderView: View {
     
     @ObservedObject var orderViewModel: OrderViewModel = OrderViewModel()
     @State var ischeckedPayment: Bool = false
-    @State var deliveryStatus: String = "주문 상태"
-    @State private var selectedStatus = DeliveryStatus.orderComplete
     
     var body: some View {
         List {
@@ -27,22 +25,16 @@ struct OrderView: View {
                     Menu {
                         //
                         Button(DeliveryStatus.orderComplete.rawValue) {
-                            deliveryStatus = "주문 완료"
-                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.orderComplete.rawValue)
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "", deliveryStatus: DeliveryStatus.orderComplete.rawValue)
                             }
                             
                         }
                         Button(DeliveryStatus.paymentComfirm.rawValue) {
-                            deliveryStatus = "입금 확인"
-                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.paymentComfirm.rawValue)
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "", deliveryStatus: DeliveryStatus.paymentComfirm.rawValue)
                             }
                         }
                         Button(DeliveryStatus.shipping.rawValue) {
-                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.shipping.rawValue)
-                            }
-                        }
-                        Button(DeliveryStatus.deliveryComplete.rawValue) {
-                            Task { try await orderViewModel.updateOrder(id: order.id ?? "K2n0ycQzHc4ghgT0sy8q", deliveryStatus: DeliveryStatus.deliveryComplete.rawValue)
+                            Task { try await orderViewModel.updateOrder(id: order.id ?? "", deliveryStatus: DeliveryStatus.shipping.rawValue)
                             }
                         }
                         

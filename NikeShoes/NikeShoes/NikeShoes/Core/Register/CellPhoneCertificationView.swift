@@ -114,7 +114,7 @@ struct CellPhoneCertificationView: View {
             cautionCellPhoneNumber = ""
             isCellPhoneNumberValid = true
         } else {
-            cautionCellPhoneNumber = "잘못된 휴대폰 번호입니다"
+            cautionCellPhoneNumber = "올바르지 않은 휴대폰 번호입니다"
             isCellPhoneNumberValid = false
         }
     }
@@ -134,7 +134,7 @@ struct CellPhoneCertificationView: View {
             cautionCertificationCode = "필수"
             isCertificationCodeValid = false
         } else {
-            cautionCertificationCode = "잘못된 인증입니다"
+            cautionCertificationCode = "올바르지 않은 인증입니다"
             isCertificationCodeValid = false
         }
     }
