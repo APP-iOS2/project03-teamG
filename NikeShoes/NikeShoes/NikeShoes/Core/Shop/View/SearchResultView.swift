@@ -96,7 +96,7 @@ struct SearchResultView: View {
                 }
                 .padding()
                 //}
-                .navigationTitle("앱 전용 제품")
+                .navigationTitle("\(search)")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 
