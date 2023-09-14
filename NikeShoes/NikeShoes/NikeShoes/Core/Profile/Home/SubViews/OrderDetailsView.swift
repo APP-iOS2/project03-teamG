@@ -207,6 +207,16 @@ struct OrderDetailsView: View {
                 .padding(EdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0))
             }
         }
+        .refreshable {
+            Task {
+                try await orderViewModel.fetchData()
+            }
+        }
+        .onAppear {
+            Task {
+                try await orderViewModel.fetchData()
+            }
+        }
         .navigationTitle("주문상세")
         .navigationBarTitleDisplayMode(.inline)
         .modifier(NavigationNikeSetting(title: title))
