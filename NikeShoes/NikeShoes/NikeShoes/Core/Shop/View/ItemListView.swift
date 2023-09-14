@@ -119,8 +119,6 @@ struct ItemListView: View {
                         .foregroundColor(.black)
                 }
             )
-        }.task {
-            await itemListViewModel.action()
         }
     }
 }

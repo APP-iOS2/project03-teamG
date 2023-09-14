@@ -88,5 +88,4 @@ class UserInfoEditViewModel: ObservableObject {
             print("Failed to update phone number: \(error)")
         }
     }
-    
 }

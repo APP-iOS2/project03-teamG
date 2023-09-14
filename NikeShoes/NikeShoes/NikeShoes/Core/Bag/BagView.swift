@@ -26,70 +26,72 @@ struct BagView: View {
     @State private var size: CGSize = .zero
     @EnvironmentObject var bagViewModel: BagViewModel
     
-//    @State var selectedSize: [Int]
-    
     var animation: Animation = .spring()
-    var quantities = [1, 2, 3]
+    var quantities = [0, 1, 2, 3]
     
     var promotionCode: PromotionDTO = PromotionDTO(id: "", code: "", discountRate: 0.0, restrict: 1, promotionExpireDate: Date())
 
     var body: some View {
         ScrollView {
             VStack {
-                if !bagViewModel.bagArray.isEmpty {
-                    ForEach(bagViewModel.bagArray) { bagItem in
-                        HStack {
-                            Button {
-                                //                            ProductDetailView()
-                            } label: {
-                                AsyncImage(url: URL(string: bagItem.imageURLString[0])) { img in
-                                    img
-                                        .resizable()
+                    if !bagViewModel.bagArray.isEmpty {
+                            ForEach(bagViewModel.bagArray) { bagItem in
+                                HStack {
+                                    Button {
+                                        //                                ProductDetailView()
+                                    } label: {
+                                        AsyncImage(url: URL(string: bagItem.imageURLString[0])) { img in
+                                            img
+                                                .resizable()
+                                            
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 200, height: 200)
+                                    }
                                     
-                                } placeholder: {
-                                    ProgressView()
+                                    VStack(alignment: .leading) {
+                                        
+                                        Text("\(bagItem.name)")
+                                            .bold()
+                                            .font(.caption)
+                                        
+                                        // MARK: shoes 데이터로 변경하기
+                                        Text("\(bagItem.category)")
+                                            .font(.caption)
+                                        
+                                        // MARK: 추후 사이즈 받아와야 함
+                                        //                                Text("\(size)")
+                                        //                                    .font(.caption)
+                                        //                        Text("\(selectedSize)")
+                                    }
+                                    
+                                    Spacer()
                                 }
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 200, height: 200)
-                            }
-                            
-                            VStack(alignment: .leading) {
                                 
-                                Text("\(bagItem.name)")
-                                    .bold()
-                                    .font(.caption)
-                                
-                                // MARK: shoes 데이터로 변경하기
-                                Text("\(bagItem.category)")
-                                    .font(.caption)
-                                
-                                // MARK: 추후 사이즈 받아와야 함
-                                //                                Text("\(size)")
-                                //                                    .font(.caption)
-                                //                        Text("\(selectedSize)")
-                            }
-                            
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Text("수량")
-                            Picker("Quantity", selection: $selectedQty) {
-                                ForEach(quantities, id: \.self) {
-                                    Text("\(String($0))")
+                                HStack {
+                                    Text("수량")
+                                    Picker("Quantity", selection: $selectedQty) {
+                                        ForEach(quantities, id: \.self) {
+                                            Text("\(String($0))")
+                                            }
+                                    }
+                                    .accentColor(.black)
+                                    
+                                    Spacer()
+                                    
+                                    //                        MARK: 가격 살리기
+                                    Text("₩\(bagItem.price * selectedQty)")
                                 }
+                                .padding()
+                                
+                                Divider()
                             }
-                            .accentColor(.black)
+                            //                        .onDelete(perform: { indexSet in
+                            //                            bagViewModel.bagArray.remove(atOffsets: indexSet)
+                            //                        })
                             
-                            Spacer()
-                            
-                            // MARK: 가격 살리기
-                            //                        Text("₩\(String(originalTotalPrice()))")
-                        }
-                        .padding()
-                        
-                        Divider()
-                    }
                     
                     HStack {
                         
@@ -175,7 +177,8 @@ struct BagView: View {
                             
                             Spacer()
                             // MARK: 가격 살리기
-                            //                    Text(String("₩\(originalTotalPrice())"))
+                                                
+//                            Text(String("₩\(originalTotalPrice())"))
                         }
                         .foregroundColor(.gray)
                         //                .padding()
@@ -261,7 +264,7 @@ struct BagView: View {
 //        let result = shoesData.price * selectedQty
 //        return result
 //    }
-//
+
 //    func finalTotalPrice() -> String {
 //        let promDiscount = promotionCode.discountRate
 //        let result = Double(shoesData.price * selectedQty) * promDiscount
@@ -269,7 +272,7 @@ struct BagView: View {
 //
 //        return formattedValue
 //    }
-//
+
 //    private func checkPromCode() {
 ////        if promotionCode.code.contains(where: { $0.code == userPromCode }) {
 //        if promotionCode.code.contains(userPromCode) {
@@ -283,16 +286,13 @@ struct BagView: View {
 //        }
 //        showAlert = true
 //    }
-    
-//    func removeItem(at offsets: IndexSet) {
-//        productCount.remove(atOffsets: offsets)
-//    }
 }
 
 struct BagView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             BagView(userPromCode: .constant("테스트20"))
+                .environmentObject(BagViewModel())
         }
     }
 }

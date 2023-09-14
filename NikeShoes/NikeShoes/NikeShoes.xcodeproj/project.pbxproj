@@ -29,6 +29,7 @@
 		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
 		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		21C00D392AB20BA100B19A00 /* BagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D382AB20BA100B19A00 /* BagViewModel.swift */; };
+		21C00D3B2AB2C37500B19A00 /* AccountTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */; };
 		21FABC412AAEC2DF00546C17 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC3F2AAEC2DF00546C17 /* SizeView.swift */; };
 		21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */; };
 		3B104F592AA76CA400F11EE8 /* ProfileAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */; };
@@ -50,6 +51,7 @@
 		3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */; };
 		3BAE1CFD2AB1A93B00AEA2FD /* ProfilePassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE1CFC2AB1A93B00AEA2FD /* ProfilePassView.swift */; };
 		3BFD7D112AB0010400E22D67 /* NikeShoesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3BFD7D102AB0010400E22D67 /* NikeShoesCore */; };
+		63424BBB2AB28E3D003F6229 /* CustomRecoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63424BBA2AB28E3D003F6229 /* CustomRecoViewModel.swift */; };
 		63B893602AA6CB1A00DC0C73 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */; };
 		63D5B1CE2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */; };
 		63D5B1D02AB0072C00A051F8 /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */; };
@@ -174,6 +176,7 @@
 		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		21C00D382AB20BA100B19A00 /* BagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagViewModel.swift; sourceTree = "<group>"; };
+		21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransferView.swift; sourceTree = "<group>"; };
 		21FABC3F2AAEC2DF00546C17 /* SizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
 		21FABC402AAEC2DF00546C17 /* SizeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeButtonView.swift; sourceTree = "<group>"; };
 		3B104F582AA76CA400F11EE8 /* ProfileAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAsyncImageView.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		3B918EA02AB1AE910075856C /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		3BA7AF852AAAB1C9006E520E /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		3BAE1CFC2AB1A93B00AEA2FD /* ProfilePassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePassView.swift; sourceTree = "<group>"; };
+		63424BBA2AB28E3D003F6229 /* CustomRecoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecoViewModel.swift; sourceTree = "<group>"; };
 		63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewWithProgressbar.swift; sourceTree = "<group>"; };
 		63D5B1CF2AB0072C00A051F8 /* ItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
@@ -573,6 +577,7 @@
 		9617AEE72AA5B816009FB78A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				63424BBA2AB28E3D003F6229 /* CustomRecoViewModel.swift */,
 				9617AEE82AA5B816009FB78A /* HomeView.swift */,
 				A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */,
 				A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */,
@@ -649,6 +654,7 @@
 				9617AEF62AA5B816009FB78A /* BagView.swift */,
 				214B79B42AA9599B00C85EA9 /* PaymentView.swift */,
 				21C00D382AB20BA100B19A00 /* BagViewModel.swift */,
+				21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */,
 			);
 			path = Bag;
 			sourceTree = "<group>";
@@ -976,6 +982,7 @@
 				64CD99822AA6E6F8008D3094 /* PhonNumberView.swift in Sources */,
 				B02077092AA6C99F00DD014C /* OrderListView.swift in Sources */,
 				B02077072AA6C96A00DD014C /* OrdersView.swift in Sources */,
+				63424BBB2AB28E3D003F6229 /* CustomRecoViewModel.swift in Sources */,
 				B0343BAE2AA6FAD200F5AB86 /* OrderDetailsView.swift in Sources */,
 				9EB260192AA9B2970063F0A8 /* SizeGuideView.swift in Sources */,
 				B020C2A12AA9682300EE33B6 /* CancelOrderModalView.swift in Sources */,
@@ -1037,6 +1044,7 @@
 				DC01B5A32AA83CE7003B6E77 /* CellPhoneCertificationView.swift in Sources */,
 				A074C4532AA6EDE80081DB7F /* NotificationView.swift in Sources */,
 				961798F72AA6C59C009FC991 /* OBShoesSizeSelectView.swift in Sources */,
+				21C00D3B2AB2C37500B19A00 /* AccountTransferView.swift in Sources */,
 				961798F32AA6BA9C009FC991 /* OBView.swift in Sources */,
 				DC01B5562AA704F1003B6E77 /* SignInTextFieldStyle.swift in Sources */,
 				961799052AA7018A009FC991 /* OBInterestSelectView.swift in Sources */,

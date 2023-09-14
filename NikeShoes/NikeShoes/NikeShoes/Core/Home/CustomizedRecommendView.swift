@@ -9,6 +9,9 @@ import SwiftUI
 import NikeShoesCore
 
 struct CustomizedRecommendView: View {
+    
+    @StateObject var customRecommendedViewModel: CustomizedRecommendViewModel = CustomizedRecommendViewModel()
+    
     var body: some View {
         VStack(alignment: .leading) {
     
@@ -31,32 +34,34 @@ struct CustomizedRecommendView: View {
             // 가로 카테고리
             ScrollView(.horizontal) {
                 LazyHStack {
-                    
-                    ForEach(ShoesSampleData, id: \.self) { item in
-                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
+                    ForEach(customRecommendedViewModel.shoes) { item in
+                        NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
                             
                             VStack(alignment: .leading) {
                                 // 상품 이미지
-                                AsyncImage(url: URL(string: "\(item.imageURLString)")) { image in
+                                AsyncImage(url: URL(string: "\(item.imageURLString[0])")) { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
+                                        .aspectRatio(contentMode: .fit)
                                         .clipped()
+                                        .frame(height: 180)
                                 } placeholder: {
                                     Image("progress")
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
+                                        .aspectRatio(contentMode: .fit)
                                         .clipped()
+                                        .frame(height: 180)
                                 }
                                 
                                 // 상품 정보
                                 Group {
-                                    Text("\(item.name)")
+                                    Text("\(item.name)".prefix(13))
+                                        .lineLimit(1) // 한 줄로 제한
+                                        .truncationMode(.tail)
+//                                        .padding([.top, .leading], 13)
                                         .foregroundColor(Color.black)
                                         .bold()
-                                    Text("\(item.category.rawValue)")
+                                    Text("\(item.category)")
                                         .foregroundColor(Color.textGray)
                                     Text("₩\(item.price)")
                                         .foregroundColor(Color.black)

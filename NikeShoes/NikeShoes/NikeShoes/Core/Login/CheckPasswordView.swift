@@ -48,6 +48,7 @@ struct CheckPasswordView: View {
                 ButtonView(buttonText: "로그인", foreground: .white, background: .black) {
                     authViewModel.signIn(authViewModel.userInfo.email, password) { success in
                         if success {
+                            authViewModel.isLogin = true
                             screen = .loginCompleted
                         } else {
                             isMatchedPassword = false
