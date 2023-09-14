@@ -19,7 +19,6 @@ class CustomizedRecommendViewModel: ObservableObject {
         
         Task {
             await action()//fetch 후 배열에 반영
-            self.shoes = try await fetchItems()
         }
     }
     
@@ -28,9 +27,8 @@ class CustomizedRecommendViewModel: ObservableObject {
         Task { // 비동기 작업 실행
             let shoes = try await fetchItems()
             self.shoes = shoes
-            let filtered = try await recommended()
-            self.shoes = filtered
-            print("Filtered : \(self.shoes)")
+            let recommended = try await recommended()
+            self.shoes = recommended
         }
     }
     
