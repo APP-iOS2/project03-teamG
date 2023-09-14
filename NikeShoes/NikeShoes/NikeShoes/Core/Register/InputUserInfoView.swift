@@ -39,6 +39,8 @@ struct InputUserInfoView: View {
     @State private var cautionPassword: String = ""
     @State private var cautionBirth: String = ""
     
+    @State private var changedBirthText: String = "생년월일"
+    
     var name: String {
         firstName + lastName
     }
@@ -172,7 +174,9 @@ struct InputUserInfoView: View {
     var BirthPicker: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(birthFormat)
+                Text(changedBirthText)
+                    .foregroundColor(changedBirthText=="생년월일" ? .gray : .primary)
+                
                 Spacer()
                 Image(systemName: "calendar")
                     .overlay {
@@ -185,6 +189,9 @@ struct InputUserInfoView: View {
                     }
             }
             .signInTextFieldStyle(isTextFieldValid: $isBirthValid)
+            .onChange(of: birthPicker) { _ in
+                changedBirthText = birthFormat
+            }
             
             Text(cautionBirth)
                 .foregroundColor(.red)
@@ -280,7 +287,7 @@ struct InputUserInfoView: View {
     // MARK: - birth function
     func isCheckBirth() {
         if birthPicker > Date() {
-            cautionBirth = "잘못된 생년월일입니다"
+            cautionBirth = "올바르지 않은 생년월일입니다"
             isBirthValid = false
         } else {
             cautionBirth = ""
