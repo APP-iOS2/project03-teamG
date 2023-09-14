@@ -12,32 +12,34 @@ struct ProductListView: View {
     @StateObject var viewModel = ProductViewModel()
 
     var body: some View {
-        List {
-            ForEach(viewModel.shoes.indices, id: \.self) { index in
-                NavigationLink {
-                    ProductEditView(viewModel: viewModel, shoes: viewModel.shoes[index])
-                } label: {
-                    Text(viewModel.shoes[index].name)
+        NavigationStack {
+            List {
+                ForEach(viewModel.shoes.indices, id: \.self) { index in
+                    NavigationLink {
+                        ProductEditView(viewModel: viewModel, shoes: viewModel.shoes[index])
+                    } label: {
+                        Text(viewModel.shoes[index].name)
+                    }
+                }
+                .onDelete { index in
+                    Task {
+                        try await viewModel.deleteShoes(index)
+                    }
                 }
             }
-            .onDelete { index in
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        ProductAddView(viewModel: viewModel)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .refreshable {
                 Task {
-                    try await viewModel.deleteShoes(index)
+                 try await viewModel.fetchShoes()
                 }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    ProductAddView(viewModel: viewModel)
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-        }
-        .refreshable {
-            Task {
-             try await viewModel.fetchShoes()
             }
         }
     }
