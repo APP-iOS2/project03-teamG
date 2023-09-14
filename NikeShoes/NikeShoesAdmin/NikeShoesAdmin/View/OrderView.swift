@@ -69,19 +69,6 @@ struct OrderView: View {
             Task { try await orderViewModel.fetchOrder()
             }
         }
-        // 테스트용 버튼 추후 삭제
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    let orderDTO: OrderDTO = OrderDTO(id: "wnans1qjs", shoesID: "3cZZnyUKhKqBQzk4hQ00", userID: "nUxbsZTBp9XeiONcnmOYioiDtfD3", address: "성은이집으로..", deliveryStatus: .orderComplete, orderDate: Date())
-                    
-                    Task { try await orderViewModel.createOrder(orderDTO: orderDTO)
-                    }
-                } label: {
-                    Text("주문 추가")
-                }
-            }
-        }
     }
 }
 
