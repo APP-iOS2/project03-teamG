@@ -147,8 +147,8 @@ struct BagView: View {
                                         
                                         Button {
                                             // MARK: 가격 살리기
-                                            // prom code 데이터 만들어두고 확인하기
-                                            //                                    checkPromCode()
+//                                             prom code 데이터 만들어두고 확인하기
+//                                                                                checkPromCode()
                                             
                                         } label: {
                                             Text("적용하기")

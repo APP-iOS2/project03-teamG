@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 
 struct PaymentView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var selectedQty: Int
     @State var finalPrice: String
     
@@ -357,8 +359,8 @@ struct PaymentView: View {
                                 }
                                 
                                 Button {
-//                                        isArgreeTapped.toggle()
-//                                    authViewModel.fetchUser()
+                                        isArgreeTapped.toggle()
+                                    authViewModel.fetchUser()
                                     let orderList: [OrderDTO] = [
                                         OrderDTO(shoesID: "\(bagItemList[0].id)" ,
                                                  userID: "\(authViewModel.userInfo.id)",
@@ -368,16 +370,24 @@ struct PaymentView: View {
                                     ]
                                     
                                     for dto in orderList {
-                                    Task {
-//                                        try await
-//                                            orderViewModel.createOrder(orderDTO: dto)
+                                    Task { try await
+                                            orderViewModel.createOrder(orderDTO: dto)
                                         }
                                     }
                                     
+                                    isAccountTransferViewPresented = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
                                 } label: {
                                     Text("결제하기")
-                                        .font(.system(size: 18))
-                                        .frame(maxWidth: .infinity)
+                                        .font(.title3)
+                                        .frame(width: 350, height: 70)
+                                        .foregroundColor(.white)
+                                        .background(isArgreeTapped ?
+                                                    Color.gray.opacity(0.3)
+                                                    : Color.black)
+                                        .cornerRadius(40)
                                         .padding()
                                 }
                                 .frame(width: 330, height: 60)
@@ -387,6 +397,7 @@ struct PaymentView: View {
                                        .sheet(isPresented: $isAccountTransferViewPresented) {
                                            AccountTransferView(finalPrice: finalPrice, isPresented: $isAccountTransferViewPresented)
                                        }
+                                
 
                             }
                             .padding()

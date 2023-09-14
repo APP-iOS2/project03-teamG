@@ -22,7 +22,7 @@ struct EmailView: View {
             
             Divider()
             
-            Text("Your current account email address is:")
+            Text("현재 이메일 주소:")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.top)
@@ -31,12 +31,12 @@ struct EmailView: View {
                 .padding(1)
             
             VStack {
-                TextField("New Email", text: $newEmail)
+                TextField("새로운 이메일", text: $newEmail)
                     .padding(15)
                     .background(Color.white)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
                     .padding(.top)
-                TextField("ConfirmEmail", text: $confirmEmail)
+                TextField("이메일 확인", text: $confirmEmail)
                     .padding(15)
                     .background(Color.white)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
@@ -50,7 +50,7 @@ struct EmailView: View {
             CustomButton(
                 background: canEditEmail ? Color.black : Color.gray.opacity(0.3),
                 foregroundColor: canEditEmail ? Color.white : Color.black.opacity(0.5),
-                title: "Done"
+                title: "수정"
             ) {
                 Task {
                     await userInfoEdit.updateEmail(newEmail: newEmail)

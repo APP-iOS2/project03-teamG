@@ -19,12 +19,16 @@ struct SettingsView: View {
                     .listRowBackground(Color.clear)
                 } else if item == .birth {
                     Button(action: {}) {
-                        Text(item.title)
-                            .font(.medium16)
-                            .padding(.vertical)
-                            .foregroundColor(Color.black)
-                            .padding(.horizontal, 20)
-                        Text(authViewModel.userInfo.dateOfBirth)
+                        HStack {
+                            Text(item.title)
+                                .font(.medium16)
+                                .padding(.vertical)
+                                .foregroundColor(Color.black)
+                                .padding(.horizontal, 20)
+                            Spacer()
+                            Text(authViewModel.userInfo.dateOfBirth)
+                                .padding()
+                        }
                     }
                     .listRowBackground(Color.clear)
                 } else {
@@ -54,6 +58,9 @@ struct SettingsView: View {
         }
         .listStyle(.plain)
         .modifier(NavigationNikeSetting(title: "설정"))
+        .onAppear {
+            authViewModel.fetchUser()
+        }
     }
 }
 

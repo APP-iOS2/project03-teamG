@@ -15,15 +15,15 @@ struct OrdersView: View {
     
     var body: some View {
         NavigationStack {
-            if orderViewModel.orderData == nil {
-                OrdersEmptyView()
-            } else {
+            if orderViewModel.orderData != nil {
                 ScrollView {
                     ForEach(orderViewModel.orderData ?? []) { orderList in
                         OrderListView(dto: orderList)
                             .environmentObject(orderViewModel)
                     }
                 }
+            } else {
+                OrdersEmptyView()
             }
         }
         .navigationTitle("주문내역")

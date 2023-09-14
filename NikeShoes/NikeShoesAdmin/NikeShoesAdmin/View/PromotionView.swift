@@ -17,6 +17,7 @@ struct PromotionView: View {
     @State var promotionCode: String = ""
     @State var promotionPercent: String = ""
     @State var promotionExpireDate: Date = Date()
+    @State var alertBool: Bool = false
     
     var body: some View {
         
@@ -32,14 +33,20 @@ struct PromotionView: View {
                     
                     Button {
                         
-                        Task {
-                            let new = PromotionDTO(code: promotionCode, discountRate: Double(promotionPercent) ?? 0, restrict: 0, promotionExpireDate: promotionExpireDate)
+                        if Double(promotionPercent) ?? 0 > 90  || promotionCode.isEmpty {
+                            alertBool = true
                             
-                            let newPromotion = try await promotionStore.service.create(send: new, collection: .promotion, document: nil, collection2: nil)
+                        } else {
                             
-                            let newFetch = try await promotionStore.fetchPromotion()
-                            promotionStore.memberReward = newFetch
-                            resetPromotion()
+                            Task {
+                                let new = PromotionDTO(code: promotionCode, discountRate: Double(promotionPercent) ?? 0, restrict: 0, promotionExpireDate: promotionExpireDate)
+                                
+                                let newPromotion = try await promotionStore.service.create(send: new, collection: .promotion, document: nil, collection2: nil)
+                                
+                                let newFetch = try await promotionStore.fetchPromotion()
+                                promotionStore.memberReward = newFetch
+                                resetPromotion()
+                            }
                         }
                     } label: {
                         Text("등록")
@@ -87,6 +94,11 @@ struct PromotionView: View {
                     }
                 }
             }
+            .alert("프로모션 코드와 할인을 다시 입력해주세요", isPresented: $alertBool, actions: {
+                
+            })
+          
+           
             .navigationTitle("멤버 리워드 제공")
         }
     }
