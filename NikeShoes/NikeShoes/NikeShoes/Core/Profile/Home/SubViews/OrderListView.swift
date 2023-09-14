@@ -79,7 +79,7 @@ struct OrderListView: View {
 
 struct OrderListView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderListView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .deliveryComplete, orderDate: Date()))
+        OrderListView(dto: OrderDTO.init(id: "", shoesID: "", userID: "", address: "", deliveryStatus: .orderComplete, orderDate: Date()))
             .environmentObject(OrderViewModel())
     }
 }
