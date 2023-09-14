@@ -24,34 +24,36 @@ struct OrderListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 15) {
-                AsyncImage(url: URL(string: orderListImageURL)) { image in
-                    image.resizable()
-                        .frame(width: 130, height: 130)
-                } placeholder: {
-                    ProgressView()
-                }
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(dto.deliveryStatus.rawValue)
+                if let orderData = orderViewModel.shoesData?.first {
+                    AsyncImage(url: URL(string: orderData.imageURLString.first ?? orderListImageURL)) { image in
+                        image.resizable()
+                            .frame(width: 130, height: 130)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(dto.deliveryStatus.rawValue)
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.nikeGreen)
-                    
-                    Text(productName)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.black)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                    
-                    Text(productType)
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.gray)
-                    
-                    Text(productSize)
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.gray)
-                    
-                    Text(productSerialNumber)
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.gray)
+                        
+                        Text(orderData.name)
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.black)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        
+                        Text(orderData.modelName)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.gray)
+                        
+                        Text("\(orderData.size.first ?? 250) 사이즈")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.gray)
+                        
+                        Text(productSerialNumber)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.gray)
+                    }
                 }
             }
             .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
@@ -72,8 +74,13 @@ struct OrderListView: View {
                 }
             }
         }
+        .onAppear {
+            Task {
+                try await orderViewModel.fetchData()
+            }
         Divider()
             .padding()
+            }
     }
 }
 
