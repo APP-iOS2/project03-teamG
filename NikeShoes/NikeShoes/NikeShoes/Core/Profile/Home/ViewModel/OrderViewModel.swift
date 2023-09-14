@@ -27,12 +27,12 @@ class OrderViewModel: ObservableObject {
     // test@icloud.com
     @MainActor
         func fetchUserData() async throws {
-//            guard let userID = Auth.auth().currentUser?.email else {
-//                        print("No user ID available")
-//                        return
-//                    }
+            guard let userID = Auth.auth().currentUser?.email else {
+                        print("No user ID available")
+                        return
+                    }
             do {
-                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", "test@icloud.com"))
+                let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", userID))
                 print("===========debug===========")
                 print(values)
                 self.userData = values.first
