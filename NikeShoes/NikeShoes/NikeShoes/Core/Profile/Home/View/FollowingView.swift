@@ -11,16 +11,25 @@ struct FollowingView: View {
     @EnvironmentObject var followingViewModle: FollowingViewModel
     @State private var action: Int? = 0
     let followingCount: Int
+    var checkFollowingCount: Int {
+        var check: Int = 0
+        followingViewModle.followingData.forEach { following in
+            if following.isChecked {
+                check += 1
+            }
+        }
+        return check
+    }
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         VStack {
             HStack {
-                Text("팔로잉(\(followingCount))")
+                Text("팔로잉(\(checkFollowingCount))")
                     .font(.medium12)
                     .bold()
                 Spacer()
-                NavigationLink(destination: FollowingDetailView()) {}
+                NavigationLink(destination: FollowingDetailView().environmentObject(followingViewModle), label: {})
                     .opacity(0)
                     .background(
                         HStack {
@@ -31,6 +40,7 @@ struct FollowingView: View {
                         }
                     )
             }
+            .padding(0)
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(followingViewModle.followingData, id: \.id) { item in

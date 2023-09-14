@@ -28,32 +28,35 @@ public class ProductViewModel: ObservableObject {
     }
     
     //CRUD
+    @MainActor
     func addShoes(_ shoesDTO: ShoesDTO) async throws {
         do {
-            let _: String = try await service.create(send: shoesDTO, collection: .shoes)
+            let _: String = try await service.create(send: shoesDTO, collection: .shoes, document: nil, collection2: nil)
             self.shoes = try await fetchShoes()
         } catch {
             throw error
         }
     }
     
-    func deleteShoes(_ index: IndexSet) async throws -> String {
+    @MainActor
+    func deleteShoes(_ index: IndexSet) async throws {
         let deleteItemId = index.map { self.shoes[$0].id ?? "" }.first
         #if DEBUG
         print("\(deleteItemId)")
         #endif
         if let id = deleteItemId {
-            let delete: String = try await service.delete(collection: .shoes, document: id)
+            try await service.delete(collection: .shoes, document: id)
             shoes.remove(atOffsets: index)
         }
-        return ""
     }
     
+    @MainActor
     func fetchShoes() async throws -> [ShoesDTO] {
         let values: [ShoesDTO] = try await service.fetchAll(collection: .shoes, query: nil)
         return values
     }
     
+    @MainActor
     func updateShoes(id: String, shoesUpdateField: [String: Any]) async throws {
         do {
             try await service.update(collection: .shoes,

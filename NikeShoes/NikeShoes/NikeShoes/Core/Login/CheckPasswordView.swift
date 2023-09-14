@@ -48,6 +48,7 @@ struct CheckPasswordView: View {
                 ButtonView(buttonText: "로그인", foreground: .white, background: .black) {
                     authViewModel.signIn(authViewModel.userInfo.email, password) { success in
                         if success {
+                            authViewModel.isLogin = true
                             screen = .loginCompleted
                         } else {
                             isMatchedPassword = false
@@ -152,7 +153,7 @@ struct CheckPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             CheckPasswordView(screen: .constant(.checkPassword))
-                .environmentObject(AuthViewModel())
+                .environmentObject(AuthViewModel(service: ViewModelFactory.shared.makeService()))
         }
     }
 }

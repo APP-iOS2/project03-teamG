@@ -9,9 +9,10 @@ import SwiftUI
 import NikeShoesCore
 
 struct SizeView: View {
-    @State private var isButtonTapped = false
-    @State private var selectedSizeIndex = 0
     @Environment(\.dismiss) private var dismiss
+    @State private var selectedSizeIndex = 0
+    @Binding var isSizeSelected: Bool
+    @Binding var selectedSize: Int
     var shoesData: ShoesDTO
     
     var body: some View {
@@ -24,7 +25,10 @@ struct SizeView: View {
                     Spacer()
                     
                     Button {
+                        
+                        selectedSize = shoesData.size[selectedSizeIndex]
                         dismiss()
+                        
                     } label: {
                         Text("\(Image(systemName: "xmark"))")
                             .font(.system(size: 13))
@@ -49,7 +53,8 @@ struct SizeView: View {
                     .onTapGesture {
                         // 이미지를 탭하면 선택된 이미지를 업데이트
                         selectedSizeIndex = index
-                        isButtonTapped = true
+                        selectedSize = shoesData.size[selectedSizeIndex]
+                        isSizeSelected = true
                         print(shoesData.size[selectedSizeIndex])
                     }
                 }
@@ -62,6 +67,6 @@ struct SizeView: View {
 
 struct SizeView_Previews: PreviewProvider {
     static var previews: some View {
-        SizeView(shoesData: detailSample)
+        SizeView(isSizeSelected: .constant(false), selectedSize: .constant(240), shoesData: detailSample)
     }
 }

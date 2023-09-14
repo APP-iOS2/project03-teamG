@@ -11,6 +11,8 @@ struct OBView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @EnvironmentObject var obViewModel: OBViewModel
+    
     var body: some View {
         
         VStack {
@@ -41,16 +43,8 @@ struct OBContainerView: View {
                    isImageAppearView {
                     progressView
                 }
-                
                 // index가 OnBoarding의 끝나는 지점에 transitionView -> MainTabView 로 변경
                 transitionView
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
-                
-                if isOnBoardingView {
-                    TempButton(title: OnBoardingScreen(rawValue: index)?.title) {
-                        index += 1
-                    }.padding(.bottom, 20)
-                }
             }
         }
     }
@@ -69,15 +63,39 @@ struct OBContainerView: View {
     
     @ViewBuilder
     private var transitionView: some View {
-        switch OnBoardingScreen(rawValue: index) {
-        case .locationDescription: OBLocationDescriptionView()
-        case .languageSelection:  OBLanguageSelectionView()
-        case .getStated:  OBStartView()
-        case .interest:  OBInterestSelectView()
-        case .sizeSelection:  OBShoesSizeSelectView()
-        case .alarmSelection:  OBAlarmView()
-        case .location:  OBLocationView()
-        case .mainTab:  MainTabView()
+        switch OBScreen(rawValue: index) {
+            
+        case .locationDescription:
+            OBLocationDescriptionView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .languageSelection:
+            OBLanguageSelectionView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0)))
+            
+        case .getStated:
+            OBStartView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .interest:
+            OBInterestSelectView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .sizeSelection:
+            OBShoesSizeSelectView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .alarmSelection:
+            OBAlarmView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .location:
+            OBLocationView(index: $index)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: duration)))
+            
+        case .mainTab:
+            MainTabView()
+            
         case .none:
             fatalError("this is invalid index")
         }
@@ -89,6 +107,7 @@ struct OBContainerView: View {
     
     private var imageBackground: some View {
        Image("nike_back")
+            .resizable()
             .ignoresSafeArea()
     }
     
@@ -109,6 +128,8 @@ struct OBContainerView: View {
             .ignoresSafeArea()
     }
 }
+
+typealias OBScreen = OBContainerView.OnBoardingScreen
 
 extension OBContainerView {
     enum OnBoardingScreen: Int, CaseIterable, Identifiable {
@@ -152,5 +173,6 @@ extension OBContainerView {
 struct OBView_Previews: PreviewProvider {
     static var previews: some View {
         OBView()
+            .environmentObject(OBViewModel(service: ViewModelFactory.shared.makeService()))
     }
 }

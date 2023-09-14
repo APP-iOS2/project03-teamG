@@ -9,9 +9,10 @@ import SwiftUI
 
 struct WishView: View {
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
-    @State var isEditing: Bool = false
-    @ObservedObject var storeModel: StoreModel = StoreModel()
+    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @State private var isEditing: Bool = false
+    
+    @EnvironmentObject var storeModel: WishListViewModel
     
     var body: some View {
         ScrollView {
@@ -35,7 +36,6 @@ struct WishView: View {
                                         .clipped()
                                 }
                                 Group {
-                                    //                                    Text("\(data.modelName.rawValue)")
                                     Text("\(data.name)")
                                     Text("\(data.category.rawValue)")
                                         .foregroundColor(Color.textGray)
@@ -45,8 +45,21 @@ struct WishView: View {
                             }
                             if isEditing {
                                 Button(action: {
-                                    //좋아요 토글하는 함수를 불러오기
-                                    storeModel.toggle(data)
+                                    
+                                     // 좋아요 토글하는 함수를 불러오기
+                                     // storeModel.toggle(data)
+                                    Task {
+                                        do {
+                                            data.like
+                                            ?
+                                            try await storeModel.unLikeShoes(shoes: data)
+                                            :
+                                            try await storeModel.likeUpdate(shoes: data)
+                                        } catch {
+                                            Log.debug("❌ error \(error)")
+                                        }
+                                    }
+                                    
                                 }) {
                                     Circle()
                                         .frame(width: 30, height: 30)
@@ -80,6 +93,15 @@ struct WishView: View {
                 }
             }
             .navigationTitle("위시리스트")
+        }.refreshable {
+            Task {
+                await storeModel.fetchLikeShoes()
+            }
+        }
+        .onAppear {
+            Task {
+                await storeModel.fetchLikeShoes()
+            }
         }
     }
 }

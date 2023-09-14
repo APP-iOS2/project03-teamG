@@ -34,7 +34,10 @@ struct SearchResultView: View {
     
     // 뷰 본문
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
+        if searchResultViewModel.shoes.isEmpty {
+            Text("검색 결과가 존재하지 않습니다.")
+        } else {
             ScrollView {
                 
                 // 상품 목록을 그리드로 표시
@@ -92,31 +95,37 @@ struct SearchResultView: View {
                     }
                 }
                 .padding()
+                //}
+                .navigationTitle("앱 전용 제품")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
+                
+                // 네비게이션 바 아이템 설정
+                .navigationBarItems(
+                    leading: Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                    },
+                    // 검색 아이콘을 네비게이션 바 오른쪽에 배치
+                    trailing: NavigationLink(destination: SearchItemView()) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
+                    }
+                )
             }
-            .navigationTitle("앱 전용 제품")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            
-            // 네비게이션 바 아이템 설정
-            .navigationBarItems(
-                leading: Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.black)
-                },
-                // 검색 아이콘을 네비게이션 바 오른쪽에 배치
-                trailing: NavigationLink(destination: SearchItemView()) {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.black)
-                }
-            )
+            .onAppear {
+                print("SRV Called")
+            }
         }
     }
 }
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(search: "onlyApp")
+        NavigationStack{
+            SearchResultView(search: "onlyApp")
+        }
     }
 }

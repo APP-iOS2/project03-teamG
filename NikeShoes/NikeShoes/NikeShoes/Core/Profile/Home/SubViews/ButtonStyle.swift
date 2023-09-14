@@ -27,19 +27,6 @@ struct ButtonStyle: View {
             
             Spacer()
         }
-//        VStack {
-//            ZStack {
-//                RoundedRectangle(cornerRadius: 31.5)
-//                    .foregroundColor(Color.white)
-//                    .frame(width: 351, height: 63)
-//                    .overlay(RoundedRectangle(cornerRadius: 31.5)
-//                        .stroke(Color.gray, lineWidth: 0.5))
-//                Text(buttonText)
-//                    .font(.system(size: 18, weight: .medium))
-//                    .foregroundColor(.black)
-//            }
-//            Spacer()
-//        }
     }
         
 }
