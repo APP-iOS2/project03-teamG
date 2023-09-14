@@ -8,14 +8,36 @@
 import SwiftUI
 import NikeShoesCore
 
+// 현재 날짜 몇월, 몇번째 주인지 Date extension
+extension Date {
+    func monthAndWeek() -> (Int, Int) {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month, .weekOfMonth], from: self)
+        if let month = components.month, let weekOfMonth = components.weekOfMonth {
+            return (month, weekOfMonth)
+        }
+        return (0, 0)
+    }
+}
+
 struct BestItemView: View {
     
-    var sampleBestItem: [String] = ["Top 1", "Top 2", "Top3"]
+    private var today: Date = Date()
+    
+    @EnvironmentObject private var shoesData: ItemListViewModel
+    
+    // ItemListViewModel에 ShoesDTO 배열이 있음. 거기서 filter를 걸어서 hot인 item만 가져오는거!
+    private var shoesDataFilterHot: [ShoesDTO] {
+        shoesData.shoes.filter { shoes in
+            shoes.speciality.contains(.hot)
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             Group {
-                Text("8월 마지막 주 베스트 아이템 🏅") // 여기 나중에 날짜관련 extension 설정해서 어느시기인지 알려주기
+                let (month, week) = today.monthAndWeek()
+                Text("\(month)월 \(week)째주 베스트 아이템 🏅")
                 Text("지난주 가장 사랑받은 나이키 제품")
                     .foregroundColor(.textGray)
                 
@@ -28,13 +50,13 @@ struct BestItemView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
                     
-                    ForEach(sampleBestItem, id: \.self) { item in
+                    ForEach(shoesDataFilterHot) { item in
                         
-                        NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
+                        NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
                             
                             VStack(alignment: .leading) {
                                 
-                                AsyncImage(url: URL(string: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/02a56ceb-e402-43fd-a1da-5315f1780831/%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EC%9D%B4%EC%A7%80%EC%98%A8-%EC%97%AC%EC%84%B1-%EC%8B%A0%EB%B0%9C-2ptxaKi4.png")) { image in
+                                AsyncImage(url: URL(string: item.imageURLString[0])) { image in
                                     image.resizable()
                                 } placeholder: {
                                     ProgressView()
@@ -43,7 +65,7 @@ struct BestItemView: View {
                                 .frame(width: 150, height: 150)
                                 .clipped()
                                 
-                                Text("\(item)")
+                                Text(item.name)
                                     .foregroundColor(.black)
                                     .font(Font.semiBold12)
                                 
