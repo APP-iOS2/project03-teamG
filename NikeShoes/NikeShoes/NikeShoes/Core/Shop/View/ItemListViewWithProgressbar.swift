@@ -63,7 +63,7 @@ struct ItemListViewWithProgressbar: View {
                         ($0.category == self.currentGender || self.currentGender == "공용") &&
                         ($0.modelName == self.selectedTab || self.selectedTab == "전체")
                     }) { data in
-                            NavigationLink(destination: ProductDetailView(shoesData: detailSample)) {
+                            NavigationLink(destination: ProductDetailView(shoesData: data)) {
                                 // 상품 카드 뷰
                                 ZStack {
                                     VStack(alignment: .leading) {
