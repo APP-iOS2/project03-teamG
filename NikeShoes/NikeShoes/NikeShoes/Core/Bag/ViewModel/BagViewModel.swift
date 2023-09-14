@@ -25,3 +25,8 @@ class BagViewModel: ObservableObject {
 //        }
 //    }
 }
+
+let defaultText: String = """
+     장바구니가 비어있습니다.
+제품을 추가하면 여기에 표시됩니다.
+"""

@@ -14,7 +14,6 @@
 		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
 		218094B82AAEF9CA00859DDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 218094B72AAEF9CA00859DDA /* GoogleService-Info.plist */; };
 		219D7D562AA6F8630062A38F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D552AA6F8630062A38F /* Font.swift */; };
-		219D7D582AA6F86D0062A38F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D572AA6F86D0062A38F /* Model.swift */; };
 		219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D832AA808CB0062A38F /* AppExclusiveView.swift */; };
 		219D7D862AA808F10062A38F /* BestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D852AA808F10062A38F /* BestItemView.swift */; };
 		219D7D882AA809160062A38F /* RecentItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D872AA809160062A38F /* RecentItemView.swift */; };
@@ -27,7 +26,6 @@
 		219FDADB2AA9A7B50046986B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADA2AA9A7B50046986B /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
 		219FDADD2AA9A7B50046986B /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDADC2AA9A7B50046986B /* FirebaseAuthCombine-Community */; };
 		219FDAE12AA9A7B50046986B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 219FDAE02AA9A7B50046986B /* FirebaseFirestoreCombine-Community */; };
-		21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */; };
 		21C00D392AB20BA100B19A00 /* BagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D382AB20BA100B19A00 /* BagViewModel.swift */; };
 		21C00D3B2AB2C37500B19A00 /* AccountTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */; };
 		21FABC412AAEC2DF00546C17 /* SizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FABC3F2AAEC2DF00546C17 /* SizeView.swift */; };
@@ -166,7 +164,6 @@
 		218094B72AAEF9CA00859DDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		219D7D532AA6F85B0062A38F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		219D7D552AA6F8630062A38F /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		219D7D572AA6F86D0062A38F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		219D7D832AA808CB0062A38F /* AppExclusiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExclusiveView.swift; sourceTree = "<group>"; };
 		219D7D852AA808F10062A38F /* BestItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestItemView.swift; sourceTree = "<group>"; };
 		219D7D872AA809160062A38F /* RecentItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentItemView.swift; sourceTree = "<group>"; };
@@ -174,7 +171,6 @@
 		219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendStoreView.swift; sourceTree = "<group>"; };
 		219D7D8D2AA83B2A0062A38F /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		219FDAD22AA97C6F0046986B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagStore.swift; sourceTree = "<group>"; };
 		21C00D382AB20BA100B19A00 /* BagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagViewModel.swift; sourceTree = "<group>"; };
 		21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransferView.swift; sourceTree = "<group>"; };
 		21FABC3F2AAEC2DF00546C17 /* SizeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeView.swift; sourceTree = "<group>"; };
@@ -345,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				9689982B2AAEAC5200F41C98 /* SampleViewModel.swift */,
-				219D7D572AA6F86D0062A38F /* Model.swift */,
 				64A3F5872AA96D9E00C075E3 /* Address.swift */,
 			);
 			path = Model;
@@ -359,6 +354,86 @@
 				3B4728562AA97C3100C84E7A /* ProfileEditListStyle.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		21A581892AB32AD700C7B3DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				21C00D382AB20BA100B19A00 /* BagViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		21A5818A2AB32AE100C7B3DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9617AEF62AA5B816009FB78A /* BagView.swift */,
+				214B79B42AA9599B00C85EA9 /* PaymentView.swift */,
+				21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		21A5818B2AB32B8900C7B3DD /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				84F690E02AA6CBB70058DDEF /* StoreView.swift */,
+				8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */,
+				84F690E22AA6CC190058DDEF /* StoreItemView.swift */,
+				84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */,
+				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
+				8419CC342AB176520041444C /* MapDetailSheetView.swift */,
+				219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		21A5818C2AB32BF400C7B3DD /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */,
+				219D7D832AA808CB0062A38F /* AppExclusiveView.swift */,
+				219D7D852AA808F10062A38F /* BestItemView.swift */,
+				219D7D872AA809160062A38F /* RecentItemView.swift */,
+				219D7D892AA8096F0062A38F /* InterestItemView.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		21A5818D2AB32C0900C7B3DD /* ItemList */ = {
+			isa = PBXGroup;
+			children = (
+				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
+				63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */,
+			);
+			path = ItemList;
+			sourceTree = "<group>";
+		};
+		21A5818E2AB32C1300C7B3DD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */,
+				63D5B1D12AB03BC700A051F8 /* SearchResultView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		21A5818F2AB32C7C00C7B3DD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				63424BBA2AB28E3D003F6229 /* CustomRecoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		21A581902AB32C8600C7B3DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9617AEE82AA5B816009FB78A /* HomeView.swift */,
+				A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */,
+				A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		21FABC3E2AAEC2DF00546C17 /* SizeButton */ = {
@@ -512,7 +587,6 @@
 				9617AEB52AA5AECC009FB78A /* NikeShoes */,
 				9617AEB42AA5AECC009FB78A /* Products */,
 				9617AEE12AA5AF97009FB78A /* Frameworks */,
-				96410E492AA87EF0004C5313 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -577,10 +651,8 @@
 		9617AEE72AA5B816009FB78A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				63424BBA2AB28E3D003F6229 /* CustomRecoViewModel.swift */,
-				9617AEE82AA5B816009FB78A /* HomeView.swift */,
-				A0DED5C12AA96213000D9E15 /* CustomizedRecommendView.swift */,
-				A0DED5C32AA96744000D9E15 /* NikeNewsView.swift */,
+				21A5818F2AB32C7C00C7B3DD /* ViewModel */,
+				21A581902AB32C8600C7B3DD /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -606,26 +678,14 @@
 		9617AEED2AA5B816009FB78A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2172CE152AA89AF60048D75A /* Category */,
-				63B8935F2AA6CB1A00DC0C73 /* SearchItemView.swift */,
-				63D5B1D12AB03BC700A051F8 /* SearchResultView.swift */,
 				9617AEEF2AA5B816009FB78A /* GenderTabView.swift */,
 				9617AEEE2AA5B816009FB78A /* ShopView.swift */,
-				A04B53222AA6B9E300ED4AC1 /* AppBestCollectionView.swift */,
-				84F690E02AA6CBB70058DDEF /* StoreView.swift */,
-				8418938F2AAFF8C300798BA4 /* StoreSearchView.swift */,
-				84F690E22AA6CC190058DDEF /* StoreItemView.swift */,
-				84F690E62AA6CE9E0058DDEF /* StoreDetailView.swift */,
-				84F690EA2AA6F60E0058DDEF /* UserMapView.swift */,
-				8419CC342AB176520041444C /* MapDetailSheetView.swift */,
+				2172CE152AA89AF60048D75A /* Category */,
+				21A5818E2AB32C1300C7B3DD /* Search */,
+				21A5818D2AB32C0900C7B3DD /* ItemList */,
+				21A5818C2AB32BF400C7B3DD /* Collection */,
+				21A5818B2AB32B8900C7B3DD /* Store */,
 				9E92D7EC2AADF6D40079BFC5 /* ProductInfo */,
-				A04B53242AA6C9D000ED4AC1 /* ItemListView.swift */,
-				63D5B1CD2AAFFFC500A051F8 /* ItemListViewWithProgressbar.swift */,
-				219D7D832AA808CB0062A38F /* AppExclusiveView.swift */,
-				219D7D852AA808F10062A38F /* BestItemView.swift */,
-				219D7D872AA809160062A38F /* RecentItemView.swift */,
-				219D7D892AA8096F0062A38F /* InterestItemView.swift */,
-				219D7D8B2AA8099C0062A38F /* RecommendStoreView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -650,20 +710,10 @@
 		9617AEF52AA5B816009FB78A /* Bag */ = {
 			isa = PBXGroup;
 			children = (
-				21B05F1D2AA6C5F400AEA9A9 /* BagStore.swift */,
-				9617AEF62AA5B816009FB78A /* BagView.swift */,
-				214B79B42AA9599B00C85EA9 /* PaymentView.swift */,
-				21C00D382AB20BA100B19A00 /* BagViewModel.swift */,
-				21C00D3A2AB2C37500B19A00 /* AccountTransferView.swift */,
+				21A581892AB32AD700C7B3DD /* ViewModel */,
+				21A5818A2AB32AE100C7B3DD /* View */,
 			);
 			path = Bag;
-			sourceTree = "<group>";
-		};
-		96410E492AA87EF0004C5313 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		96410E4A2AA8800C004C5313 /* ViewModel */ = {
@@ -916,7 +966,6 @@
 			files = (
 				219FDAD52AA97E7A0046986B /* MainTabView.swift in Sources */,
 				219FDAD42AA97E760046986B /* Color.swift in Sources */,
-				21B05F1E2AA6C5F400AEA9A9 /* BagStore.swift in Sources */,
 				214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */,
 				21FABC422AAEC2DF00546C17 /* SizeButtonView.swift in Sources */,
 				3B42BECC2AAEF8D500548F45 /* UserProfileEditViewModel.swift in Sources */,
@@ -960,7 +1009,6 @@
 				A04B53232AA6B9E300ED4AC1 /* AppBestCollectionView.swift in Sources */,
 				3BA7AF862AAAB1C9006E520E /* ProfileEditView.swift in Sources */,
 				219D7D8A2AA8096F0062A38F /* InterestItemView.swift in Sources */,
-				219D7D582AA6F86D0062A38F /* Model.swift in Sources */,
 				9617AEFD2AA5B816009FB78A /* BagView.swift in Sources */,
 				9ED15DFB2AA6E9120015B48C /* ProductDetailView.swift in Sources */,
 				63D5B1D02AB0072C00A051F8 /* ItemListViewModel.swift in Sources */,
