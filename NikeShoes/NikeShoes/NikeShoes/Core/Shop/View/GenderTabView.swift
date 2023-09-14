@@ -36,6 +36,7 @@ struct GenderTabBarView: View {
     @State private var selectedTab: String
     @State private var progressBarOffset: CGFloat = 0
     @State private var progressBarWidth: CGFloat = 0
+    @State private var isShowingSearchSheet: Bool = false
     
     var tabs: [String]
     
@@ -53,7 +54,18 @@ struct GenderTabBarView: View {
             }
         }
         .navigationBarTitle("구매하기", displayMode: .automatic)
-        .toolbar { SearchView() }
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    isShowingSearchSheet = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $isShowingSearchSheet) {
+            SearchItemView()
+        }
     }
 }
 
@@ -130,17 +142,18 @@ struct SelectedContentView: View {
     var body: some View {
         switch selectedTab {
         case "남성":
-            ShopView(categoryView: MaleView())
+            ShopView(categoryView: MaleView(), currentGender: "남성")  // 수정된 부분
         case "여성":
-            ShopView(categoryView: FemaleView())
+            ShopView(categoryView: FemaleView(), currentGender: "여성")  // 수정된 부분
         case "키즈":
-            ShopView(categoryView: KidsView())
+            ShopView(categoryView: KidsView(), currentGender: "키즈")  // 수정된 부분
         default:
             Text("\(selectedTab) 탭 컨텐츠")
                 .padding()
         }
     }
 }
+
 
 // MARK: - SearchView
 struct SearchView: View {

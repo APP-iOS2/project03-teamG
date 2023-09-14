@@ -18,9 +18,13 @@ class SearchResultViewModel: ObservableObject {
     init(service: FirestoreService = DefaultFireStoreService(), searchKeyword: String) {
         self.service = service
         self.searchKeyword = searchKeyword
-        action()//fetch 후 배열에 반영
+        
+        Task {
+            await action()//fetch 후 배열에 반영
+        }
     }
     
+    @MainActor
     func action() {
         Task { // 비동기 작업 실행
             let shoes = try await fetchItems()

@@ -32,7 +32,7 @@ struct OBAlarmView: View {
                     .padding(.horizontal, 10)
                 
             }
-            .padding(.bottom, 30)
+            .padding(.bottom, 20)
             
             HStack {
                 Text("\(description2 + description3 + description4)")
@@ -46,7 +46,7 @@ struct OBAlarmView: View {
             Spacer()
             
             TempButton(title: OBScreen.alarmSelection.title) {
-                Task {
+                withAnimation {
                     index += 1
                 }
             }.padding(20)

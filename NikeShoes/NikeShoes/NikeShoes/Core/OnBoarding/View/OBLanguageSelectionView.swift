@@ -77,7 +77,7 @@ struct OBLanguageSelectionView: View {
             HStack {
                 Spacer()
                 TempButton(title: OBScreen.languageSelection.title) {
-                    Task {
+                    withAnimation {
                         index += 1
                     }
                 }.padding(20)

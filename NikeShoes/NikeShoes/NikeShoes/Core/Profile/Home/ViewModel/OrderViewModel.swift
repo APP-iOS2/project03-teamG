@@ -16,7 +16,6 @@ class OrderViewModel: ObservableObject {
     @Published var userData: UserDTO?
     @Published var orderData: [OrderDTO]?
     @Published var shoesData: [ShoesDTO]?
-    @Published var addressData: [AddressDTO]?
     
     init(service: FirestoreService = DefaultFireStoreService()) {
         self.service = service
@@ -34,7 +33,7 @@ class OrderViewModel: ObservableObject {
                 let values: [UserDTO] = try await service.fetchAll(collection: .user, query: .equal("email", userID))
                 print("===========debug===========")
                 print(values)
-                self.userData = values.first
+                self.userData = values.first // 유저는 1
             } catch {
                 throw error
             }
@@ -47,7 +46,7 @@ class OrderViewModel: ObservableObject {
                     let values: [OrderDTO] = try await service.fetchAll(collection: .orderlist, query: .equal("userID", userData))
                     print("===========debug===========")
                     print(values)
-                    self.orderData = values
+                    self.orderData = values // 여러개 주문
                 }
             } catch {
                 print(error)
@@ -115,19 +114,18 @@ class OrderViewModel: ObservableObject {
             return dto
         }
     }
-    
+  
     func fetchData() async throws {
         try await fetchUserData()
         try await fetchOrderData()
     }
     
-    func toString(orderDate: Date) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(abbreviation: "KST") // "2018-03-21 18:07"
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
-        return formatter.string(from: orderDate)
+    func createOrder(orderDTO: OrderDTO) async throws {
+        do {
+            let _: String = try await
+            service.create(send: orderDTO, collection: .orderlist, document: nil, collection2: nil)
+        } catch {
+            throw error
+        }
     }
 }
