@@ -62,9 +62,11 @@ struct CancelModalView: View {
                 
                 Task {
                     try await orderViewModel.updateOrderCancel()
+                    try await orderViewModel.updatePaymentCancel()
                 }
                 self.price = 0
                 orderViewModel.cancelOrderStatus()
+                orderViewModel.cancelPaymentStatus()
                 
                     self.isModalPresented.toggle()
             }
