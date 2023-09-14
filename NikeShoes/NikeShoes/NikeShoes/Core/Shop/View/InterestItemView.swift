@@ -39,7 +39,7 @@ struct InterestItemView: View {
                         
                         ForEach(sampleInterestItems, id: \.self) { item in
                             
-                            NavigationLink(destination: ProductDetailView(shoesData: detailSample)) { // ItemListView로 이동
+                            NavigationLink(destination: ProductDetailView(shoesData: data)) { // ItemListView로 이동
                                 
                                 ZStack(alignment: .center) {
                                     

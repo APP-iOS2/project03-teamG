@@ -41,9 +41,9 @@ struct BuyWishlistButtonView: View {
                     do {
                         wishlistToggle
                         ?
-                        try await wishListViewModel.unLikeShoes(shoes: data.toLike())
-                        :
                         try await wishListViewModel.likeUpdate(shoes: data.toLike())
+                        :
+                        try await wishListViewModel.unLikeShoes(shoes: data.toLike())
                     } catch {
                         Log.debug("BuyWishlistButtonView Error ❌")
                         wishlistToggle.toggle()
@@ -76,6 +76,11 @@ struct BuyWishlistButtonView: View {
                             .fontWeight(.medium)
                     }
                 }
+            }
+        }.onAppear {
+            if let id = data.id,
+               let _ = wishListViewModel.shoesIds[id] {
+                wishlistToggle = true
             }
         }
     }

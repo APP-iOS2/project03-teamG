@@ -42,20 +42,23 @@ struct CustomizedRecommendView: View {
                                 AsyncImage(url: URL(string: "\(item.imageURLString[0])")) { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
+                                        .aspectRatio(contentMode: .fit)
                                         .clipped()
+                                        .frame(height: 180)
                                 } placeholder: {
                                     Image("progress")
                                         .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 180)
+                                        .aspectRatio(contentMode: .fit)
                                         .clipped()
+                                        .frame(height: 180)
                                 }
                                 
                                 // 상품 정보
                                 Group {
-                                    Text("\(item.name)")
+                                    Text("\(item.name)".prefix(13))
+                                        .lineLimit(1) // 한 줄로 제한
+                                        .truncationMode(.tail)
+//                                        .padding([.top, .leading], 13)
                                         .foregroundColor(Color.black)
                                         .bold()
                                     Text("\(item.category)")
