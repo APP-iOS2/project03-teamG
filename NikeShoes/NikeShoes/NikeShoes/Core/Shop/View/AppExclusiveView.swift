@@ -36,6 +36,29 @@ struct AppExclusiveView: View {
             // 가로 카테고리
             ScrollView(.horizontal) {
                 LazyHStack {
+                    
+                    NavigationLink(destination: ItemListView()) {
+                        VStack(alignment: .leading) {
+                            AsyncImage(url: URL(string: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F09%2Fnike-snkrs-air-force-1-low-korea-5th-anniversary-exclusive-access-dx3141-861-release-date-0.jpg?fit=max&cbr=1&q=90&w=750&h=500")) { image in
+                                
+                                image.resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 150)
+                            .clipped()
+                            
+                            HStack {
+                                Text("앱 전용제품 전체 보기")
+                                Image(systemName: "arrow.right.circle")
+                            }
+                            .foregroundColor(.black)
+                            .font(Font.semiBold12)
+                            .padding([.top, .leading], 10)
+                            
+                        }
+                    }
 
                     ForEach(shoesArray) { item in
                         NavigationLink(destination: ProductDetailView(shoesData: item)) { // ItemListView로 이동
@@ -61,30 +84,6 @@ struct AppExclusiveView: View {
                             }
                         }
                     }
-                    
-                    NavigationLink(destination: ItemListView()) {
-                        VStack(alignment: .leading) {
-                            AsyncImage(url: URL(string: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F09%2Fnike-snkrs-air-force-1-low-korea-5th-anniversary-exclusive-access-dx3141-861-release-date-0.jpg?fit=max&cbr=1&q=90&w=750&h=500")) { image in
-                                
-                                image.resizable()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .clipped()
-                            
-                            HStack {
-                                Text("앱 전용제품 전체 보기")
-                                Image(systemName: "arrow.right.circle")
-                            }
-                            .foregroundColor(.black)
-                            .font(Font.semiBold12)
-                            .padding([.top, .leading], 10)
-                            
-                        }
-                    }
-                    
                 }
                 .padding()
             }
