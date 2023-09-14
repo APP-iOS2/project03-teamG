@@ -168,5 +168,6 @@ struct ProductDetailView: View {
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailView(shoesData: detailSample)
+            .environmentObject(BagViewModel())
     }
 }

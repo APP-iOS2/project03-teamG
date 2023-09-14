@@ -23,10 +23,12 @@ struct ShopView<Content: View>: View {
             // 카테고리 부분
             categoryView
 
+
             AppExclusiveView(currentGender: currentGender)
-            BestItemView()
+            BestItemView(currentGender: currentGender)
             RecentItemView()
-            InterestItemView()
+            // 관심사 부분 보류
+//            InterestItemView()
             RecommendStoreView()
         }
     }
@@ -37,4 +39,3 @@ struct ShopView_Previews: PreviewProvider {
         ShopView(categoryView: MaleView(), currentGender: "남성")  // 수정된 부분
     }
 }
-
