@@ -72,7 +72,7 @@
 <br/><br/>
 
 **2. 홈**
-- 시간대별 사용자 환영 문구
+- 사용자 친화적인 시간대별 인사말
 - 검색 기능 및 인기 검색어, 검색 기록 표시
 - 사용자 맞춤 추천 제품 제공
 - 나이키 소식
@@ -86,12 +86,13 @@
 **3. 구매하기**
 - 성별 및 연령, 모델명으로 제품 카테고리 분류
 - 앱 전용 제품, 베스트 아이템, 최근 본 제품 컬렉션으로 제공
+- 제품 상세 페이지에서 제품 관련 디테일한 정보 제공
 - 추천 매장 정보 제공, 지도로 연결하여 해당 매장 상세 정보 제공
 
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/7cbdd9ae-2a4c-4c4d-ae77-c9b5cc52711c" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/d2812a12-743e-43d4-a83f-cf6b9916ca43" width="200">
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/c9d6c9d6-8cf9-4595-8c1f-87de5afe0f43" width="200">
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/9d2cbc5b-9ec2-4f35-92c1-e3b3020d7c6b" width="200">
-<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/d2812a12-743e-43d4-a83f-cf6b9916ca43" width="200">
 <br/><br/>
 
 **4. 위시리스트**
@@ -135,11 +136,12 @@
 <br/><br/>
 
 ### 관리자 앱
+
 - 관리자 로그인
-- 제품 등록 (제품명, 가격, 이미지, 카테고리, 사이즈 범위 등)
-- 제품 상세 페이지 수정
-- 주문 관리 (입금 상태, 배송 상태 등)
-- 프로모션 코드 제공
+- 소비자 앱에서 판매할 제품 등록 (제품명, 제품 설명, 가격, 이미지, 카테고리, 사이즈 범위 등)
+- 소비자 앱에서 판매중인 제품 상세 페이지 수정
+- 소비자 주문 내역 상태 관리 (입금 상태, 배송 상태 등)
+- 소배자 앱에서 적용 가능한 프로모션 코드 제공
 
 
 ## 프로젝트 회고
