@@ -5,9 +5,7 @@
 
 ## 프로젝트 소개
 
-> Nike Shoes: 나이키 신발을 편리하게 구매할 수 있는 앱
->
-> Nike Shoes Admin: Nike Shoes의 제품, 주문, 프로모션 코드를 관리하는 앱
+나이키 신발을 편리하게 구매할 수 있는 앱
 
 ## 팀 소개
 
@@ -57,46 +55,84 @@
 - SwiftLint로 코딩 컨벤션 규칙을 세우고 이를 따름
 ```
 
-## 앱 주요 기능
+## 앱 주요 기능 및 화면
 
 ### 소비자 앱
 
-1. 회원가입/로그인 및 온보딩
+**1. 회원가입/로그인 및 온보딩**
 - 단계별 회원가입 과정
-- 지역, 언어, 관심사, 신발 사이즈 선택
+- 비밀번호 재설정
+- 가입하기/로그인 가입된 정보로 판단
+- 사용자 맞춤형 정보 제공을 위한 지역, 언어, 관심사, 신발 사이즈 선택
 
-2. 홈
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/ec7f2ee9-0021-4ce6-8e5e-f009d2b49c2e" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/da922880-0a21-4321-b3b0-f3b3c6f42a5d" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/1d7b0e71-1c1d-46ee-b3c3-761ab9fdb1ec" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/5968bfc9-23dd-4df2-b8ba-233f0105c16e" width="200">
+<br/><br/>
+
+**2. 홈**
+- 시간대별 사용자 환영 문구
+- 검색 기능 및 인기 검색어, 최근 검색어 표시
 - 사용자 맞춤 추천 제품 제공
 - 나이키 소식
 
-3. 구매하기
-- 검색 기능 및 인기 검색어, 최근 검색어 표시
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/46f99ccc-8976-40e5-85e8-728bf04dc916" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/5e6964fa-01f0-49cd-927c-01881ab57baa" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/dda560e4-0e0c-4583-8d45-0a056ee4dac6" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/f6157f5e-da5e-4a6f-83d4-12348b477ccc" width="200">
+<br/><br/>
+
+**3. 구매하기**
 - 성별 및 연령, 모델명으로 제품 카테고리 분류
 - 앱 전용 제품, 베스트 아이템, 최근 본 제품 컬렉션으로 제공
 - 추천 매장 정보 제공, 지도로 연결하여 해당 매장 상세 정보 제공
 
-4. 위시리스트
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/7cbdd9ae-2a4c-4c4d-ae77-c9b5cc52711c" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/c9d6c9d6-8cf9-4595-8c1f-87de5afe0f43" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/9d2cbc5b-9ec2-4f35-92c1-e3b3020d7c6b" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/d2812a12-743e-43d4-a83f-cf6b9916ca43" width="200">
+<br/><br/>
+
+**4. 위시리스트**
 - 사용자의 위시 제품 목록
 - 위시 목록 편집 기능
 
-5. 장바구니 및 주문하기
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/ab001be4-3232-4089-9956-c621493dc204" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/26f71c5e-64d8-4a8b-a025-6ee73b957e2f" width="200">
+<br/><br/>
+
+**5. 장바구니 및 주문하기**
 - 사용자가 담은 제품 목록 및 금액 표시
 - 프로모션 코드 적용
 - 배송지 선택 및 추가
 - 결제하기
 
-6. 프로필
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/9654c9d6-744e-4d81-886a-7f3f609ebb0f" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/d9bd989f-e488-4e43-a44d-99ba4420581f" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/36a39e36-3738-4879-9124-b6496bede007" width="200">
+<br/><br/>
+
+**6. 프로필**
 - 프로필 사진, 이름, 활동지역, 자기소개 수정
 - 주문 내역
 - 알림 수신함, 멤버 리워드
 - 팔로잉 관심사 수정
 
-7. 설정
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/449e74f0-a3da-40da-9dc9-be58fc1f3856" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/aa7f5c8c-2517-439b-95e8-daf35398f7b1" width="200">
+<br/><br/>
+
+**7. 설정**
 - 개인정보 수정
 - 배송지 관리
 - 나이키 매장/고객센터
 - 계정 삭제
 - 로그아웃
+
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/0c3208dd-1466-4328-ab1f-348fd624b82a" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/f2962a61-dda0-4833-9d51-672a9a0d4b8a" width="200">
+<br/><br/>
 
 ### 관리자 앱
 - 관리자 로그인
@@ -105,14 +141,15 @@
 - 주문 관리 (입금 상태, 배송 상태 등)
 - 프로모션 코드 제공
 
+
 ## 프로젝트 회고
 
 ### 생각보다 잘된 점
 - 실제 나이키 앱의 디테일한 부분까지 클론하면서 많이 배울 수 있었음
-- 단순 클론이 아니라 실제 나이키 앱의 사용성을 개선하고자 고민하고 개선하였음
+- 단순 클론이 아니라 실제 나이키 앱의 사용성을 개선하고자 고민하고 반영하였음
 - 처음 목표한 기능을 대부분 구현해냄
 - 초반 기획 단계가 탄탄해서 중간에 개발 흐름을 잃지 않을 수 있었음
-- 팀원 간의 원활한 소통을 기반으로한 협업이 프로젝트에 긍정적인 영향을 미쳤음
+- 팀원 간의 원활한 소통을 기반으로 한 협업이 프로젝트에 긍정적인 영향을 미쳤음
 - git branch 관리가 잘 되었음
 
 ### 생각보다 아쉬운 점
