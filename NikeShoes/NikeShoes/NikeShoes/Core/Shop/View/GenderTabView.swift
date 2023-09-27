@@ -53,7 +53,8 @@ struct GenderTabBarView: View {
                 Spacer()
             }
         }
-        .navigationBarTitle("구매하기", displayMode: .automatic)
+        .navigationTitle("구매하기")
+        .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
             ToolbarItem {
                 Button {
@@ -95,13 +96,15 @@ struct TabBarView: View {
                                 }
                             }
                             .onAppear {
-                                if self.selectedTab == tab {
-                                    let newOffset = geometry.frame(in: .global).minX
-                                    let newWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
-                                    
-                                    if newOffset.isFinite && newWidth.isFinite {
-                                        self.progressBarOffset = newOffset
-                                        self.progressBarWidth = newWidth
+                                DispatchQueue.main.async {
+                                    if self.selectedTab == tab {
+                                        let newOffset = geometry.frame(in: .global).minX
+                                        let newWidth = tab.widthOfString(usingFont: UIFont.systemFont(ofSize: 16, weight: .bold))
+                                        
+                                        if newOffset.isFinite && newWidth.isFinite {
+                                            self.progressBarOffset = newOffset
+                                            self.progressBarWidth = newWidth
+                                        }
                                     }
                                 }
                             }

@@ -43,7 +43,7 @@ struct ItemListViewWithProgressbar: View {
     @State private var progressBarWidth: CGFloat = 0
     
     // 탭 목록
-//    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
+    //    var tabs: [String] = ["전체", "조던", "덩크", "코르테즈", "에어 포스 1"]
     
     // ViewModel
     @EnvironmentObject var viewModel: ItemListViewModel
@@ -54,90 +54,97 @@ struct ItemListViewWithProgressbar: View {
                 // 탭바 뷰
                 TabBarView(tabs: tabs, selectedTab: $selectedTab, progressBarOffset: $progressBarOffset, progressBarWidth: $progressBarWidth)
                     .padding(.bottom, -23)
-                
-                // 상품 그리드 뷰
-                LazyVGrid(columns: columns) {
-                    ForEach(viewModel.shoes.filter {
-                        ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
-                        ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
-                        ($0.category == self.currentGender || self.currentGender == "공용") &&
-                        ($0.modelName == self.selectedTab || self.selectedTab == "전체")
-                    }) { data in
-                            NavigationLink(destination: ProductDetailView(shoesData: data)) {
-                                // 상품 카드 뷰
-                                ZStack {
-                                    VStack(alignment: .leading) {
-                                        // 상품 이미지
-                                        AsyncImage(url: URL(string: data.imageURLString.first ?? "")) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(height: 180)
-                                                .clipped()
-                                        } placeholder: {
-                                            Image("progress")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(height: 180)
-                                                .clipped()
-                                        }
-                                        // 상품 정보
-                                        Group {
-                                            Text("\(data.name)")
-                                                .foregroundColor(Color.black)
-                                                .bold()
-                                            Text("\(data.category)")
-                                                .foregroundColor(Color.textGray)
-                                            Text("₩\(data.price)")
-                                                .foregroundColor(Color.black)
-                                        }
-                                        .padding(0.3)
-                                     
-                                        Spacer()
-                                    }
-                                    // 좋아요 버튼
-                                    Button(action: {
-                                        isLiked.toggle()
-                                    }) {
-                                        Circle()
-                                            .frame(width: 30, height: 30)
-                                            .foregroundColor(.white)
-                                            .overlay(
-                                                Image(systemName: isLiked ? "heart.fill" : "heart")
-                                                    .foregroundColor(isLiked ? .red : .gray)
-                                            )
-                                    }
-                                    .offset(x: 60, y: -124)
-                                }
-                            }
-                            .frame(height: 300)
+                    .onAppear {
+                        DispatchQueue.main.async { // 프로그래스 바의 초기 위치 잡기.
+                            self.selectedTab = tabs.first ?? "전체"
+                            self.progressBarOffset = 0
+                            self.progressBarWidth = 30
                         }
                     }
-                    .padding()
-                }
-                // 네비게이션 설정
-                .navigationTitle(navigationTitle)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarBackButtonHidden(true)
-                .navigationBarItems(
-                    leading: Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                    },
-                    trailing: NavigationLink(destination: SearchItemView()) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
+                        
+                        // 상품 그리드 뷰
+                        LazyVGrid(columns: columns) {
+                            ForEach(viewModel.shoes.filter {
+                                ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
+                                ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
+                                ($0.category == self.currentGender || self.currentGender == "공용") &&
+                                ($0.modelName == self.selectedTab || self.selectedTab == "전체")
+                            }) { data in
+                                NavigationLink(destination: ProductDetailView(shoesData: data)) {
+                                    // 상품 카드 뷰
+                                    ZStack {
+                                        VStack(alignment: .leading) {
+                                            // 상품 이미지
+                                            AsyncImage(url: URL(string: data.imageURLString.first ?? "")) { image in
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(height: 180)
+                                                    .clipped()
+                                            } placeholder: {
+                                                Image("progress")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(height: 180)
+                                                    .clipped()
+                                            }
+                                            // 상품 정보
+                                            Group {
+                                                Text("\(data.name)")
+                                                    .foregroundColor(Color.black)
+                                                    .bold()
+                                                Text("\(data.category)")
+                                                    .foregroundColor(Color.textGray)
+                                                Text("₩\(data.price)")
+                                                    .foregroundColor(Color.black)
+                                            }
+                                            .padding(0.3)
+                                            
+                                            Spacer()
+                                        }
+                                        // 좋아요 버튼
+                                        Button(action: {
+                                            isLiked.toggle()
+                                        }) {
+                                            Circle()
+                                                .frame(width: 30, height: 30)
+                                                .foregroundColor(.white)
+                                                .overlay(
+                                                    Image(systemName: isLiked ? "heart.fill" : "heart")
+                                                        .foregroundColor(isLiked ? .red : .gray)
+                                                )
+                                        }
+                                        .offset(x: 60, y: -124)
+                                    }
+                                }
+                                .frame(height: 300)
+                            }
+                        }
+                        .padding()
                     }
-                )
+                // 네비게이션 설정
+                    .navigationTitle(navigationTitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarItems(
+                        leading: Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.black)
+                        },
+                        trailing: NavigationLink(destination: SearchItemView()) {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.black)
+                        }
+                    )
             }
         }
     }
-
-struct ItemListViewWithProgressbar_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성", customTabs: ["전체", "에어맥스", "에어포스"])
-
+    
+    struct ItemListViewWithProgressbar_Previews: PreviewProvider {
+        static var previews: some View {
+            ItemListViewWithProgressbar(speciality: .onlyApp, modelName: nil, navigationTitle: "앱 전용 제품", currentGender: "남성", customTabs: ["전체", "에어맥스", "에어포스"])
+            
+        }
     }
-}

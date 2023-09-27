@@ -78,7 +78,7 @@ struct AppBestCollectionView: View {
 
 struct AppBestCollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AppBestCollectionView(currentGender: "남성")
                 .frame(height: 280)
         }
