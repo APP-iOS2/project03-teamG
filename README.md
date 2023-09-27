@@ -106,12 +106,13 @@
 **5. 장바구니 및 주문하기**
 - 사용자가 담은 제품 목록 및 금액 표시
 - 프로모션 코드 적용
-- 배송지 선택 및 추가
-- 결제하기
+- 배송지 선택 및 추가 후 결제
+- 주문내역에 반영, 주문취소 가능
 
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/98fcb67e-7b6b-48bf-81b7-cb5867a3fdfe" width="200">
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/fdd2c111-262a-4822-9dfc-cf7a61dc1afc" width="200">
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/a9745684-aed3-4789-a400-938f2a4baa15" width="200">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamG/assets/101550733/2aaf9f7e-0ceb-44c8-93b3-9e18410eced7" width="200">
 <br/><br/>
 
 **6. 프로필**
