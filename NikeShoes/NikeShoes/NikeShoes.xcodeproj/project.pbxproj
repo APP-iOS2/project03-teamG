@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1D0449342AA9A34900BBF147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0449332AA9A34900BBF147 /* SDWebImageSwiftUI */; };
+		1D9BE1CB2AC479D700E0BC0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D9BE1CA2AC479D700E0BC0D /* GoogleService-Info.plist */; };
 		214B79B52AA9599B00C85EA9 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B79B42AA9599B00C85EA9 /* PaymentView.swift */; };
 		2172CE172AA89B130048D75A /* MaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE162AA89B130048D75A /* MaleView.swift */; };
 		2172CE192AA89B1B0048D75A /* FemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE182AA89B1B0048D75A /* FemaleView.swift */; };
 		2172CE1B2AA89B250048D75A /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172CE1A2AA89B250048D75A /* KidsView.swift */; };
-		218094B82AAEF9CA00859DDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 218094B72AAEF9CA00859DDA /* GoogleService-Info.plist */; };
 		219D7D562AA6F8630062A38F /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D552AA6F8630062A38F /* Font.swift */; };
 		219D7D842AA808CB0062A38F /* AppExclusiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D832AA808CB0062A38F /* AppExclusiveView.swift */; };
 		219D7D862AA808F10062A38F /* BestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D7D852AA808F10062A38F /* BestItemView.swift */; };
@@ -157,11 +157,11 @@
 
 /* Begin PBXFileReference section */
 		1D1CA3652AA6BBAF009BCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1D9BE1CA2AC479D700E0BC0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		214B79B42AA9599B00C85EA9 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		2172CE162AA89B130048D75A /* MaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaleView.swift; sourceTree = "<group>"; };
 		2172CE182AA89B1B0048D75A /* FemaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemaleView.swift; sourceTree = "<group>"; };
 		2172CE1A2AA89B250048D75A /* KidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsView.swift; sourceTree = "<group>"; };
-		218094B72AAEF9CA00859DDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		219D7D532AA6F85B0062A38F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		219D7D552AA6F8630062A38F /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		219D7D832AA808CB0062A38F /* AppExclusiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExclusiveView.swift; sourceTree = "<group>"; };
@@ -601,7 +601,7 @@
 		9617AEB52AA5AECC009FB78A /* NikeShoes */ = {
 			isa = PBXGroup;
 			children = (
-				218094B72AAEF9CA00859DDA /* GoogleService-Info.plist */,
+				1D9BE1CA2AC479D700E0BC0D /* GoogleService-Info.plist */,
 				1D1CA3652AA6BBAF009BCCB5 /* Info.plist */,
 				219D7D502AA6F7EC0062A38F /* Extensions */,
 				219D7D512AA6F7F80062A38F /* Model */,
@@ -929,7 +929,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				219FDAD32AA97C6F0046986B /* .swiftlint.yml in Resources */,
-				218094B82AAEF9CA00859DDA /* GoogleService-Info.plist in Resources */,
+				1D9BE1CB2AC479D700E0BC0D /* GoogleService-Info.plist in Resources */,
 				9617AEBE2AA5AED0009FB78A /* Preview Assets.xcassets in Resources */,
 				9617AEBB2AA5AED0009FB78A /* Assets.xcassets in Resources */,
 			);

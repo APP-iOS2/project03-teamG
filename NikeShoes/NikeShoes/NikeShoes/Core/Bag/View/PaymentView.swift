@@ -362,8 +362,8 @@ struct PaymentView: View {
                                         isArgreeTapped.toggle()
                                     authViewModel.fetchUser()
                                     let orderList: [OrderDTO] = [
-                                        OrderDTO(shoesID: "\(bagItemList[0].id)" ,
-                                                 userID: "\(authViewModel.userInfo.id)",
+                                        OrderDTO(shoesID: "\(bagItemList[0].id ?? "shoesID")" ,
+                                                 userID: "\(authViewModel.userInfo.id ?? "userID")",
                                                  address: "주소주소테스트",
                                                  deliveryStatus: .orderComplete,
                                                  orderDate: Date())

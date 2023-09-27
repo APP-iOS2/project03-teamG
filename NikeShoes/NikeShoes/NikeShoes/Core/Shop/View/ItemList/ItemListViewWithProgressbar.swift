@@ -65,13 +65,17 @@ struct ItemListViewWithProgressbar: View {
                         // 상품 그리드 뷰
                         LazyVGrid(columns: columns) {
                             ForEach(viewModel.shoes.filter {
-                                ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
-                                ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
+                                // 성별에 따른 필터링
                                 ($0.category == self.currentGender || self.currentGender == "공용") &&
+                                // 특별한 속성에 따른 필터링
+                                ($0.speciality.contains(self.speciality ?? .none) || self.speciality == nil || self.speciality == .allProducts) &&
+                                // 모델 이름에 따른 필터링
+                                ($0.modelName == self.modelName?.rawValue || self.modelName == nil) &&
+                                // 선택된 탭에 따른 필터링
                                 ($0.modelName == self.selectedTab || self.selectedTab == "전체")
                             }) { data in
+                                // 상품 카드 뷰
                                 NavigationLink(destination: ProductDetailView(shoesData: data)) {
-                                    // 상품 카드 뷰
                                     ZStack {
                                         VStack(alignment: .leading) {
                                             // 상품 이미지

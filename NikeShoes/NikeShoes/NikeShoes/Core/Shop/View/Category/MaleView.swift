@@ -18,7 +18,7 @@ struct CategoryInfo {
 
 struct MaleView: View {
     let categories: [CategoryInfo] = [
-        CategoryInfo(name: "신제품", imageName: "MaleCategory1", speciality: .newProduct, modelName: nil, customTabs: ["신제품"]),
+        CategoryInfo(name: "신제품", imageName: "MaleCategory1", speciality: .newProduct, modelName: nil, customTabs: ["전체"]),
         CategoryInfo(name: "전체보기", imageName: "MaleCategory2", speciality: .allProducts, modelName: nil, customTabs: ["전체"]),
         CategoryInfo(name: "조던", imageName: "MaleCategory3", speciality: nil, modelName: .jordan, customTabs: ["조던"]),
         CategoryInfo(name: "에어 포스 1", imageName: "MaleCategory4", speciality: nil, modelName: .airForce, customTabs: ["에어 포스 1"]),
