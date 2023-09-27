@@ -57,18 +57,24 @@ class OrderViewModel: ObservableObject {
     
     @MainActor
         func fetchShoesData() async throws {
+            guard let orders = orderData else {
+                self.shoesData = []
+                return
+            }
+            
             do {
-                if let orderData = orderData?.first?.shoesID {
-                    let values: ShoesDTO = try await service.fetchAllDocumet(collection: .shoes, documentid: orderData)
-                    print("===========debug===========")
-                    print(values)
-                    self.shoesData = [values]
+                var fetchedShoesData: [ShoesDTO] = []
+                for order in orders {
+                    let shoe: ShoesDTO = try await service.fetchAllDocumet(collection: .shoes, documentid: order.shoesID)
+                    fetchedShoesData.append(shoe)
                 }
+                self.shoesData = fetchedShoesData
             } catch {
                 throw error
             }
         }
-    
+
+
     @MainActor
         func fetchAddressData() async throws {
             do {
@@ -134,12 +140,17 @@ class OrderViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchData() async throws {
-        try await fetchUserData()
-        try await fetchOrderData()
-        try await fetchShoesData()
+        do {
+            try await fetchUserData()
+            try await fetchOrderData()
+            try await fetchShoesData()
+        } catch {
+            throw error
+        }
     }
-    
+
     func toString(orderDate: Date) -> String {
         let formatter: DateFormatter = DateFormatter()
         
@@ -157,6 +168,5 @@ class OrderViewModel: ObservableObject {
         } catch {
             throw error
         }
-        
     }
 }

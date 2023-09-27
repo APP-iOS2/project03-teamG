@@ -92,7 +92,6 @@ struct BagView: View {
                             //                            bagViewModel.bagArray.remove(atOffsets: indexSet)
                             //                        })
                             
-                    
                     HStack {
                         
                         Spacer()

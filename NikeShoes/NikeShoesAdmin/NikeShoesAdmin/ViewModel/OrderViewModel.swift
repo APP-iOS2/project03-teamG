@@ -34,10 +34,13 @@ class OrderViewModel: ObservableObject {
 
     }
     
-    func updateOrder(id: String, deliveryStatus: DeliveryStatus.RawValue) async throws {
-        try await service.update(collection: .orderlist, document: id, fields: ["deliveryStatus" : deliveryStatus])
-        
-        Task { try await self.fetchOrder() }
+    @MainActor
+    func updateOrderStatus(id: String, newStatus: String) async throws {
+        do {
+            try await service.update(collection: .orderlist, document: id, fields: ["deliveryStatus": newStatus])
+        } catch {
+            throw error
+        }
     }
     
     func createOrder(orderDTO: OrderDTO) async throws {

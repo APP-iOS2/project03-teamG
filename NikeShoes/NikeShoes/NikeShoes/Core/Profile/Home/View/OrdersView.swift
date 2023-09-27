@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+// 스켈레톤 뷰를 표현하기 위한 뷰
+struct SkeletonOrderView: View {
+    var body: some View {
+        HStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.gray.opacity(0.3))
+                .frame(width: 130, height: 130)
+            
+            VStack(alignment: .leading) {
+                ForEach(0..<3) { _ in
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(height: 20)
+                        .padding(.bottom, 2)
+                }
+            }
+        }
+        .padding()
+    }
+}
+
+// 주문 목록을 표현하기 위한 뷰
 struct OrdersView: View {
     
     @StateObject var orderViewModel: OrderViewModel = OrderViewModel()
@@ -15,20 +37,29 @@ struct OrdersView: View {
     
     var body: some View {
         NavigationStack {
-            if orderViewModel.orderData?.first?.shoesID != nil {
+            // 주문 데이터가 있을 경우
+            if let orders = orderViewModel.orderData?.sorted(by: { $0.orderDate > $1.orderDate }),
+               !orders.isEmpty,
+               let shoesData = orderViewModel.shoesData {
                 ScrollView {
-                    ForEach(orderViewModel.orderData ?? []) { orderList in
-                        OrderListView(dto: orderList)
-                            .environmentObject(orderViewModel)
+                    ForEach(orders.indices, id: \.self) { index in
+                        if let shoes = shoesData.first(where: { $0.id == orders[index].shoesID }) {
+                            OrderListView(dto: orders[index], shoes: shoes)
+                                .environmentObject(orderViewModel)
+                        }
                     }
                 }
             } else {
-                OrdersEmptyView()
+                // 주문 데이터가 없을 경우 스켈레톤 뷰를 표시
+                ScrollView {
+                    ForEach(0..<5, id: \.self) { _ in
+                        SkeletonOrderView()
+                    }
+                }
             }
         }
         .navigationTitle("주문내역")
         .navigationBarTitleDisplayMode(.inline)
-        .modifier(NavigationNikeSetting(title: title))
         .refreshable {
             Task {
                 try await orderViewModel.fetchData()

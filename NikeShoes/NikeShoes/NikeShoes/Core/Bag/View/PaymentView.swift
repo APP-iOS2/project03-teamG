@@ -256,7 +256,6 @@ struct PaymentView: View {
                                 .foregroundColor(.black)
 
                                 
-                                
                                 Spacer()
                                 
                                 Text("실시간 계좌이체")
@@ -359,19 +358,26 @@ struct PaymentView: View {
                                 }
                                 
                                 Button {
-                                        isArgreeTapped.toggle()
+                                    isArgreeTapped.toggle()
                                     authViewModel.fetchUser()
-                                    let orderList: [OrderDTO] = [
-                                        OrderDTO(shoesID: "\(bagItemList[0].id ?? "shoesID")" ,
-                                                 userID: "\(authViewModel.userInfo.id ?? "userID")",
-                                                 address: "주소주소테스트",
-                                                 deliveryStatus: .orderComplete,
-                                                 orderDate: Date())
-                                    ]
                                     
+                                    // 장바구니에 있는 모든 아이템을 주문 내역으로 변환
+                                    var orderList: [OrderDTO] = []
+                                    for item in bagItemList {
+                                        let orderDTO = OrderDTO(
+                                            shoesID: "\(item.id ?? "shoesID")",
+                                            userID: "\(authViewModel.userInfo.id ?? "userID")",
+                                            address: "\(roadAddress) \(buildingUnit)",
+                                            deliveryStatus: .orderComplete,
+                                            orderDate: Date()
+                                        )
+                                        orderList.append(orderDTO)
+                                    }
+                                    
+                                    // Firestore에 주문 내역 저장
                                     for dto in orderList {
-                                    Task { try await
-                                            orderViewModel.createOrder(orderDTO: dto)
+                                        Task {
+                                            try await orderViewModel.createOrder(orderDTO: dto)
                                         }
                                     }
                                     
@@ -384,12 +390,11 @@ struct PaymentView: View {
                                         .font(.title3)
                                         .frame(width: 350, height: 70)
                                         .foregroundColor(.white)
-                                        .background(isArgreeTapped ?
-                                                    Color.gray.opacity(0.3)
-                                                    : Color.black)
+                                        .background(isArgreeTapped ? Color.gray.opacity(0.3) : Color.black)
                                         .cornerRadius(40)
                                         .padding()
                                 }
+
                                 .frame(width: 330, height: 60)
                                        .background(isAgreeTapped ? Color.gray.opacity(0.3) : Color.black)
                                        .foregroundColor(.white)
